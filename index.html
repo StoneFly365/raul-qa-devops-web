@@ -1,0 +1,1006 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Raúl · Business & Solution Consulting Lead — QA & DevOps</title>
+<meta name="description" content="Consultoría B2B en QA, DevOps y AI aplicada al testing. Automatización de pipelines y quality engineering para equipos que despliegan con confianza.">
+<meta property="og:title" content="Raúl · QA & DevOps Consulting">
+<meta property="og:description" content="Consultoría B2B en QA, DevOps y AI aplicada al testing. Del assessment al pipeline en producción.">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<!-- Blossom Carousel -->
+<script defer src="https://unpkg.com/@blossom-carousel/web/dist/blossom-carousel-web.umd.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/@blossom-carousel/core/dist/blossom-carousel-core.css">
+<style>
+/* =============================================
+   DESIGN TOKENS
+   ============================================= */
+:root{
+  --bg-deep:#0D1219;
+  --bg:#131820;
+  --surface:#1A2130;
+  --surface-up:#202A38;
+  --border:#263040;
+  --border-hi:#344660;
+  --text:#DFE4EC;
+  --text-dim:#7A8BA0;
+  --text-faint:#4D5D73;
+  --accent:#34D399;
+  --accent-dim:rgba(52,211,153,.12);
+  --accent-glow:rgba(52,211,153,.25);
+  --warn:#F59E0B;
+  --warn-dim:rgba(245,158,11,.1);
+  --fail:#EF4444;
+  --max:1120px;
+  --r:10px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg-deep);
+  color:var(--text);
+  font-family:'Inter',system-ui,sans-serif;
+  font-size:16.5px;line-height:1.68;
+  -webkit-font-smoothing:antialiased;
+}
+::selection{background:var(--accent-dim);color:#fff}
+a{color:inherit}
+img{display:block;max-width:100%}
+.mono{font-family:'JetBrains Mono',monospace}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 28px}
+
+/* =============================================
+   NAV
+   ============================================= */
+header.nav{
+  position:sticky;top:0;z-index:100;
+  background:rgba(7,10,17,.8);
+  backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--border);
+}
+.nav-inner{
+  max-width:var(--max);margin:0 auto;padding:14px 28px;
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
+}
+.brand{
+  font-family:'JetBrains Mono',monospace;
+  font-weight:600;font-size:.88rem;text-decoration:none;
+  display:flex;align-items:center;gap:10px;color:var(--text);
+}
+.brand-dot{
+  width:9px;height:9px;border-radius:50%;background:var(--accent);
+  box-shadow:0 0 8px var(--accent-glow);
+  animation:pulse-dot 2.5s ease infinite;
+}
+@keyframes pulse-dot{0%,100%{opacity:1}50%{opacity:.5}}
+nav.links{display:flex;gap:28px;font-size:.9rem}
+nav.links a{text-decoration:none;color:var(--text-dim);transition:color .2s}
+nav.links a:hover{color:var(--text)}
+.nav-cta{
+  font-size:.85rem;font-weight:600;text-decoration:none;
+  padding:9px 20px;border-radius:999px;
+  background:var(--accent);color:#070A11;transition:all .2s;
+}
+.nav-cta:hover{background:#5CE8B5;box-shadow:0 0 20px var(--accent-glow)}
+.hamburger{display:none;background:none;border:none;color:var(--text);cursor:pointer;padding:4px}
+@media(max-width:760px){
+  nav.links{display:none;position:absolute;top:100%;left:0;right:0;background:var(--bg);
+    flex-direction:column;padding:20px 28px;gap:18px;border-bottom:1px solid var(--border)}
+  nav.links.open{display:flex}
+  .hamburger{display:block}
+}
+
+/* =============================================
+   HERO
+   ============================================= */
+.hero{padding:96px 0 0;position:relative;overflow:hidden}
+.hero::after{
+  content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);
+  width:700px;height:700px;border-radius:50%;
+  background:radial-gradient(circle,var(--accent-glow) 0%,transparent 70%);
+  opacity:.07;pointer-events:none;filter:blur(60px);
+}
+.hero-eyebrow{
+  font-family:'JetBrains Mono',monospace;font-size:.82rem;
+  color:var(--text-dim);display:flex;align-items:center;gap:10px;
+  margin-bottom:22px;position:relative;z-index:1;
+}
+.hero-eyebrow .line{width:28px;height:1px;background:var(--accent);display:inline-block}
+h1{
+  font-family:'Space Grotesk',sans-serif;font-weight:700;
+  font-size:clamp(2.4rem,5.6vw,4.2rem);
+  line-height:1.06;letter-spacing:-.02em;
+  max-width:20ch;position:relative;z-index:1;
+}
+h1 .hi{
+  color:var(--accent);
+  text-shadow:0 0 40px var(--accent-glow);
+}
+.hero-desc{
+  margin-top:26px;max-width:56ch;color:var(--text-dim);font-size:1.05rem;line-height:1.72;
+  position:relative;z-index:1;
+}
+.hero-ctas{margin-top:38px;display:flex;gap:14px;flex-wrap:wrap;position:relative;z-index:1}
+.btn{
+  display:inline-block;text-decoration:none;font-weight:600;font-size:.93rem;
+  padding:14px 28px;border-radius:999px;transition:all .2s;
+}
+.btn:active{transform:scale(.97)}
+.btn-accent{background:var(--accent);color:#070A11}
+.btn-accent:hover{background:#5CE8B5;box-shadow:0 0 24px var(--accent-glow)}
+.btn-outline{border:1.5px solid var(--border-hi);color:var(--text)}
+.btn-outline:hover{border-color:var(--accent);color:var(--accent)}
+
+/* Stats bar */
+.stats-bar{
+  margin-top:64px;padding:32px 0;
+  border-top:1px solid var(--border);
+  border-bottom:1px solid var(--border);
+  display:grid;grid-template-columns:repeat(4,1fr);gap:24px;
+  position:relative;z-index:1;
+}
+.stat{text-align:center}
+.stat-n{
+  font-family:'Space Grotesk',sans-serif;font-weight:700;
+  font-size:clamp(1.8rem,3vw,2.6rem);color:var(--accent);
+  line-height:1.1;
+}
+.stat-l{
+  font-family:'JetBrains Mono',monospace;font-size:.73rem;
+  color:var(--text-dim);margin-top:6px;letter-spacing:.01em;
+}
+@media(max-width:600px){
+  .stats-bar{grid-template-columns:repeat(2,1fr);gap:28px 16px}
+}
+
+/* =============================================
+   TECH STACK CAROUSEL
+   ============================================= */
+.stack-section{padding:48px 0 0;position:relative;z-index:1}
+.stack-label{
+  font-family:'JetBrains Mono',monospace;font-size:.76rem;
+  color:var(--text-faint);text-align:center;margin-bottom:20px;
+  letter-spacing:.03em;text-transform:uppercase;
+}
+.stack-nav{display:flex;gap:10px;justify-content:center;margin-bottom:18px}
+.stack-carousel{
+  display:grid;
+  grid-auto-flow:column;
+  grid-auto-columns:140px;
+  gap:14px;
+  scroll-snap-type:inline mandatory;
+  padding:0;
+  cursor:grab;
+}
+.stack-carousel::-webkit-scrollbar{display:none}
+.stack-carousel{-ms-overflow-style:none;scrollbar-width:none}
+.tech-card{
+  scroll-snap-align:center;
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:var(--r);
+  padding:22px 16px;
+  text-align:center;
+  transition:border-color .2s,transform .2s;
+  user-select:none;
+}
+.tech-card:hover{border-color:var(--border-hi);transform:translateY(-2px)}
+.tech-card .tc-icon{
+  width:36px;height:36px;margin:0 auto 10px;
+  border-radius:8px;background:var(--accent-dim);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--accent);font-family:'JetBrains Mono',monospace;
+  font-weight:700;font-size:.82rem;
+}
+.tech-card .tc-name{
+  font-family:'JetBrains Mono',monospace;
+  font-size:.78rem;font-weight:600;color:var(--text);
+}
+.tech-card .tc-cat{
+  font-size:.68rem;color:var(--text-faint);margin-top:3px;
+}
+
+/* =============================================
+   PIPELINE (signature element)
+   ============================================= */
+.pipeline-section{padding:64px 0 80px}
+.pipeline{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:var(--r);overflow:hidden;
+  box-shadow:0 8px 40px rgba(0,0,0,.25);
+}
+.pipe-head{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:13px 20px;border-bottom:1px solid var(--border);
+  font-family:'JetBrains Mono',monospace;font-size:.77rem;color:var(--text-dim);
+}
+.pipe-status{display:flex;align-items:center;gap:8px}
+.pipe-ind{width:8px;height:8px;border-radius:50%;background:var(--warn);transition:background .3s}
+.pipe-head.done .pipe-ind{background:var(--accent);box-shadow:0 0 8px var(--accent-glow)}
+.pipe-stages{display:grid;grid-template-columns:repeat(5,1fr)}
+.stg{
+  padding:24px 20px;border-right:1px solid var(--border);position:relative;transition:background .4s;
+}
+.stg:last-child{border-right:none}
+.stg-name{
+  font-family:'JetBrains Mono',monospace;font-size:.78rem;font-weight:600;
+  display:flex;align-items:center;gap:9px;color:var(--text);
+}
+.stg-desc{font-size:.83rem;color:var(--text-dim);margin-top:10px;line-height:1.52}
+.stg-time{
+  font-family:'JetBrains Mono',monospace;font-size:.7rem;color:var(--text-faint);
+  margin-top:11px;opacity:0;transition:opacity .4s;
+}
+.badge{
+  width:17px;height:17px;border-radius:50%;flex:none;
+  border:2px solid var(--text-faint);position:relative;transition:all .3s;
+}
+.stg.running .badge{border-color:var(--warn);animation:spin .9s linear infinite;border-top-color:transparent}
+.stg.running{background:var(--warn-dim)}
+.stg.passed .badge{border-color:var(--accent);background:var(--accent);box-shadow:0 0 10px var(--accent-glow)}
+.stg.passed .badge::after{
+  content:"";position:absolute;left:4px;top:1px;width:5px;height:9px;
+  border:solid #070A11;border-width:0 2px 2px 0;transform:rotate(45deg);
+}
+.stg.passed .stg-time{opacity:1}
+.stg.passed{background:var(--accent-dim)}
+@keyframes spin{to{transform:rotate(360deg)}}
+@media(max-width:860px){
+  .pipe-stages{grid-template-columns:1fr}
+  .stg{border-right:none;border-bottom:1px solid var(--border)}
+  .stg:last-child{border-bottom:none}
+}
+
+/* =============================================
+   SECTIONS (shared)
+   ============================================= */
+section{padding:96px 0}
+.sec-border{border-top:1px solid var(--border)}
+.sec-head{margin-bottom:52px}
+.sec-eyebrow{
+  font-family:'JetBrains Mono',monospace;font-size:.78rem;
+  color:var(--accent);margin-bottom:14px;display:block;
+}
+h2{
+  font-family:'Space Grotesk',sans-serif;font-weight:700;
+  font-size:clamp(1.8rem,3.6vw,2.7rem);line-height:1.1;
+  letter-spacing:-.01em;max-width:24ch;
+}
+.sec-head .sub{margin-top:16px;color:var(--text-dim);max-width:58ch;font-size:1.02rem}
+
+/* =============================================
+   CAROUSEL SHARED (Blossom)
+   ============================================= */
+.carousel-wrap{position:relative}
+.carousel-nav{
+  display:flex;gap:10px;position:absolute;right:0;top:-62px;
+}
+.carousel-btn{
+  width:40px;height:40px;border-radius:50%;
+  background:var(--surface);border:1px solid var(--border);
+  color:var(--text-dim);cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  transition:all .2s;
+}
+.carousel-btn:hover{border-color:var(--accent);color:var(--accent);background:var(--accent-dim)}
+.carousel-btn svg{width:18px;height:18px}
+
+/* =============================================
+   SERVICES
+   ============================================= */
+.services-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+@media(max-width:760px){.services-grid{grid-template-columns:1fr}}
+.svc{
+  background:var(--surface);border:1px solid var(--border);border-radius:var(--r);
+  padding:32px 28px;transition:border-color .2s,transform .2s,box-shadow .2s;
+  position:relative;overflow:hidden;
+}
+.svc::before{
+  content:"";position:absolute;top:0;left:0;right:0;height:2px;
+  background:var(--accent);opacity:0;transition:opacity .3s;
+}
+.svc:hover{border-color:var(--border-hi);transform:translateY(-3px);box-shadow:0 12px 36px rgba(0,0,0,.2)}
+.svc:hover::before{opacity:1}
+.svc-tag{
+  font-family:'JetBrains Mono',monospace;font-size:.72rem;font-weight:600;
+  color:var(--accent);background:var(--accent-dim);
+  padding:4px 12px;border-radius:999px;display:inline-block;
+}
+.svc h3{
+  font-family:'Space Grotesk',sans-serif;font-weight:700;
+  font-size:1.25rem;margin-top:18px;color:var(--text);
+}
+.svc p{color:var(--text-dim);font-size:.93rem;margin-top:10px}
+.svc ul{margin-top:14px;list-style:none}
+.svc li{
+  font-size:.88rem;padding-left:24px;position:relative;margin-top:8px;color:var(--text);
+}
+.svc li::before{
+  content:"✓";position:absolute;left:0;top:0;
+  color:var(--accent);font-weight:700;font-size:.82rem;
+}
+
+/* =============================================
+   FEATURED PROJECT
+   ============================================= */
+.feat-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center}
+.terminal{
+  background:var(--surface);border:1px solid var(--border);border-radius:var(--r);
+  overflow:hidden;box-shadow:0 16px 48px rgba(0,0,0,.3);
+}
+.term-bar{display:flex;gap:7px;padding:12px 16px;border-bottom:1px solid var(--border)}
+.term-bar i{width:11px;height:11px;border-radius:50%;display:block}
+.term-bar i:nth-child(1){background:#EF4444}
+.term-bar i:nth-child(2){background:#F59E0B}
+.term-bar i:nth-child(3){background:#34D399}
+.terminal pre{
+  font-family:'JetBrains Mono',monospace;font-size:.8rem;line-height:1.8;
+  color:var(--text-dim);padding:22px 24px;overflow-x:auto;
+}
+.terminal .g{color:var(--accent)}
+.terminal .y{color:var(--warn)}
+.terminal .b{color:#60A5FA}
+.terminal .dim{color:var(--text-faint)}
+.feat-copy h3{
+  font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1.5rem;
+}
+.feat-copy > p{color:var(--text-dim);margin-top:14px;font-size:.96rem}
+.stack{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+.chip{
+  font-family:'JetBrains Mono',monospace;font-size:.73rem;font-weight:500;
+  border:1px solid var(--border);background:var(--surface);
+  padding:5px 14px;border-radius:999px;color:var(--text-dim);
+}
+.feat-copy .btn{margin-top:28px}
+@media(max-width:900px){.feat-grid{grid-template-columns:1fr}}
+
+/* =============================================
+   METHOD
+   ============================================= */
+.method-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.mstep{
+  background:var(--surface);border:1px solid var(--border);border-radius:var(--r);
+  padding:30px 26px;position:relative;
+}
+.mstep-label{
+  font-family:'JetBrains Mono',monospace;font-size:.73rem;font-weight:600;color:var(--accent);
+}
+.mstep h3{font-family:'Space Grotesk',sans-serif;font-size:1.15rem;font-weight:700;margin-top:12px}
+.mstep p{font-size:.92rem;color:var(--text-dim);margin-top:10px}
+.mstep-connector{
+  display:none;position:absolute;right:-18px;top:50%;
+  width:18px;height:2px;background:var(--border);z-index:2;
+}
+@media(min-width:861px){
+  .mstep:not(:last-child) .mstep-connector{display:block}
+}
+@media(max-width:860px){.method-grid{grid-template-columns:1fr}}
+
+/* =============================================
+   PHILOSOPHY / QUOTE
+   ============================================= */
+.philosophy{text-align:center;padding:96px 0}
+.phil-inner{max-width:720px;margin:0 auto}
+blockquote{
+  font-family:'Space Grotesk',sans-serif;font-weight:600;
+  font-size:clamp(1.3rem,2.6vw,1.9rem);line-height:1.38;
+  color:var(--text);font-style:normal;position:relative;
+}
+blockquote::before{
+  content:"\201C";display:block;
+  font-size:4rem;line-height:1;color:var(--accent);
+  margin-bottom:8px;opacity:.6;
+}
+.phil-label{
+  font-family:'JetBrains Mono',monospace;font-size:.78rem;
+  color:var(--text-dim);margin-top:24px;
+}
+
+/* =============================================
+   SECTORS CAROUSEL
+   ============================================= */
+.sector-carousel{
+  display:grid;
+  grid-auto-flow:column;
+  grid-auto-columns:min(280px, 75vw);
+  gap:18px;
+  scroll-snap-type:inline mandatory;
+  padding:0 4px 12px;
+  cursor:grab;
+}
+.sector-carousel::-webkit-scrollbar{display:none}
+.sector-carousel{-ms-overflow-style:none;scrollbar-width:none}
+.sector{
+  scroll-snap-align:start;
+  background:var(--surface);border:1px solid var(--border);border-radius:var(--r);
+  padding:28px 24px;transition:border-color .2s;
+  user-select:none;width:100%;
+}
+.sector:hover{border-color:var(--accent)}
+.sector-icon{
+  width:40px;height:40px;border-radius:8px;
+  background:var(--accent-dim);color:var(--accent);
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.1rem;margin-bottom:16px;
+}
+.sector h3{font-family:'Space Grotesk',sans-serif;font-size:1.05rem;font-weight:700}
+.sector p{font-size:.85rem;color:var(--text-dim);margin-top:8px}
+
+/* =============================================
+   ABOUT
+   ============================================= */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start}
+.about-bio p{color:var(--text-dim);font-size:.96rem}
+.about-bio p+p{margin-top:16px}
+.about-bio p strong{color:var(--text)}
+.facts{list-style:none;margin-top:0}
+.facts li{
+  display:flex;justify-content:space-between;gap:18px;
+  padding:14px 0;border-bottom:1px solid var(--border);font-size:.92rem;
+}
+.facts li span:first-child{
+  font-family:'JetBrains Mono',monospace;font-size:.76rem;
+  color:var(--text-faint);flex:none;padding-top:2px;
+}
+.facts li span:last-child{text-align:right;font-weight:500;color:var(--text)}
+@media(max-width:860px){.about-grid{grid-template-columns:1fr}}
+
+/* =============================================
+   CONTACT
+   ============================================= */
+.contact-box{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:14px;overflow:hidden;
+  display:grid;grid-template-columns:1.2fr .8fr;
+}
+.contact-left{padding:56px 52px}
+.contact-left h2{max-width:18ch}
+.contact-left p{color:var(--text-dim);margin-top:16px;max-width:44ch;font-size:.98rem}
+.contact-note{
+  font-family:'JetBrains Mono',monospace;font-size:.73rem;
+  color:var(--text-faint);margin-top:28px;
+  display:flex;align-items:center;gap:8px;
+}
+.contact-note::before{
+  content:"";width:6px;height:6px;border-radius:50%;
+  background:var(--accent);box-shadow:0 0 6px var(--accent-glow);
+}
+.contact-right{
+  background:var(--surface-up);border-left:1px solid var(--border);
+  padding:56px 44px;display:flex;flex-direction:column;justify-content:center;gap:16px;
+}
+.contact-link{
+  display:flex;align-items:center;gap:14px;text-decoration:none;
+  padding:16px 20px;border-radius:var(--r);border:1px solid var(--border);
+  transition:border-color .2s,background .2s;
+}
+.contact-link:hover{border-color:var(--accent);background:var(--accent-dim)}
+.cl-icon{
+  width:40px;height:40px;border-radius:8px;background:var(--accent-dim);
+  display:flex;align-items:center;justify-content:center;flex:none;
+}
+.cl-icon svg{width:20px;height:20px;color:var(--accent)}
+.cl-text{font-size:.92rem;font-weight:500;color:var(--text)}
+.cl-sub{font-size:.78rem;color:var(--text-dim);margin-top:2px}
+@media(max-width:860px){
+  .contact-box{grid-template-columns:1fr}
+  .contact-right{border-left:none;border-top:1px solid var(--border)}
+  .contact-left{padding:44px 32px}
+  .contact-right{padding:32px}
+}
+
+/* =============================================
+   FOOTER
+   ============================================= */
+footer{
+  border-top:1px solid var(--border);
+  padding:36px 0 48px;
+}
+.footer-inner{
+  display:flex;justify-content:space-between;align-items:center;
+  flex-wrap:wrap;gap:16px;
+}
+footer .copy{font-size:.84rem;color:var(--text-dim)}
+.footer-links{display:flex;gap:22px}
+.footer-links a{
+  color:var(--text-dim);text-decoration:none;font-size:.84rem;transition:color .2s;
+}
+.footer-links a:hover{color:var(--accent)}
+.footer-badge{
+  font-family:'JetBrains Mono',monospace;font-size:.73rem;
+  color:var(--text-faint);display:flex;align-items:center;gap:7px;
+}
+.footer-badge::before{
+  content:"";width:6px;height:6px;border-radius:50%;background:var(--accent);
+}
+
+/* =============================================
+   UTILITIES
+   ============================================= */
+.reveal{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease}
+.reveal.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .reveal{opacity:1;transform:none;transition:none}
+  .stg.running .badge{animation:none}
+  @keyframes pulse-dot{0%,100%{opacity:1}}
+}
+:focus-visible{outline:2.5px solid var(--accent);outline-offset:3px;border-radius:4px}
+</style>
+</head>
+<body>
+
+<!-- ======================== NAV ======================== -->
+<header class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="#top"><span class="brand-dot"></span>raul@qa-devops<span style="color:var(--text-faint)">:~$</span></a>
+    <button class="hamburger" onclick="document.querySelector('nav.links').classList.toggle('open')" aria-label="Menú">
+      <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h16M3 11h16M3 16h16"/></svg>
+    </button>
+    <nav class="links" aria-label="Secciones">
+      <a href="#servicios">Servicios</a>
+      <a href="#proyecto">Proyecto</a>
+      <a href="#metodo">Método</a>
+      <a href="#sobre-mi">Sobre mí</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+    <a class="nav-cta" href="#contacto">Hablemos</a>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- ======================== HERO ======================== -->
+<div class="hero">
+  <div class="wrap">
+    <span class="hero-eyebrow"><span class="line"></span> Business & Solution Consulting Lead</span>
+    <h1>La calidad no se inspecciona al final.<br><span class="hi">Se construye en el pipeline.</span></h1>
+    <p class="hero-desc">Ayudo a equipos de producto y tecnología a desplegar con confianza: estrategia QA, automatización de pruebas y AI aplicada al testing. Del assessment al pipeline en producción.</p>
+    <div class="hero-ctas">
+      <a class="btn btn-accent" href="#contacto">Agenda una llamada</a>
+      <a class="btn btn-outline" href="#servicios">Ver servicios</a>
+    </div>
+
+    <!-- Stats -->
+    <div class="stats-bar">
+      <div class="stat">
+        <div class="stat-n">10+</div>
+        <div class="stat-l">años en QA & DevOps</div>
+      </div>
+      <div class="stat">
+        <div class="stat-n">30+</div>
+        <div class="stat-l">proyectos enterprise</div>
+      </div>
+      <div class="stat">
+        <div class="stat-n">5</div>
+        <div class="stat-l">sectores cubiertos</div>
+      </div>
+      <div class="stat">
+        <div class="stat-n">88%</div>
+        <div class="stat-l">cobertura OWASP lograda</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======================== TECH STACK CAROUSEL ======================== -->
+  <div class="stack-section">
+    <div class="wrap">
+      <p class="stack-label">Herramientas con las que trabajo</p>
+      <div class="stack-nav">
+        <button class="carousel-btn" onclick="document.getElementById('stackCarousel').prev()" aria-label="Anterior">
+          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M15 19l-7-7 7-7"/></svg>
+        </button>
+        <button class="carousel-btn" onclick="document.getElementById('stackCarousel').next()" aria-label="Siguiente">
+          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="wrap">
+    <blossom-carousel class="stack-carousel" id="stackCarousel">
+      <div class="tech-card">
+        <div class="tc-icon">PW</div>
+        <div class="tc-name">Playwright</div>
+        <div class="tc-cat">Test Automation</div>
+      </div>
+      <div class="tech-card">
+        <div class="tc-icon">AZ</div>
+        <div class="tc-name">Azure DevOps</div>
+        <div class="tc-cat">CI/CD & ALM</div>
+      </div>
+      <div class="tech-card">
+        <div class="tc-icon">GH</div>
+        <div class="tc-name">GitHub Actions</div>
+        <div class="tc-cat">CI/CD</div>
+      </div>
+      <div class="tech-card">
+        <div class="tc-icon">CC</div>
+        <div class="tc-name">Claude Code</div>
+        <div class="tc-cat">AI Agents</div>
+      </div>
+      <div class="tech-card">
+        <div class="tc-icon">MP</div>
+        <div class="tc-name">MCP</div>
+        <div class="tc-cat">AI Protocol</div>
+      </div>
+      <div class="tech-card">
+        <div class="tc-icon">SQ</div>
+        <div class="tc-name">SonarQube</div>
+        <div class="tc-cat">SAST</div>
+      </div>
+      <div class="tech-card">
+        <div class="tc-icon">KA</div>
+        <div class="tc-name">Karate DSL</div>
+        <div class="tc-cat">API Testing</div>
+      </div>
+      <div class="tech-card">
+        <div class="tc-icon">LB</div>
+        <div class="tc-name">Liquibase</div>
+        <div class="tc-cat">DB Migrations</div>
+      </div>
+      <div class="tech-card">
+        <div class="tc-icon">OS</div>
+        <div class="tc-name">OpenSpec</div>
+        <div class="tc-cat">AI Spec Framework</div>
+      </div>
+      <div class="tech-card">
+        <div class="tc-icon">JS</div>
+        <div class="tc-name">Node.js</div>
+        <div class="tc-cat">Runtime</div>
+      </div>
+    </blossom-carousel>
+    </div>
+  </div>
+</div>
+
+<!-- ======================== PIPELINE ======================== -->
+<div class="pipeline-section">
+  <div class="wrap">
+    <div class="pipeline" id="pipeline" aria-label="Pipeline de integración continua animado">
+      <div class="pipe-head" id="pipeHead">
+        <span><span style="color:var(--text-faint)">pipeline:</span> <strong>quality-first-delivery</strong> · main</span>
+        <span class="pipe-status"><span class="pipe-ind"></span><span id="pipeStatus">running…</span></span>
+      </div>
+      <div class="pipe-stages">
+        <div class="stg" data-time="4s">
+          <div class="stg-name"><span class="badge"></span>commit</div>
+          <p class="stg-desc">Requisitos claros y criterios de aceptación testables desde el inicio.</p>
+          <span class="stg-time">✓ 4s</span>
+        </div>
+        <div class="stg" data-time="38s">
+          <div class="stg-name"><span class="badge"></span>build</div>
+          <p class="stg-desc">Pipelines CI/CD reproducibles en Azure DevOps o GitHub Actions.</p>
+          <span class="stg-time">✓ 38s</span>
+        </div>
+        <div class="stg" data-time="1m 52s">
+          <div class="stg-name"><span class="badge"></span>test</div>
+          <p class="stg-desc">Automatización con Playwright y Karate, revisada por agentes de IA.</p>
+          <span class="stg-time">✓ 1m 52s</span>
+        </div>
+        <div class="stg" data-time="47s">
+          <div class="stg-name"><span class="badge"></span>security</div>
+          <p class="stg-desc">Quality gates de seguridad: SAST, SCA y análisis de cobertura OWASP.</p>
+          <span class="stg-time">✓ 47s</span>
+        </div>
+        <div class="stg" data-time="12s">
+          <div class="stg-name"><span class="badge"></span>deploy</div>
+          <p class="stg-desc">Entregas frecuentes, métricas DORA y feedback continuo al negocio.</p>
+          <span class="stg-time">✓ 12s</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ======================== SERVICES ======================== -->
+<section id="servicios" class="sec-border">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="sec-eyebrow">// servicios</span>
+      <h2>Cuatro formas de trabajar juntos</h2>
+      <p class="sub">Formatos pensados para B2B: desde una intervención puntual de alto impacto hasta acompañamiento continuado como advisor de tu equipo de ingeniería.</p>
+    </div>
+    <div class="services-grid">
+        <article class="svc reveal">
+          <span class="svc-tag">workshop · 1–2 días</span>
+          <h3>Workshop QA + IA para tu equipo</h3>
+          <p>Sesión práctica e intensiva para que tu equipo salga ejecutando, no tomando apuntes.</p>
+          <ul>
+            <li>Estrategia de automatización con Playwright</li>
+            <li>Agentes de IA aplicados a revisión y generación de tests</li>
+            <li>Casos sobre vuestro propio código y producto</li>
+          </ul>
+        </article>
+        <article class="svc reveal">
+          <span class="svc-tag">proyecto · 4–8 semanas</span>
+          <h3>Implementación de pipeline de calidad</h3>
+          <p>Diseño y puesta en producción de un pipeline CI/CD con quality gates reales.</p>
+          <ul>
+            <li>Azure DevOps o GitHub Actions, infra como código</li>
+            <li>Suites E2E y API integradas en el flujo de despliegue</li>
+            <li>Reporting automático con IA para negocio y equipo</li>
+          </ul>
+        </article>
+        <article class="svc reveal">
+          <span class="svc-tag">retainer · mensual</span>
+          <h3>Advisory continuado</h3>
+          <p>Tu partner de quality engineering sin coste de estructura: criterio senior cuando lo necesitas.</p>
+          <ul>
+            <li>Revisión periódica de estrategia, métricas y backlog QA</li>
+            <li>Soporte en decisiones de tooling y contratación técnica</li>
+            <li>Acceso directo por canal dedicado</li>
+          </ul>
+        </article>
+      </div>
+  </div>
+</section>
+
+<!-- ======================== FEATURED PROJECT ======================== -->
+<section id="proyecto" class="sec-border">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="sec-eyebrow">// proyecto destacado</span>
+      <h2>Open source: pipeline de testing con agentes de IA</h2>
+    </div>
+    <div class="feat-grid">
+      <div class="terminal reveal">
+        <div class="term-bar"><i></i><i></i><i></i></div>
+<pre>
+<span class="dim">$</span> <span class="b">gh workflow run</span> e2e-ai-pipeline.yml
+
+<span class="g">✓</span> playwright test · 84 passed <span class="dim">(2m 11s)</span>
+<span class="g">✓</span> mcp server · contexto de la app cargado
+<span class="y">➜</span> claude code · revisando selectores frágiles…
+<span class="g">✓</span> claude code · 3 sugerencias aplicadas
+<span class="g">✓</span> report-ai.mjs · informe ejecutivo generado
+
+<span class="dim">→ artefacto:</span> qa-report-2026-06-10.md
+<span class="g">pipeline passed</span> <span class="dim">· main · #142</span>
+</pre>
+      </div>
+      <div class="feat-copy reveal">
+        <h3>MCP + Claude Code + Playwright</h3>
+        <p>Un pipeline real y público que combina pruebas E2E con agentes de IA: ejecuta la suite, revisa el código de test, propone mejoras y genera un informe ejecutivo legible por negocio en cada build.</p>
+        <p>Es la base técnica de mis servicios: no vendo diapositivas, vendo algo que puedes clonar y ejecutar hoy.</p>
+        <div class="stack">
+          <span class="chip">Playwright</span>
+          <span class="chip">MCP</span>
+          <span class="chip">Claude Code</span>
+          <span class="chip">GitHub Actions</span>
+          <span class="chip">Azure DevOps</span>
+          <span class="chip">Node.js</span>
+        </div>
+        <a class="btn btn-outline" href="https://github.com/StoneFly365" target="_blank" rel="noopener">Ver en GitHub →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================== METHOD ======================== -->
+<section id="metodo" class="sec-border">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="sec-eyebrow">// método</span>
+      <h2>Un método, tres fases</h2>
+      <p class="sub">El mismo enfoque que aplico en consultoría para grandes cuentas, adaptado al tamaño y madurez de cada organización.</p>
+    </div>
+    <div class="method-grid">
+      <div class="mstep reveal">
+        <span class="mstep-label">01 — assessment</span>
+        <h3>Entender antes de tocar</h3>
+        <p>Análisis del estado actual: procesos, herramientas, deuda de pruebas y riesgos. Basado en marcos ISTQB y métricas objetivas, no en opiniones.</p>
+        <div class="mstep-connector"></div>
+      </div>
+      <div class="mstep reveal">
+        <span class="mstep-label">02 — build</span>
+        <h3>Construir con tu equipo</h3>
+        <p>Implementación en pareja con tus ingenieros. El conocimiento se queda en casa: documentación, sesiones de transferencia y código que tu equipo posee.</p>
+        <div class="mstep-connector"></div>
+      </div>
+      <div class="mstep reveal">
+        <span class="mstep-label">03 — run</span>
+        <h3>Medir y mejorar</h3>
+        <p>Quality gates en producción, métricas DORA y de calidad visibles para negocio, y un plan de mejora continua que sobrevive a mi salida del proyecto.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================== PHILOSOPHY ======================== -->
+<div class="philosophy sec-border">
+  <div class="wrap">
+    <div class="phil-inner reveal">
+      <blockquote>La diferencia entre desplegar con miedo y desplegar con confianza es un pipeline que funciona de verdad, no un documento que describe uno.</blockquote>
+      <p class="phil-label">— Mi enfoque de consultoría</p>
+    </div>
+  </div>
+</div>
+
+<!-- ======================== SECTORS ======================== -->
+<section id="sectores" class="sec-border">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="sec-eyebrow">// experiencia sectorial</span>
+      <h2>Entornos donde un fallo en producción cuesta caro</h2>
+      <p class="sub">He liderado iniciativas de QA y automatización en organizaciones con alta exigencia regulatoria y operativa.</p>
+    </div>
+    <div class="carousel-wrap reveal">
+      <div class="carousel-nav">
+        <button class="carousel-btn" onclick="document.getElementById('secCarousel').prev()" aria-label="Anterior">
+          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M15 19l-7-7 7-7"/></svg>
+        </button>
+        <button class="carousel-btn" onclick="document.getElementById('secCarousel').next()" aria-label="Siguiente">
+          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+      <blossom-carousel class="sector-carousel" id="secCarousel">
+        <div class="sector">
+          <div class="sector-icon">
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+          </div>
+          <h3>Seguros</h3>
+          <p>Gestión de cambios de base de datos, calidad sobre core asegurador y automatización de regresión.</p>
+        </div>
+        <div class="sector">
+          <div class="sector-icon">
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+          </div>
+          <h3>Energía</h3>
+          <p>Evaluación de plataformas de seguridad a escala enterprise y cobertura de seguridad de aplicaciones.</p>
+        </div>
+        <div class="sector">
+          <div class="sector-icon">
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
+          </div>
+          <h3>Retail</h3>
+          <p>Consultoría QA end-to-end: estrategia, organización del equipo de calidad y plan de automatización.</p>
+        </div>
+        <div class="sector">
+          <div class="sector-icon">
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222"/></svg>
+          </div>
+          <h3>Educación superior</h3>
+          <p>Pruebas E2E sobre plataformas críticas de matriculación y entornos con alta variabilidad.</p>
+        </div>
+        <div class="sector">
+          <div class="sector-icon">
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+          </div>
+          <h3>Sector público</h3>
+          <p>Auditorías de calidad y cumplimiento sobre plataformas con requisitos de accesibilidad y seguridad regulatoria.</p>
+        </div>
+      </blossom-carousel>
+    </div>
+  </div>
+</section>
+
+<!-- ======================== ABOUT ======================== -->
+<section id="sobre-mi" class="sec-border">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="sec-eyebrow">// sobre mí</span>
+      <h2>Raúl</h2>
+    </div>
+    <div class="about-grid">
+      <div class="about-bio reveal">
+        <p>Soy <strong>Business & Solution Consulting Lead</strong> especializado en <strong>QA y DevOps</strong>. Trabajo en la intersección entre la entrega técnica y el asesoramiento a negocio: el punto donde una estrategia de calidad deja de ser un documento y se convierte en pipelines que funcionan.</p>
+        <p>Mi día a día combina consultoría para grandes cuentas, preventa de soluciones y mucha mano en el teclado: automatización con Playwright, pipelines en Azure DevOps y GitHub Actions y, cada vez más, <strong>IA aplicada al testing</strong> — desde agentes que revisan código de pruebas hasta evaluación de sistemas RAG.</p>
+        <p>Creo que la mejor consultoría es la que se puede demostrar ejecutando. Por eso mantengo proyectos open source, doy charlas en comunidades técnicas y comparto lo que aprendo en LinkedIn.</p>
+      </div>
+      <ul class="facts reveal">
+        <li><span>rol</span><span>Business & Solution Consulting Lead</span></li>
+        <li><span>foco</span><span>QA · DevOps · AI Testing</span></li>
+        <li><span>stack</span><span>Playwright · Azure DevOps · GitHub Actions · MCP</span></li>
+        <li><span>marcos</span><span>ISTQB · Risk-based testing · Métricas DORA</span></li>
+        <li><span>cert</span><span>ISTQB CT-AI</span></li>
+        <li><span>idiomas</span><span>Español · Inglés</span></li>
+        <li><span>base</span><span>Madrid, España · remoto-friendly</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ======================== CONTACT ======================== -->
+<section id="contacto" class="sec-border">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="sec-eyebrow">// contacto</span>
+      <h2>¿Hablamos de tu proyecto?</h2>
+    </div>
+    <div class="contact-box reveal">
+      <div class="contact-left">
+        <h2>Tu pipeline debería estar en verde</h2>
+        <p>Si tu equipo despliega con miedo, las pruebas son un cuello de botella o quieres explorar IA aplicada a QA, cuéntamelo. Primera conversación de 30 minutos sin compromiso.</p>
+        <p class="contact-note">response_time: &lt; 24h · timezone: Europe/Madrid</p>
+      </div>
+      <div class="contact-right">
+        <a class="contact-link" href="mailto:raulmolinah.madrid@gmail.com">
+          <span class="cl-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/></svg>
+          </span>
+          <div>
+            <div class="cl-text">Email</div>
+            <div class="cl-sub">raulmolinah.madrid@gmail.com</div>
+          </div>
+        </a>
+        <a class="contact-link" href="https://www.linkedin.com/in/raulmolinahernandez/" target="_blank" rel="noopener">
+          <span class="cl-icon">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </span>
+          <div>
+            <div class="cl-text">LinkedIn</div>
+            <div class="cl-sub">Conecta conmigo</div>
+          </div>
+        </a>
+        <a class="contact-link" href="https://github.com/StoneFly365" target="_blank" rel="noopener">
+          <span class="cl-icon">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+          </span>
+          <div>
+            <div class="cl-text">GitHub</div>
+            <div class="cl-sub">Código abierto</div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ======================== FOOTER ======================== -->
+<footer>
+  <div class="wrap">
+    <div class="footer-inner">
+      <span class="copy">© 2026 Raúl · QA & DevOps Consulting</span>
+      <span class="footer-badge">build: passed · uptime: continuo</span>
+      <div class="footer-links">
+        <a href="#servicios">Servicios</a>
+        <a href="#proyecto">Proyecto</a>
+        <a href="#sobre-mi">Sobre mí</a>
+        <a href="#contacto">Contacto</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ======================== SCRIPTS ======================== -->
+<script>
+(function(){
+  // Pipeline animation
+  var reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var stages=Array.prototype.slice.call(document.querySelectorAll('#pipeline .stg'));
+  var head=document.getElementById('pipeHead');
+  var statusEl=document.getElementById('pipeStatus');
+  function finish(){
+    stages.forEach(function(s){s.classList.remove('running');s.classList.add('passed')});
+    head.classList.add('done');statusEl.textContent='passed · 3m 33s';
+  }
+  if(reduced){finish();return}
+  var i=0;
+  function runNext(){
+    if(i>0){stages[i-1].classList.remove('running');stages[i-1].classList.add('passed')}
+    if(i>=stages.length){head.classList.add('done');statusEl.textContent='passed · 3m 33s';return}
+    stages[i].classList.add('running');
+    statusEl.textContent='running: '+stages[i].querySelector('.stg-name').textContent.trim()+'…';
+    i++;setTimeout(runNext,950);
+  }
+  setTimeout(runNext,700);
+
+  // Reveal on scroll
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(entries){
+      entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}});
+    },{threshold:.1});
+    document.querySelectorAll('.reveal').forEach(function(el){io.observe(el)});
+  }else{
+    document.querySelectorAll('.reveal').forEach(function(el){el.classList.add('in')});
+  }
+})();
+</script>
+</body>
+</html>

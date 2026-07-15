@@ -1,0 +1,13 @@
+{
+  "name": "raul-qa-devops-web",
+  "version": "1.0.0",
+  "description": "Web personal — Raúl · Business & Solution Consulting Lead · QA & DevOps",
+  "private": true,
+  "scripts": {
+    "dev": "npx live-server --port=3000 --open=index.html",
+    "start": "npx live-server --port=3000 --open=index.html"
+  },
+  "keywords": ["qa", "devops", "consulting", "portfolio"],
+  "author": "Raúl Molina Hernández",
+  "license": "MIT"
+}
