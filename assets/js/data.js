@@ -1,0 +1,120 @@
+/* Contenido del sitio, separado del marcado. Añadir una tarjeta = añadir un objeto aquí. */
+
+export const techStackHero = [
+  { icon: 'PW', name: 'Playwright', cat: 'Test Automation' },
+  { icon: 'AZ', name: 'Azure DevOps', cat: 'CI/CD & ALM' },
+  { icon: 'GH', name: 'GitHub Actions', cat: 'CI/CD' },
+  { icon: 'CC', name: 'Claude Code', cat: 'AI Agents' },
+  { icon: 'MP', name: 'MCP', cat: 'AI Protocol' },
+  { icon: 'SQ', name: 'SonarQube', cat: 'SAST' },
+  { icon: 'KA', name: 'Karate DSL', cat: 'API Testing' },
+  { icon: 'LB', name: 'Liquibase', cat: 'DB Migrations' },
+  { icon: 'OS', name: 'OpenSpec', cat: 'AI Spec Framework' },
+  { icon: 'JS', name: 'Node.js', cat: 'Runtime' },
+];
+
+/* Franja "empresas / sectores": sin logos inventados, solo slots preparados. */
+export const sectors = [
+  { name: 'Banca', icon: 'path d="M3 21h18M4 21V10l8-6 8 6v11M9 21v-6h6v6M9 10h.01M15 10h.01M9 14h.01M15 14h.01"' },
+  { name: 'Seguros', icon: 'path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"' },
+  { name: 'Energía', icon: 'path d="M13 10V3L4 14h7v7l9-11h-7z"' },
+  { name: 'Retail', icon: 'path d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"' },
+  { name: 'Educación superior', icon: 'path d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222"' },
+  { name: 'Aviación y viajes', icon: 'path d="M2.5 19h19M6 19l1.5-6.5L21 9l-1-2-13 2.5L4 6 2 6.5l1.5 4L2 12l.5 2 3-1"' },
+  { name: 'Transporte ferroviario', icon: 'path d="M4 17h16M5 17V10l2-5h10l2 5v7M8 21v-2m8 2v-2M4 13h16M7 6.5h10"' },
+  { name: 'Automoción', icon: 'path d="M5 17h14M6 17V9l2-3h8l2 3v8M9 17v-3h6v3M7 21l-1-4m11 4l1-4"' },
+  { name: 'Gaming', icon: 'path d="M6 12h4m-2-2v4m7-3h.01M17.5 13h.01M15 8h4a3 3 0 013 3v2a3 3 0 01-3 3H5a3 3 0 01-3-3v-2a3 3 0 013-3h4"' },
+  { name: 'Telecom', icon: 'path d="M12 20h.01M8.5 16.5a5 5 0 017 0M5 13a10 10 0 0114 0M2 9.5a15 15 0 0120 0"' },
+];
+
+export const problems = [
+  { title: 'Automatización insuficiente', desc: 'La mayoría de la regresión sigue siendo manual, lo que frena cada release.', icon: 'path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"' },
+  { title: 'Regresiones lentas', desc: 'Las suites tardan horas en ejecutarse y nadie espera a que terminen para desplegar.', icon: 'path d="M13 10V3L4 14h7v7l9-11h-7z"' },
+  { title: 'Defectos en producción', desc: 'Los bugs críticos se detectan después del despliegue, no antes.', icon: 'path d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-8.99-9.75h.008v.008h-.008v-.008z"' },
+  { title: 'Pipelines poco fiables', desc: 'Tests inestables (flaky) que el equipo aprende a ignorar en lugar de confiar.', icon: 'path d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z"' },
+  { title: 'Ausencia de estrategia QA', desc: 'Testing reactivo sin un plan de riesgos ni criterios de calidad compartidos con negocio.', icon: 'path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"' },
+  { title: 'Uso ineficiente de IA', desc: 'Herramientas de IA adoptadas sin criterio, sin integrarlas realmente en el ciclo de calidad.', icon: 'path d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456z"' },
+];
+
+export const services = [
+  { tag: 'assessment', title: 'QA Assessment', desc: 'Diagnóstico del estado actual de calidad: procesos, herramientas, cobertura y deuda de pruebas.', benefit: 'Beneficio: sabes exactamente dónde estás antes de invertir en automatización.', icon: 'path d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"' },
+  { tag: 'estrategia', title: 'QA Strategy', desc: 'Definición de estrategia de calidad basada en riesgo, alineada con negocio y ciclo de desarrollo.', benefit: 'Beneficio: criterios de calidad compartidos por todo el equipo, no solo por QA.', icon: 'path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"' },
+  { tag: 'automatización', title: 'Automation Frameworks', desc: 'Diseño y construcción de frameworks de automatización mantenibles desde cero.', benefit: 'Beneficio: una base de tests que tu equipo puede escalar sin reescribirla en un año.', icon: 'path d="M10.5 6h9.75M10.5 6a1.5 1.5 0 11-3 0m3 0a1.5 1.5 0 10-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-3.75 0H7.5m9-6h3.75M12.75 12h-9m3-1.5a1.5 1.5 0 100 3 1.5 1.5 0 000-3z"' },
+  { tag: 'playwright', title: 'Playwright', desc: 'Implementación de suites E2E robustas y rápidas con Playwright, integradas en CI/CD.', benefit: 'Beneficio: feedback de regresión en minutos, no en horas.', icon: 'path d="M13 10V3L4 14h7v7l9-11h-7z"' },
+  { tag: 'api testing', title: 'Karate DSL', desc: 'Pruebas de API legibles por negocio y técnicos a la vez, con Karate como DSL de referencia.', benefit: 'Beneficio: contratos de API validados antes de que rompan producción.', icon: 'path d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5"' },
+  { tag: 'testing', title: 'API Testing', desc: 'Estrategia de pruebas de contrato, integración y regresión sobre APIs REST y GraphQL.', benefit: 'Beneficio: detectas roturas de contrato antes de que lleguen al frontend.', icon: 'path d="M20.25 6.375c0 2.278-3.694 4.125-8.25 4.125S3.75 8.653 3.75 6.375m16.5 0c0-2.278-3.694-4.125-8.25-4.125S3.75 4.097 3.75 6.375m16.5 0v11.25c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125V6.375"' },
+  { tag: 'performance', title: 'Performance Testing', desc: 'Pruebas de carga y estrés para validar la capacidad real del sistema antes del pico de tráfico.', benefit: 'Beneficio: conoces tus límites antes que tus usuarios.', icon: 'path d="M3.75 3v11.25A2.25 2.25 0 006 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0118 16.5h-2.25m-7.5 0h7.5m-7.5 0l-1 3.75m8.5-3.75l1 3.75m-9.5 0h9.5"' },
+  { tag: 'devops', title: 'DevOps Quality', desc: 'Integración de quality gates reales en pipelines de CI/CD: SAST, SCA, cobertura y umbrales.', benefit: 'Beneficio: la calidad bloquea el pipeline antes de llegar a producción, no después.', icon: 'path d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"' },
+  { tag: 'ai for qa', title: 'AI for QA', desc: 'Agentes de IA aplicados a generación y revisión de tests, análisis de requisitos y reporting.', benefit: 'Beneficio: tu equipo de QA dedica el tiempo a criterio, no a tareas repetitivas.', icon: 'path d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"' },
+  { tag: 'mentoring', title: 'Technical Mentoring', desc: 'Formación y mentoring técnico a ingenieros de QA y desarrollo en automatización y buenas prácticas.', benefit: 'Beneficio: el conocimiento se queda en tu equipo, no depende de un externo.', icon: 'path d="M4.26 10.147a60.436 60.436 0 00-.491 6.347A48.627 48.627 0 0112 20.904a48.627 48.627 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.57 50.57 0 00-2.658-.813A59.905 59.905 0 0112 3.493a59.902 59.902 0 0110.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.697 50.697 0 0112 13.489a50.702 50.702 0 017.74-3.342"' },
+  { tag: 'fractional', title: 'Fractional QA Lead', desc: 'Liderazgo técnico de calidad a tiempo parcial: criterio senior sin coste de estructura fija.', benefit: 'Beneficio: decisiones de tooling, contratación y estrategia con la misma seniority que un lead interno.', icon: 'path d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z"' },
+];
+
+/* Casos de éxito: placeholders estructurales, sin datos inventados. */
+export const caseStudies = [
+  {
+    tag: '[sector]',
+    title: '[Título del caso de estudio]',
+    problem: '[Problema del cliente]',
+    solution: '[Solución aplicada]',
+    result: '[Resultado] — [KPI]',
+    kpis: ['[KPI 1]', '[KPI 2]', '[KPI 3]'],
+  },
+  {
+    tag: '[sector]',
+    title: '[Título del caso de estudio]',
+    problem: '[Problema del cliente]',
+    solution: '[Solución aplicada]',
+    result: '[Resultado] — [KPI]',
+    kpis: ['[KPI 1]', '[KPI 2]'],
+  },
+];
+
+export const aiCapabilities = [
+  { title: 'Generación automática de casos de prueba', desc: 'A partir de historias de usuario o especificaciones, generación asistida de casos de prueba y escenarios edge.', icon: 'path d="M9 13.5h6m-6 3h6m-7.5 6h9a2.25 2.25 0 002.25-2.25V6.75a2.25 2.25 0 00-2.25-2.25h-9A2.25 2.25 0 005.25 6.75v13.5A2.25 2.25 0 007.5 22.5z"' },
+  { title: 'Análisis de requisitos', desc: 'Detección de ambigüedades y huecos de cobertura en requisitos antes de escribir el primer test.', icon: 'path d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z"' },
+  { title: 'Agentes IA', desc: 'Agentes autónomos que ejecutan, revisan y corrigen suites de test dentro del pipeline.', icon: 'path d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"' },
+  { title: 'Quality Gates inteligentes', desc: 'Umbrales de calidad que se ajustan según riesgo y contexto, no solo un porcentaje fijo de cobertura.', icon: 'path d="M9 12.75L11.25 15 15 9.75m6-3a9 9 0 11-18 0 9 9 0 0118 0z"' },
+  { title: 'Generación de datos', desc: 'Datasets sintéticos realistas para pruebas, sin exponer datos reales de producción.', icon: 'path d="M20.25 6.375c0 2.278-3.694 4.125-8.25 4.125S3.75 8.653 3.75 6.375m16.5 0c0-2.278-3.694-4.125-8.25-4.125S3.75 4.097 3.75 6.375m16.5 0v11.25c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125V6.375"' },
+  { title: 'Automatización con LLM', desc: 'Modelos de lenguaje integrados en el pipeline para revisión de selectores frágiles y reporting ejecutivo.', icon: 'path d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"' },
+];
+
+export const aiTools = ['MCP', 'OpenAI', 'Claude', 'GitHub Copilot'];
+
+export const technologies = [
+  { name: 'Playwright', abbr: 'PW' },
+  { name: 'Karate', abbr: 'KA' },
+  { name: 'Docker', abbr: 'DK' },
+  { name: 'Kubernetes', abbr: 'K8' },
+  { name: 'Azure DevOps', abbr: 'AZ' },
+  { name: 'GitHub Actions', abbr: 'GH' },
+  { name: 'GitLab', abbr: 'GL' },
+  { name: 'OpenAI', abbr: 'OA' },
+  { name: 'Claude', abbr: 'CL' },
+  { name: 'Java', abbr: 'JV' },
+  { name: 'TypeScript', abbr: 'TS' },
+  { name: 'Node', abbr: 'ND' },
+  { name: 'REST', abbr: 'RS' },
+  { name: 'GraphQL', abbr: 'GQ' },
+  { name: 'PostgreSQL', abbr: 'PG' },
+  { name: 'SonarQube', abbr: 'SQ' },
+  { name: 'Liquibase', abbr: 'LB' },
+  { name: 'OpenSpec', abbr: 'OS' },
+];
+
+/* Línea temporal profesional, fechas derivadas de la experiencia real (CV). */
+export const timeline = [
+  { role: 'QA Engineer', period: '2011 – 2016', desc: 'Ejecución y diseño de pruebas funcionales en entornos web, Host y móviles para clientes de banca, retail y aerolíneas.' },
+  { role: 'Automation Engineer', period: '2016 – 2019', desc: 'Automatización de pruebas funcionales con Selenium, Cucumber y WebdriverIO; primeros proyectos en banca (BBVA).' },
+  { role: 'QA Lead', period: '2019 – 2023', desc: 'Liderazgo de equipos QA, definición de procesos y cultura de calidad en proyectos web y móvil.' },
+  { role: 'Solution Consulting', period: '2023 – 2025', desc: 'Consultoría QA en automatización para proyectos bancarios y asesoramiento de estrategia a equipos ágiles.' },
+  { role: 'Quality Engineering & AI', period: '2026 – presente', desc: 'Business & Solutions Consulting Lead: QA, DevOps, cloud e IA generativa aplicada a calidad de software.' },
+];
+
+/* Blog: solo estructura, sin backend. */
+export const blogPosts = [
+  { title: 'ROI de QA: cómo medir el retorno de invertir en calidad', tag: 'estrategia' },
+  { title: 'Quality Engineering: de QA a ingeniería de calidad', tag: 'quality engineering' },
+  { title: 'Playwright en 2026: patrones que sí escalan', tag: 'automatización' },
+  { title: 'IA aplicada al testing: qué funciona hoy y qué no', tag: 'ai for qa' },
+];

@@ -1,6 +1,6 @@
-# Raúl · QA & DevOps Consulting
+# Raúl Molina · QA, Quality Engineering & DevOps Consulting
 
-Web personal de marca profesional — Business & Solution Consulting Lead especializado en QA, DevOps y AI aplicada al testing.
+Web de consultoría B2B — Business & Solution Consulting Lead especializado en QA, Quality Engineering, DevOps y AI aplicada al testing.
 
 ## Ejecutar en local
 
@@ -30,15 +30,15 @@ gh repo create raul-qa-devops-web --public --source=. --push
 
 # O si prefieres hacerlo manual:
 git remote add origin https://github.com/StoneFly365/raul-qa-devops-web.git
-git branch -M main
-git push -u origin main
+git branch -M master
+git push -u origin master
 ```
 
 ## Publicar con GitHub Pages
 
 1. Ve a **Settings → Pages** en tu repositorio
 2. En **Source**, selecciona **Deploy from a branch**
-3. Selecciona la rama `main` y la carpeta `/ (root)`
+3. Selecciona la rama `master` y la carpeta `/ (root)`
 4. Guarda y espera ~1 minuto
 
 Tu web estará disponible en:
@@ -57,23 +57,43 @@ Si tienes un dominio propio:
 
 ## Stack
 
-- HTML/CSS/JS vanilla (sin frameworks, sin build step)
+- HTML/CSS/JS vanilla (sin frameworks, sin bundler, sin build step) — GitHub Pages sirve los archivos tal cual
+- ES modules nativos del navegador para separar datos y renderizado (sin npm en producción)
 - [Space Grotesk](https://fonts.google.com/specimen/Space+Grotesk) + [Inter](https://fonts.google.com/specimen/Inter) + [JetBrains Mono](https://fonts.google.com/specimen/JetBrains+Mono)
-- [Blossom Carousel](https://blossom-carousel.com/) — carrusel nativo con drag support (CDN)
-- Pipeline animado con CSS + JS vanilla
-- Scroll reveal con Intersection Observer
+- Marquee CSS puro (`@keyframes` + `translateX(-50%)`) para las franjas de sectores y stack tecnológico — sin librería de carrusel externa
+- Pipeline animado, contadores y scroll-spy con JS vanilla + Intersection Observer
+
+## Estructura de carpetas
+
+```
+index.html              # marcado semántico + contenedores de sección (ids)
+assets/
+├── css/styles.css       # todo el CSS del sitio
+└── js/
+    ├── data.js          # contenido de todas las tarjetas/listas (edita aquí, no en el HTML)
+    ├── render.js         # helpers genéricos data → DOM (renderCards, renderMarquee, renderChips)
+    └── main.js           # orquesta el render inicial + comportamiento (reveal, contadores, scroll-spy, menú móvil, volver arriba, pipeline)
+cv/                      # CV personal, ignorado por git (.gitignore)
+```
 
 ## Personalización
 
 | Qué cambiar | Dónde |
 |---|---|
-| Colores | Variables CSS en `:root` (línea ~19 de `index.html`) |
-| Textos | Directamente en el HTML |
+| Colores / tokens de diseño | Variables CSS en `:root` de `assets/css/styles.css` |
+| Servicios, problemas, sectores, casos de éxito, tecnologías, timeline, blog | `assets/js/data.js` — añadir un objeto al array correspondiente añade una tarjeta, no hace falta tocar HTML |
+| Textos fijos (hero, títulos de sección) | Directamente en `index.html` |
 | Email | Busca `raulmolinah.madrid@gmail.com` |
 | LinkedIn | Busca `linkedin.com/in/raulmolinahernandez` |
 | GitHub | Busca `github.com/StoneFly365` |
-| Stats (números) | Sección `.stats-bar` |
-| Herramientas | Tarjetas dentro de `#stackCarousel` |
+| Stats del hero (números) | `data-count`/`data-suffix` en `.stats-bar` dentro de `index.html` |
+
+## Decisiones técnicas
+
+- **Sin build step**: GitHub Pages sirve estático; un bundler (Vite/Webpack) añadiría complejidad de CI sin necesidad real para este volumen de contenido. Los ES modules nativos ya dan separación de código sin esa dependencia.
+- **Datos separados del marcado** (`data.js`): añadir un servicio o un caso de éxito no debería requerir editar HTML repetido; se añade un objeto y `render.js` lo pinta.
+- **Sin librería de carrusel externa**: el `@blossom-carousel` (CDN) que usaba la versión anterior se sustituyó por un marquee de CSS puro (loop con contenido duplicado + `translateX(-50%)`), eliminando una dependencia de red y una render-blocking request.
+- **`--text-faint` y contraste AA**: el token se aclaró (`#4D5D73` → `#6E8098`) tras auditar contraste; varios usos sobre fondos `--surface` se movieron a `--text-dim`, que sí cumple 4.5:1 en ambos fondos del sistema.
 
 ## Claude Code · Ponytail
 
