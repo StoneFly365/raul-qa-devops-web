@@ -113,3 +113,12 @@ export const blogPosts = [
   { title: 'Playwright en 2026: patrones que sí escalan', tag: 'automatización' },
   { title: 'IA aplicada al testing: qué funciona hoy y qué no', tag: 'ai for qa' },
 ];
+
+export const faqs = [
+  { q: '¿Cuánto dura un proyecto típico?', a: 'Depende del formato: un assessment inicial son días, una implementación de pipeline suele ser semanas, y el advisory continuado no tiene fecha de fin fija — se revisa mes a mes.' },
+  { q: '¿Trabajáis con equipos pequeños o solo con grandes cuentas?', a: 'Con ambos. El método se adapta al tamaño y madurez de cada organización, no al revés.' },
+  { q: '¿Qué pasa si ya tenemos un equipo de QA?', a: 'Trabajo junto a tu equipo, no lo sustituyo. La parte de mentoring existe precisamente para que el conocimiento se quede dentro, no dependa de un externo.' },
+  { q: '¿Trabajáis en remoto?', a: 'Sí, remoto-friendly. Base en Madrid, zona horaria Europe/Madrid.' },
+  { q: '¿Puedo empezar con algo pequeño antes de comprometerme a más?', a: 'Sí — el QA Assessment es precisamente eso: un primer paso de bajo riesgo antes de decidir si seguimos con automatización o estrategia a largo plazo.' },
+  { q: '¿Cómo empezamos?', a: 'Con una primera conversación de 30 minutos sin compromiso. Respondo en menos de 24h.' },
+];

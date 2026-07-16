@@ -1,6 +1,6 @@
 import {
   techStackHero, sectors, problems, services, caseStudies,
-  aiCapabilities, aiTools, technologies, timeline, blogPosts,
+  aiCapabilities, aiTools, technologies, timeline, blogPosts, faqs,
 } from './data.js';
 import { renderCards, renderMarquee, renderChips, icon } from './render.js';
 
@@ -76,6 +76,12 @@ renderCards('#blogGrid', blogPosts, (b) => `
     <h3>${b.title}</h3>
     <span class="blog-cat">${b.tag}</span>
   </article>`);
+
+renderCards('#faqList', faqs, (f) => `
+  <details class="faq-item">
+    <summary>${f.q}</summary>
+    <p>${f.a}</p>
+  </details>`);
 
 /* ---------- Pipeline animation (elemento de firma) ---------- */
 (function pipeline() {
