@@ -186,10 +186,13 @@ renderCards('#faqList', faqs, (f) => `
 (function marqueeNav() {
   // ponytail: scrubs Web Animations API currentTime instead of pausing/replaying,
   // avoids fighting with the CSS :hover pause. No-op if reduced-motion removed the animation.
-  function step(trackId, itemCount, dir) {
+  function step(trackId, dir) {
     const track = document.getElementById(trackId);
     const anim = track && track.getAnimations()[0];
     if (!anim) return;
+    // track = [...original items, .marquee-dup wrapper] → itemCount excludes the wrapper
+    const itemCount = track.children.length - 1;
+    if (itemCount < 1) return;
     const timing = anim.effect.getTiming();
     const duration = typeof timing.duration === 'number' ? timing.duration : parseFloat(timing.duration);
     const msPerCard = duration / itemCount; // one full loop (0 → -50%) spans exactly itemCount cards
@@ -197,9 +200,9 @@ renderCards('#faqList', faqs, (f) => `
     anim.currentTime = next;
   }
   document.querySelectorAll('[data-marquee-prev]').forEach((btn) => {
-    btn.addEventListener('click', () => step(btn.dataset.marqueePrev, sectors.length, -1));
+    btn.addEventListener('click', () => step(btn.dataset.marqueePrev, -1));
   });
   document.querySelectorAll('[data-marquee-next]').forEach((btn) => {
-    btn.addEventListener('click', () => step(btn.dataset.marqueeNext, sectors.length, 1));
+    btn.addEventListener('click', () => step(btn.dataset.marqueeNext, 1));
   });
 })();

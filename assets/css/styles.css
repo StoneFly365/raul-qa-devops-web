@@ -260,6 +260,7 @@ h2{
   to{transform:translateX(-50%)}
 }
 .marquee-nav{display:flex;gap:10px;justify-content:flex-end;margin-bottom:14px}
+.marquee-nav.centered{justify-content:center;margin-top:14px}
 .marquee-btn{
   width:40px;height:40px;border-radius:50%;
   background:var(--surface);border:1px solid var(--border);
