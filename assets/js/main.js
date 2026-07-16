@@ -188,3 +188,25 @@ renderCards('#faqList', faqs, (f) => `
     window.scrollTo({ top: 0, behavior: reduced ? 'auto' : 'smooth' });
   });
 })();
+
+/* ---------- Flechas de avance manual en marquees ---------- */
+(function marqueeNav() {
+  // ponytail: scrubs Web Animations API currentTime instead of pausing/replaying,
+  // avoids fighting with the CSS :hover pause. No-op if reduced-motion removed the animation.
+  function step(trackId, itemCount, dir) {
+    const track = document.getElementById(trackId);
+    const anim = track && track.getAnimations()[0];
+    if (!anim) return;
+    const timing = anim.effect.getTiming();
+    const duration = typeof timing.duration === 'number' ? timing.duration : parseFloat(timing.duration);
+    const msPerCard = duration / itemCount; // one full loop (0 → -50%) spans exactly itemCount cards
+    const next = (((anim.currentTime || 0) + dir * msPerCard) % duration + duration) % duration;
+    anim.currentTime = next;
+  }
+  document.querySelectorAll('[data-marquee-prev]').forEach((btn) => {
+    btn.addEventListener('click', () => step(btn.dataset.marqueePrev, sectors.length, -1));
+  });
+  document.querySelectorAll('[data-marquee-next]').forEach((btn) => {
+    btn.addEventListener('click', () => step(btn.dataset.marqueeNext, sectors.length, 1));
+  });
+})();
