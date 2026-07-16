@@ -576,15 +576,6 @@ blockquote::before{
 .contact-left h2{max-width:18ch}
 .contact-left p{color:var(--text-dim);margin-top:16px;max-width:44ch;font-size:.98rem}
 .contact-left .btn{margin-top:28px}
-.contact-note{
-  font-family:'JetBrains Mono',monospace;font-size:.73rem;
-  color:var(--text-dim);margin-top:28px;
-  display:flex;align-items:center;gap:8px;
-}
-.contact-note::before{
-  content:"";width:6px;height:6px;border-radius:50%;
-  background:var(--accent);box-shadow:0 0 6px var(--accent-glow);
-}
 .contact-right{
   background:var(--surface-up);border-left:1px solid var(--border);
   padding:56px 44px;display:flex;flex-direction:column;justify-content:center;gap:16px;
