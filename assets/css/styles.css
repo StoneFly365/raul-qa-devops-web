@@ -292,7 +292,7 @@ h2{
   width:40px;height:40px;border-radius:8px;
   background:var(--accent-dim);color:var(--accent);
   display:flex;align-items:center;justify-content:center;
-  margin-bottom:16px;
+  margin-top:18px;margin-bottom:16px;
 }
 .svc h3{
   font-family:'Space Grotesk',sans-serif;font-weight:700;
