@@ -233,10 +233,6 @@ h1 .hi{
 section{padding:96px 0}
 .sec-border{border-top:1px solid var(--border)}
 .sec-head{margin-bottom:52px}
-.sec-eyebrow{
-  font-family:'JetBrains Mono',monospace;font-size:.78rem;
-  color:var(--accent);margin-bottom:14px;display:block;
-}
 h2{
   font-family:'Space Grotesk',sans-serif;font-weight:700;
   font-size:clamp(1.8rem,3.6vw,2.7rem);line-height:1.1;
@@ -512,6 +508,7 @@ blockquote::before{
 .about-bio p{color:var(--text-dim);font-size:.96rem}
 .about-bio p+p{margin-top:16px}
 .about-bio p strong{color:var(--text)}
+.about-bio .btn{margin-top:24px}
 .facts{list-style:none;margin-top:0}
 .facts li{
   display:flex;justify-content:space-between;gap:18px;
@@ -523,23 +520,6 @@ blockquote::before{
 }
 .facts li span:last-child{text-align:right;font-weight:500;color:var(--text)}
 @media(max-width:860px){.about-grid{grid-template-columns:1fr}}
-
-/* =============================================
-   TIMELINE
-   ============================================= */
-.timeline{list-style:none;margin-top:48px;position:relative}
-.timeline::before{
-  content:"";position:absolute;left:9px;top:6px;bottom:6px;width:2px;background:var(--border);
-}
-.tl-item{position:relative;padding-left:34px;margin-top:0}
-.tl-item+.tl-item{margin-top:22px}
-.tl-item::before{
-  content:"";position:absolute;left:2px;top:4px;width:16px;height:16px;border-radius:50%;
-  background:var(--bg-deep);border:2px solid var(--accent);
-}
-.tl-role{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:.98rem}
-.tl-meta{font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--text-faint);margin-top:2px}
-.tl-item p{font-size:.88rem;color:var(--text-dim);margin-top:6px;max-width:56ch}
 
 /* =============================================
    BLOG

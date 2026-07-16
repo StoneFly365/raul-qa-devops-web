@@ -1,6 +1,6 @@
 import {
   techStackHero, sectors, problems, services, caseStudies,
-  aiCapabilities, aiTools, technologies, timeline, blogPosts, faqs,
+  aiCapabilities, aiTools, technologies, blogPosts, faqs,
 } from './data.js';
 import { renderCards, renderMarquee, renderChips, icon } from './render.js';
 
@@ -62,13 +62,6 @@ renderCards('#techGrid', technologies, (t) => `
     <div class="tc-icon">${t.abbr}</div>
     <div class="tc-name">${t.name}</div>
   </div>`);
-
-renderCards('#timelineList', timeline, (t) => `
-  <li class="tl-item">
-    <div class="tl-role">${t.role}</div>
-    <div class="tl-meta">${t.period}</div>
-    <p>${t.desc}</p>
-  </li>`);
 
 renderCards('#blogGrid', blogPosts, (b) => `
   <article class="blog-card">

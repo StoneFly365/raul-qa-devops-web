@@ -97,15 +97,6 @@ export const technologies = [
   { name: 'OpenSpec', abbr: 'OS' },
 ];
 
-/* Línea temporal profesional, fechas derivadas de la experiencia real (CV). */
-export const timeline = [
-  { role: 'QA Engineer', period: '2011 – 2016', desc: 'Ejecución y diseño de pruebas funcionales en entornos web, Host y móviles para clientes de banca, retail y aerolíneas.' },
-  { role: 'Automation Engineer', period: '2016 – 2019', desc: 'Automatización de pruebas funcionales con Selenium, Cucumber y WebdriverIO; primeros proyectos en banca (BBVA).' },
-  { role: 'QA Lead', period: '2019 – 2023', desc: 'Liderazgo de equipos QA, definición de procesos y cultura de calidad en proyectos web y móvil.' },
-  { role: 'Solution Consulting', period: '2023 – 2025', desc: 'Consultoría QA en automatización para proyectos bancarios y asesoramiento de estrategia a equipos ágiles.' },
-  { role: 'Quality Engineering & AI', period: '2026 – presente', desc: 'Business & Solutions Consulting Lead: QA, DevOps, cloud e IA generativa aplicada a calidad de software.' },
-];
-
 /* Blog: solo estructura, sin backend. */
 export const blogPosts = [
   { title: 'ROI de QA: cómo medir el retorno de invertir en calidad', tag: 'estrategia' },
