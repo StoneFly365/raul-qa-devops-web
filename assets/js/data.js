@@ -13,6 +13,7 @@ export const techStackHero = [
   { icon: 'JS', name: 'Node.js', cat: 'Runtime' },
   { icon: 'AP', name: 'Appium', cat: 'Mobile Automation' },
   { icon: 'WD', name: 'WebdriverIO', cat: 'Test Automation' },
+  { icon: 'OZ', name: 'OWASP ZAP', cat: 'Security Testing' },
 ];
 
 /* Franja "empresas / sectores": sin logos inventados, solo slots preparados. */
@@ -66,12 +67,12 @@ export const caseStudies = [
     kpis: ['Incidentes de integración -80%', 'Detección en CI, no en producción'],
   },
   {
-    tag: 'SaaS B2B',
-    title: 'IA aplicada a la generación de casos de prueba',
-    problem: 'El equipo de QA dedicaba la mayor parte del sprint a escribir casos de prueba a partir de historias de usuario.',
-    solution: 'Agente de IA integrado en el flujo de refinamiento que genera casos de prueba y escenarios edge a partir de las historias de usuario, revisados por el equipo.',
-    result: 'El equipo de QA pasó de escribir casos a revisar y priorizar por riesgo.',
-    kpis: ['Tiempo de diseño de pruebas -50%', 'Más cobertura de edge cases'],
+    tag: 'banca',
+    title: 'Seguridad de APIs validada en fase de diseño, no en producción',
+    problem: 'Los contratos de API se diseñaban a partir de los requisitos del banco sin ninguna validación de seguridad antes de que el equipo de desarrollo los implementara.',
+    solution: 'Escaneo y análisis de los contratos de API con OWASP ZAP durante la fase de diseño, en colaboración con el equipo de desarrollo, antes de iniciar la construcción.',
+    result: 'Las vulnerabilidades se detectaban y corregían en el contrato, antes de escribir una línea de código.',
+    kpis: ['Validación de seguridad movida a fase de diseño', 'Contratos de API auditados contra OWASP', 'Vulnerabilidades corregidas antes de desarrollo'],
   },
 ];
 
