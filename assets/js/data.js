@@ -15,6 +15,7 @@ export const techStackHero = [
   { icon: 'AP', slug: 'appium', name: 'Appium', cat: 'Mobile Automation' },
   { icon: 'WD', slug: 'webdriverio', name: 'WebdriverIO', cat: 'Test Automation' },
   { icon: 'OZ', slug: 'owasp', name: 'OWASP ZAP', cat: 'Security Testing' },
+  { icon: '+', name: 'Otras tecnologías', cat: 'según el proyecto' },
 ];
 
 /* Franja "empresas / sectores": sin logos inventados, solo slots preparados. */
