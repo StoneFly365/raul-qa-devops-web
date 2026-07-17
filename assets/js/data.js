@@ -43,10 +43,8 @@ export const problems = [
 
 export const services = [
   { tag: 'assessment', title: 'QA Strategy & Assessment', desc: 'Diagnóstico del estado actual de calidad y definición de estrategia basada en riesgo, alineada con negocio y ciclo de desarrollo.', benefit: 'Beneficio: sabes dónde estás y hacia dónde vas antes de invertir en automatización.', icon: 'path d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"' },
-  { tag: 'automatización', title: 'Test Automation', desc: 'Frameworks de automatización mantenibles con Playwright y Karate DSL, con pruebas E2E y de API integradas en CI/CD.', benefit: 'Beneficio: feedback de regresión en minutos y contratos de API validados antes de romper producción.', icon: 'path d="M13 10V3L4 14h7v7l9-11h-7z"' },
-  { tag: 'performance', title: 'Performance Testing', desc: 'Pruebas de carga y estrés para validar la capacidad real del sistema antes del pico de tráfico.', benefit: 'Beneficio: conoces tus límites antes que tus usuarios.', icon: 'path d="M3.75 3v11.25A2.25 2.25 0 006 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0118 16.5h-2.25m-7.5 0h7.5m-7.5 0l-1 3.75m8.5-3.75l1 3.75m-9.5 0h9.5"' },
-  { tag: 'devops', title: 'DevOps Quality', desc: 'Integración de quality gates reales en pipelines de CI/CD: SAST, SCA, cobertura y umbrales.', benefit: 'Beneficio: la calidad bloquea el pipeline antes de llegar a producción, no después.', icon: 'path d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"' },
-  { tag: 'ai for qa', title: 'AI for QA', desc: 'Agentes de IA aplicados a generación y revisión de tests, análisis de requisitos y reporting.', benefit: 'Beneficio: tu equipo de QA dedica el tiempo a criterio, no a tareas repetitivas.', icon: 'path d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"' },
+  { tag: 'automatización', title: 'Test Automation', desc: 'Frameworks de automatización mantenibles con Playwright y Karate DSL: pruebas E2E, de API y de carga integradas en CI/CD.', benefit: 'Beneficio: feedback de regresión en minutos y contratos de API validados antes de romper producción.', icon: 'path d="M13 10V3L4 14h7v7l9-11h-7z"' },
+  { tag: 'devops', title: 'DevOps Quality', desc: 'Pipelines que bloquean releases rotos antes de que lleguen a producción: quality gates con SonarQube, migraciones de BD controladas con Liquibase y despliegues reproducibles.', benefit: 'Beneficio: despliegas con confianza, no con miedo.', icon: 'path d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"' },
   { tag: 'liderazgo', title: 'Liderazgo fraccional & Mentoring', desc: 'Mentoring técnico a equipos de QA y desarrollo, o liderazgo de calidad a tiempo parcial como Fractional QA Lead.', benefit: 'Beneficio: criterio senior — en la formación de tu equipo o en la mesa de decisiones — sin coste de estructura fija.', icon: 'path d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z"' },
 ];
 
@@ -88,27 +86,6 @@ export const aiCapabilities = [
 ];
 
 export const aiTools = ['MCP', 'OpenAI', 'Claude', 'GitHub Copilot'];
-
-export const technologies = [
-  { name: 'Playwright', abbr: 'PW' },
-  { name: 'Karate', abbr: 'KA' },
-  { name: 'Docker', abbr: 'DK' },
-  { name: 'Kubernetes', abbr: 'K8' },
-  { name: 'Azure DevOps', abbr: 'AZ' },
-  { name: 'GitHub Actions', abbr: 'GH' },
-  { name: 'GitLab', abbr: 'GL' },
-  { name: 'OpenAI', abbr: 'OA' },
-  { name: 'Claude', abbr: 'CL' },
-  { name: 'Java', abbr: 'JV' },
-  { name: 'TypeScript', abbr: 'TS' },
-  { name: 'Node', abbr: 'ND' },
-  { name: 'REST', abbr: 'RS' },
-  { name: 'GraphQL', abbr: 'GQ' },
-  { name: 'PostgreSQL', abbr: 'PG' },
-  { name: 'SonarQube', abbr: 'SQ' },
-  { name: 'Liquibase', abbr: 'LB' },
-  { name: 'OpenSpec', abbr: 'OS' },
-];
 
 /* Blog: solo estructura, sin backend. */
 export const blogPosts = [
