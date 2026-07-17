@@ -167,6 +167,11 @@ h1 .hi{
   color:var(--accent);font-family:'JetBrains Mono',monospace;
   font-weight:700;font-size:.82rem;
 }
+.tc-icon .tc-logo{
+  width:20px;height:20px;background-color:var(--accent);
+  -webkit-mask:var(--logo) no-repeat center / contain;
+  mask:var(--logo) no-repeat center / contain;
+}
 .tech-card .tc-name{
   font-family:'JetBrains Mono',monospace;
   font-size:.78rem;font-weight:600;color:var(--text);

@@ -10,7 +10,9 @@ const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 renderMarquee('#heroStackTrack', techStackHero, (t) => `
   <div class="tech-card">
-    <div class="tc-icon">${t.icon}</div>
+    <div class="tc-icon">${t.slug
+      ? `<span class="tc-logo" style="--logo:url('https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/${t.slug}.svg')"></span>`
+      : t.icon}</div>
     <div class="tc-name">${t.name}</div>
     <div class="tc-cat">${t.cat}</div>
   </div>`);

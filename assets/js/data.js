@@ -1,19 +1,20 @@
 /* Contenido del sitio, separado del marcado. Añadir una tarjeta = añadir un objeto aquí. */
 
+/* slug = icono oficial de Simple Icons (npm package, servido vía jsdelivr); sin slug = sin icono oficial disponible, se usa el monograma de icon. */
 export const techStackHero = [
-  { icon: 'PW', name: 'Playwright', cat: 'Test Automation' },
-  { icon: 'AZ', name: 'Azure DevOps', cat: 'CI/CD & ALM' },
-  { icon: 'GH', name: 'GitHub Actions', cat: 'CI/CD' },
-  { icon: 'CC', name: 'Claude Code', cat: 'AI Agents' },
-  { icon: 'MP', name: 'MCP', cat: 'AI Protocol' },
-  { icon: 'SQ', name: 'SonarQube', cat: 'SAST' },
+  { icon: 'PW', slug: 'playwright', name: 'Playwright', cat: 'Test Automation' },
+  { icon: 'AZ', slug: 'azuredevops', name: 'Azure DevOps', cat: 'CI/CD & ALM' },
+  { icon: 'GH', slug: 'githubactions', name: 'GitHub Actions', cat: 'CI/CD' },
+  { icon: 'CC', slug: 'claude', name: 'Claude Code', cat: 'AI Agents' },
+  { icon: 'MP', slug: 'modelcontextprotocol', name: 'MCP', cat: 'AI Protocol' },
+  { icon: 'SQ', slug: 'sonarqubeserver', name: 'SonarQube', cat: 'SAST' },
   { icon: 'KA', name: 'Karate DSL', cat: 'API Testing' },
-  { icon: 'LB', name: 'Liquibase', cat: 'DB Migrations' },
+  { icon: 'LB', slug: 'liquibase', name: 'Liquibase', cat: 'DB Migrations' },
   { icon: 'OS', name: 'OpenSpec', cat: 'AI Spec Framework' },
-  { icon: 'JS', name: 'Node.js', cat: 'Runtime' },
-  { icon: 'AP', name: 'Appium', cat: 'Mobile Automation' },
-  { icon: 'WD', name: 'WebdriverIO', cat: 'Test Automation' },
-  { icon: 'OZ', name: 'OWASP ZAP', cat: 'Security Testing' },
+  { icon: 'JS', slug: 'nodedotjs', name: 'Node.js', cat: 'Runtime' },
+  { icon: 'AP', slug: 'appium', name: 'Appium', cat: 'Mobile Automation' },
+  { icon: 'WD', slug: 'webdriverio', name: 'WebdriverIO', cat: 'Test Automation' },
+  { icon: 'OZ', slug: 'owasp', name: 'OWASP ZAP', cat: 'Security Testing' },
 ];
 
 /* Franja "empresas / sectores": sin logos inventados, solo slots preparados. */
