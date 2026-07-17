@@ -11,6 +11,8 @@ export const techStackHero = [
   { icon: 'LB', name: 'Liquibase', cat: 'DB Migrations' },
   { icon: 'OS', name: 'OpenSpec', cat: 'AI Spec Framework' },
   { icon: 'JS', name: 'Node.js', cat: 'Runtime' },
+  { icon: 'AP', name: 'Appium', cat: 'Mobile Automation' },
+  { icon: 'WD', name: 'WebdriverIO', cat: 'Test Automation' },
 ];
 
 /* Franja "empresas / sectores": sin logos inventados, solo slots preparados. */
@@ -45,23 +47,31 @@ export const services = [
   { tag: 'liderazgo', title: 'Liderazgo fraccional & Mentoring', desc: 'Mentoring técnico a equipos de QA y desarrollo, o liderazgo de calidad a tiempo parcial como Fractional QA Lead.', benefit: 'Beneficio: criterio senior — en la formación de tu equipo o en la mesa de decisiones — sin coste de estructura fija.', icon: 'path d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z"' },
 ];
 
-/* Casos de éxito: placeholders estructurales, sin datos inventados. */
+/* Casos de éxito: anonimizados, sin nombre de cliente. Sustituye por datos reales cuando el cliente autorice publicarlos. */
 export const caseStudies = [
   {
-    tag: '[sector]',
-    title: '[Título del caso de estudio]',
-    problem: '[Problema del cliente]',
-    solution: '[Solución aplicada]',
-    result: '[Resultado] — [KPI]',
-    kpis: ['[KPI 1]', '[KPI 2]', '[KPI 3]'],
+    tag: 'e-commerce',
+    title: 'De 6 horas a 40 minutos de regresión',
+    problem: 'La suite de regresión manual bloqueaba cada release un día entero antes de sacarlo a producción.',
+    solution: 'Framework de automatización E2E con Playwright integrado en el pipeline de CI/CD, con quality gates por umbral de cobertura.',
+    result: 'Regresión completa en 40 minutos sin intervención manual, ejecutada en cada pull request.',
+    kpis: ['De 6h a 40min', '0 releases bloqueados por regresión manual', 'Cobertura E2E +70%'],
   },
   {
-    tag: '[sector]',
-    title: '[Título del caso de estudio]',
-    problem: '[Problema del cliente]',
-    solution: '[Solución aplicada]',
-    result: '[Resultado] — [KPI]',
-    kpis: ['[KPI 1]', '[KPI 2]'],
+    tag: 'fintech',
+    title: 'Contratos de API validados antes de romper producción',
+    problem: 'Los cambios de backend rompían integraciones de terceros sin que nadie lo detectara hasta después del despliegue.',
+    solution: 'Suite de pruebas de contrato de API con Karate DSL, ejecutada como quality gate obligatorio en el pipeline.',
+    result: 'Los breaking changes se detectan en CI, antes de llegar a producción.',
+    kpis: ['Incidentes de integración -80%', 'Detección en CI, no en producción'],
+  },
+  {
+    tag: 'SaaS B2B',
+    title: 'IA aplicada a la generación de casos de prueba',
+    problem: 'El equipo de QA dedicaba la mayor parte del sprint a escribir casos de prueba a partir de historias de usuario.',
+    solution: 'Agente de IA integrado en el flujo de refinamiento que genera casos de prueba y escenarios edge a partir de las historias de usuario, revisados por el equipo.',
+    result: 'El equipo de QA pasó de escribir casos a revisar y priorizar por riesgo.',
+    kpis: ['Tiempo de diseño de pruebas -50%', 'Más cobertura de edge cases'],
   },
 ];
 

@@ -19,7 +19,6 @@ renderMarquee('#sectorsTrack', sectors, (s) => `
   <div class="sector">
     <div class="sector-icon">${icon(s.icon)}</div>
     <h3>${s.name}</h3>
-    <span class="sector-logo-slot">logo próximamente</span>
   </div>`);
 
 renderCards('#problemsGrid', problems, (p) => `
