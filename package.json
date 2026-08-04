@@ -1,13 +1,15 @@
 {
   "name": "raul-qa-devops-web",
-  "version": "1.0.0",
-  "description": "Web personal — Raúl · Business & Solution Consulting Lead · QA & DevOps",
+  "version": "2.0.0",
+  "description": "Web personal — Raúl Molina · QA, Quality Engineering, DevOps & AI for QA Consulting",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "npx live-server --port=3000 --open=index.html",
-    "start": "npx live-server --port=3000 --open=index.html"
+    "start": "npx live-server --port=3000 --open=index.html",
+    "test": "node --test assets/js/"
   },
-  "keywords": ["qa", "devops", "consulting", "portfolio"],
+  "keywords": ["qa", "quality-engineering", "devops", "test-automation", "ai-for-qa", "consulting"],
   "author": "Raúl Molina Hernández",
   "license": "MIT"
 }

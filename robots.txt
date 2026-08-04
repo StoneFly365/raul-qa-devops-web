@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://stonefly365.github.io/raul-qa-devops-web/sitemap.xml

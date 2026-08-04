@@ -1,0 +1,111 @@
+/* =============================================================
+   DESIGN TOKENS — única fuente de verdad de color, tipografía,
+   espaciado, radios, sombras y tiempos. Nada de valores mágicos
+   fuera de este archivo.
+   ============================================================= */
+:root{
+  color-scheme:dark;
+
+  /* ---- Superficies -------------------------------------- */
+  --bg:#07090D;
+  --bg-alt:#0A0D13;
+  --surface:#10141C;
+  --surface-2:#151A24;
+  --surface-3:#1C232F;
+  --surface-glass:rgba(21,26,36,.62);
+
+  /* ---- Líneas ------------------------------------------- */
+  --line:rgba(255,255,255,.07);
+  --line-2:rgba(255,255,255,.12);
+  --line-3:rgba(255,255,255,.20);
+
+  /* ---- Texto (todos ≥ 4.5:1 sobre --bg, WCAG AA) --------- */
+  --text:#E8ECF3;      /* 16.8:1 */
+  --text-2:#A5B0C0;    /*  8.9:1 */
+  --text-3:#7E8A9C;    /*  5.7:1 */
+  --on-accent:#04070B;
+
+  /* ---- Acento — UN solo tono cromático en todo el sitio --- */
+  /* Nada de segundo acento: verde + neutros. Cualquier color que no
+     sea verde o gris comunica estado (ver semánticos), no decoración. */
+  --accent:#34D399;    /* 10.4:1 sobre --bg */
+  --accent-hi:#6EE7B7;
+  --accent-soft:rgba(52,211,153,.10);
+  --accent-line:rgba(52,211,153,.28);
+  --accent-glow:rgba(52,211,153,.22);
+
+  /* ---- Semánticos — reservados a ESTADO de ejecución ----- */
+  /* Sólo el pipeline y el terminal los usan. Nunca decoran una tarjeta. */
+  --warn:#FBBF24;
+  --warn-soft:rgba(251,191,36,.10);
+  --fail:#F87171;
+
+  /* ---- Gradientes (mismo tono, distinta luminancia) ------ */
+  --grad-accent:linear-gradient(120deg,var(--accent) 0%,var(--accent-hi) 100%);
+  --grad-surface:linear-gradient(180deg,var(--surface-2) 0%,var(--surface) 100%);
+  --grad-text:linear-gradient(100deg,var(--text) 30%,var(--accent-hi) 78%);
+
+  /* ---- Tipografía --------------------------------------- */
+  --font-display:'Space Grotesk',system-ui,sans-serif;
+  --font-body:'Inter',system-ui,-apple-system,sans-serif;
+  --font-mono:'JetBrains Mono',ui-monospace,'SF Mono',monospace;
+
+  /* Escala tipográfica — mínimo absoluto 13px. Ningún tamaño
+     "one-off" fuera de esta escala en el resto de hojas. */
+  --fs-mono:.8125rem;   /* 13px · etiquetas, metadatos, código  */
+  --fs-xs:.875rem;      /* 14px · texto auxiliar                */
+  --fs-sm:.9375rem;     /* 15px · cuerpo dentro de tarjetas     */
+  --fs-base:1rem;       /* 16px · cuerpo                        */
+  --fs-lg:clamp(1.0625rem,1rem + .35vw,1.1875rem);
+  --fs-h4:clamp(1.0625rem,1rem + .35vw,1.2rem);
+  --fs-h3:clamp(1.2rem,1.1rem + .5vw,1.45rem);
+  --fs-h2:clamp(1.9rem,1.45rem + 2vw,2.9rem);
+  --fs-h1:clamp(2.5rem,1.6rem + 4.1vw,4.5rem);
+
+  /* Dos pesos por familia, ni uno más:
+     display 700 · cuerpo 400/600 · mono 400/600 */
+  --fw-body:400;
+  --fw-medium:600;
+  --fw-bold:700;
+
+  --lh-tight:1.08;
+  --lh-snug:1.3;
+  --lh-body:1.65;
+  --tracking-tight:-.025em;
+  --tracking-wide:.08em;
+
+  /* ---- Espaciado (escala 4px) --------------------------- */
+  --s-1:4px;   --s-2:8px;   --s-3:12px;  --s-4:16px;
+  --s-5:20px;  --s-6:24px;  --s-8:32px;  --s-10:40px;
+  --s-12:48px;
+  --s-section:clamp(72px,7.5vw,112px);
+  --s-gutter:clamp(20px,4vw,32px);
+
+  /* ---- Layout ------------------------------------------- */
+  --max:1180px;
+  --max-prose:62ch;
+  --nav-h:68px;
+
+  /* ---- Radios ------------------------------------------- */
+  --r-sm:10px;
+  --r:14px;
+  --r-lg:20px;
+  --r-xl:28px;
+  --r-full:999px;
+
+  /* ---- Sombras (muy suaves, nada de cajas duras) -------- */
+  --sh-lg:0 18px 50px -18px rgba(0,0,0,.70);
+
+  /* ---- Movimiento --------------------------------------- */
+  --ease:cubic-bezier(.22,1,.36,1);
+  --ease-out:cubic-bezier(.16,1,.3,1);
+  --t-fast:.16s;
+  --t:.28s;
+  --t-slow:.6s;
+}
+
+/* Modo oscuro es el único tema del sitio; se declara explícito
+   para que el navegador pinte controles nativos en consecuencia. */
+@media (prefers-reduced-motion:reduce){
+  :root{--t-fast:.01ms;--t:.01ms;--t-slow:.01ms}
+}

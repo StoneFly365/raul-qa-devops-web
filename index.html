@@ -2,397 +2,558 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Raúl Molina · Consultoría QA, Quality Engineering, DevOps y AI Testing</title>
-<meta name="description" content="Consultoría B2B en QA, Quality Engineering, DevOps y AI aplicada al testing. Reduce costes, acelera entregas y mejora la calidad de tu software.">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#07090D">
+
+<!-- ===================== SEO ===================== -->
+<title>Raúl Molina · Consultoría QA, Automatización, DevOps e IA aplicada al testing</title>
+<meta name="description" content="Transformo equipos de QA mediante automatización e inteligencia artificial. Consultoría B2B en Quality Engineering, test automation, DevOps y AI for QA. 15+ años en entornos enterprise.">
+<meta name="author" content="Raúl Molina Hernández">
 <link rel="canonical" href="https://stonefly365.github.io/raul-qa-devops-web/">
-<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
-<meta property="og:title" content="Raúl Molina · Consultoría QA, Quality Engineering, DevOps y AI Testing">
-<meta property="og:description" content="Ayudo a organizaciones a reducir costes, acelerar entregas y aumentar la calidad mediante estrategias modernas de Quality Engineering.">
+<meta name="robots" content="index,follow,max-image-preview:large">
+
+<!-- Open Graph -->
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://stonefly365.github.io/raul-qa-devops-web/">
+<meta property="og:site_name" content="Raúl Molina · QA & DevOps Consulting">
 <meta property="og:locale" content="es_ES">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Raúl Molina · Consultoría QA, Quality Engineering, DevOps y AI Testing">
-<meta name="twitter:description" content="Ayudo a organizaciones a reducir costes, acelerar entregas y aumentar la calidad mediante estrategias modernas de Quality Engineering.">
+<meta property="og:url" content="https://stonefly365.github.io/raul-qa-devops-web/">
+<meta property="og:title" content="Transformando equipos de QA mediante automatización e inteligencia artificial">
+<meta property="og:description" content="Consultoría en Quality Engineering, test automation, DevOps e IA aplicada al testing. Reduce costes, acelera entregas y despliega con confianza.">
+<!-- ⚠ TODO: crear assets/og-cover.png (1200×630) y descomentar.
+     Sin esta etiqueta, LinkedIn y X compartirán el enlace sin imagen.
+<meta property="og:image" content="https://stonefly365.github.io/raul-qa-devops-web/assets/og-cover.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Raúl Molina · Consultoría QA, DevOps e IA">
+-->
+
+<!-- Twitter / X -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Transformando equipos de QA mediante automatización e inteligencia artificial">
+<meta name="twitter:description" content="Consultoría en Quality Engineering, test automation, DevOps e IA aplicada al testing.">
+
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+
+<!-- ===================== FUENTES ===================== -->
+<!-- Dos pesos por familia y ni uno más: display 700, cuerpo 400/600,
+     mono 400/600. Con font-synthesis-weight:none, pedir un peso no
+     cargado degradaba en silencio al más cercano. -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/styles.css">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700&family=Inter:wght@400;600&family=JetBrains+Mono:wght@400;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700&family=Inter:wght@400;600&family=JetBrains+Mono:wght@400;600&display=swap">
+
+<!-- ===================== ESTILOS ===================== -->
+<link rel="stylesheet" href="assets/css/tokens.css">
+<link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="assets/css/motion.css">
+<link rel="stylesheet" href="assets/css/components.css">
+<link rel="stylesheet" href="assets/css/sections.css">
+
+<!-- ===================== DATOS ESTRUCTURADOS ===================== -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "Person",
-  "name": "Raúl Molina Hernández",
-  "jobTitle": "Business & Solutions Consulting Lead | QA & DevOps",
-  "url": "https://stonefly365.github.io/raul-qa-devops-web/",
-  "email": "mailto:raulmolinah.madrid@gmail.com",
-  "sameAs": [
-    "https://www.linkedin.com/in/raulmolinahernandez/",
-    "https://github.com/StoneFly365"
-  ],
-  "knowsAbout": ["QA", "Quality Engineering", "DevOps", "Test Automation", "AI for QA", "Playwright", "Karate DSL"]
-}
-</script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "ProfessionalService",
-  "name": "Raúl Molina · QA, Quality Engineering & DevOps Consulting",
-  "url": "https://stonefly365.github.io/raul-qa-devops-web/",
-  "areaServed": "ES",
-  "serviceType": ["QA Consulting", "Quality Engineering", "DevOps Consulting", "AI for QA"]
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "https://stonefly365.github.io/raul-qa-devops-web/#person",
+      "name": "Raúl Molina Hernández",
+      "jobTitle": "Business & Solutions Consulting Lead · QA & DevOps",
+      "url": "https://stonefly365.github.io/raul-qa-devops-web/",
+      "email": "mailto:raulmolinah.madrid@gmail.com",
+      "address": { "@type": "PostalAddress", "addressLocality": "Madrid", "addressCountry": "ES" },
+      "sameAs": [
+        "https://www.linkedin.com/in/raulmolinahernandez/",
+        "https://github.com/StoneFly365"
+      ],
+      "knowsAbout": ["QA","Quality Engineering","DevOps","Test Automation","AI for QA","Playwright","Karate DSL","CI/CD","ISTQB","Métricas DORA"],
+      "knowsLanguage": ["es","en"]
+    },
+    {
+      "@type": "ProfessionalService",
+      "@id": "https://stonefly365.github.io/raul-qa-devops-web/#service",
+      "name": "Raúl Molina · QA, Quality Engineering & DevOps Consulting",
+      "url": "https://stonefly365.github.io/raul-qa-devops-web/",
+      "founder": { "@id": "https://stonefly365.github.io/raul-qa-devops-web/#person" },
+      "areaServed": "ES",
+      "availableLanguage": ["es","en"],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Servicios",
+        "itemListElement": [
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "QA Transformation",   "description": "De testing reactivo a ingeniería de calidad integrada en el desarrollo." } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "QA Automation",       "description": "Frameworks E2E, API y contrato con Playwright y Karate DSL, dentro de CI/CD." } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "DevOps Consulting",   "description": "Pipelines que bloquean un release roto antes de que llegue a producción." } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "AI for QA",           "description": "Agentes y LLMs integrados en el ciclo de pruebas, no como demo aislada." } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Technical Leadership","description": "Fractional QA Lead: criterio senior sin coste de estructura fija." } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Training",            "description": "Formación in-company sobre vuestro propio código." } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Mentoring",           "description": "Acompañamiento 1:1 para ingenieros que dan el salto a Quality Engineering." } }
+        ]
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        { "@type": "Question", "name": "¿Cuánto dura un proyecto típico?", "acceptedAnswer": { "@type": "Answer", "text": "Un assessment son días; una implementación de pipeline, semanas; el advisory continuado se revisa mes a mes." } },
+        { "@type": "Question", "name": "¿Trabajas con equipos pequeños o solo con grandes cuentas?", "acceptedAnswer": { "@type": "Answer", "text": "Con ambos. El método se adapta al tamaño y madurez de cada organización, no al revés." } },
+        { "@type": "Question", "name": "¿Qué pasa si ya tenemos un equipo de QA?", "acceptedAnswer": { "@type": "Answer", "text": "Trabajo junto a tu equipo, no lo sustituyo. El mentoring existe para que el conocimiento se quede dentro." } },
+        { "@type": "Question", "name": "¿Trabajas en remoto?", "acceptedAnswer": { "@type": "Answer", "text": "Sí, remoto-friendly. Base en Madrid, zona horaria Europe/Madrid." } },
+        { "@type": "Question", "name": "¿Puedo empezar con algo pequeño?", "acceptedAnswer": { "@type": "Answer", "text": "Sí. El QA Assessment es un primer paso de bajo riesgo antes de comprometerse a más." } },
+        { "@type": "Question", "name": "¿Cómo empezamos?", "acceptedAnswer": { "@type": "Answer", "text": "Con una conversación de 30 minutos sin compromiso. Respondo en menos de 24 horas." } }
+      ]
+    }
+  ]
 }
 </script>
 </head>
 <body>
 
-<!-- ======================== NAV ======================== -->
+<a class="skip-link" href="#main">Saltar al contenido principal</a>
+
+<!-- Centinela: la navbar se vuelve de cristal cuando este div sale de pantalla -->
+<div id="nav-sentinel" aria-hidden="true"></div>
+
+<!-- ============================================================
+     NAVEGACIÓN — cinco destinos. Menos opciones, decisión más rápida.
+     ============================================================ -->
 <header class="nav">
   <div class="nav-inner">
-    <a class="brand" href="#top"><span class="brand-dot"></span>raul@qa-devops<span style="color:var(--text-dim)">:~$</span></a>
-    <button class="hamburger" aria-label="Menú" aria-expanded="false">
-      <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h16M3 11h16M3 16h16"/></svg>
-    </button>
-    <nav class="links" aria-label="Secciones">
+    <a class="brand" href="#top">
+      <span class="brand-dot" aria-hidden="true"></span>
+      raul@qa-devops<span class="dim" aria-hidden="true">:~$</span>
+      <span class="visually-hidden">Raúl Molina — inicio</span>
+    </a>
+
+    <nav class="nav-links" id="nav-menu" aria-label="Secciones del sitio">
       <a href="#servicios">Servicios</a>
-      <a href="#casos">Casos de éxito</a>
-      <a href="#ia-qa">IA & QA</a>
-      <a href="#sobre-mi">Sobre mí</a>
-      <a href="#contacto">Contacto</a>
+      <a href="#metodo">Método</a>
+      <a href="#casos">Casos</a>
+      <a href="#ia-qa">IA &amp; QA</a>
+      <a href="#recursos">Recursos</a>
+      <!-- El CTA vive dentro del panel para seguir accesible en móvil -->
+      <a class="btn btn--primary btn--sm nav-cta" href="#contacto" data-booking>Reservar una reunión</a>
     </nav>
-    <a class="nav-cta" href="mailto:raulmolinah.madrid@gmail.com?subject=Consultoría%20QA%20%2F%20DevOps">Solicitar consultoría</a>
+
+    <div class="nav-actions">
+      <button class="nav-toggle" type="button" aria-label="Abrir menú de navegación"
+              aria-expanded="false" aria-controls="nav-menu">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
   </div>
 </header>
 
-<main id="top">
+<main id="main">
 
-<!-- ======================== 1. HERO ======================== -->
-<div class="hero">
+<!-- ============================================================
+     1 · HERO
+     ============================================================ -->
+<section class="hero" id="top" aria-labelledby="hero-title">
   <div class="wrap">
-    <span class="hero-eyebrow"><span class="line"></span> QA Strategy · Quality Engineering · Test Automation · AI for QA · DevOps</span>
-    <h1>Transformando la calidad del software mediante <span class="hi">automatización e inteligencia artificial</span></h1>
-    <p class="hero-desc">Ayudo a organizaciones a reducir costes, acelerar entregas y aumentar la calidad mediante estrategias modernas de Quality Engineering.</p>
-    <div class="hero-ctas">
-      <a class="btn btn-accent" href="mailto:raulmolinah.madrid@gmail.com?subject=Consultoría%20QA%20%2F%20DevOps">Solicitar consultoría</a>
-      <a class="btn btn-outline" href="#casos">Ver casos de éxito</a>
-    </div>
-
-    <!-- Stats -->
-    <div class="stats-bar">
-      <div class="stat">
-        <div class="stat-n" data-count="15" data-suffix="+">0</div>
-        <div class="stat-l">años de experiencia</div>
+    <div class="hero-content hero-anim">
+      <p class="eyebrow">QA Strategy · Automation · DevOps · AI for QA</p>
+      <h1 id="hero-title">
+        Transformando equipos de QA mediante
+        <span class="grad-text">automatización e inteligencia artificial</span>
+      </h1>
+      <p class="hero-lead">
+        Convierto la estrategia de calidad en pipelines que funcionan de verdad:
+        menos coste, entregas más rápidas y despliegues sin miedo.
+      </p>
+      <div class="hero-ctas">
+        <a class="btn btn--primary" href="#contacto" data-booking>
+          Reservar una reunión
+          <svg class="arrow" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <a class="btn btn--ghost" href="#servicios">Ver servicios</a>
       </div>
-      <div class="stat">
-        <div class="stat-n" data-count="30" data-suffix="+">0</div>
-        <div class="stat-l">proyectos enterprise</div>
-      </div>
-      <div class="stat">
-        <div class="stat-n" data-count="10" data-suffix="+">0</div>
-        <div class="stat-l">sectores cubiertos</div>
-      </div>
+      <p class="hero-trust">
+        <span>15+ años en QA y DevOps</span>
+        <span>Entornos regulados y enterprise</span>
+        <span>Respuesta en &lt;24 h</span>
+      </p>
     </div>
   </div>
 
-  <!-- Stack tecnológico (marquee) -->
-  <div class="stack-section">
-    <div class="wrap">
-      <p class="stack-label">Herramientas con las que trabajo</p>
-      <div class="marquee-nav centered">
-        <button class="marquee-btn" data-marquee-prev="heroStackTrack" aria-label="Herramienta anterior">
-          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M15 19l-7-7 7-7"/></svg>
-        </button>
-        <button class="marquee-btn" data-marquee-next="heroStackTrack" aria-label="Siguiente herramienta">
-          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
-        </button>
-      </div>
+  <!-- Stack tecnológico en movimiento -->
+  <div class="wrap hero-stack">
+    <p class="eyebrow">Herramientas con las que trabajo</p>
+    <div class="marquee" style="--marquee-speed:34s">
+      <div class="marquee-track" id="heroStack"></div>
     </div>
-    <div class="wrap">
-      <div class="marquee">
-        <div class="marquee-track tight" id="heroStackTrack"></div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ======================== PIPELINE ======================== -->
-<div class="pipeline-section">
-  <div class="wrap">
-    <div class="pipeline" id="pipeline" aria-label="Pipeline de integración continua animado">
-      <div class="pipe-head" id="pipeHead">
-        <span><span style="color:var(--text-dim)">pipeline:</span> <strong>quality-first-delivery</strong> · main</span>
-        <span class="pipe-status"><span class="pipe-ind"></span><span id="pipeStatus">running…</span></span>
-      </div>
-      <div class="pipe-stages">
-        <div class="stg" data-time="4s">
-          <div class="stg-name"><span class="badge"></span>commit</div>
-          <p class="stg-desc">Requisitos claros y criterios de aceptación testables desde el inicio.</p>
-          <span class="stg-time">✓ 4s</span>
-        </div>
-        <div class="stg" data-time="38s">
-          <div class="stg-name"><span class="badge"></span>build</div>
-          <p class="stg-desc">Pipelines CI/CD reproducibles en Azure DevOps o GitHub Actions.</p>
-          <span class="stg-time">✓ 38s</span>
-        </div>
-        <div class="stg" data-time="1m 52s">
-          <div class="stg-name"><span class="badge"></span>test</div>
-          <p class="stg-desc">Automatización con Playwright y Karate, revisada por agentes de IA.</p>
-          <span class="stg-time">✓ 1m 52s</span>
-        </div>
-        <div class="stg" data-time="47s">
-          <div class="stg-name"><span class="badge"></span>security</div>
-          <p class="stg-desc">Quality gates de seguridad: SAST, SCA y análisis de cobertura OWASP.</p>
-          <span class="stg-time">✓ 47s</span>
-        </div>
-        <div class="stg" data-time="12s">
-          <div class="stg-name"><span class="badge"></span>deploy</div>
-          <p class="stg-desc">Entregas frecuentes, métricas DORA y feedback continuo al negocio.</p>
-          <span class="stg-time">✓ 12s</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ======================== 2. EMPRESAS / SECTORES ======================== -->
-<section id="sectores" class="sec-border">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <h2>Entornos donde un fallo en producción cuesta caro</h2>
-      <p class="sub">He liderado iniciativas de QA y automatización en organizaciones con alta exigencia regulatoria y operativa.</p>
-    </div>
-    <div class="marquee-nav reveal">
-      <button class="marquee-btn" data-marquee-prev="sectorsTrack" aria-label="Sector anterior">
-        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M15 19l-7-7 7-7"/></svg>
+    <div class="marquee-nav">
+      <button class="marquee-btn" type="button" data-marquee="heroStack:prev" aria-label="Herramienta anterior">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 19l-7-7 7-7"/></svg>
       </button>
-      <button class="marquee-btn" data-marquee-next="sectorsTrack" aria-label="Siguiente sector">
-        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
+      <button class="marquee-btn" type="button" data-marquee="heroStack:next" aria-label="Siguiente herramienta">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg>
       </button>
     </div>
-    <div class="marquee reveal">
-      <div class="marquee-track" id="sectorsTrack"></div>
-    </div>
   </div>
 </section>
 
-<!-- ======================== 3. PROBLEMAS QUE RESUELVO ======================== -->
-<section id="problemas" class="sec-border">
+<!-- ============================================================
+     PIPELINE — elemento de firma
+     ============================================================ -->
+<div class="pipeline-wrap">
   <div class="wrap">
-    <div class="sec-head reveal">
-      <h2>Si tu equipo despliega con miedo, ya sé por dónde empezar</h2>
-      <p class="sub">Estos son los síntomas que más veo en organizaciones que crecen más rápido que su estrategia de calidad.</p>
-    </div>
-    <div class="problems-grid reveal" id="problemsGrid"></div>
-  </div>
-</section>
-
-<!-- ======================== 4. SERVICIOS ======================== -->
-<section id="servicios" class="sec-border">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <h2>Cuatro formas de trabajar juntos</h2>
-      <p class="sub">Desde el diagnóstico inicial hasta la ejecución técnica del día a día: cubro toda la cadena de valor de la calidad, no solo un tramo de ella.</p>
-    </div>
-    <div class="services-grid reveal" id="servicesGrid"></div>
-  </div>
-</section>
-
-<!-- ======================== MÉTODO ======================== -->
-<section id="metodo" class="sec-border">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <h2>Un método, tres fases</h2>
-      <p class="sub">El mismo enfoque que aplico en consultoría para grandes cuentas, adaptado al tamaño y madurez de cada organización.</p>
-    </div>
-    <div class="method-grid">
-      <div class="mstep reveal">
-        <span class="mstep-label">01 — assessment</span>
-        <h3>Entender antes de tocar</h3>
-        <p>Análisis del estado actual: procesos, herramientas, deuda de pruebas y riesgos. Basado en marcos ISTQB y métricas objetivas, no en opiniones.</p>
-        <div class="mstep-connector"></div>
+    <div class="pipeline" id="pipeline" data-reveal="scale" data-parallax="0.06">
+      <div class="pipe-head">
+        <span><span class="dim">pipeline:</span> <strong>quality-first-delivery</strong> · main</span>
+        <span class="pipe-status">
+          <span class="pipe-dot" aria-hidden="true"></span>
+          <span id="pipeStatus" role="status">running…</span>
+        </span>
       </div>
-      <div class="mstep reveal">
-        <span class="mstep-label">02 — build</span>
-        <h3>Construir con tu equipo</h3>
-        <p>Implementación en pareja con tus ingenieros. El conocimiento se queda en casa: documentación, sesiones de transferencia y código que tu equipo posee.</p>
-        <div class="mstep-connector"></div>
-      </div>
-      <div class="mstep reveal">
-        <span class="mstep-label">03 — run</span>
-        <h3>Medir y mejorar</h3>
-        <p>Quality gates en producción, métricas DORA y de calidad visibles para negocio, y un plan de mejora continua que sobrevive a mi salida del proyecto.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ======================== 5. CASOS DE ÉXITO ======================== -->
-<section id="casos" class="sec-border">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <h2>Resultados, no diapositivas</h2>
-      <p class="sub">Casos anonimizados, sin nombre de cliente por confidencialidad.</p>
-    </div>
-    <div class="cases-grid reveal" id="casesGrid"></div>
-  </div>
-</section>
-
-<!-- ======================== PHILOSOPHY ======================== -->
-<div class="philosophy sec-border">
-  <div class="wrap">
-    <div class="phil-inner reveal">
-      <blockquote>La diferencia entre desplegar con miedo y desplegar con confianza es un pipeline que funciona de verdad, no un documento que describe uno.</blockquote>
-      <p class="phil-label">— Mi enfoque de consultoría</p>
+      <div class="pipe-stages" id="pipeStages" role="list" aria-label="Etapas del pipeline de entrega"></div>
     </div>
   </div>
 </div>
 
-<!-- ======================== 6. IA APLICADA A QA ======================== -->
-<section id="ia-qa" class="sec-border ai-section">
+<!-- ============================================================
+     2 · TRAYECTORIA — cifras y sectores en un solo bloque.
+     Sustituye a la antigua sección de clientes: un marquee de diez
+     tarjetas más una rejilla de logos pendientes no se leía en menos
+     de treinta segundos y anunciaba al visitante lo que faltaba.
+     ============================================================ -->
+<section class="section section--line section--alt" id="trayectoria" aria-labelledby="trayectoria-title">
   <div class="wrap">
-    <div class="sec-head reveal">
-      <h2>La IA no sustituye la estrategia de calidad. La acelera.</h2>
-      <p class="sub">Agentes y modelos de lenguaje integrados en el ciclo de vida de las pruebas, no como demo aislada sino como parte del pipeline.</p>
-    </div>
-    <div class="ai-bento reveal" id="aiGrid"></div>
-    <div class="ai-tools reveal" id="aiToolsChips"></div>
+    <header class="section-head" data-reveal>
+      <p class="eyebrow">Trayectoria</p>
+      <h2 id="trayectoria-title">Entornos donde un fallo en producción cuesta caro</h2>
+      <p class="lead">Banca, seguros, energía y otros sectores regulados, con exigencia
+        real de disponibilidad y cumplimiento.</p>
+    </header>
+    <div class="grid grid--3" id="metricsGrid"></div>
+    <div class="sectors" id="sectorsGrid" data-reveal></div>
+  </div>
+</section>
 
-    <div class="feat-grid" style="margin-top:64px">
-      <div class="terminal reveal">
-        <div class="term-bar"><i></i><i></i><i></i></div>
-<pre>
-<span class="dim">$</span> <span class="b">gh workflow run</span> e2e-ai-pipeline.yml
+<!-- ============================================================
+     3 · PROBLEMAS QUE RESUELVO
+     ============================================================ -->
+<section class="section section--line" id="problemas" aria-labelledby="problemas-title">
+  <div class="wrap">
+    <header class="section-head" data-reveal>
+      <p class="eyebrow">Diagnóstico</p>
+      <h2 id="problemas-title">Si tu equipo despliega con miedo, ya sé por dónde empezar</h2>
+      <p class="lead">Seis síntomas que se repiten — y lo que hago con cada uno.</p>
+    </header>
+    <div class="grid grid--3" id="problemsGrid"></div>
+  </div>
+</section>
 
-<span class="g">✓</span> playwright test · 84 passed <span class="dim">(2m 11s)</span>
-<span class="g">✓</span> mcp server · contexto de la app cargado
-<span class="y">➜</span> claude code · revisando selectores frágiles…
-<span class="g">✓</span> claude code · 3 sugerencias aplicadas
-<span class="g">✓</span> report-ai.mjs · informe ejecutivo generado
+<!-- ============================================================
+     4 · SERVICIOS
+     ============================================================ -->
+<section class="section section--line section--alt" id="servicios" aria-labelledby="servicios-title">
+  <div class="wrap">
+    <header class="section-head" data-reveal>
+      <p class="eyebrow">Servicios</p>
+      <h2 id="servicios-title">Siete formas de trabajar juntos</h2>
+      <p class="lead">Del diagnóstico inicial a la ejecución técnica del día a día.</p>
+    </header>
+    <div class="grid grid--3" id="servicesGrid"></div>
+  </div>
+</section>
 
-<span class="dim">→ artefacto:</span> qa-report-2026-06-10.md
-<span class="g">pipeline passed</span> <span class="dim">· main · #142</span>
-</pre>
+<!-- ============================================================
+     5 · METODOLOGÍA
+     ============================================================ -->
+<section class="section section--line" id="metodo" aria-labelledby="metodo-title">
+  <div class="wrap">
+    <header class="section-head" data-reveal>
+      <p class="eyebrow">Metodología</p>
+      <h2 id="metodo-title">Un método en cinco fases</h2>
+      <p class="lead">El mismo enfoque de las grandes cuentas, ajustado a tu tamaño y madurez.</p>
+    </header>
+    <ol class="timeline" id="timeline"></ol>
+  </div>
+</section>
+
+<!-- ============================================================
+     6 · CASOS DE ÉXITO
+     ============================================================ -->
+<section class="section section--line section--alt" id="casos" aria-labelledby="casos-title">
+  <div class="wrap">
+    <header class="section-head" data-reveal>
+      <p class="eyebrow">Casos de éxito</p>
+      <h2 id="casos-title">Resultados, no diapositivas</h2>
+      <p class="lead">Anonimizados por confidencialidad.</p>
+    </header>
+    <div class="grid grid--2" id="casesGrid"></div>
+  </div>
+</section>
+
+<!-- ============================================================
+     CITA
+     ============================================================ -->
+<div class="philosophy section--line">
+  <div class="wrap" data-reveal>
+    <blockquote>La diferencia entre desplegar con miedo y desplegar con confianza es un
+      pipeline que funciona de verdad, no un documento que describe uno.</blockquote>
+    <p class="attrib">— Mi enfoque de consultoría</p>
+  </div>
+</div>
+
+<!-- ============================================================
+     7 · IA APLICADA A QA
+     ============================================================ -->
+<section class="section section--line ai-section" id="ia-qa" aria-labelledby="ia-title">
+  <div class="wrap">
+    <header class="section-head" data-reveal>
+      <p class="eyebrow">AI for QA</p>
+      <h2 id="ia-title">La IA no sustituye la estrategia de calidad. La acelera.</h2>
+      <p class="lead">Agentes y modelos de lenguaje dentro del pipeline, no como demo aislada.</p>
+    </header>
+
+    <div class="grid grid--3" id="aiGrid"></div>
+
+    <div class="split" style="margin-top:clamp(48px,6vw,80px)">
+      <div class="terminal" data-reveal="left">
+        <div class="terminal-bar" aria-hidden="true"><i></i><i></i><i></i></div>
+<pre aria-label="Salida de ejemplo del pipeline de E2E con agentes de IA"><span class="dim">$</span> <span class="cmd">gh workflow run</span> e2e-ai-pipeline.yml
+
+<span class="ok">✓</span> playwright test · 84 passed <span class="dim">(2m 11s)</span>
+<span class="ok">✓</span> mcp server · contexto de la app cargado
+<span class="run">➜</span> claude code · revisando selectores frágiles…
+<span class="ok">✓</span> claude code · 3 sugerencias aplicadas
+<span class="ok">✓</span> report-ai.mjs · informe ejecutivo generado
+
+<span class="dim">→ artefacto:</span> qa-report.md
+<span class="ok">pipeline passed</span> <span class="dim">· main · #142</span></pre>
       </div>
-      <div class="feat-copy reveal">
+
+      <div class="split-copy" data-reveal="right">
         <h3>MCP + Claude Code + Playwright</h3>
-        <p>Un pipeline real y público que combina pruebas E2E con agentes de IA: ejecuta la suite, revisa el código de test, propone mejoras y genera un informe ejecutivo legible por negocio en cada build.</p>
-        <p>Es la base técnica de mis servicios: no vendo diapositivas, vendo algo que puedes clonar y ejecutar hoy.</p>
-        <a class="btn btn-outline" href="https://github.com/StoneFly365/playwright-demo-ia-mcp" target="_blank" rel="noopener">Ver en GitHub →</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ======================== 8. SOBRE MÍ ======================== -->
-<section id="sobre-mi" class="sec-border">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <h2>Sobre mí</h2>
-    </div>
-    <div class="about-grid">
-      <div class="about-bio reveal">
-        <p>Soy <strong>Business & Solutions Consulting Lead</strong> especializado en <strong>QA, Quality Engineering y DevOps</strong>. Ayudo a equipos de tecnología a convertir la calidad de un documento de estrategia en pipelines que funcionan de verdad — con foco creciente en IA aplicada al testing.</p>
-        <a class="btn btn-outline" href="https://www.linkedin.com/in/raulmolinahernandez/" target="_blank" rel="noopener">Ver mi trayectoria en LinkedIn →</a>
-      </div>
-      <ul class="facts reveal">
-        <li><span>rol</span><span>Business & Solutions Consulting Lead</span></li>
-        <li><span>foco</span><span>QA · DevOps · AI Testing</span></li>
-        <li><span>stack</span><span>Playwright · Azure DevOps · GitHub Actions · MCP</span></li>
-        <li><span>marcos</span><span>ISTQB · Risk-based testing · Métricas DORA</span></li>
-        <li><span>idiomas</span><span>Español · Inglés</span></li>
-        <li><span>base</span><span>Madrid, España · remoto-friendly</span></li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<!-- ======================== 9. BLOG ======================== -->
-<section id="blog" class="sec-border">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <h2>Notas sobre calidad, automatización e IA</h2>
-      <p class="sub">Próximamente: artículos técnicos sobre lo que funciona en QA moderno.</p>
-    </div>
-    <div class="blog-grid reveal" id="blogGrid"></div>
-  </div>
-</section>
-
-<!-- ======================== FAQ ======================== -->
-<section id="faq" class="sec-border">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <h2>Antes de escribirme</h2>
-    </div>
-    <div class="faq-list reveal" id="faqList"></div>
-  </div>
-</section>
-
-<!-- ======================== 10. CONTACTO ======================== -->
-<section id="contacto" class="sec-border">
-  <div class="wrap">
-    <div class="contact-box reveal">
-      <div class="contact-left">
-        <h2>Hablemos de tu estrategia de calidad</h2>
-        <p>Si buscas mejorar la calidad, acelerar las entregas o incorporar IA a tus procesos de QA, estaré encantado de ayudarte. Primera conversación de 30 minutos sin compromiso.</p>
-        <a class="btn btn-accent" href="mailto:raulmolinah.madrid@gmail.com?subject=Consultoría%20QA%20%2F%20DevOps">Solicitar una reunión</a>
-      </div>
-      <div class="contact-right">
-        <a class="contact-link" href="mailto:raulmolinah.madrid@gmail.com">
-          <span class="cl-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/></svg>
-          </span>
-          <div>
-            <div class="cl-text">Email</div>
-            <div class="cl-sub">raulmolinah.madrid@gmail.com</div>
-          </div>
-        </a>
-        <a class="contact-link" href="https://www.linkedin.com/in/raulmolinahernandez/" target="_blank" rel="noopener">
-          <span class="cl-icon">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-          </span>
-          <div>
-            <div class="cl-text">LinkedIn</div>
-            <div class="cl-sub">Conecta conmigo</div>
-          </div>
-        </a>
-        <a class="contact-link" href="https://github.com/StoneFly365" target="_blank" rel="noopener">
-          <span class="cl-icon">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
-          </span>
-          <div>
-            <div class="cl-text">GitHub</div>
-            <div class="cl-sub">Código abierto</div>
-          </div>
+        <p>Un pipeline público que ejecuta la suite E2E, revisa el código de test, propone
+          mejoras y genera un informe ejecutivo en cada build.</p>
+        <p>Es la base técnica de mis servicios: no vendo diapositivas, vendo algo que puedes
+          clonar y ejecutar hoy.</p>
+        <a class="btn btn--ghost" href="https://github.com/StoneFly365/playwright-demo-ia-mcp" target="_blank" rel="noopener">
+          Ver en GitHub
+          <svg class="arrow" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
         </a>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     8 · TECNOLOGÍAS
+     ============================================================ -->
+<section class="section section--line" id="tecnologias" aria-labelledby="tecnologias-title">
+  <div class="wrap">
+    <header class="section-head" data-reveal>
+      <p class="eyebrow">Stack</p>
+      <h2 id="tecnologias-title">Tecnologías que uso a diario</h2>
+      <p class="lead">Elegidas por encaje con el problema, no por moda.</p>
+    </header>
+    <div class="tech-groups" id="techGroups"></div>
+  </div>
+</section>
+
+<!-- ============================================================
+     9 · SOBRE MÍ
+     ============================================================ -->
+<section class="section section--line section--alt" id="sobre-mi" aria-labelledby="sobre-title">
+  <div class="wrap">
+    <header class="section-head" data-reveal>
+      <p class="eyebrow">Sobre mí</p>
+      <h2 id="sobre-title">Quién está detrás</h2>
+    </header>
+    <div class="about">
+      <div class="about-bio" data-reveal="left">
+        <p>Soy <strong>Business &amp; Solutions Consulting Lead</strong> especializado en
+          <strong>QA, Quality Engineering y DevOps</strong>, con foco creciente en IA
+          aplicada al testing.</p>
+        <p>Trabajo en la frontera entre negocio y técnica: traduzco riesgo de producto a
+          decisiones de ingeniería, y resultados de ingeniería a métricas que dirección entiende.</p>
+        <a class="btn btn--ghost" href="https://www.linkedin.com/in/raulmolinahernandez/" target="_blank" rel="noopener">
+          Ver mi trayectoria en LinkedIn
+          <svg class="arrow" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+      <dl class="facts" id="facts" data-reveal="right"></dl>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     10 · RECURSOS
+     ============================================================ -->
+<section class="section section--line" id="recursos" aria-labelledby="recursos-title">
+  <div class="wrap">
+    <header class="section-head" data-reveal>
+      <p class="eyebrow">Recursos</p>
+      <h2 id="recursos-title">Material que puedes abrir hoy</h2>
+    </header>
+    <div class="grid grid--3" id="resourcesGrid"></div>
+  </div>
+</section>
+
+<!-- ============================================================
+     FAQ
+     ============================================================ -->
+<section class="section section--line section--alt" id="faq" aria-labelledby="faq-title">
+  <div class="wrap">
+    <header class="section-head" data-reveal>
+      <p class="eyebrow">Preguntas frecuentes</p>
+      <h2 id="faq-title">Antes de escribirme</h2>
+    </header>
+    <div class="faq" id="faqList" data-reveal></div>
+  </div>
+</section>
+
+<!-- ============================================================
+     11 · CONTACTO
+     ============================================================ -->
+<section class="section section--line" id="contacto" aria-labelledby="contacto-title">
+  <div class="wrap">
+    <div class="contact" data-reveal="scale">
+      <div class="contact-copy">
+        <p class="eyebrow">Contacto</p>
+        <h2 id="contacto-title">Hablemos de tu estrategia de calidad</h2>
+        <p>Primera conversación de 30 minutos sin compromiso. Te digo qué haría yo, tengamos
+          proyecto o no. Respondo en menos de 24 horas.</p>
+
+        <div class="contact-links">
+          <a class="contact-link" href="mailto:raulmolinah.madrid@gmail.com">
+            <span class="icon-box" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/></svg>
+            </span>
+            <span><b>Email</b><span>raulmolinah.madrid@gmail.com</span></span>
+          </a>
+          <a class="contact-link" href="https://www.linkedin.com/in/raulmolinahernandez/" target="_blank" rel="noopener">
+            <span class="icon-box" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            </span>
+            <span><b>LinkedIn</b><span>Conecta conmigo</span></span>
+          </a>
+          <a class="contact-link" href="https://github.com/StoneFly365" target="_blank" rel="noopener">
+            <span class="icon-box" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+            </span>
+            <span><b>GitHub</b><span>Código abierto</span></span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Sin backend: el formulario compone un mailto con los datos validados.
+           Para usar un endpoint real, añade action/method y elimina initContactForm(). -->
+      <form class="contact-form" id="contactForm" novalidate>
+        <div class="form-row">
+          <div class="field">
+            <label for="f-name">Nombre <span class="req" aria-hidden="true">*</span></label>
+            <input class="input" id="f-name" name="name" type="text" required
+                   maxlength="80" autocomplete="name" placeholder="Nombre y apellidos">
+          </div>
+          <div class="field">
+            <label for="f-company">Empresa</label>
+            <input class="input" id="f-company" name="company" type="text"
+                   maxlength="80" autocomplete="organization" placeholder="Opcional">
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="f-email">Email <span class="req" aria-hidden="true">*</span></label>
+          <input class="input" id="f-email" name="email" type="email" required
+                 maxlength="120" autocomplete="email" placeholder="tu@empresa.com">
+        </div>
+
+        <div class="field">
+          <label for="f-service">¿Qué te interesa?</label>
+          <select class="input" id="f-service" name="service">
+            <option>QA Transformation</option>
+            <option>QA Automation</option>
+            <option>DevOps Consulting</option>
+            <option>AI for QA</option>
+            <option>Technical Leadership</option>
+            <option>Training</option>
+            <option>Mentoring</option>
+            <option>Aún no lo sé</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="f-message">Cuéntame el contexto <span class="req" aria-hidden="true">*</span></label>
+          <textarea class="input" id="f-message" name="message" required
+                    maxlength="1200" placeholder="Tamaño del equipo, stack, y qué te duele ahora mismo."></textarea>
+        </div>
+
+        <button class="btn btn--primary btn--block" type="submit">
+          Enviar mensaje
+          <svg class="arrow" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </button>
+        <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
+        <p class="form-note">Se abrirá tu gestor de correo con el mensaje ya preparado.
+          Tus datos no se envían a ningún servidor de terceros.</p>
+      </form>
     </div>
   </div>
 </section>
 
 </main>
 
-<!-- ======================== FOOTER ======================== -->
-<footer>
+<!-- ============================================================
+     FOOTER
+     ============================================================ -->
+<footer class="footer">
   <div class="wrap">
-    <div class="footer-inner">
-      <span class="copy">© 2026 Raúl Molina · QA, Quality Engineering & DevOps Consulting</span>
-      <div class="footer-links">
-        <a href="#servicios">Servicios</a>
-        <a href="#blog">Blog</a>
-        <a href="#faq">FAQ</a>
-        <a href="#contacto">Contacto</a>
-        <a href="mentoringB2C/">Mentoría QA individual</a>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="brand" href="#top">
+          <span class="brand-dot" aria-hidden="true"></span>raul@qa-devops<span class="dim" aria-hidden="true">:~$</span>
+        </a>
+        <p>Consultoría en QA, Quality Engineering, DevOps e inteligencia artificial aplicada al testing.</p>
       </div>
+
+      <nav class="footer-col" aria-labelledby="f-serv">
+        <h4 id="f-serv">Servicios</h4>
+        <ul>
+          <li><a href="#servicios">QA Transformation</a></li>
+          <li><a href="#servicios">QA Automation</a></li>
+          <li><a href="#servicios">DevOps Consulting</a></li>
+          <li><a href="#ia-qa">AI for QA</a></li>
+          <li><a href="mentoringB2C/">Mentoría QA individual</a></li>
+        </ul>
+      </nav>
+
+      <nav class="footer-col" aria-labelledby="f-sitio">
+        <h4 id="f-sitio">Sitio</h4>
+        <ul>
+          <li><a href="#trayectoria">Trayectoria</a></li>
+          <li><a href="#metodo">Metodología</a></li>
+          <li><a href="#casos">Casos de éxito</a></li>
+          <li><a href="#tecnologias">Tecnologías</a></li>
+          <li><a href="#recursos">Recursos</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </nav>
+
+      <nav class="footer-col" aria-labelledby="f-cont">
+        <h4 id="f-cont">Contacto</h4>
+        <ul>
+          <li><a href="mailto:raulmolinah.madrid@gmail.com">Email</a></li>
+          <li><a href="https://www.linkedin.com/in/raulmolinahernandez/" target="_blank" rel="noopener">LinkedIn</a></li>
+          <li><a href="https://github.com/StoneFly365" target="_blank" rel="noopener">GitHub</a></li>
+          <li><a href="cv/cv_raul_molina_hernandez_2026.pdf" download>Descargar CV</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <div class="footer-bottom">
+      <span>© 2026 Raúl Molina Hernández · QA, Quality Engineering &amp; DevOps Consulting</span>
+      <span>Madrid, España · remoto-friendly</span>
     </div>
   </div>
 </footer>
 
-<button class="back-to-top" aria-label="Volver arriba">
-  <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 15l7-7 7 7"/></svg>
+<button class="to-top" type="button" aria-label="Volver arriba">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 15l7-7 7 7"/></svg>
 </button>
 
-<!-- ======================== SCRIPTS ======================== -->
 <script type="module" src="assets/js/main.js"></script>
 </body>
 </html>

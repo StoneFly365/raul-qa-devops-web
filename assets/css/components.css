@@ -1,0 +1,337 @@
+/* =============================================================
+   COMPONENTS — piezas reutilizables. Cada patrón vive aquí una
+   sola vez; las secciones sólo componen, no redefinen estilos.
+   ============================================================= */
+
+/* =============================================================
+   BOTONES
+   ============================================================= */
+.btn{
+  --btn-bg:transparent;
+  --btn-fg:var(--text);
+  --btn-bd:var(--line-2);
+  display:inline-flex;align-items:center;justify-content:center;gap:var(--s-2);
+  padding:14px var(--s-6);
+  font-size:var(--fs-sm);font-weight:var(--fw-medium);letter-spacing:-.01em;
+  color:var(--btn-fg);background:var(--btn-bg);
+  border:1px solid var(--btn-bd);border-radius:var(--r-full);
+  transition:transform var(--t-fast) var(--ease),
+             background var(--t) var(--ease),
+             border-color var(--t) var(--ease),
+             color var(--t) var(--ease),
+             box-shadow var(--t) var(--ease);
+  white-space:nowrap;
+}
+.btn:hover{transform:translateY(-1px)}
+.btn:active{transform:translateY(0) scale(.985)}
+.btn .arrow{transition:transform var(--t) var(--ease)}
+.btn:hover .arrow{transform:translateX(3px)}
+
+.btn--primary{
+  --btn-bg:var(--accent);--btn-fg:var(--on-accent);--btn-bd:transparent;
+  box-shadow:0 6px 24px -10px var(--accent-glow);
+}
+.btn--primary:hover{--btn-bg:var(--accent-hi);box-shadow:0 10px 34px -10px var(--accent-glow)}
+
+.btn--ghost:hover{--btn-bd:var(--accent-line);--btn-fg:var(--accent);background:var(--accent-soft)}
+
+.btn--quiet{
+  padding:0;border:0;border-radius:0;
+  color:var(--accent);font-size:var(--fs-sm);
+}
+.btn--quiet:hover{transform:none;color:var(--accent-hi)}
+
+.btn--sm{padding:10px var(--s-5);font-size:var(--fs-xs)}
+.btn--block{width:100%}
+
+/* =============================================================
+   CARD — base compartida por servicios, casos, recursos…
+   ============================================================= */
+.card{
+  position:relative;
+  display:flex;flex-direction:column;
+  padding:var(--s-8) var(--s-6);
+  background:var(--grad-surface);
+  border:1px solid var(--line);
+  border-radius:var(--r-lg);
+  transition:border-color var(--t) var(--ease),
+             transform var(--t) var(--ease),
+             box-shadow var(--t) var(--ease);
+}
+.card--hover:hover{
+  border-color:var(--line-2);
+  transform:translateY(-3px);
+  box-shadow:var(--sh-lg);
+}
+/* Filo superior que se enciende al hacer hover */
+.card--edge::before{
+  content:"";position:absolute;inset:0 0 auto;height:1px;
+  background:var(--grad-accent);
+  opacity:0;transition:opacity var(--t) var(--ease);
+  border-radius:var(--r-lg) var(--r-lg) 0 0;
+}
+.card--edge:hover::before{opacity:1}
+
+.card--glass{
+  background:var(--surface-glass);
+  backdrop-filter:blur(14px) saturate(1.3);
+  -webkit-backdrop-filter:blur(14px) saturate(1.3);
+  border-color:var(--line-2);
+}
+
+.card h3{margin-bottom:var(--s-3)}
+.card p{color:var(--text-2);font-size:var(--fs-sm)}
+.card .card-foot{margin-top:auto;padding-top:var(--s-5)}
+
+/* Enlace que cubre toda la tarjeta sin romper el orden de tabulación */
+.card .stretch::after{content:"";position:absolute;inset:0;border-radius:inherit}
+
+/* =============================================================
+   ICON BOX
+   ============================================================= */
+.icon-box{
+  display:grid;place-items:center;flex:none;
+  width:44px;height:44px;border-radius:var(--r-sm);
+  background:var(--accent-soft);color:var(--accent);
+  border:1px solid var(--accent-line);
+  transition:background var(--t) var(--ease),transform var(--t) var(--ease);
+}
+.card--hover:hover .icon-box{transform:scale(1.06)}
+/* Variante neutra: el verde queda reservado a lo que aporta valor
+   (la solución, el servicio), no al problema que se describe. */
+.icon-box--muted{background:var(--surface-3);color:var(--text-2);border-color:var(--line-2)}
+
+/* =============================================================
+   TAG
+   ============================================================= */
+.tag{
+  display:inline-block;align-self:flex-start;
+  padding:5px var(--s-3);border-radius:var(--r-full);
+  font-family:var(--font-mono);font-size:var(--fs-mono);font-weight:var(--fw-medium);
+  color:var(--accent);background:var(--accent-soft);
+  border:1px solid var(--accent-line);
+}
+
+/* =============================================================
+   TECH — ÚNICO componente de herramienta de todo el sitio.
+   Marquee del hero y rejilla de tecnologías comparten esta pieza:
+   antes había tres tratamientos visuales distintos para lo mismo.
+   ============================================================= */
+.tech{
+  display:flex;align-items:center;gap:var(--s-3);
+  padding:var(--s-3) var(--s-4);
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--r-sm);
+  transition:border-color var(--t) var(--ease),
+             transform var(--t) var(--ease),
+             background var(--t) var(--ease);
+  user-select:none;
+}
+.tech:hover{border-color:var(--accent-line);transform:translateY(-2px);background:var(--surface-2)}
+.tech-name{font-size:var(--fs-xs);font-weight:var(--fw-medium);line-height:1.3}
+/* Logo monocromo vía mask: hereda el color del tema, sin peticiones
+   de imagen a color y sin variante para modo oscuro. */
+.tech-logo{
+  width:20px;height:20px;flex:none;
+  background-color:var(--text-2);
+  -webkit-mask:var(--logo) no-repeat center/contain;
+  mask:var(--logo) no-repeat center/contain;
+  transition:background-color var(--t) var(--ease);
+}
+.tech:hover .tech-logo{background-color:var(--accent)}
+/* Sin logo en Simple Icons → monograma. Mismo color y mismo hover que
+   .tech-logo: si no, la única pastilla sin logo grita más que el resto. */
+.tech-mono{
+  display:grid;place-items:center;width:20px;height:20px;flex:none;
+  font-family:var(--font-mono);font-size:var(--fs-mono);font-weight:var(--fw-bold);
+  color:var(--text-2);
+  transition:color var(--t) var(--ease);
+}
+.tech:hover .tech-mono{color:var(--accent)}
+.tech-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:var(--s-3)}
+/* Dentro del marquee no debe encogerse ni repartirse el ancho */
+.marquee-track .tech{flex:none;white-space:nowrap}
+
+/* =============================================================
+   MARQUEE
+   ============================================================= */
+.marquee{
+  position:relative;overflow:hidden;
+  -webkit-mask-image:linear-gradient(to right,transparent,#000 7%,#000 93%,transparent);
+  mask-image:linear-gradient(to right,transparent,#000 7%,#000 93%,transparent);
+}
+.marquee-track{
+  display:flex;gap:var(--s-3);width:max-content;
+  animation:marquee var(--marquee-speed,40s) linear infinite;
+}
+.marquee:hover .marquee-track,
+.marquee:focus-within .marquee-track{animation-play-state:paused}
+.marquee-dup{display:contents}
+
+.marquee-nav{display:flex;gap:var(--s-2);justify-content:center;margin:var(--s-4) 0 0}
+.marquee-btn{
+  display:grid;place-items:center;
+  width:38px;height:38px;border-radius:var(--r-full);
+  color:var(--text-3);background:var(--surface-2);
+  border:1px solid var(--line);
+  transition:all var(--t) var(--ease);
+}
+.marquee-btn:hover{color:var(--accent);border-color:var(--accent-line);background:var(--accent-soft)}
+.marquee-btn svg{width:17px;height:17px}
+@media (prefers-reduced-motion:reduce){
+  .marquee{overflow-x:auto;-webkit-mask-image:none;mask-image:none}
+  .marquee-track{animation:none}
+}
+
+/* =============================================================
+   NAVBAR
+   ============================================================= */
+.nav{
+  position:sticky;top:0;z-index:100;
+  background:transparent;
+  border-bottom:1px solid transparent;
+  transition:background var(--t) var(--ease),
+             border-color var(--t) var(--ease),
+             backdrop-filter var(--t) var(--ease);
+}
+.nav.is-stuck{
+  background:rgba(7,9,13,.72);
+  backdrop-filter:blur(16px) saturate(1.4);
+  -webkit-backdrop-filter:blur(16px) saturate(1.4);
+  border-bottom-color:var(--line);
+}
+.nav-inner{
+  max-width:var(--max);margin-inline:auto;
+  padding:var(--s-3) var(--s-gutter);
+  min-height:var(--nav-h);
+  display:flex;align-items:center;gap:var(--s-4);
+}
+.brand{
+  display:flex;align-items:center;gap:var(--s-3);
+  font-family:var(--font-mono);font-size:var(--fs-xs);font-weight:var(--fw-medium);
+  margin-right:auto;
+}
+.brand-dot{
+  width:8px;height:8px;border-radius:50%;flex:none;
+  background:var(--accent);box-shadow:0 0 10px var(--accent-glow);
+  animation:pulse-dot 2.6s var(--ease) infinite;
+}
+.brand .dim{color:var(--text-3)}
+
+.nav-links{display:flex;align-items:center;gap:var(--s-1)}
+.nav-links a{
+  position:relative;
+  padding:var(--s-2) var(--s-3);border-radius:var(--r-sm);
+  font-size:var(--fs-xs);color:var(--text-2);
+  transition:color var(--t) var(--ease);
+}
+.nav-links a:hover{color:var(--text)}
+.nav-links a::after{
+  content:"";position:absolute;left:var(--s-3);right:var(--s-3);bottom:2px;height:1.5px;
+  background:var(--accent);border-radius:2px;
+  transform:scaleX(0);transform-origin:left;
+  transition:transform var(--t) var(--ease);
+}
+.nav-links a[aria-current="true"]{color:var(--accent)}
+.nav-links a[aria-current="true"]::after{transform:scaleX(1)}
+/* El CTA es un enlace más del panel: hay que anular el subrayado animado.
+   El selector incluye [aria-current] a propósito: la regla de arriba tiene
+   más especificidad y dejaría el botón en verde sobre verde. */
+.nav-links .nav-cta,
+.nav-links .nav-cta[aria-current="true"]{margin-left:var(--s-3);color:var(--on-accent)}
+.nav-links .nav-cta::after{display:none}
+
+.nav-actions{display:flex;align-items:center;gap:var(--s-3)}
+.nav-toggle{
+  display:none;place-items:center;
+  width:40px;height:40px;border-radius:var(--r-sm);
+  color:var(--text);border:1px solid var(--line);
+}
+.nav-toggle:hover{border-color:var(--line-2)}
+
+@media (max-width:900px){
+  .nav-toggle{display:grid}
+  .nav-links{
+    position:absolute;top:100%;left:0;right:0;
+    flex-direction:column;align-items:stretch;gap:var(--s-1);
+    padding:var(--s-4) var(--s-gutter) var(--s-6);
+    /* Opaco, no translúcido: sobre el panel se lee texto y el contenido
+       de detrás transparentándose resultaba sucio. */
+    background:var(--bg);
+    box-shadow:var(--sh-lg);
+    border-bottom:1px solid var(--line);
+    opacity:0;visibility:hidden;transform:translateY(-8px);
+    transition:opacity var(--t) var(--ease),transform var(--t) var(--ease),visibility var(--t);
+  }
+  .nav-links.is-open{opacity:1;visibility:visible;transform:none}
+  .nav-links a{padding:var(--s-3) var(--s-2);font-size:var(--fs-base)}
+  .nav-links a::after{display:none}
+  .nav-links .nav-cta{margin:var(--s-4) 0 0;justify-content:center;padding:14px}
+}
+
+/* =============================================================
+   FORMULARIO
+   ============================================================= */
+.field{display:flex;flex-direction:column;gap:var(--s-2)}
+.field label{
+  font-family:var(--font-mono);font-size:var(--fs-mono);
+  color:var(--text-2);text-transform:uppercase;letter-spacing:var(--tracking-wide);
+}
+.field .req{color:var(--accent)}
+.input{
+  width:100%;padding:13px var(--s-4);
+  font-size:var(--fs-sm);
+  color:var(--text);background:var(--surface);
+  border:1px solid var(--line-2);border-radius:var(--r-sm);
+  transition:border-color var(--t) var(--ease),box-shadow var(--t) var(--ease);
+}
+.input::placeholder{color:var(--text-3)}
+.input:hover{border-color:var(--line-3)}
+.input:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+.input:user-invalid{border-color:var(--fail)}
+textarea.input{resize:vertical;min-height:120px;line-height:1.6}
+select.input{appearance:none;cursor:pointer;
+  background-image:linear-gradient(45deg,transparent 50%,var(--text-3) 50%),linear-gradient(135deg,var(--text-3) 50%,transparent 50%);
+  background-position:calc(100% - 20px) 21px,calc(100% - 14px) 21px;
+  background-size:6px 6px,6px 6px;background-repeat:no-repeat;
+}
+.form-note{font-size:var(--fs-xs);color:var(--text-3)}
+.form-status{font-size:var(--fs-sm);color:var(--accent);min-height:1.5em}
+
+/* =============================================================
+   BACK TO TOP
+   ============================================================= */
+.to-top{
+  position:fixed;right:var(--s-6);bottom:var(--s-6);z-index:90;
+  display:grid;place-items:center;
+  width:44px;height:44px;border-radius:var(--r-full);
+  color:var(--text);background:var(--surface-glass);
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  border:1px solid var(--line-2);
+  opacity:0;visibility:hidden;transform:translateY(10px);
+  transition:opacity var(--t) var(--ease),transform var(--t) var(--ease),
+             visibility var(--t),border-color var(--t) var(--ease);
+}
+.to-top.is-visible{opacity:1;visibility:visible;transform:none}
+.to-top:hover{border-color:var(--accent-line);color:var(--accent)}
+
+/* =============================================================
+   TERMINAL (elemento de marca) — único sitio, junto al pipeline,
+   donde el ámbar y el rojo tienen sentido: son estado de ejecución.
+   ============================================================= */
+.terminal{
+  background:var(--surface);border:1px solid var(--line);
+  border-radius:var(--r-lg);overflow:hidden;box-shadow:var(--sh-lg);
+}
+.terminal-bar{
+  display:flex;gap:7px;align-items:center;
+  padding:var(--s-3) var(--s-4);border-bottom:1px solid var(--line);
+}
+.terminal-bar i{width:11px;height:11px;border-radius:50%;display:block;background:var(--line-3)}
+.terminal pre{
+  font-family:var(--font-mono);font-size:var(--fs-mono);line-height:1.9;
+  color:var(--text-2);padding:var(--s-5);overflow-x:auto;
+}
+.terminal .ok{color:var(--accent)}
+.terminal .run{color:var(--warn)}
+.terminal .cmd{color:var(--text)}
+.terminal .dim{color:var(--text-3)}

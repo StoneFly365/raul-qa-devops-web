@@ -59,41 +59,86 @@ Si tienes un dominio propio:
 
 - HTML/CSS/JS vanilla (sin frameworks, sin bundler, sin build step) — GitHub Pages sirve los archivos tal cual
 - ES modules nativos del navegador para separar datos y renderizado (sin npm en producción)
-- [Space Grotesk](https://fonts.google.com/specimen/Space+Grotesk) + [Inter](https://fonts.google.com/specimen/Inter) + [JetBrains Mono](https://fonts.google.com/specimen/JetBrains+Mono)
-- Marquee CSS puro (`@keyframes` + `translateX(-50%)`) para las franjas de sectores y stack tecnológico — sin librería de carrusel externa
+- [Space Grotesk](https://fonts.google.com/specimen/Space+Grotesk) 700 + [Inter](https://fonts.google.com/specimen/Inter) 400/600 + [JetBrains Mono](https://fonts.google.com/specimen/JetBrains+Mono) 400/600 — dos pesos por familia, ni uno más
+- Logos de herramientas autoalojados (Simple Icons, CC0) como `mask-image` monocroma: sin CDN de terceros y sin variante para modo oscuro
+- Marquee CSS puro (`@keyframes` + `translateX(-50%)`) — sin librería de carrusel
 - Pipeline animado, contadores y scroll-spy con JS vanilla + Intersection Observer
 
 ## Estructura de carpetas
 
 ```
-index.html              # marcado semántico + contenedores de sección (ids)
+index.html               # marcado semántico + contenedores de sección (ids)
+mentoringB2C/index.html  # landing B2C, mismo sistema de diseño y mismo CSS
+robots.txt / sitemap.xml
 assets/
-├── css/styles.css       # todo el CSS del sitio
+├── logos/               # 21 SVG monocromos de Simple Icons (autoalojados)
+├── css/                 # se cargan en este orden; ninguno usa @import
+│   ├── tokens.css       # color, tipografía, espaciado, radios, sombras, tiempos
+│   ├── base.css         # reset, tipografía base, primitivas de layout (.wrap, .grid, .section)
+│   ├── motion.css       # keyframes y utilidades de animación
+│   ├── components.css   # botones, cards, tags, .tech, marquee, navbar, formulario
+│   └── sections.css     # composición específica de cada sección
 └── js/
-    ├── data.js          # contenido de todas las tarjetas/listas (edita aquí, no en el HTML)
-    ├── render.js         # helpers genéricos data → DOM (renderCards, renderMarquee, renderChips)
-    └── main.js           # orquesta el render inicial + comportamiento (reveal, contadores, scroll-spy, menú móvil, volver arriba, pipeline)
-cv/                      # CV personal, ignorado por git (.gitignore)
+    ├── data.js          # TODO el contenido del sitio (edita aquí, no en el HTML)
+    ├── dom.js           # utilidades puras: $, esc, icon, render, renderMarquee
+    ├── dom.test.js      # smoke test — `npm test`
+    ├── sections.js      # plantillas data → HTML de cada bloque
+    ├── motion.js        # reveal, contadores, parallax, pipeline
+    ├── ui.js            # navbar, scroll spy, menú móvil, formulario
+    └── main.js          # punto de entrada
+cv/                      # CV personal, ignorado por git (.gitignore) — ver aviso abajo
 ```
+
+Ver [REFACTOR_REPORT.md](REFACTOR_REPORT.md) para el detalle del rediseño.
 
 ## Personalización
 
 | Qué cambiar | Dónde |
 |---|---|
-| Colores / tokens de diseño | Variables CSS en `:root` de `assets/css/styles.css` |
-| Servicios, problemas, sectores, casos de éxito, tecnologías, timeline, blog | `assets/js/data.js` — añadir un objeto al array correspondiente añade una tarjeta, no hace falta tocar HTML |
+| Colores / tipografía / espaciado / sombras | `assets/css/tokens.css` — es la única fuente de verdad |
+| Servicios, problemas, KPIs, sectores, tecnologías, metodología, casos, recursos, FAQ | `assets/js/data.js` — añadir un objeto al array correspondiente añade una tarjeta, no hace falta tocar HTML |
 | Textos fijos (hero, títulos de sección) | Directamente en `index.html` |
+| URL de reserva de reunión | `site.bookingUrl` en `data.js`. Si es `null`, los CTAs llevan al formulario |
 | Email | Busca `raulmolinah.madrid@gmail.com` |
 | LinkedIn | Busca `linkedin.com/in/raulmolinahernandez` |
 | GitHub | Busca `github.com/StoneFly365` |
-| Stats del hero (números) | `data-count`/`data-suffix` en `.stats-bar` dentro de `index.html` |
+
+### ⚠ Antes de publicar
+
+1. **`cv/` está en `.gitignore`.** El enlace "Descargar CV" del footer y la tarjeta
+   "CV · PDF" de Recursos apuntan a `cv/cv_raul_molina_hernandez_2026.pdf`, que **no
+   se despliega**: en producción dan 404. Decide una de las dos:
+   quitar `cv/` del `.gitignore` y commitear el PDF, o cambiar ambos enlaces a LinkedIn.
+2. **`assets/og-cover.png`** (1200×630) no existe; el bloque `og:image` está comentado
+   en `index.html`. Sin él, LinkedIn comparte el enlace sin imagen.
+3. **`site.bookingUrl`** sigue a `null` en `data.js`: los CTAs "Reservar una reunión"
+   llevan al formulario. Al poner una URL de Calendly/Cal.com apuntan a ella solos.
+
+### Contenido que se reactiva cuando exista
+
+No hay ningún marcador de posición visible en producción — un `[PENDIENTE]` o un
+"Nombre Apellido" delante de un cliente cuesta más credibilidad de la que aporta el
+hueco reservado. Estas secciones se retiraron y vuelven en cuanto haya contenido real:
+
+| Sección | Qué hace falta | Cómo se reactiva |
+|---|---|---|
+| Logos de cliente | Autorización de marca | `<img>` dentro de `#sectorsGrid`, sustituyendo las píldoras de sector |
+| Testimonios | Recomendaciones reales de LinkedIn | Array `testimonials` + una `<section>` con `.card` |
+| Blog | Al menos un artículo publicado | Array `blogPosts` con `href` + `<section>` con `.grid--3` |
+| KPIs adicionales | Cifras confirmadas | Un objeto más en `metrics`; el contador ya es automático |
 
 ## Decisiones técnicas
 
 - **Sin build step**: GitHub Pages sirve estático; un bundler (Vite/Webpack) añadiría complejidad de CI sin necesidad real para este volumen de contenido. Los ES modules nativos ya dan separación de código sin esa dependencia.
-- **Datos separados del marcado** (`data.js`): añadir un servicio o un caso de éxito no debería requerir editar HTML repetido; se añade un objeto y `render.js` lo pinta.
-- **Sin librería de carrusel externa**: el `@blossom-carousel` (CDN) que usaba la versión anterior se sustituyó por un marquee de CSS puro (loop con contenido duplicado + `translateX(-50%)`), eliminando una dependencia de red y una render-blocking request.
-- **`--text-faint` y contraste AA**: el token se aclaró (`#4D5D73` → `#6E8098`) tras auditar contraste; varios usos sobre fondos `--surface` se movieron a `--text-dim`, que sí cumple 4.5:1 en ambos fondos del sistema.
+- **Datos separados del marcado** (`data.js`): añadir un servicio o un caso de éxito no debería requerir editar HTML repetido; se añade un objeto y `sections.js` lo pinta.
+- **CSS en cinco archivos, no en uno**: se cargan en paralelo sobre HTTP/2 y ninguno usa `@import` (que serializaría las descargas). A este tamaño el coste de red es despreciable frente a la mantenibilidad.
+- **Sin listeners de `scroll` para el trabajo pesado**: reveal, contadores, navbar y pipeline usan `IntersectionObserver` y dejan de observar en cuanto disparan.
+- **Formulario sin backend**: compone un `mailto:` con los datos ya validados y codificados. Para usar un endpoint real, añade `action`/`method` al `<form>` y elimina `initContactForm()`.
+- **Sin librería de carrusel externa**: marquee de CSS puro (loop con contenido duplicado + `translateX(-50%)`), sin dependencia de red ni request bloqueante.
+- **Un solo color de marca**: verde y neutros. El ámbar y el rojo existen sólo como *estado de ejecución* dentro del pipeline y el terminal; ninguna tarjeta los usa de adorno. Cualquier color nuevo en el sistema es una decisión, no un detalle.
+- **Un solo componente de herramienta** (`.tech`): el marquee del hero y la rejilla de tecnologías comparten pieza y plantilla. Antes había tres tratamientos visuales para lo mismo.
+- **Logos autoalojados**: `simple-icons@latest` en jsDelivr servía desde caché cinco iconos que ya no existen en el paquete (Playwright, AWS, Azure, Azure DevOps, OpenAI). Habrían desaparecido en silencio; ahora viven en `assets/logos/` (28 KB en total).
+- **Dos pesos por familia**: con `font-synthesis-weight:none`, pedir un peso no cargado degradaba en silencio al más cercano — de ahí que la jerarquía de títulos no fuera consistente.
 
 ## Claude Code · Ponytail
 

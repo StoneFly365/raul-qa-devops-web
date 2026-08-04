@@ -1,0 +1,54 @@
+/* =============================================================
+   MOTION — keyframes y utilidades de animación.
+   Todo se anima sólo con transform/opacity (compositor GPU),
+   nunca con propiedades que provoquen layout o repaint.
+   ============================================================= */
+
+/* ---- Keyframes ----------------------------------------- */
+@keyframes pulse-dot{0%,100%{opacity:1}50%{opacity:.35}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes marquee{from{transform:translate3d(0,0,0)}to{transform:translate3d(-50%,0,0)}}
+@keyframes float-in{from{opacity:0;transform:translate3d(0,14px,0)}to{opacity:1;transform:none}}
+@keyframes glow-breathe{0%,100%{opacity:.28}50%{opacity:.55}}
+
+/* ---- Reveal on scroll ---------------------------------- */
+/* JS añade .is-in cuando el elemento entra en viewport.
+   El escalonado se controla con --i (índice) desde el marcado. */
+[data-reveal]{
+  opacity:0;
+  transform:translate3d(0,var(--reveal-y,18px),0);
+  transition:
+    opacity var(--t-slow) var(--ease-out),
+    transform var(--t-slow) var(--ease-out);
+  transition-delay:calc(var(--i,0) * 60ms);
+  will-change:opacity,transform;
+}
+[data-reveal].is-in{opacity:1;transform:none;will-change:auto}
+[data-reveal="left"]{--reveal-y:0;transform:translate3d(-24px,0,0)}
+[data-reveal="right"]{--reveal-y:0;transform:translate3d(24px,0,0)}
+[data-reveal="scale"]{--reveal-y:0;transform:scale(.965)}
+
+/* ---- Parallax ligero ----------------------------------- */
+/* JS escribe --py (px). Sólo decorativo: si no hay JS, no pasa nada. */
+[data-parallax]{transform:translate3d(0,var(--py,0px),0);will-change:transform}
+
+/* ---- Entrada del hero (sin JS, no penaliza LCP) -------- */
+.hero-anim > *{animation:float-in .8s var(--ease-out) both}
+.hero-anim > *:nth-child(1){animation-delay:.02s}
+.hero-anim > *:nth-child(2){animation-delay:.10s}
+.hero-anim > *:nth-child(3){animation-delay:.18s}
+.hero-anim > *:nth-child(4){animation-delay:.26s}
+.hero-anim > *:nth-child(5){animation-delay:.34s}
+
+/* ---- Preferencia de movimiento reducido ---------------- */
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{
+    animation-duration:.01ms !important;
+    animation-iteration-count:1 !important;
+    transition-duration:.01ms !important;
+    scroll-behavior:auto !important;
+  }
+  [data-reveal]{opacity:1;transform:none}
+  [data-parallax]{transform:none}
+}
