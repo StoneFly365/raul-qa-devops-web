@@ -45,9 +45,6 @@
 .hero-trust span::before{
   content:"";width:5px;height:5px;border-radius:50%;background:var(--accent);flex:none;
 }
-.hero-stack{margin-top:clamp(44px,6vw,72px)}
-.hero-stack .eyebrow{margin-bottom:var(--s-4)}
-
 /* =============================================================
    2 · PIPELINE (elemento de firma)
    ============================================================= */

@@ -3,22 +3,17 @@
    Data (data.js) → HTML. Cero lógica de interacción aquí.
    ============================================================= */
 import {
-  sectors, problems, services, metrics, techGroups, heroStack,
+  sectors, problems, services, metrics, techGroups,
   methodology, caseStudies, aiCapabilities, resources,
   faqs, pipelineStages, facts, mailto, bookingHref,
 } from './data.js';
-import { render, renderMarquee, icon, techLogo, esc } from './dom.js';
+import { render, icon, techLogo, esc } from './dom.js';
 
 const arrow = '<svg class="arrow" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
 
-/* Herramienta: una única plantilla para el marquee del hero y para la
-   rejilla de tecnologías. Si cambia aquí, cambia en los dos sitios. */
 const techItem = (t) => `<div class="tech">${techLogo(t)}<span class="tech-name">${esc(t.name)}</span></div>`;
 
 export function renderAll() {
-  /* ---- Hero: marquee de stack ---------------------------- */
-  renderMarquee('#heroStack', heroStack, techItem);
-
   /* ---- Pipeline ------------------------------------------ */
   render('#pipeStages', pipelineStages, (s) => `
     <div class="stage" role="listitem">

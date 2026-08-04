@@ -253,11 +253,6 @@ export const techGroups = [
   },
 ];
 
-/* El marquee del hero sale de la misma lista: las tres primeras de cada
-   categoría (por eso el orden dentro de cada grupo importa). Una sola
-   fuente de verdad, y arriba no se repite entera la sección de abajo. */
-export const heroStack = techGroups.flatMap((g) => g.items.slice(0, 3));
-
 /* =============================================================
    METODOLOGÍA
    ============================================================= */

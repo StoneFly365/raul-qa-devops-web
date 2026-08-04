@@ -106,27 +106,6 @@ export function initBackToTop() {
   });
 }
 
-/* ---- Flechas de avance de los marquees ------------------ */
-/* Mueve el currentTime de la animación CSS en vez de pausarla y
-   reproducirla: no pelea con la pausa por :hover. */
-export function initMarqueeNav() {
-  const step = (trackId, dir) => {
-    const track = document.getElementById(trackId);
-    const anim = track?.getAnimations?.()[0];
-    if (!anim) return;
-    const count = track.children.length - 1;          // el último hijo es el duplicado
-    if (count < 1) return;
-    const { duration } = anim.effect.getTiming();
-    const total = typeof duration === 'number' ? duration : parseFloat(duration);
-    const perCard = total / count;
-    anim.currentTime = ((((anim.currentTime || 0) + dir * perCard) % total) + total) % total;
-  };
-  $$('[data-marquee]').forEach((btn) => {
-    const [id, dir] = btn.dataset.marquee.split(':');
-    btn.addEventListener('click', () => step(id, dir === 'prev' ? -1 : 1));
-  });
-}
-
 /* ---- Formulario de contacto ------------------------------ */
 /* Sin backend: compone un mailto con los datos ya validados.
    Cambiar `action`/`method` en el HTML si algún día hay endpoint. */
@@ -173,6 +152,5 @@ export function initUI() {
   initMobileNav();
   initScrollSpy();
   initBackToTop();
-  initMarqueeNav();
   initContactForm();
 }

@@ -48,14 +48,3 @@ export function render(selector, items, template, { stagger = false } = {}) {
     .join('');
   return host;
 }
-
-/* Marquee infinito: un set visible + un set duplicado oculto para
-   lectores de pantalla, condición necesaria para que translateX(-50%)
-   sea un bucle sin salto. */
-export function renderMarquee(selector, items, template) {
-  const track = $(selector);
-  if (!track) return null;
-  const html = items.map(template).join('');
-  track.innerHTML = `${html}<div class="marquee-dup" aria-hidden="true">${html}</div>`;
-  return track;
-}

@@ -113,9 +113,8 @@
 }
 
 /* =============================================================
-   TECH — ÚNICO componente de herramienta de todo el sitio.
-   Marquee del hero y rejilla de tecnologías comparten esta pieza:
-   antes había tres tratamientos visuales distintos para lo mismo.
+   TECH — ÚNICO componente de herramienta de todo el sitio,
+   usado en la rejilla de #tecnologias.
    ============================================================= */
 .tech{
   display:flex;align-items:center;gap:var(--s-3);
@@ -148,39 +147,6 @@
 }
 .tech:hover .tech-mono{color:var(--accent)}
 .tech-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:var(--s-3)}
-/* Dentro del marquee no debe encogerse ni repartirse el ancho */
-.marquee-track .tech{flex:none;white-space:nowrap}
-
-/* =============================================================
-   MARQUEE
-   ============================================================= */
-.marquee{
-  position:relative;overflow:hidden;
-  -webkit-mask-image:linear-gradient(to right,transparent,#000 7%,#000 93%,transparent);
-  mask-image:linear-gradient(to right,transparent,#000 7%,#000 93%,transparent);
-}
-.marquee-track{
-  display:flex;gap:var(--s-3);width:max-content;
-  animation:marquee var(--marquee-speed,40s) linear infinite;
-}
-.marquee:hover .marquee-track,
-.marquee:focus-within .marquee-track{animation-play-state:paused}
-.marquee-dup{display:contents}
-
-.marquee-nav{display:flex;gap:var(--s-2);justify-content:center;margin:var(--s-4) 0 0}
-.marquee-btn{
-  display:grid;place-items:center;
-  width:38px;height:38px;border-radius:var(--r-full);
-  color:var(--text-3);background:var(--surface-2);
-  border:1px solid var(--line);
-  transition:all var(--t) var(--ease);
-}
-.marquee-btn:hover{color:var(--accent);border-color:var(--accent-line);background:var(--accent-soft)}
-.marquee-btn svg{width:17px;height:17px}
-@media (prefers-reduced-motion:reduce){
-  .marquee{overflow-x:auto;-webkit-mask-image:none;mask-image:none}
-  .marquee-track{animation:none}
-}
 
 /* =============================================================
    NAVBAR

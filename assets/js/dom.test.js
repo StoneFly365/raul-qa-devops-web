@@ -5,7 +5,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import { esc, withIndex, icon, techLogo } from './dom.js';
-import { techGroups, heroStack } from './data.js';
+import { techGroups } from './data.js';
 
 test('esc neutraliza los cinco caracteres peligrosos', () => {
   assert.equal(esc('<img src=x onerror="a&b\'c">'),
@@ -43,10 +43,4 @@ test('cada slug de tecnología tiene su SVG autoalojado', () => {
   const slugs = techGroups.flatMap((g) => g.items).map((t) => t.slug).filter(Boolean);
   const faltan = slugs.filter((s) => !fs.existsSync(new URL(`../logos/${s}.svg`, import.meta.url)));
   assert.deepEqual(faltan, [], `sin logo en assets/logos: ${faltan.join(', ')}`);
-});
-
-test('el marquee del hero sale de techGroups, sin duplicar datos', () => {
-  const todos = techGroups.flatMap((g) => g.items);
-  assert.ok(heroStack.length > 0 && heroStack.length < todos.length);
-  heroStack.forEach((t) => assert.ok(todos.includes(t), `${t.name} no viene de techGroups`));
 });
