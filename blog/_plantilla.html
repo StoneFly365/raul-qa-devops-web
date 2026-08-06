@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<!--
+  ============================================================
+  PLANTILLA DE ARTÍCULO — cópiala, no la edites.
+
+      cp blog/_plantilla.html blog/mi-articulo.html
+
+  Después:
+  1. Sustituye TODOS los marcadores {{...}} de este archivo.
+  2. Añade el objeto del artículo a `posts` en assets/js/data.js:
+     { slug: 'mi-articulo', title: '…', excerpt: '…',
+       date: '2026-08-12', readingTime: '7 min', tags: ['QA'] }
+  3. Añade el <item> correspondiente en blog/feed.xml.
+  4. Añade la <url> correspondiente en sitemap.xml.
+
+  El guion bajo del nombre la mantiene fuera del listado y del sitemap;
+  aun así lleva noindex por si alguien la enlaza por error.
+  ============================================================
+-->
+<html lang="es" class="no-js">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#08090C">
+<script>document.documentElement.classList.remove('no-js')</script>
+
+<title>{{TÍTULO}} · Raúl Molina</title>
+<meta name="description" content="{{RESUMEN EN 150-160 CARACTERES}}">
+<meta name="author" content="Raúl Molina Hernández">
+<link rel="canonical" href="https://stonefly365.github.io/raul-qa-devops-web/blog/{{SLUG}}.html">
+<!-- ⚠ Al publicar de verdad, cambia esta línea por: index,follow,max-image-preview:large -->
+<meta name="robots" content="noindex,follow">
+
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Raúl Molina · QA, DevOps & AI Engineering">
+<meta property="og:locale" content="es_ES">
+<meta property="og:url" content="https://stonefly365.github.io/raul-qa-devops-web/blog/{{SLUG}}.html">
+<meta property="og:title" content="{{TÍTULO}}">
+<meta property="og:description" content="{{RESUMEN}}">
+<meta property="og:image" content="https://stonefly365.github.io/raul-qa-devops-web/assets/og-cover.png">
+<meta property="article:published_time" content="{{AAAA-MM-DD}}">
+<meta property="article:author" content="https://www.linkedin.com/in/raulmolinahernandez/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://stonefly365.github.io/raul-qa-devops-web/assets/og-cover.png">
+
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+<link rel="alternate" type="application/rss+xml" title="Blog de Raúl Molina" href="feed.xml">
+
+<link rel="preload" href="../assets/fonts/geist-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../assets/css/tokens.css">
+<link rel="stylesheet" href="../assets/css/base.css">
+<link rel="stylesheet" href="../assets/css/motion.css">
+<link rel="stylesheet" href="../assets/css/components.css">
+<link rel="stylesheet" href="../assets/css/sections.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BlogPosting",
+      "headline": "{{TÍTULO}}",
+      "description": "{{RESUMEN}}",
+      "datePublished": "{{AAAA-MM-DD}}",
+      "dateModified": "{{AAAA-MM-DD}}",
+      "inLanguage": "es-ES",
+      "mainEntityOfPage": "https://stonefly365.github.io/raul-qa-devops-web/blog/{{SLUG}}.html",
+      "image": "https://stonefly365.github.io/raul-qa-devops-web/assets/og-cover.png",
+      "keywords": "{{PALABRAS, CLAVE, SEPARADAS}}",
+      "author": {
+        "@type": "Person",
+        "name": "Raúl Molina Hernández",
+        "url": "https://stonefly365.github.io/raul-qa-devops-web/"
+      },
+      "publisher": {
+        "@type": "Person",
+        "name": "Raúl Molina Hernández",
+        "url": "https://stonefly365.github.io/raul-qa-devops-web/"
+      },
+      "isPartOf": { "@id": "https://stonefly365.github.io/raul-qa-devops-web/blog/#blog" }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://stonefly365.github.io/raul-qa-devops-web/" },
+        { "@type": "ListItem", "position": 2, "name": "Blog",   "item": "https://stonefly365.github.io/raul-qa-devops-web/blog/" },
+        { "@type": "ListItem", "position": 3, "name": "{{TÍTULO}}" }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<a class="skip-link" href="#main">Saltar al contenido principal</a>
+<div id="nav-sentinel" aria-hidden="true"></div>
+<div data-chrome="header"></div>
+
+<main id="main">
+
+<article>
+  <header class="page-hero">
+    <div class="wrap wrap--narrow">
+      <nav aria-label="Migas de pan">
+        <ol class="breadcrumb">
+          <li><a href="../">Inicio</a></li>
+          <li><a href="./">Blog</a></li>
+          <li><span aria-current="page">{{TÍTULO CORTO}}</span></li>
+        </ol>
+      </nav>
+      <div class="post-meta">
+        <time datetime="{{AAAA-MM-DD}}">{{FECHA LEGIBLE}}</time>
+        <span class="dim">· {{N}} min de lectura</span>
+      </div>
+      <h1>{{TÍTULO}}</h1>
+      <p class="lead">{{ENTRADILLA: una o dos frases que resuman la tesis del artículo.}}</p>
+      <div class="tag-row" style="margin-top:var(--s-6)">
+        <span class="tag">{{ETIQUETA}}</span>
+      </div>
+    </div>
+  </header>
+
+  <div class="article">
+    <div class="wrap wrap--narrow">
+      <div class="article-body prose">
+
+        <p>{{Primer párrafo. Va directo al problema: qué duele y a quién.}}</p>
+
+        <h2>{{Primer subtítulo}}</h2>
+        <p>{{Cuerpo.}}</p>
+
+        <pre><code>{{ejemplo de código}}</code></pre>
+
+        <h2>{{Segundo subtítulo}}</h2>
+        <ul>
+          <li>{{Punto.}}</li>
+        </ul>
+
+        <blockquote>{{Idea que quieres que se recuerde.}}</blockquote>
+
+        <h2>Conclusión</h2>
+        <p>{{Qué se lleva quien ha llegado hasta aquí.}}</p>
+
+      </div>
+    </div>
+  </div>
+</article>
+
+<section class="cta-band">
+  <div class="wrap wrap--narrow">
+    <h2>¿Quieres esto en tu equipo?</h2>
+    <p>Treinta minutos sin compromiso para ver por dónde empezaría yo.</p>
+    <div class="hero-ctas">
+      <a class="btn btn--primary btn--lg" href="../#contacto" data-booking>Reservar una reunión</a>
+      <a class="btn btn--ghost btn--lg" href="./">Ver más artículos</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<div data-chrome="footer"></div>
+
+<button class="to-top" type="button" aria-label="Volver arriba">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 15l7-7 7 7"/></svg>
+</button>
+
+<script type="module" src="../assets/js/page.js"></script>
+</body>
+</html>

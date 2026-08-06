@@ -1,53 +1,62 @@
 /* =============================================================
    MOTION — keyframes y utilidades de animación.
-   Todo se anima sólo con transform/opacity (compositor GPU),
-   nunca con propiedades que provoquen layout o repaint.
+
+   Dos reglas que no se rompen:
+   1) Sólo se anima `transform` y `opacity`. Nada que provoque
+      layout o repaint fuera del compositor.
+   2) Con `prefers-reduced-motion` todo queda en su estado final
+      y visible. Nunca se oculta contenido por no poder animarlo.
    ============================================================= */
 
-/* ---- Keyframes ----------------------------------------- */
-@keyframes pulse-dot{0%,100%{opacity:1}50%{opacity:.35}}
-@keyframes spin{to{transform:rotate(360deg)}}
-@keyframes float-in{from{opacity:0;transform:translate3d(0,14px,0)}to{opacity:1;transform:none}}
-@keyframes glow-breathe{0%,100%{opacity:.28}50%{opacity:.55}}
-
-/* ---- Reveal on scroll ---------------------------------- */
-/* JS añade .is-in cuando el elemento entra en viewport.
-   El escalonado se controla con --i (índice) desde el marcado. */
-[data-reveal]{
-  opacity:0;
-  transform:translate3d(0,var(--reveal-y,18px),0);
-  transition:
-    opacity var(--t-slow) var(--ease-out),
-    transform var(--t-slow) var(--ease-out);
-  transition-delay:calc(var(--i,0) * 60ms);
-  will-change:opacity,transform;
+/* ---- Reveal on scroll ------------------------------------ */
+/* El estado inicial sólo se aplica si hay IntersectionObserver:
+   sin JS, `.no-js` deja el contenido visible desde el primer pintado. */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity var(--t-slow) var(--ease-out),
+              transform var(--t-slow) var(--ease-out);
+  /* --i lo inyecta withIndex() para escalonar rejillas. */
+  transition-delay: calc(var(--i, 0) * 55ms);
 }
-[data-reveal].is-in{opacity:1;transform:none;will-change:auto}
-[data-reveal="left"]{--reveal-y:0;transform:translate3d(-24px,0,0)}
-[data-reveal="right"]{--reveal-y:0;transform:translate3d(24px,0,0)}
-[data-reveal="scale"]{--reveal-y:0;transform:scale(.965)}
+[data-reveal="left"]  { transform: translate3d(-24px, 0, 0); }
+[data-reveal="right"] { transform: translate3d(24px, 0, 0); }
+[data-reveal="scale"] { transform: scale(.975); }
+[data-reveal="fade"]  { transform: none; }
 
-/* ---- Parallax ligero ----------------------------------- */
-/* JS escribe --py (px). Sólo decorativo: si no hay JS, no pasa nada. */
-[data-parallax]{transform:translate3d(0,var(--py,0px),0);will-change:transform}
+[data-reveal].is-in { opacity: 1; transform: none; }
 
-/* ---- Entrada del hero (sin JS, no penaliza LCP) -------- */
-.hero-anim > *{animation:float-in .8s var(--ease-out) both}
-.hero-anim > *:nth-child(1){animation-delay:.02s}
-.hero-anim > *:nth-child(2){animation-delay:.10s}
-.hero-anim > *:nth-child(3){animation-delay:.18s}
-.hero-anim > *:nth-child(4){animation-delay:.26s}
-.hero-anim > *:nth-child(5){animation-delay:.34s}
+.no-js [data-reveal] { opacity: 1; transform: none; }
 
-/* ---- Preferencia de movimiento reducido ---------------- */
-@media (prefers-reduced-motion:reduce){
-  html{scroll-behavior:auto}
-  *,*::before,*::after{
-    animation-duration:.01ms !important;
-    animation-iteration-count:1 !important;
-    transition-duration:.01ms !important;
-    scroll-behavior:auto !important;
-  }
-  [data-reveal]{opacity:1;transform:none}
-  [data-parallax]{transform:none}
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] { opacity: 1; transform: none; transition: none; }
+}
+
+/* ---- Entrada del hero ------------------------------------ */
+/* No espera al observer: el hero está en pantalla desde el inicio,
+   así que anima al cargar y no cuenta como contenido oculto.     */
+@keyframes rise {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: none; }
+}
+.hero-anim > * {
+  animation: rise .8s var(--ease-out) both;
+  animation-delay: calc(var(--d, 0) * 1ms);
+}
+
+/* ---- Parallax -------------------------------------------- */
+/* initParallax() escribe --py; el elemento sólo traduce.        */
+[data-parallax] { transform: translate3d(0, var(--py, 0), 0); will-change: transform; }
+
+/* ---- Latido ---------------------------------------------- */
+/* Único keyframe compartido: el punto de estado del pipeline y el
+   de la pastilla del hero. */
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: .3; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-anim > * { animation: none; }
+  [data-parallax]  { transform: none; }
 }

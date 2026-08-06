@@ -1,0 +1,230 @@
+﻿<!DOCTYPE html>
+<html lang="es" class="no-js">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#08090C">
+<script>document.documentElement.classList.remove('no-js')</script>
+
+<!-- ===================== SEO =====================
+     ⚠ ESTADO: estructura lista, contenido extenso pendiente.
+     Mientras el cuerpo sea sólo el esquema de abajo, la página va en
+     noindex y fuera del sitemap: una página delgada indexada perjudica
+     al dominio entero. Al terminar el contenido:
+       1. cambia robots a "index,follow,max-image-preview:large"
+       2. quita el bloque .wip de esta página
+       3. descomenta su <url> en sitemap.xml                          -->
+<title>Consultoría Playwright para equipos · Raúl Molina</title>
+<meta name="description" content="Consultoría e implantación de Playwright: arquitectura de framework, fixtures, paralelización en CI y migración desde Selenium o Cypress.">
+<meta name="author" content="Raúl Molina Hernández">
+<meta name="keywords" content="Playwright, testing E2E, automatización web, framework de pruebas, TypeScript">
+<link rel="canonical" href="https://stonefly365.github.io/raul-qa-devops-web/playwright/">
+<meta name="robots" content="noindex,follow">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Raúl Molina · QA, DevOps &amp; AI Engineering">
+<meta property="og:locale" content="es_ES">
+<meta property="og:url" content="https://stonefly365.github.io/raul-qa-devops-web/playwright/">
+<meta property="og:title" content="Playwright, montado para durar años">
+<meta property="og:description" content="Consultoría e implantación de Playwright: arquitectura de framework, fixtures, paralelización en CI y migración desde Selenium o Cypress.">
+<meta property="og:image" content="https://stonefly365.github.io/raul-qa-devops-web/assets/og-cover.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://stonefly365.github.io/raul-qa-devops-web/assets/og-cover.png">
+
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+<link rel="alternate" type="application/rss+xml" title="Blog de Raúl Molina" href="../blog/feed.xml">
+
+<link rel="preload" href="../assets/fonts/geist-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../assets/css/tokens.css">
+<link rel="stylesheet" href="../assets/css/base.css">
+<link rel="stylesheet" href="../assets/css/motion.css">
+<link rel="stylesheet" href="../assets/css/components.css">
+<link rel="stylesheet" href="../assets/css/sections.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Service",
+      "name": "Test Automation",
+      "url": "https://stonefly365.github.io/raul-qa-devops-web/playwright/",
+      "description": "Consultoría e implantación de Playwright: arquitectura de framework, fixtures, paralelización en CI y migración desde Selenium o Cypress.",
+      "serviceType": "Playwright",
+      "areaServed": "ES",
+      "availableLanguage": ["es", "en"],
+      "provider": {
+        "@type": "Person",
+        "@id": "https://stonefly365.github.io/raul-qa-devops-web/#person",
+        "name": "Raúl Molina Hernández",
+        "url": "https://stonefly365.github.io/raul-qa-devops-web/"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://stonefly365.github.io/raul-qa-devops-web/" },
+        { "@type": "ListItem", "position": 2, "name": "Playwright" }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<a class="skip-link" href="#main">Saltar al contenido principal</a>
+<div id="nav-sentinel" aria-hidden="true"></div>
+
+<!-- La cabecera y el pie los inyecta assets/js/chrome.js -->
+<div data-chrome="header"></div>
+
+<main id="main">
+
+<section class="page-hero">
+  <div class="wrap">
+    <nav aria-label="Migas de pan">
+      <ol class="breadcrumb">
+        <li><a href="../">Inicio</a></li>
+        <li><span aria-current="page">Playwright</span></li>
+      </ol>
+    </nav>
+    <p class="eyebrow">Playwright</p>
+    <h1>Playwright, montado para durar años</h1>
+    <p class="lead">Playwright es fácil de empezar y fácil de convertir en un monolito ingobernable a los seis meses. La diferencia está en las decisiones de arquitectura de la primera semana.</p>
+    <div class="hero-ctas">
+      <a class="btn btn--primary btn--lg" href="../#contacto" data-booking>Reservar una reunión</a>
+      <a class="btn btn--ghost btn--lg" href="../#casos">Ver situaciones típicas</a>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="split">
+      <div data-reveal="left">
+        <p class="eyebrow">Qué incluye</p>
+        <h2>Cómo trabajo en Playwright</h2>
+        <ul class="checks" style="margin-top:var(--s-6)">
+          <li>Arquitectura de framework: fixtures, proyectos y configuración por entorno</li>
+          <li>Testing E2E y de API en la misma suite</li>
+          <li>Paralelización y sharding en CI sin tests inestables</li>
+          <li>Traces, vídeos y artefactos útiles para depurar un fallo real</li>
+          <li>Migración desde Selenium, Cypress o Protractor</li>
+        </ul>
+      </div>
+
+      <aside class="card" data-reveal="right">
+        <p class="eyebrow">Siguiente paso</p>
+        <h3>Un assessment es el primer paso de bajo riesgo</h3>
+        <p>Días, no meses. Sales con un informe de madurez y un plan priorizado,
+          decidas contratar después o no.</p>
+        <div class="card-foot">
+          <a class="btn btn--primary btn--block" href="../#contacto" data-booking>Hablemos 30 minutos</a>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<section class="section section--alt section--line">
+  <div class="wrap">
+    <header class="section-head" data-reveal>
+      <p class="eyebrow">En detalle</p>
+      <h2>Lo que cubre esta guía</h2>
+      <p class="lead">El esquema del contenido extenso que estoy escribiendo para esta página.</p>
+    </header>
+
+    <div class="wip" data-reveal style="margin-bottom:var(--s-8)">
+      <span class="icon-box icon-box--sm" aria-hidden="true">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+      </span>
+      <p><b>Página en construcción.</b> La estructura y el enfoque están definidos; el
+        desarrollo largo de cada apartado llega en las próximas semanas. Mientras tanto,
+        la página está marcada como <code>noindex</code> a propósito: prefiero no indexar
+        contenido a medias. Si te interesa alguno de estos puntos ahora,
+        <a href="../#contacto">escríbeme</a> y te lo cuento directamente.</p>
+    </div>
+
+    <div class="grid grid--2">
+      <article class="card" data-reveal>
+        <h3>Estructura de proyecto que escala</h3>
+        <p>Cómo organizar specs, fixtures y datos para cien tests y para mil.</p>
+      </article>
+      <article class="card" data-reveal>
+        <h3>Fixtures frente a page objects</h3>
+        <p>Cuándo cada uno, y por qué mezclarlos mal duele tanto.</p>
+      </article>
+      <article class="card" data-reveal>
+        <h3>Playwright en CI</h3>
+        <p>Sharding, reintentos con criterio y reportes que alguien lee.</p>
+      </article>
+      <article class="card" data-reveal>
+        <h3>Migrar desde Selenium o Cypress</h3>
+        <p>Estrategia de convivencia para no parar el delivery.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section section--line">
+  <div class="wrap">
+    <header class="section-head" data-reveal>
+      <p class="eyebrow">Relacionado</p>
+      <h2>Sigue por aquí</h2>
+    </header>
+    <div class="grid grid--3">
+      <article class="card card--hover" data-reveal>
+        <h3>Test Automation</h3>
+        <p>Una suite que sólo entiende quien la escribió es deuda técnica con otro nombre.</p>
+        <div class="card-foot">
+          <a class="btn btn--quiet stretch" href="../test-automation/">Ver Test Automation
+            <svg class="arrow" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </div>
+      </article>
+      <article class="card card--hover" data-reveal>
+        <h3>CI/CD</h3>
+        <p>Un quality gate que el equipo aprende a esquivar no es un quality gate: es una fricción.</p>
+        <div class="card-foot">
+          <a class="btn btn--quiet stretch" href="../github-actions/">Ver CI/CD
+            <svg class="arrow" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </div>
+      </article>
+      <article class="card card--hover" data-reveal>
+        <h3>AI Engineering</h3>
+        <p>La pregunta útil no es si la IA sirve para testing, sino qué parte del trabajo repetitivo puede asumir y cuánto ahorra de verdad.</p>
+        <div class="card-foot">
+          <a class="btn btn--quiet stretch" href="../ai-engineering/">Ver AI Engineering
+            <svg class="arrow" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="wrap wrap--narrow">
+    <h2>Treinta minutos y sabrás por dónde empezar</h2>
+    <p>Primera conversación sin compromiso. Te digo qué haría yo con tu situación actual,
+      tengamos proyecto después o no.</p>
+    <div class="hero-ctas">
+      <a class="btn btn--primary btn--lg" href="../#contacto" data-booking>Reservar una reunión</a>
+      <a class="btn btn--ghost btn--lg" href="../#proyectos">Ver proyectos en GitHub</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<div data-chrome="footer"></div>
+
+<button class="to-top" type="button" aria-label="Volver arriba">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 15l7-7 7 7"/></svg>
+</button>
+
+<script type="module" src="../assets/js/page.js"></script>
+</body>
+</html>

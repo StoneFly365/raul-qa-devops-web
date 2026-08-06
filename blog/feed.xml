@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  CANAL RSS 2.0. Válido y suscribible desde ya, aunque todavía no
+  tenga artículos: así quien se suscribe hoy recibe el primero.
+
+  Para publicar, copia el bloque comentado de abajo, quita los
+  comentarios y rellénalo. `pubDate` va en formato RFC-822.
+-->
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Raúl Molina · QA, DevOps &amp; AI Engineering</title>
+    <link>https://stonefly365.github.io/raul-qa-devops-web/blog/</link>
+    <description>Notas de campo sobre Quality Engineering, automatización de pruebas, CI/CD y agentes de IA dentro del ciclo de entrega.</description>
+    <language>es-ES</language>
+    <managingEditor>raulmolinah.madrid@gmail.com (Raúl Molina Hernández)</managingEditor>
+    <webMaster>raulmolinah.madrid@gmail.com (Raúl Molina Hernández)</webMaster>
+    <atom:link href="https://stonefly365.github.io/raul-qa-devops-web/blog/feed.xml" rel="self" type="application/rss+xml"/>
+
+    <!--
+    <item>
+      <title>Título del artículo</title>
+      <link>https://stonefly365.github.io/raul-qa-devops-web/blog/mi-articulo.html</link>
+      <guid isPermaLink="true">https://stonefly365.github.io/raul-qa-devops-web/blog/mi-articulo.html</guid>
+      <pubDate>Wed, 12 Aug 2026 09:00:00 +0200</pubDate>
+      <description>Resumen del artículo en una o dos frases.</description>
+      <category>QA</category>
+    </item>
+    -->
+
+  </channel>
+</rss>

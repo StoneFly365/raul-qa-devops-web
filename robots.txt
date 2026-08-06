@@ -1,4 +1,7 @@
 User-agent: *
 Allow: /
 
+# La plantilla de artículo no es contenido: lleva marcadores {{...}}
+Disallow: /blog/_plantilla.html
+
 Sitemap: https://stonefly365.github.io/raul-qa-devops-web/sitemap.xml

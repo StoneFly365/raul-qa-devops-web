@@ -4,300 +4,516 @@
    ============================================================= */
 
 /* =============================================================
-   BOTONES
+   NAVEGACIÓN
    ============================================================= */
-.btn{
-  --btn-bg:transparent;
-  --btn-fg:var(--text);
-  --btn-bd:var(--line-2);
-  display:inline-flex;align-items:center;justify-content:center;gap:var(--s-2);
-  padding:14px var(--s-6);
-  font-size:var(--fs-sm);font-weight:var(--fw-medium);letter-spacing:-.01em;
-  color:var(--btn-fg);background:var(--btn-bg);
-  border:1px solid var(--btn-bd);border-radius:var(--r-full);
-  transition:transform var(--t-fast) var(--ease),
-             background var(--t) var(--ease),
-             border-color var(--t) var(--ease),
-             color var(--t) var(--ease),
-             box-shadow var(--t) var(--ease);
-  white-space:nowrap;
+.nav {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: 100;
+  height: var(--nav-h);
+  border-bottom: 1px solid transparent;
+  transition: background var(--t) var(--ease),
+              border-color var(--t) var(--ease),
+              backdrop-filter var(--t) var(--ease);
 }
-.btn:hover{transform:translateY(-1px)}
-.btn:active{transform:translateY(0) scale(.985)}
-.btn .arrow{transition:transform var(--t) var(--ease)}
-.btn:hover .arrow{transform:translateX(3px)}
-
-.btn--primary{
-  --btn-bg:var(--accent);--btn-fg:var(--on-accent);--btn-bd:transparent;
-  box-shadow:0 6px 24px -10px var(--accent-glow);
+/* Cristal sólo tras hacer scroll: arriba del todo la barra desaparece
+   y el hero respira. Lo activa un centinela, no un listener de scroll. */
+.nav.is-stuck {
+  background: var(--glass);
+  border-bottom-color: var(--line);
+  -webkit-backdrop-filter: blur(16px) saturate(160%);
+          backdrop-filter: blur(16px) saturate(160%);
 }
-.btn--primary:hover{--btn-bg:var(--accent-hi);box-shadow:0 10px 34px -10px var(--accent-glow)}
-
-.btn--ghost:hover{--btn-bd:var(--accent-line);--btn-fg:var(--accent);background:var(--accent-soft)}
-
-.btn--quiet{
-  padding:0;border:0;border-radius:0;
-  color:var(--accent);font-size:var(--fs-sm);
-}
-.btn--quiet:hover{transform:none;color:var(--accent-hi)}
-
-.btn--sm{padding:10px var(--s-5);font-size:var(--fs-xs)}
-.btn--block{width:100%}
-
-/* =============================================================
-   CARD — base compartida por servicios, casos, recursos…
-   ============================================================= */
-.card{
-  position:relative;
-  display:flex;flex-direction:column;
-  padding:var(--s-8) var(--s-6);
-  background:var(--grad-surface);
-  border:1px solid var(--line);
-  border-radius:var(--r-lg);
-  transition:border-color var(--t) var(--ease),
-             transform var(--t) var(--ease),
-             box-shadow var(--t) var(--ease);
-}
-.card--hover:hover{
-  border-color:var(--line-2);
-  transform:translateY(-3px);
-  box-shadow:var(--sh-lg);
-}
-/* Filo superior que se enciende al hacer hover */
-.card--edge::before{
-  content:"";position:absolute;inset:0 0 auto;height:1px;
-  background:var(--grad-accent);
-  opacity:0;transition:opacity var(--t) var(--ease);
-  border-radius:var(--r-lg) var(--r-lg) 0 0;
-}
-.card--edge:hover::before{opacity:1}
-
-.card--glass{
-  background:var(--surface-glass);
-  backdrop-filter:blur(14px) saturate(1.3);
-  -webkit-backdrop-filter:blur(14px) saturate(1.3);
-  border-color:var(--line-2);
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-4);
+  height: 100%;
+  max-width: var(--max);
+  margin-inline: auto;
+  padding-inline: var(--s-gutter);
 }
 
-.card h3{margin-bottom:var(--s-3)}
-.card p{color:var(--text-2);font-size:var(--fs-sm)}
-.card .card-foot{margin-top:auto;padding-top:var(--s-5)}
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-3);
+  font-family: var(--font-mono);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-medium);
+  letter-spacing: -.01em;
+  white-space: nowrap;
+}
+.brand-mark {
+  display: grid;
+  place-items: center;
+  width: 28px; height: 28px;
+  border-radius: 9px;
+  background: var(--grad);
+  color: var(--on-accent);
+  font-size: 13px;
+  font-weight: var(--fw-bold);
+  letter-spacing: 0;
+  box-shadow: var(--sh-glow);
+}
+.brand:hover .brand-mark { transform: rotate(-6deg) scale(1.05); }
+.brand-mark { transition: transform var(--t) var(--ease); }
 
-/* Enlace que cubre toda la tarjeta sin romper el orden de tabulación */
-.card .stretch::after{content:"";position:absolute;inset:0;border-radius:inherit}
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: var(--s-1);
+}
+/* `:not(.btn)` no es decorativo: sin él este selector (0,1,1) gana a
+   .btn--primary (0,1,0) y el CTA se queda con el gris del menú sobre
+   el gradiente — texto ilegible justo en el punto de conversión. */
+.nav-links > a:not(.btn) {
+  padding: var(--s-2) var(--s-3);
+  border-radius: var(--r-sm);
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-medium);
+  color: var(--text-2);
+  transition: color var(--t-fast) var(--ease), background var(--t-fast) var(--ease);
+}
+.nav-links > a:not(.btn):hover { color: var(--text); background: var(--line); }
+.nav-links > a:not(.btn)[aria-current] { color: var(--text); }
+.nav-links > a[aria-current]::after {
+  content: '';
+  display: block;
+  height: 2px;
+  margin: 3px auto -6px;
+  width: 14px;
+  border-radius: 2px;
+  background: var(--grad);
+}
+.nav-cta { margin-left: var(--s-3); }
+.nav-cta[aria-current]::after { display: none; }
 
-/* =============================================================
-   ICON BOX
-   ============================================================= */
-.icon-box{
-  display:grid;place-items:center;flex:none;
-  width:44px;height:44px;border-radius:var(--r-sm);
-  background:var(--accent-soft);color:var(--accent);
-  border:1px solid var(--accent-line);
-  transition:background var(--t) var(--ease),transform var(--t) var(--ease);
+.nav-toggle {
+  display: none;
+  place-items: center;
+  width: 40px; height: 40px;
+  border: 1px solid var(--line-2);
+  border-radius: var(--r-sm);
+  color: var(--text-2);
+  transition: color var(--t-fast) var(--ease), border-color var(--t-fast) var(--ease);
 }
-.card--hover:hover .icon-box{transform:scale(1.06)}
-/* Variante neutra: el verde queda reservado a lo que aporta valor
-   (la solución, el servicio), no al problema que se describe. */
-.icon-box--muted{background:var(--surface-3);color:var(--text-2);border-color:var(--line-2)}
+.nav-toggle:hover { color: var(--text); border-color: var(--line-3); }
 
-/* =============================================================
-   TAG
-   ============================================================= */
-.tag{
-  display:inline-block;align-self:flex-start;
-  padding:5px var(--s-3);border-radius:var(--r-full);
-  font-family:var(--font-mono);font-size:var(--fs-mono);font-weight:var(--fw-medium);
-  color:var(--accent);background:var(--accent-soft);
-  border:1px solid var(--accent-line);
-}
-
-/* =============================================================
-   TECH — ÚNICO componente de herramienta de todo el sitio,
-   usado en la rejilla de #tecnologias.
-   ============================================================= */
-.tech{
-  display:flex;align-items:center;gap:var(--s-3);
-  padding:var(--s-3) var(--s-4);
-  background:var(--surface);border:1px solid var(--line);border-radius:var(--r-sm);
-  transition:border-color var(--t) var(--ease),
-             transform var(--t) var(--ease),
-             background var(--t) var(--ease);
-  user-select:none;
-}
-.tech:hover{border-color:var(--accent-line);transform:translateY(-2px);background:var(--surface-2)}
-.tech-name{font-size:var(--fs-xs);font-weight:var(--fw-medium);line-height:1.3}
-/* Logo monocromo vía mask: hereda el color del tema, sin peticiones
-   de imagen a color y sin variante para modo oscuro. */
-.tech-logo{
-  width:20px;height:20px;flex:none;
-  background-color:var(--text-2);
-  -webkit-mask:var(--logo) no-repeat center/contain;
-  mask:var(--logo) no-repeat center/contain;
-  transition:background-color var(--t) var(--ease);
-}
-.tech:hover .tech-logo{background-color:var(--accent)}
-/* Sin logo en Simple Icons → monograma. Mismo color y mismo hover que
-   .tech-logo: si no, la única pastilla sin logo grita más que el resto. */
-.tech-mono{
-  display:grid;place-items:center;width:20px;height:20px;flex:none;
-  font-family:var(--font-mono);font-size:var(--fs-mono);font-weight:var(--fw-bold);
-  color:var(--text-2);
-  transition:color var(--t) var(--ease);
-}
-.tech:hover .tech-mono{color:var(--accent)}
-.tech-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:var(--s-3)}
-
-/* =============================================================
-   NAVBAR
-   ============================================================= */
-.nav{
-  position:sticky;top:0;z-index:100;
-  background:transparent;
-  border-bottom:1px solid transparent;
-  transition:background var(--t) var(--ease),
-             border-color var(--t) var(--ease),
-             backdrop-filter var(--t) var(--ease);
-}
-.nav.is-stuck{
-  background:rgba(7,9,13,.72);
-  backdrop-filter:blur(16px) saturate(1.4);
-  -webkit-backdrop-filter:blur(16px) saturate(1.4);
-  border-bottom-color:var(--line);
-}
-.nav-inner{
-  max-width:var(--max);margin-inline:auto;
-  padding:var(--s-3) var(--s-gutter);
-  min-height:var(--nav-h);
-  display:flex;align-items:center;gap:var(--s-4);
-}
-.brand{
-  display:flex;align-items:center;gap:var(--s-3);
-  font-family:var(--font-mono);font-size:var(--fs-xs);font-weight:var(--fw-medium);
-  margin-right:auto;
-}
-.brand-dot{
-  width:8px;height:8px;border-radius:50%;flex:none;
-  background:var(--accent);box-shadow:0 0 10px var(--accent-glow);
-  animation:pulse-dot 2.6s var(--ease) infinite;
-}
-.brand .dim{color:var(--text-3)}
-
-.nav-links{display:flex;align-items:center;gap:var(--s-1)}
-.nav-links a{
-  position:relative;
-  padding:var(--s-2) var(--s-3);border-radius:var(--r-sm);
-  font-size:var(--fs-xs);color:var(--text-2);
-  transition:color var(--t) var(--ease);
-}
-.nav-links a:hover{color:var(--text)}
-.nav-links a::after{
-  content:"";position:absolute;left:var(--s-3);right:var(--s-3);bottom:2px;height:1.5px;
-  background:var(--accent);border-radius:2px;
-  transform:scaleX(0);transform-origin:left;
-  transition:transform var(--t) var(--ease);
-}
-.nav-links a[aria-current="true"]{color:var(--accent)}
-.nav-links a[aria-current="true"]::after{transform:scaleX(1)}
-/* El CTA es un enlace más del panel: hay que anular el subrayado animado.
-   El selector incluye [aria-current] a propósito: la regla de arriba tiene
-   más especificidad y dejaría el botón en verde sobre verde. */
-.nav-links .nav-cta,
-.nav-links .nav-cta[aria-current="true"]{margin-left:var(--s-3);color:var(--on-accent)}
-.nav-links .nav-cta::after{display:none}
-
-.nav-actions{display:flex;align-items:center;gap:var(--s-3)}
-.nav-toggle{
-  display:none;place-items:center;
-  width:40px;height:40px;border-radius:var(--r-sm);
-  color:var(--text);border:1px solid var(--line);
-}
-.nav-toggle:hover{border-color:var(--line-2)}
-
-@media (max-width:900px){
-  .nav-toggle{display:grid}
-  .nav-links{
-    position:absolute;top:100%;left:0;right:0;
-    flex-direction:column;align-items:stretch;gap:var(--s-1);
-    padding:var(--s-4) var(--s-gutter) var(--s-6);
-    /* Opaco, no translúcido: sobre el panel se lee texto y el contenido
-       de detrás transparentándose resultaba sucio. */
-    background:var(--bg);
-    box-shadow:var(--sh-lg);
-    border-bottom:1px solid var(--line);
-    opacity:0;visibility:hidden;transform:translateY(-8px);
-    transition:opacity var(--t) var(--ease),transform var(--t) var(--ease),visibility var(--t);
+@media (max-width: 900px) {
+  .nav-toggle { display: grid; }
+  .nav-links {
+    position: fixed;
+    inset: var(--nav-h) 0 auto;
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--s-1);
+    padding: var(--s-4) var(--s-gutter) var(--s-6);
+    background: var(--glass);
+    -webkit-backdrop-filter: blur(20px) saturate(160%);
+            backdrop-filter: blur(20px) saturate(160%);
+    border-bottom: 1px solid var(--line);
+    /* Colapsado sin `display:none`: así el panel puede animar y el
+       lector de pantalla no lo anuncia mientras está oculto.        */
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(-8px);
+    transition: opacity var(--t) var(--ease), transform var(--t) var(--ease),
+                visibility var(--t) var(--ease);
   }
-  .nav-links.is-open{opacity:1;visibility:visible;transform:none}
-  .nav-links a{padding:var(--s-3) var(--s-2);font-size:var(--fs-base)}
-  .nav-links a::after{display:none}
-  .nav-links .nav-cta{margin:var(--s-4) 0 0;justify-content:center;padding:14px}
+  .nav-links.is-open { visibility: visible; opacity: 1; transform: none; }
+  .nav-links > a:not(.btn) { padding: var(--s-3) var(--s-4); font-size: var(--fs-base); }
+  .nav-links > a[aria-current]::after { margin: 0; }
+  .nav-cta { margin: var(--s-3) 0 0; justify-content: center; }
+}
+
+/* =============================================================
+   BOTONES — tres jerarquías y ni una más.
+   primary = la acción de conversión · ghost = alternativa
+   quiet   = enlace de tarjeta, casi texto
+   ============================================================= */
+.btn {
+  --btn-py: 11px;
+  --btn-px: 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--s-2);
+  padding: var(--btn-py) var(--btn-px);
+  border: 1px solid transparent;
+  border-radius: var(--r-full);
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-semi);
+  letter-spacing: -.005em;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: transform var(--t-fast) var(--ease),
+              background var(--t-fast) var(--ease),
+              border-color var(--t-fast) var(--ease),
+              color var(--t-fast) var(--ease),
+              box-shadow var(--t) var(--ease);
+}
+.btn:active { transform: translateY(1px); }
+.btn .arrow { transition: transform var(--t) var(--ease); }
+.btn:hover .arrow { transform: translateX(3px); }
+
+.btn--primary {
+  background: var(--grad);
+  color: var(--on-accent);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, .18) inset, var(--sh-glow);
+}
+.btn--primary:hover { box-shadow: 0 1px 0 rgba(255, 255, 255, .28) inset, 0 16px 44px -10px var(--accent-glow); }
+
+.btn--ghost {
+  background: rgba(255, 255, 255, .03);
+  border-color: var(--line-2);
+  color: var(--text);
+}
+.btn--ghost:hover { background: rgba(255, 255, 255, .07); border-color: var(--line-3); }
+
+.btn--quiet {
+  padding: 0;
+  border-radius: var(--r-sm);
+  color: var(--accent-hi);
+  font-size: var(--fs-xs);
+}
+.btn--quiet:hover { color: var(--text); }
+
+.btn--sm  { --btn-py: 8px; --btn-px: 15px; font-size: var(--fs-mono); }
+.btn--lg  { --btn-py: 14px; --btn-px: 26px; font-size: var(--fs-sm); }
+.btn--block { display: flex; width: 100%; }
+
+/* =============================================================
+   TARJETA — el único contenedor del sitio. Todo lo demás son
+   modificadores; ninguna sección inventa su propia caja.
+   ============================================================= */
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-3);
+  padding: var(--s-6);
+  background: var(--grad-surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+}
+.card h3 { letter-spacing: var(--tr-snug); }
+.card p  { color: var(--text-2); font-size: var(--fs-sm); }
+
+/* Brillo superior: una línea de luz de 1px que sugiere volumen sin
+   sombras duras. Es lo que separa "caja" de "superficie".          */
+.card::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--line-2) 22%, var(--line-2) 78%, transparent);
+}
+
+.card--hover { transition: transform var(--t) var(--ease), border-color var(--t) var(--ease), box-shadow var(--t) var(--ease); }
+.card--hover:hover {
+  transform: translateY(-3px);
+  border-color: var(--line-2);
+  box-shadow: var(--sh-lg);
+}
+/* El acento aparece en hover, no en reposo: si todas las tarjetas
+   brillan a la vez, ninguna destaca.                               */
+.card--hover:hover::before { background: var(--grad); opacity: .9; }
+
+.card--glass {
+  background: rgba(255, 255, 255, .022);
+  -webkit-backdrop-filter: blur(8px);
+          backdrop-filter: blur(8px);
+}
+
+/* Tarjeta con acento permanente: reservada a UNA por sección. */
+.card--feature { border-color: var(--accent-line); }
+.card--feature::before { background: var(--grad); }
+
+.card-foot { margin-top: auto; padding-top: var(--s-4); }
+
+/* Toda la tarjeta clicable a partir de su enlace principal, sin
+   anidar <a> ni duplicar el destino en JS.                        */
+.stretch::after { content: ''; position: absolute; inset: 0; }
+
+/* =============================================================
+   CAJA DE ICONO
+   ============================================================= */
+.icon-box {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 42px; height: 42px;
+  border-radius: 12px;
+  background: var(--accent-soft);
+  border: 1px solid var(--accent-line);
+  color: var(--accent-hi);
+}
+.icon-box--muted {
+  background: rgba(255, 255, 255, .04);
+  border-color: var(--line-2);
+  color: var(--text-2);
+}
+.icon-box--sm { width: 34px; height: 34px; border-radius: 10px; }
+
+/* =============================================================
+   ETIQUETAS
+   ============================================================= */
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border: 1px solid var(--line-2);
+  border-radius: var(--r-full);
+  background: rgba(255, 255, 255, .03);
+  font-family: var(--font-mono);
+  font-size: var(--fs-mono);
+  font-weight: var(--fw-medium);
+  letter-spacing: .01em;
+  color: var(--text-2);
+  white-space: nowrap;
+}
+.tag--accent { border-color: var(--accent-line); background: var(--accent-soft); color: var(--accent-hi); }
+.tag--pass   { border-color: var(--pass-line);   background: var(--pass-soft);   color: var(--pass); }
+
+.tag-row { display: flex; flex-wrap: wrap; gap: var(--s-2); }
+
+/* =============================================================
+   LISTA DE BENEFICIOS — check + texto, usada en servicios y landings
+   ============================================================= */
+.checks { display: grid; gap: var(--s-2); }
+.checks li {
+  display: grid;
+  grid-template-columns: 16px 1fr;
+  gap: var(--s-3);
+  align-items: start;
+  font-size: var(--fs-sm);
+  color: var(--text-2);
+  line-height: 1.5;
+}
+.checks li::before {
+  content: '';
+  width: 16px; height: 16px;
+  margin-top: .22em;
+  background: currentColor;
+  color: var(--accent);
+  -webkit-mask: var(--check-mask) center / contain no-repeat;
+          mask: var(--check-mask) center / contain no-repeat;
+}
+.checks {
+  --check-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 12.5l5.5 5.5L20 6'/%3E%3C/svg%3E");
 }
 
 /* =============================================================
    FORMULARIO
    ============================================================= */
-.field{display:flex;flex-direction:column;gap:var(--s-2)}
-.field label{
-  font-family:var(--font-mono);font-size:var(--fs-mono);
-  color:var(--text-2);text-transform:uppercase;letter-spacing:var(--tracking-wide);
+.field { display: grid; gap: var(--s-2); }
+.field > label {
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-medium);
+  color: var(--text-2);
 }
-.field .req{color:var(--accent)}
-.input{
-  width:100%;padding:13px var(--s-4);
-  font-size:var(--fs-sm);
-  color:var(--text);background:var(--surface);
-  border:1px solid var(--line-2);border-radius:var(--r-sm);
-  transition:border-color var(--t) var(--ease),box-shadow var(--t) var(--ease);
+.req { color: var(--accent-hi); }
+
+.input {
+  width: 100%;
+  padding: 11px var(--s-4);
+  background: rgba(255, 255, 255, .025);
+  border: 1px solid var(--line-2);
+  border-radius: var(--r-sm);
+  font-size: var(--fs-sm);
+  transition: border-color var(--t-fast) var(--ease), background var(--t-fast) var(--ease);
 }
-.input::placeholder{color:var(--text-3)}
-.input:hover{border-color:var(--line-3)}
-.input:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
-.input:user-invalid{border-color:var(--fail)}
-textarea.input{resize:vertical;min-height:120px;line-height:1.6}
-select.input{appearance:none;cursor:pointer;
-  background-image:linear-gradient(45deg,transparent 50%,var(--text-3) 50%),linear-gradient(135deg,var(--text-3) 50%,transparent 50%);
-  background-position:calc(100% - 20px) 21px,calc(100% - 14px) 21px;
-  background-size:6px 6px,6px 6px;background-repeat:no-repeat;
+.input::placeholder { color: var(--text-3); }
+.input:hover { border-color: var(--line-3); }
+.input:focus { border-color: var(--accent); background: rgba(255, 255, 255, .045); }
+textarea.input { min-height: 128px; }
+
+/* La flecha nativa del <select> no se puede teñir: se oculta y se
+   dibuja una con background-image que sí hereda el color de marca. */
+select.input {
+  -webkit-appearance: none;
+  appearance: none;
+  padding-right: var(--s-10);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23A8B1C1' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right var(--s-4) center;
+  background-size: 16px;
 }
-.form-note{font-size:var(--fs-xs);color:var(--text-3)}
-.form-status{font-size:var(--fs-sm);color:var(--accent);min-height:1.5em}
+select.input option { background: var(--surface); color: var(--text); }
+
+.form-row { display: grid; gap: var(--s-4); grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr)); }
+
+.form-status { font-size: var(--fs-xs); color: var(--accent-hi); min-height: 1.2em; }
+.form-status:empty { min-height: 0; }
+.form-note { font-size: var(--fs-mono); color: var(--text-3); }
 
 /* =============================================================
-   BACK TO TOP
+   FAQ — <details> nativo. Cero JS para abrir y cerrar.
    ============================================================= */
-.to-top{
-  position:fixed;right:var(--s-6);bottom:var(--s-6);z-index:90;
-  display:grid;place-items:center;
-  width:44px;height:44px;border-radius:var(--r-full);
-  color:var(--text);background:var(--surface-glass);
-  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
-  border:1px solid var(--line-2);
-  opacity:0;visibility:hidden;transform:translateY(10px);
-  transition:opacity var(--t) var(--ease),transform var(--t) var(--ease),
-             visibility var(--t),border-color var(--t) var(--ease);
+.faq { display: grid; gap: var(--s-2); }
+.faq-item {
+  border: 1px solid var(--line);
+  border-radius: var(--r);
+  background: var(--surface);
+  transition: border-color var(--t-fast) var(--ease);
 }
-.to-top.is-visible{opacity:1;visibility:visible;transform:none}
-.to-top:hover{border-color:var(--accent-line);color:var(--accent)}
+.faq-item:hover { border-color: var(--line-2); }
+.faq-item[open] { border-color: var(--accent-line); }
+.faq-item > summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-4);
+  padding: var(--s-4) var(--s-5);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-semi);
+  cursor: pointer;
+  list-style: none;
+}
+.faq-item > summary::-webkit-details-marker { display: none; }
+.faq-item > summary::after {
+  content: '';
+  flex: none;
+  width: 16px; height: 16px;
+  background: currentColor;
+  color: var(--text-3);
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='M12 5v14M5 12h14'/%3E%3C/svg%3E") center / contain no-repeat;
+          mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='M12 5v14M5 12h14'/%3E%3C/svg%3E") center / contain no-repeat;
+  transition: transform var(--t) var(--ease), color var(--t-fast) var(--ease);
+}
+.faq-item[open] > summary::after { transform: rotate(135deg); color: var(--accent-hi); }
+.faq-item > p {
+  padding: 0 var(--s-5) var(--s-5);
+  max-width: var(--max-prose);
+  color: var(--text-2);
+  font-size: var(--fs-sm);
+}
 
 /* =============================================================
-   TERMINAL (elemento de marca) — único sitio, junto al pipeline,
-   donde el ámbar y el rojo tienen sentido: son estado de ejecución.
+   TERMINAL — bloque de código con cromo de ventana
    ============================================================= */
-.terminal{
-  background:var(--surface);border:1px solid var(--line);
-  border-radius:var(--r-lg);overflow:hidden;box-shadow:var(--sh-lg);
+.terminal {
+  background: #05060A;
+  border: 1px solid var(--line-2);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  box-shadow: var(--sh-lg);
 }
-.terminal-bar{
-  display:flex;gap:7px;align-items:center;
-  padding:var(--s-3) var(--s-4);border-bottom:1px solid var(--line);
+.terminal-bar {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: var(--s-3) var(--s-4);
+  border-bottom: 1px solid var(--line);
+  background: rgba(255, 255, 255, .02);
 }
-.terminal-bar i{width:11px;height:11px;border-radius:50%;display:block;background:var(--line-3)}
-.terminal pre{
-  font-family:var(--font-mono);font-size:var(--fs-mono);line-height:1.9;
-  color:var(--text-2);padding:var(--s-5);overflow-x:auto;
+.terminal-bar i { width: 10px; height: 10px; border-radius: 50%; background: var(--line-3); }
+.terminal-bar i:first-child { background: rgba(248, 113, 113, .55); }
+.terminal-bar i:nth-child(2) { background: rgba(251, 191, 36, .55); }
+.terminal-bar i:nth-child(3) { background: rgba(52, 211, 153, .55); }
+.terminal pre {
+  margin: 0;
+  padding: var(--s-5);
+  overflow-x: auto;
+  font-size: var(--fs-mono);
+  line-height: 1.85;
+  color: var(--text-2);
+  white-space: pre;
 }
-.terminal .ok{color:var(--accent)}
-.terminal .run{color:var(--warn)}
-.terminal .cmd{color:var(--text)}
-.terminal .dim{color:var(--text-3)}
+.terminal .cmd  { color: var(--accent-hi); }
+.terminal .ok   { color: var(--pass); }
+.terminal .run  { color: var(--warn); }
+
+/* =============================================================
+   LOGO DE TECNOLOGÍA — SVG monocromo teñido por CSS
+   ============================================================= */
+.tech-logo {
+  width: 18px; height: 18px;
+  flex: none;
+  background: currentColor;
+  -webkit-mask: var(--logo) center / contain no-repeat;
+          mask: var(--logo) center / contain no-repeat;
+}
+.tech-mono {
+  display: grid;
+  place-items: center;
+  width: 18px; height: 18px;
+  flex: none;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: var(--fw-bold);
+  letter-spacing: 0;
+}
+
+/* =============================================================
+   BOTÓN VOLVER ARRIBA
+   ============================================================= */
+.to-top {
+  position: fixed;
+  right: clamp(16px, 3vw, 28px);
+  bottom: clamp(16px, 3vw, 28px);
+  z-index: 90;
+  display: grid;
+  place-items: center;
+  width: 44px; height: 44px;
+  border: 1px solid var(--line-2);
+  border-radius: 50%;
+  background: var(--glass);
+  -webkit-backdrop-filter: blur(12px);
+          backdrop-filter: blur(12px);
+  color: var(--text-2);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: opacity var(--t) var(--ease), transform var(--t) var(--ease),
+              visibility var(--t) var(--ease), color var(--t-fast) var(--ease);
+}
+.to-top.is-visible { opacity: 1; visibility: visible; transform: none; }
+.to-top:hover { color: var(--text); border-color: var(--line-3); }
+
+/* =============================================================
+   PIE
+   ============================================================= */
+.footer {
+  border-top: 1px solid var(--line);
+  background: var(--bg-2);
+  padding-block: clamp(48px, 6vw, 72px) var(--s-8);
+}
+.footer-grid {
+  display: grid;
+  gap: var(--s-10) var(--s-8);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 190px), 1fr));
+}
+.footer-brand { max-width: 30ch; }
+.footer-brand p { margin-top: var(--s-4); color: var(--text-3); font-size: var(--fs-xs); }
+.footer-col-title {
+  margin-bottom: var(--s-4);
+  font-family: var(--font-mono);
+  font-size: var(--fs-mono);
+  font-weight: var(--fw-medium);
+  letter-spacing: var(--tr-wide);
+  text-transform: uppercase;
+  color: var(--text-3);
+}
+.footer-col ul { display: grid; gap: var(--s-2); }
+.footer-col a {
+  font-size: var(--fs-xs);
+  color: var(--text-2);
+  transition: color var(--t-fast) var(--ease);
+}
+.footer-col a:hover { color: var(--accent-hi); }
+.footer-bottom {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-3) var(--s-6);
+  justify-content: space-between;
+  margin-top: clamp(40px, 5vw, 64px);
+  padding-top: var(--s-6);
+  border-top: 1px solid var(--line);
+  font-size: var(--fs-mono);
+  color: var(--text-3);
+}

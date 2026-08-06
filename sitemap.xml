@@ -1,15 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Sólo van aquí páginas con contenido real y publicable. Las landings
+  de /qa/, /devops/, /playwright/, /github-actions/, /test-automation/,
+  /solution-consulting/ y /ai-engineering/ están creadas pero todavía
+  en noindex: aparecen abajo comentadas. Al terminar el contenido de
+  cada una, quita su <meta robots noindex> y descomenta su bloque.
+-->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
   <url>
     <loc>https://stonefly365.github.io/raul-qa-devops-web/</loc>
-    <lastmod>2026-07-22</lastmod>
+    <lastmod>2026-08-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
+
+  <url>
+    <loc>https://stonefly365.github.io/raul-qa-devops-web/blog/</loc>
+    <lastmod>2026-08-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
   <url>
     <loc>https://stonefly365.github.io/raul-qa-devops-web/mentoringB2C/</loc>
-    <lastmod>2026-07-22</lastmod>
+    <lastmod>2026-08-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
+
+  <!-- Landings SEO — descomentar una a una al publicar su contenido:
+  <url><loc>https://stonefly365.github.io/raul-qa-devops-web/qa/</loc>                  <lastmod>2026-08-05</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://stonefly365.github.io/raul-qa-devops-web/test-automation/</loc>     <lastmod>2026-08-05</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://stonefly365.github.io/raul-qa-devops-web/playwright/</loc>          <lastmod>2026-08-05</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://stonefly365.github.io/raul-qa-devops-web/devops/</loc>              <lastmod>2026-08-05</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://stonefly365.github.io/raul-qa-devops-web/github-actions/</loc>      <lastmod>2026-08-05</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://stonefly365.github.io/raul-qa-devops-web/solution-consulting/</loc> <lastmod>2026-08-05</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://stonefly365.github.io/raul-qa-devops-web/ai-engineering/</loc>      <lastmod>2026-08-05</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  -->
+
 </urlset>

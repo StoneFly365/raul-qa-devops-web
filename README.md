@@ -1,213 +1,234 @@
-# Raúl Molina · QA, Quality Engineering & DevOps Consulting
+# raul-qa-devops-web
 
-Web de consultoría B2B — Business & Solution Consulting Lead especializado en QA, Quality Engineering, DevOps y AI aplicada al testing.
+Web de marca personal de **Raúl Molina Hernández** — QA Engineering, DevOps
+y AI Engineering.
 
-## Ejecutar en local
+HTML, CSS y JavaScript de navegador. Sin framework, sin paso de build, sin
+dependencias en tiempo de ejecución. Se despliega copiando el repositorio a
+GitHub Pages.
 
-```bash
-# Opción 1: con npm (live-server con hot reload)
-npm start
+---
 
-# Opción 2: sin instalar nada
-# Abre index.html directamente en tu navegador
-
-# Opción 3: con Python (si lo tienes instalado)
-python -m http.server 3000
-```
-
-La web se abrirá en `http://localhost:3000`.
-
-## Subir a GitHub
+## Arrancar en local
 
 ```bash
-# 1. Inicializar el repositorio
-git init
-git add .
-git commit -m "feat: web personal QA & DevOps consulting"
-
-# 2. Crear el repo en GitHub (con GitHub CLI)
-gh repo create raul-qa-devops-web --public --source=. --push
-
-# O si prefieres hacerlo manual:
-git remote add origin https://github.com/StoneFly365/raul-qa-devops-web.git
-git branch -M master
-git push -u origin master
+npm run dev      # live-server en http://localhost:3000
+npm test         # suite de auditoría — 20 comprobaciones
 ```
 
-## Publicar con GitHub Pages
+`npm test` no necesita instalar nada: usa el runner nativo de Node (≥ 18).
 
-1. Ve a **Settings → Pages** en tu repositorio
-2. En **Source**, selecciona **Deploy from a branch**
-3. Selecciona la rama `master` y la carpeta `/ (root)`
-4. Guarda y espera ~1 minuto
+---
 
-Tu web estará disponible en:
-`https://stonefly365.github.io/raul-qa-devops-web/`
+## Pendiente
 
-### Dominio personalizado (opcional)
+- **⏳ Agenda online.** `site.bookingUrl` en `data.js` sigue a `null`. En cuanto
+  haya URL de Calendly o Cal.com, ponerla ahí: los nueve CTA "Reservar una
+  reunión" pasan de llevar al formulario a abrir el calendario, en una línea
+  y sin tocar nada más.
+- **Contenido de las siete landings SEO** (siguen en `noindex`, ver más abajo).
+- **Primeros artículos del blog** (la infraestructura ya está lista).
 
-Si tienes un dominio propio:
+---
 
-1. Añade un archivo `CNAME` con tu dominio:
-   ```
-   tudominio.com
-   ```
-2. Configura en tu proveedor DNS un registro `CNAME` apuntando a `stonefly365.github.io`
-3. En **Settings → Pages**, introduce tu dominio personalizado
-
-## Stack
-
-- HTML/CSS/JS vanilla (sin frameworks, sin bundler, sin build step) — GitHub Pages sirve los archivos tal cual
-- ES modules nativos del navegador para separar datos y renderizado (sin npm en producción)
-- [Space Grotesk](https://fonts.google.com/specimen/Space+Grotesk) 700 + [Inter](https://fonts.google.com/specimen/Inter) 400/600 + [JetBrains Mono](https://fonts.google.com/specimen/JetBrains+Mono) 400/600 — dos pesos por familia, ni uno más
-- Logos de herramientas autoalojados (Simple Icons, CC0) como `mask-image` monocroma: sin CDN de terceros y sin variante para modo oscuro
-- Marquee CSS puro (`@keyframes` + `translateX(-50%)`) — sin librería de carrusel
-- Pipeline animado, contadores y scroll-spy con JS vanilla + Intersection Observer
-
-## Estructura de carpetas
+## Estructura
 
 ```
-index.html               # marcado semántico + contenedores de sección (ids)
-mentoringB2C/index.html  # landing B2C, mismo sistema de diseño y mismo CSS
-robots.txt / sitemap.xml
+index.html                 Home
+404.html                   Página de error (rutas absolutas: GitHub Pages la sirve
+                           desde cualquier profundidad de URL)
+robots.txt · sitemap.xml
+
+blog/
+  index.html               Listado; muestra estado vacío mientras no haya artículos
+  _plantilla.html          Plantilla de artículo (copiar, no editar)
+  feed.xml                 Canal RSS 2.0, ya válido y suscribible
+
+qa/ · test-automation/ · playwright/ · devops/ · github-actions/
+solution-consulting/ · ai-engineering/
+                           Landings SEO — estructura lista, contenido largo pendiente
+mentoringB2C/              Mentoría 1:1 (B2C)
+cv/                        Ignorado por git. El CV no se publica: la web enlaza
+                           a LinkedIn, que además está siempre al día
+
 assets/
-├── logos/               # 21 SVG monocromos de Simple Icons (autoalojados)
-├── css/                 # se cargan en este orden; ninguno usa @import
-│   ├── tokens.css       # color, tipografía, espaciado, radios, sombras, tiempos
-│   ├── base.css         # reset, tipografía base, primitivas de layout (.wrap, .grid, .section)
-│   ├── motion.css       # keyframes y utilidades de animación
-│   ├── components.css   # botones, cards, tags, .tech, marquee, navbar, formulario
-│   └── sections.css     # composición específica de cada sección
-└── js/
-    ├── data.js          # TODO el contenido del sitio (edita aquí, no en el HTML)
-    ├── dom.js           # utilidades puras: $, esc, icon, render, renderMarquee
-    ├── dom.test.js      # smoke test — `npm test`
-    ├── sections.js      # plantillas data → HTML de cada bloque
-    ├── motion.js        # reveal, contadores, parallax, pipeline
-    ├── ui.js            # navbar, scroll spy, menú móvil, formulario
-    └── main.js          # punto de entrada
-cv/                      # CV personal, ignorado por git (.gitignore) — ver aviso abajo
+  css/
+    tokens.css             Color, tipografía, espaciado, radios, sombras, tiempos
+    base.css               Reset, elementos nativos, layout primitivo, utilidades
+    motion.css             Keyframes y utilidades de animación
+    components.css         Piezas reutilizables (nav, botón, tarjeta, formulario…)
+    sections.css           Composición propia de cada sección
+  js/
+    data.js                TODO el contenido del sitio
+    dom.js                 Utilidades puras (escape, iconos, render)
+    sections.js            Plantillas data → HTML
+    ui.js                  Navegación, scroll spy, formulario
+    motion.js              Reveal, parallax, animación del pipeline
+    chrome.js              Cabecera y pie compartidos por las subpáginas
+    main.js                Punto de entrada del home
+    page.js                Punto de entrada de las subpáginas
+    dom.test.js            Suite de auditoría (`npm test`)
+  fonts/                   Geist y Geist Mono variables, subset latino (52 KB)
+  logos/                   SVG monocromos de tecnologías (Simple Icons, CC0)
+  favicon.svg · og-cover.png
 ```
 
-Ver [REFACTOR_REPORT.md](REFACTOR_REPORT.md) para el detalle del rediseño.
+---
 
-## Personalización
+## Cómo se edita
 
-| Qué cambiar | Dónde |
-|---|---|
-| Colores / tipografía / espaciado / sombras | `assets/css/tokens.css` — es la única fuente de verdad |
-| Servicios, problemas, KPIs, sectores, tecnologías, metodología, casos, recursos, FAQ | `assets/js/data.js` — añadir un objeto al array correspondiente añade una tarjeta, no hace falta tocar HTML |
-| Textos fijos (hero, títulos de sección) | Directamente en `index.html` |
-| URL de reserva de reunión | `site.bookingUrl` en `data.js`. Si es `null`, los CTAs llevan al formulario |
-| Email | Busca `raulmolinah.madrid@gmail.com` |
-| LinkedIn | Busca `linkedin.com/in/raulmolinahernandez` |
-| GitHub | Busca `github.com/StoneFly365` |
+### Cambiar contenido
 
-### ⚠ Antes de publicar
+Casi todo vive en [`assets/js/data.js`](assets/js/data.js). Añadir una tarjeta
+es añadir un objeto al array correspondiente; el marcado sale solo.
 
-1. **`cv/` está en `.gitignore`.** El enlace "Descargar CV" del footer y la tarjeta
-   "CV · PDF" de Recursos apuntan a `cv/cv_raul_molina_hernandez_2026.pdf`, que **no
-   se despliega**: en producción dan 404. Decide una de las dos:
-   quitar `cv/` del `.gitignore` y commitear el PDF, o cambiar ambos enlaces a LinkedIn.
-2. **`assets/og-cover.png`** (1200×630) no existe; el bloque `og:image` está comentado
-   en `index.html`. Sin él, LinkedIn comparte el enlace sin imagen.
-3. **`site.bookingUrl`** sigue a `null` en `data.js`: los CTAs "Reservar una reunión"
-   llevan al formulario. Al poner una URL de Calendly/Cal.com apuntan a ella solos.
+| Quiero…                        | Edito en `data.js`       |
+|--------------------------------|--------------------------|
+| Otro servicio                  | `services`               |
+| Otro escenario de encargo      | `approaches`             |
+| Otro proyecto de GitHub        | `projects`               |
+| Otra etapa de trayectoria      | `career`                 |
+| Otra capacidad de IA           | `aiCapabilities`         |
+| Otra tecnología del stack      | `techGroups`             |
+| Otra pregunta frecuente        | `faqs` **y** el JSON-LD `FAQPage` de `index.html` |
+| URL de calendario para los CTA | `site.bookingUrl`        |
 
-### Contenido que se reactiva cuando exista
+**Regla de este archivo:** sólo entra contenido real. Nada de `[PENDIENTE]`
+ni nombres de cliente inventados delante de alguien que está evaluando si te
+contrata. Lo que aún no existe se declara como lista vacía y su sección
+desaparece sola (así funciona hoy el blog).
 
-No hay ningún marcador de posición visible en producción — un `[PENDIENTE]` o un
-"Nombre Apellido" delante de un cliente cuesta más credibilidad de la que aporta el
-hueco reservado. Estas secciones se retiraron y vuelven en cuanto haya contenido real:
+### Publicar un artículo
 
-| Sección | Qué hace falta | Cómo se reactiva |
-|---|---|---|
-| Logos de cliente | Autorización de marca | `<img>` dentro de `#sectorsGrid`, sustituyendo las píldoras de sector |
-| Testimonios | Recomendaciones reales de LinkedIn | Array `testimonials` + una `<section>` con `.card` |
-| Blog | Al menos un artículo publicado | Array `blogPosts` con `href` + `<section>` con `.grid--3` |
-| KPIs adicionales | Cifras confirmadas | Un objeto más en `metrics`; el contador ya es automático |
-
-## Decisiones técnicas
-
-- **Sin build step**: GitHub Pages sirve estático; un bundler (Vite/Webpack) añadiría complejidad de CI sin necesidad real para este volumen de contenido. Los ES modules nativos ya dan separación de código sin esa dependencia.
-- **Datos separados del marcado** (`data.js`): añadir un servicio o un caso de éxito no debería requerir editar HTML repetido; se añade un objeto y `sections.js` lo pinta.
-- **CSS en cinco archivos, no en uno**: se cargan en paralelo sobre HTTP/2 y ninguno usa `@import` (que serializaría las descargas). A este tamaño el coste de red es despreciable frente a la mantenibilidad.
-- **Sin listeners de `scroll` para el trabajo pesado**: reveal, contadores, navbar y pipeline usan `IntersectionObserver` y dejan de observar en cuanto disparan.
-- **Formulario sin backend**: compone un `mailto:` con los datos ya validados y codificados. Para usar un endpoint real, añade `action`/`method` al `<form>` y elimina `initContactForm()`.
-- **Sin librería de carrusel externa**: marquee de CSS puro (loop con contenido duplicado + `translateX(-50%)`), sin dependencia de red ni request bloqueante.
-- **Un solo color de marca**: verde y neutros. El ámbar y el rojo existen sólo como *estado de ejecución* dentro del pipeline y el terminal; ninguna tarjeta los usa de adorno. Cualquier color nuevo en el sistema es una decisión, no un detalle.
-- **Un solo componente de herramienta** (`.tech`): el marquee del hero y la rejilla de tecnologías comparten pieza y plantilla. Antes había tres tratamientos visuales para lo mismo.
-- **Logos autoalojados**: `simple-icons@latest` en jsDelivr servía desde caché cinco iconos que ya no existen en el paquete (Playwright, AWS, Azure, Azure DevOps, OpenAI). Habrían desaparecido en silencio; ahora viven en `assets/logos/` (28 KB en total).
-- **Dos pesos por familia**: con `font-synthesis-weight:none`, pedir un peso no cargado degradaba en silencio al más cercano — de ahí que la jerarquía de títulos no fuera consistente.
-
-## Claude Code · Ponytail
-
-Ponytail es un modo de desarrollo para Claude Code que fuerza la solución más simple que funciona. Activo por defecto en este proyecto mediante startup hook.
-
-**Principio:** parar en el primer escalón que aguante — stdlib antes que librería, una línea antes que cincuenta, borrar antes que añadir.
-
-### Instalación
-
-Ponytail se activa automáticamente vía `.claude/settings.local.json`. Sin instalación manual.
-
-Si lo necesitas en otro proyecto, añade en `.claude/settings.json`:
-
-```json
-{
-  "hooks": {
-    "SessionStart": [
-      {
-        "matcher": "",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "echo 'PONYTAIL MODE ACTIVE — level: full'"
-          }
-        ]
-      }
-    ]
-  }
-}
+```bash
+cp blog/_plantilla.html blog/mi-articulo.html
 ```
 
-### Uso
+1. Sustituye los marcadores `{{...}}` del archivo, incluido el `<meta robots>`
+   (la plantilla viene en `noindex`).
+2. Añade el objeto a `posts` en `data.js`.
+3. Añade el `<item>` en `blog/feed.xml`.
+4. Añade la `<url>` en `sitemap.xml`.
+5. `npm test` — comprueba que el archivo del artículo existe y que la fecha
+   es válida.
 
-Escribe tu tarea con normalidad. Ponytail filtra en cada respuesta:
+### Publicar una landing SEO
 
-```
-"Añade caché a esta función"
-→ @lru_cache(maxsize=1000), no una clase custom
+Las siete landings existen con su estructura, su copy corto real, su JSON-LD
+y sus enlaces internos, pero **están en `noindex` y fuera del sitemap** a
+propósito: una página delgada indexada perjudica al dominio entero. Cuando
+termines el contenido de una:
 
-"Necesito validar emails"
-→ regex de una línea o stdlib, no una librería
+1. Cambia su `<meta name="robots">` a `index,follow,max-image-preview:large`.
+2. Borra el bloque `.wip` de esa página.
+3. Descomenta su `<url>` en `sitemap.xml`.
 
-"Crea un endpoint para X"
-→ mínimo que funciona, sin capas innecesarias
-```
+`npm test` verifica que esos tres pasos vayan juntos.
 
-### Comandos
+### Cambiar el diseño
 
-| Comando | Qué hace |
-|---|---|
-| `/ponytail-review` | Revisa el diff actual buscando qué borrar o simplificar |
-| `/ponytail-audit` | Audita todo el repo: lista qué borrar, simplificar o reemplazar |
-| `/ponytail-debt` | Lista los shortcuts marcados con `ponytail:` en el código |
-| `/ponytail-gain` | Muestra el impacto medido: menos código, menos coste, más velocidad |
-| `/ponytail-help` | Referencia rápida de todos los modos y comandos |
-| `/ponytail lite` | Reduce la intensidad del filtro |
-| `/ponytail ultra` | Máxima austeridad |
-| `stop ponytail` | Desactiva el modo y vuelve al comportamiento normal |
+Todo el color, la tipografía y el espaciado salen de
+[`assets/css/tokens.css`](assets/css/tokens.css). Fuera de ese archivo no hay
+valores mágicos: cambiar `--accent` cambia el sitio entero.
 
-### Marcas en el código
+Dos reglas del sistema que conviene no romper:
 
-Cuando ponytail deja un shortcut deliberado, lo marca con un comentario:
+- **Un solo gesto cromático.** El acento va siempre del azul (`--accent`) al
+  violeta (`--accent-2`), en ese orden. No hay un tercer color decorativo.
+- **El verde es estado, no decoración.** `--pass` sólo aparece donde algo ha
+  pasado: el pipeline, el terminal, un KPI de resultado. Si una tarjeta se
+  pinta de verde, el verde deja de significar nada.
 
-```js
-// ponytail: global lock, per-account locks if throughput matters
-```
+---
 
-Usa `/ponytail-debt` para listar todos estos marcadores.
+## Qué comprueba `npm test`
+
+La suite existe para cazar lo que se rompe en silencio y no se nota hasta
+que ya está desplegado:
+
+- utilidades puras de `dom.js` (escape de HTML, reescritura de atributos);
+- un slug de tecnología sin su SVG (se vería como un hueco vacío, sin error);
+- **enlaces internos rotos** en todas las páginas, incluidas rutas absolutas;
+- `title`, `description`, `canonical` y `og:image` presentes y con la longitud
+  que Google no trunca;
+- canonical que no coincide con la ruta real del archivo;
+- ids duplicados en un documento;
+- páginas sin `skip-link`, sin `<main id="main">` o con más de un `<h1>`;
+- `target="_blank"` sin `rel="noopener"`;
+- landings en `noindex` que se hayan colado en el sitemap;
+- **enlaces al CV en PDF**, que no se publica: `cv/` está en `.gitignore`, así
+  que un enlace ahí funcionaría en local y daría 404 en producción;
+- forma de los datos de `data.js` (servicios, proyectos, trayectoria, posts).
+
+---
+
+## Decisiones que conviene conocer antes de tocar nada
+
+**Sin framework y sin build.** El contenido se renderiza en el navegador desde
+`data.js`. La ventaja es que no hay nada que compilar y que publicar es un
+`git push`. El coste está anotado abajo, en limitaciones.
+
+**Fuentes autoalojadas.** Geist Variable en woff2 subset latino, 52 KB los dos
+ejes completos. Cero peticiones a terceros, cero CLS y una petición menos
+bloqueando el render que con Google Fonts.
+
+**Cero imágenes de contenido.** Las portadas de proyecto son gradientes CSS y
+los logos de tecnología son SVG teñidos con `mask-image`. Nada pesado que
+descargar y ninguna miniatura que se quede obsoleta. La única imagen del sitio
+es `og-cover.png`, y sólo se descarga cuando alguien comparte el enlace.
+
+**Formulario sin backend.** Compone un `mailto:` con los datos ya validados
+por el navegador. Para usar un endpoint real (Formspree, Cloudflare Worker):
+añade `action`/`method` al `<form>` de `index.html` y borra
+`initContactForm()` de `ui.js`.
+
+**Accesibilidad.** Contraste mínimo 4.5:1 en todo el texto, un único anillo de
+foco en `:focus-visible`, animaciones que se apagan con
+`prefers-reduced-motion` sin dejar contenido oculto, y jerarquía de encabezados
+sin saltos (los títulos de columna del pie son `<p>`, no `<h4>`: son etiquetas
+de navegación, no secciones del documento).
+
+---
+
+## Resultados de auditoría
+
+Lighthouse 13, servidor local, última ejecución:
+
+| Página          | Escritorio (P/A/BP/SEO)  | Móvil (P/A/BP/SEO)      |
+|-----------------|--------------------------|-------------------------|
+| Home            | 100 / 100 / 100 / 100    | 97 / 100 / 100 / 100    |
+| Blog            | 100 / 100 / 100 / 100    | 98 / 100 / 100 / 100    |
+| Mentoría        | 100 / 100 / 100 / 100    | 97 / 100 / 100 / 100    |
+| Landing `/qa/`  | 100 / 100 / 100 / **66** | 98 / 100 / 100 / **66** |
+
+El 66 de SEO en las landings es correcto: Lighthouse penaliza el `noindex`
+deliberado. Subirá a 100 en cuanto se publique su contenido.
+
+---
+
+## Limitaciones conocidas
+
+- **Renderizado en cliente.** Google ejecuta JavaScript, pero el HTML servido
+  sólo lleva el `<h1>`, los `<h2>`, los `lead` de cada sección, los `meta` y el
+  JSON-LD. Las tarjetas se pintan después. Si algún día el SEO de esas tarjetas
+  importa, la solución es un script de prerenderizado que escriba el HTML a
+  partir de `data.js` antes de commitear — el sitio seguiría siendo estático.
+- **CSS repartido en cinco archivos.** Son cinco peticiones bloqueantes. Con
+  HTTP/2 apenas cuesta, pero es lo que separa el 97 del 100 en móvil.
+- **Casos de éxito anonimizados.** Sustituir por casos con nombre y logo en
+  cuanto haya autorización del cliente: un logo real convierte más que
+  "sector e-commerce".
+
+---
+
+## Despliegue
+
+GitHub Pages sirve la rama por defecto. No hay nada que construir.
+
+Si algún día se mueve a un dominio propio, hay que cambiar el prefijo
+`/raul-qa-devops-web/` de las rutas absolutas de `404.html` por `/`.
 
 ## Licencia
 
-MIT
+MIT — ver [LICENSE](LICENSE). Los logos de `assets/logos/` son de
+[Simple Icons](https://simpleicons.org) (CC0). Geist es de Vercel (OFL).

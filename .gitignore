@@ -3,4 +3,6 @@ node_modules/
 Thumbs.db
 .vscode/
 *.log
+
+# El CV no se publica: para la trayectoria completa, la web enlaza a LinkedIn.
 cv/
