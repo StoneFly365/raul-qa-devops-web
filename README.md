@@ -20,6 +20,24 @@ npm test         # suite de auditoría — 20 comprobaciones
 
 ---
 
+## Enlaces
+
+| Qué                | Dónde |
+|--------------------|-------|
+| Local              | http://localhost:3000 |
+| Producción         | https://stonefly365.github.io/raul-qa-devops-web/ |
+| Repositorio        | https://github.com/StoneFly365/raul-qa-devops-web |
+| GitHub (perfil)    | https://github.com/StoneFly365 |
+| LinkedIn           | https://www.linkedin.com/in/raulmolinahernandez/ |
+| RSS del blog       | https://stonefly365.github.io/raul-qa-devops-web/blog/feed.xml |
+| Sitemap            | https://stonefly365.github.io/raul-qa-devops-web/sitemap.xml |
+
+Estas URLs no son configuración: viven en `assets/js/data.js` (`site.*`,
+`projects[].url`) y en los `canonical` de cada página. Esta tabla es un atajo
+para consultarlas, no un sitio donde cambiarlas.
+
+---
+
 ## Pendiente
 
 - **⏳ Agenda online.** `site.bookingUrl` en `data.js` sigue a `null`. En cuanto
