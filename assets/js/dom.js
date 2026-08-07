@@ -47,14 +47,17 @@ export const fmtDate = (iso) => new Date(`${iso}T00:00:00`).toLocaleDateString('
   day: 'numeric', month: 'long', year: 'numeric',
 });
 
+/* Lista de items → HTML. Puro y sin DOM: lo usa render() en el navegador
+   y el prerender en Node para dejar el mismo HTML escrito en el estático. */
+export const renderToString = (items, template, { stagger = false } = {}) =>
+  items.map((item, i) => (stagger ? withIndex(template(item, i), i) : template(item, i))).join('');
+
 /* Escribe una lista de items renderizados en un contenedor.
    Devuelve el contenedor (o null si no existe en esta página, que es
    lo normal: el mismo módulo sirve al home y a las subpáginas). */
-export function render(selector, items, template, { stagger = false } = {}) {
+export function render(selector, items, template, opts = {}) {
   const host = $(selector);
   if (!host) return null;
-  host.innerHTML = items
-    .map((item, i) => (stagger ? withIndex(template(item, i), i) : template(item, i)))
-    .join('');
+  host.innerHTML = renderToString(items, template, opts);
   return host;
 }

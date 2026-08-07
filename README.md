@@ -13,7 +13,8 @@ GitHub Pages.
 
 ```bash
 npm run dev      # live-server en http://localhost:3000
-npm test         # suite de auditoría — 20 comprobaciones
+npm run build    # prerenderiza el home en index.html (tras editar data.js)
+npm test         # suite de auditoría — 21 comprobaciones
 ```
 
 `npm test` no necesita instalar nada: usa el runner nativo de Node (≥ 18).
@@ -115,6 +116,10 @@ es añadir un objeto al array correspondiente; el marcado sale solo.
 ni nombres de cliente inventados delante de alguien que está evaluando si te
 contrata. Lo que aún no existe se declara como lista vacía y su sección
 desaparece sola (así funciona hoy el blog).
+
+**Tras editar `data.js`, ejecuta `npm run build`** y commitea el `index.html`
+resultante: el contenido del home también se prerenderiza en el estático
+(sección [Prerender](#prerender)). `npm test` falla si se te olvida.
 
 ### Publicar un artículo
 
@@ -226,11 +231,6 @@ deliberado. Subirá a 100 en cuanto se publique su contenido.
 
 ## Limitaciones conocidas
 
-- **Renderizado en cliente.** Google ejecuta JavaScript, pero el HTML servido
-  sólo lleva el `<h1>`, los `<h2>`, los `lead` de cada sección, los `meta` y el
-  JSON-LD. Las tarjetas se pintan después. Si algún día el SEO de esas tarjetas
-  importa, la solución es un script de prerenderizado que escriba el HTML a
-  partir de `data.js` antes de commitear — el sitio seguiría siendo estático.
 - **CSS repartido en cinco archivos.** Son cinco peticiones bloqueantes. Con
   HTTP/2 apenas cuesta, pero es lo que separa el 97 del 100 en móvil.
 - **Casos de éxito anonimizados.** Sustituir por casos con nombre y logo en
@@ -239,9 +239,22 @@ deliberado. Subirá a 100 en cuanto se publique su contenido.
 
 ---
 
+## Prerender
+
+El contenido del home se pinta con JS a partir de `data.js`, pero también se
+escribe en `index.html` en tiempo de build con `npm run build`
+([`scripts/prerender.mjs`](scripts/prerender.mjs)). Así crawlers que no ejecutan
+JS (Bing, unfurl de LinkedIn/Slack, algunos bots de IA) y visitantes sin JS ven
+servicios, proyectos, trayectoria y FAQ, no una rejilla vacía.
+
+Sin duplicar contenido: usa las mismas plantillas que el navegador (`homeBlocks()`
+en `sections.js`). Es idempotente y `npm test` falla si `index.html` quedó
+desfasado respecto a `data.js` — obliga a reconstruir antes de desplegar.
+
 ## Despliegue
 
-GitHub Pages sirve la rama por defecto. No hay nada que construir.
+GitHub Pages sirve la rama por defecto. **Ejecuta `npm run build` y commitea el
+`index.html`** antes de publicar (o el gate de `npm test` te avisa).
 
 Si algún día se mueve a un dominio propio, hay que cambiar el prefijo
 `/raul-qa-devops-web/` de las rutas absolutas de `404.html` por `/`.

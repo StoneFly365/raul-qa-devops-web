@@ -17,37 +17,59 @@ const arrow = '<svg class="arrow" width="15" height="15" viewBox="0 0 24 24" fil
 
 const techPill = (t) => `<div class="tech">${techLogo(t)}<span>${esc(t.name)}</span></div>`;
 
-export function renderAll() {
-  /* ---- Hero: cifras de confianza -------------------------- */
-  render('#heroStats', heroStats, (s) => `
+const postByDate = () => [...posts].sort((a, b) => b.date.localeCompare(a.date));
+const postCard = (p, base = '') => `
+    <article class="card card--hover" data-reveal>
+      <div class="post-meta">
+        <time datetime="${esc(p.date)}">${esc(fmtDate(p.date))}</time>
+        ${p.readingTime ? `<span class="dim">· ${esc(p.readingTime)} de lectura</span>` : ''}
+      </div>
+      <h3>${esc(p.title)}</h3>
+      <p>${esc(p.excerpt)}</p>
+      <div class="tag-row">${(p.tags || []).map((t) => `<span class="tag">${esc(t)}</span>`).join('')}</div>
+      <div class="card-foot">
+        <a class="btn btn--quiet stretch" href="${base}${esc(p.slug)}.html">Leer artículo ${arrow}</a>
+      </div>
+    </article>`;
+
+/* =============================================================
+   BLOQUES DEL HOME — un único origen para el navegador y el prerender.
+   Cada bloque: { sel, items, template, opts }. renderAll() los escribe
+   en el DOM; scripts/prerender.mjs escribe el mismo HTML en el estático
+   para que crawlers y visitantes sin JS vean el contenido igual.
+   ============================================================= */
+export function homeBlocks() {
+  const blocks = [
+    /* ---- Hero: cifras de confianza ------------------------ */
+    { sel: '#heroStats', items: heroStats, template: (s) => `
     <div class="hstat">
       <span class="hstat-value">${esc(s.value)}</span>
       <span class="hstat-label">${esc(s.label)}</span>
-    </div>`);
+    </div>` },
 
-  /* ---- Pipeline (elemento de firma) ----------------------- */
-  render('#pipeStages', pipelineStages, (s) => `
+    /* ---- Pipeline (elemento de firma) --------------------- */
+    { sel: '#pipeStages', items: pipelineStages, template: (s) => `
     <div class="stage" role="listitem">
       <div class="stage-name"><span class="stage-dot" aria-hidden="true"></span>${esc(s.name)}</div>
       <p>${esc(s.desc)}</p>
       <span class="stage-time">${esc(s.time)}</span>
-    </div>`);
+    </div>` },
 
-  /* ---- Sectores ------------------------------------------- */
-  render('#sectorsGrid', sectors, (s) => `
-    <div class="sector">${icon(s.icon, 17)}<span>${esc(s.name)}</span></div>`);
+    /* ---- Sectores ----------------------------------------- */
+    { sel: '#sectorsGrid', items: sectors, template: (s) => `
+    <div class="sector">${icon(s.icon, 17)}<span>${esc(s.name)}</span></div>` },
 
-  /* ---- Problemas → soluciones ----------------------------- */
-  render('#problemsGrid', problems, (p) => `
+    /* ---- Problemas → soluciones --------------------------- */
+    { sel: '#problemsGrid', items: problems, template: (p) => `
     <article class="card card--hover" data-reveal>
       <span class="icon-box icon-box--muted icon-box--sm" aria-hidden="true">${icon(p.icon, 18)}</span>
       <h3>${esc(p.title)}</h3>
       <p>${esc(p.desc)}</p>
       <p class="problem-fix"><b>Lo que hago:</b> ${esc(p.solution)}</p>
-    </article>`, { stagger: true });
+    </article>`, opts: { stagger: true } },
 
-  /* ---- How I Help ----------------------------------------- */
-  render('#servicesGrid', services, (s) => `
+    /* ---- How I Help --------------------------------------- */
+    { sel: '#servicesGrid', items: services, template: (s) => `
     <article class="card card--hover service" id="svc-${esc(s.id)}" data-reveal>
       <div class="service-top">
         <span class="icon-box" aria-hidden="true">${icon(s.icon, 21)}</span>
@@ -61,10 +83,10 @@ export function renderAll() {
           Cómo trabajo en ${esc(s.title)} ${arrow}
         </a>
       </div>
-    </article>`, { stagger: true });
+    </article>`, opts: { stagger: true } },
 
-  /* ---- Cómo trabajo --------------------------------------- */
-  render('#casesGrid', approaches, (c) => `
+    /* ---- Cómo trabajo ------------------------------------- */
+    { sel: '#casesGrid', items: approaches, template: (c) => `
     <article class="card card--hover" data-reveal>
       <div class="tag-row"><span class="tag">${esc(c.tag)}</span></div>
       <h3>${esc(c.title)}</h3>
@@ -76,12 +98,12 @@ export function renderAll() {
       <div class="tag-row card-foot">
         ${c.kpis.map((k) => `<span class="tag tag--pass">${esc(k)}</span>`).join('')}
       </div>
-    </article>`, { stagger: true });
+    </article>`, opts: { stagger: true } },
 
-  /* ---- Proyectos ------------------------------------------ */
-  /* La portada es CSS, no una imagen: cero bytes que descargar, cero
-     peticiones y ninguna miniatura que se quede obsoleta. */
-  render('#projectsGrid', projects, (p) => `
+    /* ---- Proyectos ---------------------------------------- */
+    /* La portada es CSS, no una imagen: cero bytes que descargar, cero
+       peticiones y ninguna miniatura que se quede obsoleta. */
+    { sel: '#projectsGrid', items: projects, template: (p) => `
     <article class="card card--hover project${p.featured ? ' project--featured' : ''}" data-reveal>
       <div class="project-cover" style="--hue:${Number(p.cover.hue) || 0}deg" aria-hidden="true">
         <span class="project-glyph">${esc(p.cover.glyph)}</span>
@@ -97,10 +119,10 @@ export function renderAll() {
         </a>
         ${p.demo ? `<a class="btn btn--quiet" href="${esc(p.demo)}"${ext(true)}>Demo en vivo</a>` : ''}
       </div>
-    </article>`, { stagger: true });
+    </article>`, opts: { stagger: true } },
 
-  /* ---- Trayectoria profesional ---------------------------- */
-  render('#careerList', career, (c) => `
+    /* ---- Trayectoria profesional -------------------------- */
+    { sel: '#careerList', items: career, template: (c) => `
     <li class="career-item${c.now ? ' is-now' : ''}" data-reveal="left">
       <span class="career-node" aria-hidden="true"></span>
       <span class="career-period">${esc(c.period)}</span>
@@ -110,25 +132,25 @@ export function renderAll() {
         <p>${esc(c.desc)}</p>
         <div class="tag-row">${c.tags.map((t) => `<span class="tag">${esc(t)}</span>`).join('')}</div>
       </div>
-    </li>`, { stagger: true });
+    </li>`, opts: { stagger: true } },
 
-  /* ---- AI Engineering ------------------------------------- */
-  render('#aiGrid', aiCapabilities, (a) => `
+    /* ---- AI Engineering ----------------------------------- */
+    { sel: '#aiGrid', items: aiCapabilities, template: (a) => `
     <article class="card card--glass card--hover" data-reveal>
       <span class="icon-box icon-box--sm" aria-hidden="true">${icon(a.icon, 18)}</span>
       <h3>${esc(a.title)}</h3>
       <p>${esc(a.desc)}</p>
-    </article>`, { stagger: true });
+    </article>`, opts: { stagger: true } },
 
-  render('#aiStack', aiStack, (t) => `
+    { sel: '#aiStack', items: aiStack, template: (t) => `
     <div class="ai-tool">
       ${techLogo(t)}
       <span class="ai-tool-name">${esc(t.name)}</span>
       <span class="ai-tool-note">${esc(t.note)}</span>
-    </div>`, { stagger: true });
+    </div>`, opts: { stagger: true } },
 
-  /* ---- Metodología ---------------------------------------- */
-  render('#methodList', methodology, (m) => `
+    /* ---- Metodología -------------------------------------- */
+    { sel: '#methodList', items: methodology, template: (m) => `
     <li class="method-step" data-reveal>
       <span class="method-num" aria-hidden="true">${esc(m.step)}</span>
       <div>
@@ -136,17 +158,17 @@ export function renderAll() {
         <p>${esc(m.desc)}</p>
         <span class="method-out">entregable: <b>${esc(m.output)}</b></span>
       </div>
-    </li>`, { stagger: true });
+    </li>`, opts: { stagger: true } },
 
-  /* ---- Stack ---------------------------------------------- */
-  render('#techGroups', techGroups, (g) => `
+    /* ---- Stack -------------------------------------------- */
+    { sel: '#techGroups', items: techGroups, template: (g) => `
     <div class="tech-group" data-reveal>
       <h3>${esc(g.name)}</h3>
       <div class="tech-grid">${g.items.map(techPill).join('')}</div>
-    </div>`, { stagger: true });
+    </div>`, opts: { stagger: true } },
 
-  /* ---- Recursos ------------------------------------------- */
-  render('#resourcesGrid', resources, (r) => `
+    /* ---- Recursos ----------------------------------------- */
+    { sel: '#resourcesGrid', items: resources, template: (r) => `
     <article class="card card--hover" data-reveal>
       <span class="icon-box icon-box--muted icon-box--sm" aria-hidden="true">${icon(r.icon, 18)}</span>
       <span class="resource-type">${esc(r.type)}</span>
@@ -157,22 +179,38 @@ export function renderAll() {
           ${esc(r.cta)} ${arrow}
         </a>
       </div>
-    </article>`, { stagger: true });
+    </article>`, opts: { stagger: true } },
 
-  /* ---- FAQ ------------------------------------------------ */
-  /* `name="faq"` hace que el navegador cierre el resto al abrir uno:
-     acordeón exclusivo sin una línea de JavaScript. */
-  render('#faqList', faqs, (f) => `
+    /* ---- FAQ ---------------------------------------------- */
+    /* `name="faq"` hace que el navegador cierre el resto al abrir uno:
+       acordeón exclusivo sin una línea de JavaScript. */
+    { sel: '#faqList', items: faqs, template: (f) => `
     <details class="faq-item" name="faq">
       <summary>${esc(f.q)}</summary>
       <p>${esc(f.a)}</p>
-    </details>`);
+    </details>` },
 
-  /* ---- Sobre mí ------------------------------------------- */
-  /* <div> es el único envoltorio válido para agrupar dt/dd en un <dl>. */
-  render('#facts', facts, ([k, v]) => `
-    <div class="fact"><dt>${esc(k)}</dt><dd>${esc(v)}</dd></div>`);
+    /* ---- Sobre mí ----------------------------------------- */
+    /* <div> es el único envoltorio válido para agrupar dt/dd en un <dl>. */
+    { sel: '#facts', items: facts, template: ([k, v]) => `
+    <div class="fact"><dt>${esc(k)}</dt><dd>${esc(v)}</dd></div>` },
+  ];
 
+  /* Teaser del blog: sólo si hay artículos. Sin ellos, la sección se
+     retira en el navegador (renderPosts) y no se prerenderiza nada. */
+  if (posts.length) {
+    blocks.push({
+      sel: '#postsTeaser',
+      items: postByDate().slice(0, 3),
+      template: (p) => postCard(p, 'blog/'),
+      opts: { stagger: true },
+    });
+  }
+  return blocks;
+}
+
+export function renderAll() {
+  for (const { sel, items, template, opts } of homeBlocks()) render(sel, items, template, opts);
   renderPosts();
   wireBookingCtas();
 }
@@ -188,23 +226,9 @@ export function renderPosts() {
     return;
   }
 
-  const byDate = [...posts].sort((a, b) => b.date.localeCompare(a.date));
-  const card = (p, base = '') => `
-    <article class="card card--hover" data-reveal>
-      <div class="post-meta">
-        <time datetime="${esc(p.date)}">${esc(fmtDate(p.date))}</time>
-        ${p.readingTime ? `<span class="dim">· ${esc(p.readingTime)} de lectura</span>` : ''}
-      </div>
-      <h3>${esc(p.title)}</h3>
-      <p>${esc(p.excerpt)}</p>
-      <div class="tag-row">${(p.tags || []).map((t) => `<span class="tag">${esc(t)}</span>`).join('')}</div>
-      <div class="card-foot">
-        <a class="btn btn--quiet stretch" href="${base}${esc(p.slug)}.html">Leer artículo ${arrow}</a>
-      </div>
-    </article>`;
-
-  render('#postsTeaser', byDate.slice(0, 3), (p) => card(p, 'blog/'), { stagger: true });
-  render('#postList',    byDate,             (p) => card(p, ''),      { stagger: true });
+  const byDate = postByDate();
+  render('#postsTeaser', byDate.slice(0, 3), (p) => postCard(p, 'blog/'), { stagger: true });
+  render('#postList',    byDate,             (p) => postCard(p, ''),      { stagger: true });
   document.querySelector('[data-hide-if-posts]')?.remove();
 }
 

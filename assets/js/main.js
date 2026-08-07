@@ -6,10 +6,12 @@
 import { renderAll } from './sections.js';
 import { initMotion } from './motion.js';
 import { initUI } from './ui.js';
+import { initRain } from './rain.js';
 
 renderAll();
 initMotion();
 initUI();
+initRain();
 
 /* Ancla profunda al cargar: el CSS ya aplica scroll-padding-top, pero
    el contenido se inyecta después, así que hay que reposicionar. */

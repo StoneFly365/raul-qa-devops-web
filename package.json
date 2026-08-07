@@ -7,6 +7,7 @@
   "scripts": {
     "dev": "npx live-server --port=3000 --open=index.html",
     "start": "npx live-server --port=3000 --open=index.html",
+    "build": "node scripts/prerender.mjs",
     "test": "node --test \"assets/js/*.test.js\""
   },
   "keywords": ["qa", "quality-engineering", "devops", "ci-cd", "test-automation", "ai-engineering", "consulting"],

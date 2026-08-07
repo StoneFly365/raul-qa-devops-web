@@ -21,6 +21,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { esc, withIndex, icon, techLogo, fmtDate } from './dom.js';
 import { techGroups, aiStack, services, projects, career, posts, site } from './data.js';
+import { prerenderIndex } from '../../scripts/prerender.mjs';
 
 /* fileURLToPath y no url.pathname: la ruta del proyecto lleva un
    espacio y pathname lo devuelve como %20. */
@@ -243,6 +244,16 @@ test('las landings sin contenido extenso siguen en noindex y fuera del sitemap',
     assert.ok(!(noindex && enSitemap),
       `${s.page}: está en noindex pero aparece en el sitemap`);
   }
+});
+
+/* El contenido del home se inyecta con JS, pero también se prerenderiza
+   en el estático (npm run build) para que crawlers y visitantes sin JS
+   lo vean. Si alguien edita data.js y no reconstruye, index.html queda
+   desfasado: aquí se caza antes de desplegar. */
+test('index.html está prerenderizado y al día con data.js', () => {
+  const html = fs.readFileSync(path.join(ROOT, 'index.html'), 'utf8');
+  assert.equal(prerenderIndex(html), html,
+    'index.html desfasado: ejecuta `npm run build` y vuelve a commitear');
 });
 
 test('el canonical de cada página coincide con su ruta real', () => {

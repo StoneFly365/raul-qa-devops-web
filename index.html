@@ -159,6 +159,7 @@
      1 · HERO — quién soy, qué hago, qué resuelvo y qué hacer ahora.
      ============================================================ -->
 <section class="hero" id="top" aria-labelledby="hero-title">
+  <canvas id="heroRain" class="hero-rain" aria-hidden="true"></canvas>
   <div class="wrap hero-grid">
 
     <div class="hero-copy hero-anim">
@@ -179,7 +180,23 @@
         </a>
         <a class="btn btn--ghost btn--lg" href="#servicios">Cómo puedo ayudarte</a>
       </div>
-      <div class="hero-stats" id="heroStats" style="--d:320"></div>
+      <div class="hero-stats" id="heroStats" style="--d:320">
+    <div class="hstat">
+      <span class="hstat-value">15+</span>
+      <span class="hstat-label">años en QA &amp; DevOps</span>
+    </div>
+    <div class="hstat">
+      <span class="hstat-value">30+</span>
+      <span class="hstat-label">proyectos enterprise</span>
+    </div>
+    <div class="hstat">
+      <span class="hstat-value">10+</span>
+      <span class="hstat-label">sectores regulados</span>
+    </div>
+    <div class="hstat">
+      <span class="hstat-value">&lt;24h</span>
+      <span class="hstat-label">tiempo de respuesta</span>
+    </div></div>
     </div>
 
     <!-- Composición visual: tres superficies apiladas, no una imagen.
@@ -223,7 +240,27 @@
           <span id="pipeStatus" role="status">running…</span>
         </span>
       </div>
-      <div class="pipe-stages" id="pipeStages" role="list" aria-label="Etapas del pipeline de entrega"></div>
+      <div class="pipe-stages" id="pipeStages" role="list" aria-label="Etapas del pipeline de entrega">
+    <div class="stage" role="listitem">
+      <div class="stage-name"><span class="stage-dot" aria-hidden="true"></span>commit</div>
+      <p>Criterios de aceptación testables desde el primer día.</p>
+      <span class="stage-time">4s</span>
+    </div>
+    <div class="stage" role="listitem">
+      <div class="stage-name"><span class="stage-dot" aria-hidden="true"></span>build</div>
+      <p>Entornos reproducibles en GitHub Actions o Azure DevOps.</p>
+      <span class="stage-time">38s</span>
+    </div>
+    <div class="stage" role="listitem">
+      <div class="stage-name"><span class="stage-dot" aria-hidden="true"></span>test</div>
+      <p>Playwright y Karate, revisados por agentes de IA.</p>
+      <span class="stage-time">1m 52s</span>
+    </div>
+    <div class="stage" role="listitem">
+      <div class="stage-name"><span class="stage-dot" aria-hidden="true"></span>deploy</div>
+      <p>Entregas frecuentes y métricas DORA para negocio.</p>
+      <span class="stage-time">12s</span>
+    </div></div>
     </div>
   </div>
 </div>
@@ -239,7 +276,37 @@
       <p class="lead">Banca, seguros, energía y otros sectores regulados, con exigencia real
         de disponibilidad, trazabilidad y cumplimiento.</p>
     </header>
-    <div class="sectors" id="sectorsGrid" data-reveal="fade"></div>
+    <div class="sectors" id="sectorsGrid" data-reveal="fade">
+    <div class="sector"><svg width="17" height="17" viewBox="0 0 24 24" fill="none"
+     stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+     stroke-linejoin="round" aria-hidden="true"><path d="M3 21h18M4 21V10l8-6 8 6v11M9 21v-6h6v6M9 10h.01M15 10h.01M9 14h.01M15 14h.01"/></svg><span>Banca</span></div>
+    <div class="sector"><svg width="17" height="17" viewBox="0 0 24 24" fill="none"
+     stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+     stroke-linejoin="round" aria-hidden="true"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg><span>Seguros</span></div>
+    <div class="sector"><svg width="17" height="17" viewBox="0 0 24 24" fill="none"
+     stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+     stroke-linejoin="round" aria-hidden="true"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg><span>Energía</span></div>
+    <div class="sector"><svg width="17" height="17" viewBox="0 0 24 24" fill="none"
+     stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+     stroke-linejoin="round" aria-hidden="true"><path d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg><span>Retail</span></div>
+    <div class="sector"><svg width="17" height="17" viewBox="0 0 24 24" fill="none"
+     stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+     stroke-linejoin="round" aria-hidden="true"><path d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222"/></svg><span>Educación superior</span></div>
+    <div class="sector"><svg width="17" height="17" viewBox="0 0 24 24" fill="none"
+     stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+     stroke-linejoin="round" aria-hidden="true"><path d="M2.5 19h19M6 19l1.5-6.5L21 9l-1-2-13 2.5L4 6 2 6.5l1.5 4L2 12l.5 2 3-1"/></svg><span>Aviación y viajes</span></div>
+    <div class="sector"><svg width="17" height="17" viewBox="0 0 24 24" fill="none"
+     stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+     stroke-linejoin="round" aria-hidden="true"><path d="M4 17h16M5 17V10l2-5h10l2 5v7M8 21v-2m8 2v-2M4 13h16M7 6.5h10"/></svg><span>Transporte ferroviario</span></div>
+    <div class="sector"><svg width="17" height="17" viewBox="0 0 24 24" fill="none"
+     stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+     stroke-linejoin="round" aria-hidden="true"><path d="M5 17h14M6 17V9l2-3h8l2 3v8M9 17v-3h6v3M7 21l-1-4m11 4l1-4"/></svg><span>Automoción</span></div>
+    <div class="sector"><svg width="17" height="17" viewBox="0 0 24 24" fill="none"
+     stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+     stroke-linejoin="round" aria-hidden="true"><path d="M6 12h4m-2-2v4m7-3h.01M17.5 13h.01M15 8h4a3 3 0 013 3v2a3 3 0 01-3 3H5a3 3 0 01-3-3v-2a3 3 0 013-3h4"/></svg><span>Gaming</span></div>
+    <div class="sector"><svg width="17" height="17" viewBox="0 0 24 24" fill="none"
+     stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+     stroke-linejoin="round" aria-hidden="true"><path d="M12 20h.01M8.5 16.5a5 5 0 017 0M5 13a10 10 0 0114 0M2 9.5a15 15 0 0120 0"/></svg><span>Telecomunicaciones</span></div></div>
   </div>
 </section>
 
@@ -254,7 +321,55 @@
       <p class="lead">Seis síntomas que se repiten en casi todas las organizaciones — y lo
         que hago con cada uno.</p>
     </header>
-    <div class="grid grid--3" id="problemsGrid"></div>
+    <div class="grid grid--3" id="problemsGrid">
+    <article class="card card--hover" data-reveal style="--i:0">
+      <span class="icon-box icon-box--muted icon-box--sm" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+     stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+     stroke-linejoin="round" aria-hidden="true"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></span>
+      <h3>Regresión manual</h3>
+      <p>Cada release se bloquea días esperando pruebas a mano.</p>
+      <p class="problem-fix"><b>Lo que hago:</b> Framework mantenible ejecutándose en cada pull request.</p>
+    </article>
+    <article class="card card--hover" data-reveal style="--i:1">
+      <span class="icon-box icon-box--muted icon-box--sm" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+     stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+     stroke-linejoin="round" aria-hidden="true"><path d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></span>
+      <h3>CI/CD frágil</h3>
+      <p>Tests flaky que el equipo aprende a ignorar en vez de a confiar.</p>
+      <p class="problem-fix"><b>Lo que hago:</b> Quality gates deterministas y datos de test aislados.</p>
+    </article>
+    <article class="card card--hover" data-reveal style="--i:2">
+      <span class="icon-box icon-box--muted icon-box--sm" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+     stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+     stroke-linejoin="round" aria-hidden="true"><path d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-8.99-9.75h.008v.008h-.008v-.008z"/></svg></span>
+      <h3>Fallos en producción</h3>
+      <p>Los defectos críticos aparecen después del despliegue, no antes.</p>
+      <p class="problem-fix"><b>Lo que hago:</b> Shift-left: la calidad empieza en el requisito, no en el sprint final.</p>
+    </article>
+    <article class="card card--hover" data-reveal style="--i:3">
+      <span class="icon-box icon-box--muted icon-box--sm" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+     stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+     stroke-linejoin="round" aria-hidden="true"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg></span>
+      <h3>Sin estrategia de QA</h3>
+      <p>Testing reactivo, sin plan de riesgos compartido con negocio.</p>
+      <p class="problem-fix"><b>Lo que hago:</b> Estrategia por riesgo con métricas DORA visibles para dirección.</p>
+    </article>
+    <article class="card card--hover" data-reveal style="--i:4">
+      <span class="icon-box icon-box--muted icon-box--sm" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+     stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+     stroke-linejoin="round" aria-hidden="true"><path d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/></svg></span>
+      <h3>IA sin criterio</h3>
+      <p>Herramientas compradas y nunca integradas en el ciclo de calidad.</p>
+      <p class="problem-fix"><b>Lo que hago:</b> Agentes dentro del pipeline, con impacto medible en cada build.</p>
+    </article>
+    <article class="card card--hover" data-reveal style="--i:5">
+      <span class="icon-box icon-box--muted icon-box--sm" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+     stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+     stroke-linejoin="round" aria-hidden="true"><path d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z"/></svg></span>
+      <h3>Equipo atascado</h3>
+      <p>Más tiempo re-ejecutando pruebas que diseñando cobertura nueva.</p>
+      <p class="problem-fix"><b>Lo que hago:</b> Transferencia de conocimiento para que el equipo avance solo.</p>
+    </article></div>
   </div>
 </section>
 
@@ -269,7 +384,103 @@
       <p class="lead">Del diagnóstico inicial a la ejecución técnica del día a día. Se puede
         empezar por cualquiera de ellos.</p>
     </header>
-    <div class="grid grid--3" id="servicesGrid"></div>
+    <div class="grid grid--3" id="servicesGrid">
+    <article class="card card--hover service" id="svc-qa-engineering" data-reveal style="--i:0">
+      <div class="service-top">
+        <span class="icon-box" aria-hidden="true"><svg width="21" height="21" viewBox="0 0 24 24" fill="none"
+     stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+     stroke-linejoin="round" aria-hidden="true"><path d="M12 21a9 9 0 100-18 9 9 0 000 18zm0-4.5a4.5 4.5 0 100-9 4.5 4.5 0 000 9zm0-3a1.5 1.5 0 100-3 1.5 1.5 0 000 3z"/></svg></span>
+        <span class="tag">estrategia</span>
+      </div>
+      <h3>QA Engineering</h3>
+      <p>De testing reactivo a ingeniería de calidad integrada en el desarrollo.</p>
+      <ul class="checks"><li>Estrategia basada en riesgo, no en volumen de casos</li><li>Criterios de aceptación testables desde el requisito</li><li>Métricas que dirección entiende y usa para decidir</li></ul>
+      <div class="card-foot">
+        <a class="btn btn--quiet stretch" href="qa/">
+          Cómo trabajo en QA Engineering <svg class="arrow" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+    </article>
+    <article class="card card--hover service" id="svc-test-automation" data-reveal style="--i:1">
+      <div class="service-top">
+        <span class="icon-box" aria-hidden="true"><svg width="21" height="21" viewBox="0 0 24 24" fill="none"
+     stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+     stroke-linejoin="round" aria-hidden="true"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg></span>
+        <span class="tag">automatización</span>
+      </div>
+      <h3>Test Automation</h3>
+      <p>Frameworks E2E, API y contrato que tu equipo mantiene sin depender de mí.</p>
+      <ul class="checks"><li>Playwright, Karate DSL, Cypress y WebdriverIO</li><li>Suites deterministas: se acaba el &quot;vuelve a lanzarlo&quot;</li><li>Regresión completa en minutos, en cada pull request</li></ul>
+      <div class="card-foot">
+        <a class="btn btn--quiet stretch" href="test-automation/">
+          Cómo trabajo en Test Automation <svg class="arrow" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+    </article>
+    <article class="card card--hover service" id="svc-devops" data-reveal style="--i:2">
+      <div class="service-top">
+        <span class="icon-box" aria-hidden="true"><svg width="21" height="21" viewBox="0 0 24 24" fill="none"
+     stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+     stroke-linejoin="round" aria-hidden="true"><path d="M4.5 12a7.5 7.5 0 0113.06-5.04M19.5 12a7.5 7.5 0 01-13.06 5.04M16.5 3.75h3.75v3.75M7.5 20.25H3.75V16.5"/></svg></span>
+        <span class="tag">entrega</span>
+      </div>
+      <h3>DevOps</h3>
+      <p>Entornos que no fallan y métricas que no se estiman, para entregar a diario.</p>
+      <ul class="checks"><li>Entornos de prueba efímeros, creados y destruidos por el pipeline</li><li>Contenedores que acaban con el &quot;en mi máquina funciona&quot;</li><li>Métricas DORA instrumentadas, no estimadas</li></ul>
+      <div class="card-foot">
+        <a class="btn btn--quiet stretch" href="devops/">
+          Cómo trabajo en DevOps <svg class="arrow" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+    </article>
+    <article class="card card--hover service" id="svc-cicd" data-reveal style="--i:3">
+      <div class="service-top">
+        <span class="icon-box" aria-hidden="true"><svg width="21" height="21" viewBox="0 0 24 24" fill="none"
+     stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+     stroke-linejoin="round" aria-hidden="true"><path d="M6 3v12m0 0a3 3 0 103 3 3 3 0 00-3-3zm0-12a3 3 0 100 6 3 3 0 000-6zm12 0a3 3 0 100 6 3 3 0 000-6zm0 6c0 6-12 3-12 9"/></svg></span>
+        <span class="tag">pipelines</span>
+      </div>
+      <h3>CI/CD</h3>
+      <p>Pipelines que bloquean un release roto antes de que llegue a producción.</p>
+      <ul class="checks"><li>Quality gates que el equipo respeta, no esquiva</li><li>GitHub Actions y Azure DevOps de punta a punta</li><li>Paralelización y caché: pipelines de minutos, no de horas</li></ul>
+      <div class="card-foot">
+        <a class="btn btn--quiet stretch" href="github-actions/">
+          Cómo trabajo en CI/CD <svg class="arrow" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+    </article>
+    <article class="card card--hover service" id="svc-solution-consulting" data-reveal style="--i:4">
+      <div class="service-top">
+        <span class="icon-box" aria-hidden="true"><svg width="21" height="21" viewBox="0 0 24 24" fill="none"
+     stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+     stroke-linejoin="round" aria-hidden="true"><path d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z"/></svg></span>
+        <span class="tag">preventa</span>
+      </div>
+      <h3>Solution Consulting</h3>
+      <p>El puente entre lo que negocio necesita y lo que ingeniería puede construir.</p>
+      <ul class="checks"><li>Diseño de solución y estimación defendible</li><li>Interlocución técnica en preventa y comité</li><li>Roadmap priorizado por impacto y esfuerzo</li></ul>
+      <div class="card-foot">
+        <a class="btn btn--quiet stretch" href="solution-consulting/">
+          Cómo trabajo en Solution Consulting <svg class="arrow" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+    </article>
+    <article class="card card--hover service" id="svc-ai-engineering" data-reveal style="--i:5">
+      <div class="service-top">
+        <span class="icon-box" aria-hidden="true"><svg width="21" height="21" viewBox="0 0 24 24" fill="none"
+     stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+     stroke-linejoin="round" aria-hidden="true"><path d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/></svg></span>
+        <span class="tag">ia aplicada</span>
+      </div>
+      <h3>AI Engineering</h3>
+      <p>Agentes y LLMs dentro del ciclo de entrega, con resultado medible.</p>
+      <ul class="checks"><li>Claude Code, MCP y GitHub Copilot en el pipeline</li><li>Generación y mantenimiento asistido de tests</li><li>Productividad medida, no prometida</li></ul>
+      <div class="card-foot">
+        <a class="btn btn--quiet stretch" href="ai-engineering/">
+          Cómo trabajo en AI Engineering <svg class="arrow" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+    </article></div>
   </div>
 </section>
 
@@ -289,7 +500,103 @@
       <p class="lead">No vendo diapositivas. Todo lo que enseño está en GitHub, se ejecuta y
         se puede leer línea a línea.</p>
     </header>
-    <div class="grid grid--3" id="projectsGrid"></div>
+    <div class="grid grid--3" id="projectsGrid">
+    <article class="card card--hover project" data-reveal style="--i:0">
+      <div class="project-cover" style="--hue:0deg" aria-hidden="true">
+        <span class="project-glyph">▣</span>
+        <span class="project-repo">karate-exercises</span>
+      </div>
+      <div class="tag-row"><span class="tag tag--accent">Test Automation</span></div>
+      <h3>Framework de API testing con Karate DSL</h3>
+      <p>Plantilla Maven para pruebas de API y de contrato con Karate: ejecución en paralelo, filtrado por tags (@smokeTest, @regression) y configuración por entorno, contenedorizada con Docker.</p>
+      <ul class="project-tech"><li>Karate DSL</li><li>Java</li><li>Maven</li><li>Docker</li></ul>
+      <div class="card-foot project-links">
+        <a class="btn btn--quiet stretch" href="https://github.com/StoneFly365/karate-exercises" target="_blank" rel="noopener">
+          Ver código <svg class="arrow" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg><span class="visually-hidden">de Framework de API testing con Karate DSL en GitHub</span>
+        </a>
+        
+      </div>
+    </article>
+    <article class="card card--hover project" data-reveal style="--i:1">
+      <div class="project-cover" style="--hue:28deg" aria-hidden="true">
+        <span class="project-glyph">⬡</span>
+        <span class="project-repo">devsecops-pipeline-sonarqube-defectdojo</span>
+      </div>
+      <div class="tag-row"><span class="tag tag--accent">CI/CD</span></div>
+      <h3>Quality Gate propio en GitHub Actions</h3>
+      <p>Pipeline con SonarQube y DefectDojo sobre una aplicación de referencia: Quality Gate propio de 13 condiciones que bloquea el merge y hallazgos centralizados en un único panel.</p>
+      <ul class="project-tech"><li>GitHub Actions</li><li>SonarQube</li><li>DefectDojo</li><li>Docker</li></ul>
+      <div class="card-foot project-links">
+        <a class="btn btn--quiet stretch" href="https://github.com/StoneFly365/devsecops-pipeline-sonarqube-defectdojo" target="_blank" rel="noopener">
+          Ver código <svg class="arrow" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg><span class="visually-hidden">de Quality Gate propio en GitHub Actions en GitHub</span>
+        </a>
+        
+      </div>
+    </article>
+    <article class="card card--hover project project--featured" data-reveal style="--i:2">
+      <div class="project-cover" style="--hue:56deg" aria-hidden="true">
+        <span class="project-glyph">◈</span>
+        <span class="project-repo">playwright-demo-ia-mcp</span>
+      </div>
+      <div class="tag-row"><span class="tag tag--accent">AI Engineering</span><span class="tag tag--accent">CI/CD</span></div>
+      <h3>E2E con MCP y Claude Code</h3>
+      <p>Pipeline público que ejecuta la suite E2E, revisa los selectores frágiles con un agente y genera un informe ejecutivo en cada build.</p>
+      <ul class="project-tech"><li>Playwright</li><li>MCP</li><li>Claude Code</li><li>GitHub Actions</li></ul>
+      <div class="card-foot project-links">
+        <a class="btn btn--quiet stretch" href="https://github.com/StoneFly365/playwright-demo-ia-mcp" target="_blank" rel="noopener">
+          Ver código <svg class="arrow" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg><span class="visually-hidden">de E2E con MCP y Claude Code en GitHub</span>
+        </a>
+        
+      </div>
+    </article>
+    <article class="card card--hover project" data-reveal style="--i:3">
+      <div class="project-cover" style="--hue:84deg" aria-hidden="true">
+        <span class="project-glyph">⌗</span>
+        <span class="project-repo">data-quality-ia</span>
+      </div>
+      <div class="tag-row"><span class="tag tag--accent">AI Engineering</span></div>
+      <h3>Calidad del dato con IA</h3>
+      <p>Detección de anomalías en datos y reducción de incidencias en producción mediante modelos de lenguaje sobre los propios flujos de negocio.</p>
+      <ul class="project-tech"><li>TypeScript</li><li>LLM</li><li>Data Quality</li></ul>
+      <div class="card-foot project-links">
+        <a class="btn btn--quiet stretch" href="https://github.com/StoneFly365/data-quality-ia" target="_blank" rel="noopener">
+          Ver código <svg class="arrow" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg><span class="visually-hidden">de Calidad del dato con IA en GitHub</span>
+        </a>
+        
+      </div>
+    </article>
+    <article class="card card--hover project" data-reveal style="--i:4">
+      <div class="project-cover" style="--hue:112deg" aria-hidden="true">
+        <span class="project-glyph">❯</span>
+        <span class="project-repo">faster-whisper</span>
+      </div>
+      <div class="tag-row"><span class="tag tag--accent">AI Engineering</span><span class="tag tag--accent">Developer Productivity</span></div>
+      <h3>De reunión grabada a plan de pruebas</h3>
+      <p>Transcribe vídeo con faster-whisper y, mediante una skill propia de Claude Code, genera un plan de pruebas en Markdown listo para llevar a Playwright.</p>
+      <ul class="project-tech"><li>Python</li><li>faster-whisper</li><li>Claude Code</li></ul>
+      <div class="card-foot project-links">
+        <a class="btn btn--quiet stretch" href="https://github.com/StoneFly365/faster-whisper" target="_blank" rel="noopener">
+          Ver código <svg class="arrow" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg><span class="visually-hidden">de De reunión grabada a plan de pruebas en GitHub</span>
+        </a>
+        
+      </div>
+    </article>
+    <article class="card card--hover project" data-reveal style="--i:5">
+      <div class="project-cover" style="--hue:140deg" aria-hidden="true">
+        <span class="project-glyph">⇄</span>
+        <span class="project-repo">api-playwright-reqres</span>
+      </div>
+      <div class="tag-row"><span class="tag tag--accent">Test Automation</span></div>
+      <h3>Testing de APIs con Playwright</h3>
+      <p>Suite de pruebas de API sobre ReqRes: validación de endpoints, esquemas de respuesta y escenarios de error reales.</p>
+      <ul class="project-tech"><li>Playwright</li><li>TypeScript</li><li>API Testing</li></ul>
+      <div class="card-foot project-links">
+        <a class="btn btn--quiet stretch" href="https://github.com/StoneFly365/api-playwright-reqres" target="_blank" rel="noopener">
+          Ver código <svg class="arrow" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg><span class="visually-hidden">de Testing de APIs con Playwright en GitHub</span>
+        </a>
+        
+      </div>
+    </article></div>
     <div class="section-foot" data-reveal>
       <a class="btn btn--ghost" href="https://github.com/StoneFly365" target="_blank" rel="noopener">
         Ver todos los repositorios
@@ -324,7 +631,43 @@
       <p class="lead">El patrón se repite entre sectores y tamaños de equipo. Esto es lo que
         hago en cada una; las cifras las ponemos sobre tu contexto, no sobre el mío.</p>
     </header>
-    <div class="grid grid--2" id="casesGrid"></div>
+    <div class="grid grid--2" id="casesGrid">
+    <article class="card card--hover" data-reveal style="--i:0">
+      <div class="tag-row"><span class="tag">Regresión manual</span></div>
+      <h3>Cuando la regresión bloquea cada release</h3>
+      <dl class="case-body">
+        <div><dt>Situación</dt><dd>El equipo dedica el final de cada ciclo a ejecutar casos a mano. La release depende de que alguien termine a tiempo y no queda margen para diseñar cobertura nueva.</dd></div>
+        <div><dt>Enfoque</dt><dd>Empiezo por los flujos críticos de negocio, no por la cobertura total: framework E2E con Playwright, datos de test aislados por ejecución y ejecución en cada pull request. El quality gate llega después, cuando la suite ya es fiable.</dd></div>
+        <div class="is-result"><dt>A qué se llega</dt><dd>La regresión deja de ser un hito del calendario y pasa a ser un paso del pipeline. QA recupera el tiempo para lo que no se puede automatizar.</dd></div>
+      </dl>
+      <div class="tag-row card-foot">
+        <span class="tag tag--pass">Playwright</span><span class="tag tag--pass">Datos aislados</span><span class="tag tag--pass">Ejecución en cada PR</span>
+      </div>
+    </article>
+    <article class="card card--hover" data-reveal style="--i:1">
+      <div class="tag-row"><span class="tag">Integraciones frágiles</span></div>
+      <h3>Cuando un cambio de backend rompe a terceros</h3>
+      <dl class="case-body">
+        <div><dt>Situación</dt><dd>Los contratos entre servicios viven en la documentación, no en el pipeline. Un cambio aparentemente menor rompe a un consumidor y se descubre en producción.</dd></div>
+        <div><dt>Enfoque</dt><dd>Pruebas de contrato con Karate DSL como paso obligatorio en el merge, más un mock server para que los equipos consumidores dejen de esperarse entre sí.</dd></div>
+        <div class="is-result"><dt>A qué se llega</dt><dd>Los breaking changes aparecen en CI, delante de quien los ha escrito, en vez de en una llamada de incidencia de madrugada.</dd></div>
+      </dl>
+      <div class="tag-row card-foot">
+        <span class="tag tag--pass">Karate DSL</span><span class="tag tag--pass">Contract testing</span><span class="tag tag--pass">Mock server</span>
+      </div>
+    </article>
+    <article class="card card--hover" data-reveal style="--i:2">
+      <div class="tag-row"><span class="tag">Dependencia externa</span></div>
+      <h3>Cuando el conocimiento se va con el consultor</h3>
+      <dl class="case-body">
+        <div><dt>Situación</dt><dd>La mejora de calidad depende de una persona de fuera. Mientras está, funciona; cuando termina el contrato la suite se degrada y nadie sabe por qué falla.</dd></div>
+        <div><dt>Enfoque</dt><dd>Mentoring técnico y pair-programming sobre el código real del cliente, documentación viva en el propio repositorio y rotación del rol de owner de la suite desde el primer mes.</dd></div>
+        <div class="is-result"><dt>A qué se llega</dt><dd>El objetivo del encargo es que deje de hacer falta: el equipo mantiene y amplía la suite sin soporte externo.</dd></div>
+      </dl>
+      <div class="tag-row card-foot">
+        <span class="tag tag--pass">Pair-programming</span><span class="tag tag--pass">Documentación viva</span><span class="tag tag--pass">Traspaso desde el día uno</span>
+      </div>
+    </article></div>
   </div>
 </section>
 
@@ -339,7 +682,57 @@
       <p class="lead">Quince años recorriendo el mismo problema desde todos sus ángulos:
         el tester, el automatizador, el líder, el consultor.</p>
     </header>
-    <ol class="career" id="careerList"></ol>
+    <ol class="career" id="careerList">
+    <li class="career-item" data-reveal="left" style="--i:0">
+      <span class="career-node" aria-hidden="true"></span>
+      <span class="career-period">2011 — 2014</span>
+      <div class="career-body">
+        <h3>QA Engineer</h3>
+        <p class="career-org">MTP · everis · Imaweb</p>
+        <p>Diseño y ejecución de pruebas funcionales en banca, telecomunicaciones y entornos Host. Aprendí que un defecto encontrado tarde cuesta veinte veces más.</p>
+        <div class="tag-row"><span class="tag">Testing funcional</span><span class="tag">Gestión de defectos</span><span class="tag">Sector financiero</span></div>
+      </div>
+    </li>
+    <li class="career-item" data-reveal="left" style="--i:1">
+      <span class="career-node" aria-hidden="true"></span>
+      <span class="career-period">2015 — 2019</span>
+      <div class="career-body">
+        <h3>Automation Engineer</h3>
+        <p class="career-org">Leda MC · BBVA · Exceltic</p>
+        <p>Frameworks de automatización web y móvil, revisión de pull requests con foco en calidad y definición de estándares de testing para equipos de desarrollo.</p>
+        <div class="tag-row"><span class="tag">Selenium</span><span class="tag">Cucumber</span><span class="tag">Jenkins</span><span class="tag">Appium</span></div>
+      </div>
+    </li>
+    <li class="career-item" data-reveal="left" style="--i:2">
+      <span class="career-node" aria-hidden="true"></span>
+      <span class="career-period">2019 — 2022</span>
+      <div class="career-body">
+        <h3>QA Lead</h3>
+        <p class="career-org">Sngular · Z1 · Clicars</p>
+        <p>Liderazgo de equipos de QA, cultura de calidad y organización de proyectos. Primera exposición seria a Kubernetes, Docker y entornos efímeros de pruebas.</p>
+        <div class="tag-row"><span class="tag">Liderazgo</span><span class="tag">Cypress</span><span class="tag">Docker</span><span class="tag">Kubernetes</span></div>
+      </div>
+    </li>
+    <li class="career-item" data-reveal="left" style="--i:3">
+      <span class="career-node" aria-hidden="true"></span>
+      <span class="career-period">2023 — 2025</span>
+      <div class="career-body">
+        <h3>Quality Engineer &amp; DevOps</h3>
+        <p class="career-org">BBVA Next · iryo · itegGO</p>
+        <p>Estrategias de automatización para banca integradas en CI/CD, mentoring técnico y optimización de procesos QA en organizaciones de varios cientos de personas.</p>
+        <div class="tag-row"><span class="tag">Playwright</span><span class="tag">Karate DSL</span><span class="tag">CI/CD</span><span class="tag">Mentoring</span></div>
+      </div>
+    </li>
+    <li class="career-item is-now" data-reveal="left" style="--i:4">
+      <span class="career-node" aria-hidden="true"></span>
+      <span class="career-period">2026 — hoy</span>
+      <div class="career-body">
+        <h3>Solution Consulting &amp; AI Engineering <span class="tag tag--accent">actual</span></h3>
+        <p class="career-org">atmira · Tech Hub</p>
+        <p>Lidero el Tech Hub junto al CTO y al Head of Technology: diseño de soluciones QA, DevOps y cloud, relación con partners estratégicos e iniciativas de IA generativa.</p>
+        <div class="tag-row"><span class="tag">Solution Consulting</span><span class="tag">AI Engineering</span><span class="tag">Preventa</span><span class="tag">Partners</span></div>
+      </div>
+    </li></ol>
   </div>
 </section>
 
@@ -355,7 +748,49 @@
         ahorran. Si no se puede medir, no entra en producción.</p>
     </header>
 
-    <div class="grid grid--3" id="aiGrid"></div>
+    <div class="grid grid--3" id="aiGrid">
+    <article class="card card--glass card--hover" data-reveal style="--i:0">
+      <span class="icon-box icon-box--sm" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+     stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+     stroke-linejoin="round" aria-hidden="true"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg></span>
+      <h3>Generación de casos</h3>
+      <p>Desde historias de usuario: escenarios límite, datos de entrada y criterios de aceptación testables.</p>
+    </article>
+    <article class="card card--glass card--hover" data-reveal style="--i:1">
+      <span class="icon-box icon-box--sm" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+     stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+     stroke-linejoin="round" aria-hidden="true"><path d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z"/></svg></span>
+      <h3>Análisis de requisitos</h3>
+      <p>Ambigüedades y huecos de cobertura detectados antes de escribir el primer test.</p>
+    </article>
+    <article class="card card--glass card--hover" data-reveal style="--i:2">
+      <span class="icon-box icon-box--sm" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+     stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+     stroke-linejoin="round" aria-hidden="true"><path d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/></svg></span>
+      <h3>Agentes autónomos</h3>
+      <p>Ejecutan, revisan y proponen correcciones dentro del pipeline, no en una demo aparte.</p>
+    </article>
+    <article class="card card--glass card--hover" data-reveal style="--i:3">
+      <span class="icon-box icon-box--sm" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+     stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+     stroke-linejoin="round" aria-hidden="true"><path d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></span>
+      <h3>Quality gates inteligentes</h3>
+      <p>Umbrales que se ajustan al riesgo del cambio, no un porcentaje fijo para todo.</p>
+    </article>
+    <article class="card card--glass card--hover" data-reveal style="--i:4">
+      <span class="icon-box icon-box--sm" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+     stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+     stroke-linejoin="round" aria-hidden="true"><path d="M20.25 6.375c0 2.278-3.694 4.125-8.25 4.125S3.75 8.653 3.75 6.375m16.5 0c0-2.278-3.694-4.125-8.25-4.125S3.75 4.097 3.75 6.375m16.5 0v11.25c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125V6.375"/></svg></span>
+      <h3>Datos sintéticos</h3>
+      <p>Datasets realistas para pruebas sin exponer un solo registro de producción.</p>
+    </article>
+    <article class="card card--glass card--hover" data-reveal style="--i:5">
+      <span class="icon-box icon-box--sm" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+     stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+     stroke-linejoin="round" aria-hidden="true"><path d="M15.59 14.37a6 6 0 01-5.84 7.38v-4.8m5.84-2.58a14.98 14.98 0 006.16-12.12A14.98 14.98 0 009.63 8.41m5.96 5.96a14.9 14.9 0 01-5.84 2.58m0 0a6 6 0 01-7.38-5.84h4.8m2.58-5.96a14.9 14.9 0 00-2.58 5.84m2.58-5.84a14.9 14.9 0 015.84-2.58"/></svg></span>
+      <h3>Developer productivity</h3>
+      <p>Automatización del trabajo repetitivo del equipo, con el ahorro medido en horas.</p>
+    </article></div>
 
     <div class="split">
       <div class="terminal" data-reveal="left">
@@ -376,7 +811,37 @@
         <h3>Herramientas que uso a diario</h3>
         <p>Claude Code como agente en terminal y en CI, MCP para darle contexto real de la
           aplicación, y prompts versionados en el repositorio como cualquier otro código.</p>
-        <div class="ai-tools" id="aiStack"></div>
+        <div class="ai-tools" id="aiStack">
+    <div class="ai-tool" style="--i:0">
+      <span class="tech-logo" style="--logo:url('assets/logos/claude.svg')" role="img" aria-label="Claude Code"></span>
+      <span class="ai-tool-name">Claude Code</span>
+      <span class="ai-tool-note">Agente en terminal y en CI</span>
+    </div>
+    <div class="ai-tool" style="--i:1">
+      <span class="tech-logo" style="--logo:url('assets/logos/modelcontextprotocol.svg')" role="img" aria-label="MCP"></span>
+      <span class="ai-tool-name">MCP</span>
+      <span class="ai-tool-note">Contexto de la app para el agente</span>
+    </div>
+    <div class="ai-tool" style="--i:2">
+      <span class="tech-logo" style="--logo:url('assets/logos/openai.svg')" role="img" aria-label="OpenAI"></span>
+      <span class="ai-tool-name">OpenAI</span>
+      <span class="ai-tool-note">Modelos para análisis y generación</span>
+    </div>
+    <div class="ai-tool" style="--i:3">
+      <span class="tech-logo" style="--logo:url('assets/logos/githubcopilot.svg')" role="img" aria-label="GitHub Copilot"></span>
+      <span class="ai-tool-name">GitHub Copilot</span>
+      <span class="ai-tool-note">Asistencia en el editor y en PR</span>
+    </div>
+    <div class="ai-tool" style="--i:4">
+      <span class="tech-mono" aria-hidden="true">PE</span>
+      <span class="ai-tool-name">Prompt Engineering</span>
+      <span class="ai-tool-note">Prompts versionados como código</span>
+    </div>
+    <div class="ai-tool" style="--i:5">
+      <span class="tech-mono" aria-hidden="true">AW</span>
+      <span class="ai-tool-name">AI Workflows</span>
+      <span class="ai-tool-note">Orquestación de agentes en pipeline</span>
+    </div></div>
         <a class="btn btn--ghost" href="ai-engineering/">
           Cómo trabajo con IA
           <svg class="arrow" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
@@ -397,7 +862,47 @@
       <p class="lead">El mismo enfoque que uso en grandes cuentas, ajustado a tu tamaño
         y a tu madurez actual.</p>
     </header>
-    <ol class="method" id="methodList"></ol>
+    <ol class="method" id="methodList">
+    <li class="method-step" data-reveal style="--i:0">
+      <span class="method-num" aria-hidden="true">01</span>
+      <div>
+        <h3>Assessment</h3>
+        <p>Procesos, herramientas, deuda de pruebas y riesgos. Métricas objetivas, no opiniones.</p>
+        <span class="method-out">entregable: <b>Informe de madurez QA</b></span>
+      </div>
+    </li>
+    <li class="method-step" data-reveal style="--i:1">
+      <span class="method-num" aria-hidden="true">02</span>
+      <div>
+        <h3>Roadmap</h3>
+        <p>Plan priorizado por impacto y esfuerzo, con fechas realistas para tu capacidad real.</p>
+        <span class="method-out">entregable: <b>Roadmap trimestral</b></span>
+      </div>
+    </li>
+    <li class="method-step" data-reveal style="--i:2">
+      <span class="method-num" aria-hidden="true">03</span>
+      <div>
+        <h3>Automation</h3>
+        <p>Framework, suites y quality gates implementados en pareja con tus ingenieros.</p>
+        <span class="method-out">entregable: <b>Suite viva en CI/CD</b></span>
+      </div>
+    </li>
+    <li class="method-step" data-reveal style="--i:3">
+      <span class="method-num" aria-hidden="true">04</span>
+      <div>
+        <h3>AI</h3>
+        <p>Agentes y LLMs donde aportan medible: generación, revisión y reporting.</p>
+        <span class="method-out">entregable: <b>Agentes en pipeline</b></span>
+      </div>
+    </li>
+    <li class="method-step" data-reveal style="--i:4">
+      <span class="method-num" aria-hidden="true">05</span>
+      <div>
+        <h3>Training</h3>
+        <p>Transferencia de conocimiento para que el equipo evolucione sin dependencia externa.</p>
+        <span class="method-out">entregable: <b>Equipo autónomo</b></span>
+      </div>
+    </li></ol>
   </div>
 </section>
 
@@ -411,7 +916,23 @@
       <h2 id="stack-title">Tecnologías que uso a diario</h2>
       <p class="lead">Elegidas por encaje con el problema, no por aparecer en una keynote.</p>
     </header>
-    <div class="tech-groups" id="techGroups"></div>
+    <div class="tech-groups" id="techGroups">
+    <div class="tech-group" data-reveal style="--i:0">
+      <h3>Test Automation</h3>
+      <div class="tech-grid"><div class="tech"><span class="tech-logo" style="--logo:url('assets/logos/playwright.svg')" role="img" aria-label="Playwright"></span><span>Playwright</span></div><div class="tech"><span class="tech-logo" style="--logo:url('assets/logos/selenium.svg')" role="img" aria-label="Selenium"></span><span>Selenium</span></div><div class="tech"><span class="tech-logo" style="--logo:url('assets/logos/cypress.svg')" role="img" aria-label="Cypress"></span><span>Cypress</span></div><div class="tech"><span class="tech-logo" style="--logo:url('assets/logos/appium.svg')" role="img" aria-label="Appium"></span><span>Appium</span></div><div class="tech"><span class="tech-logo" style="--logo:url('assets/logos/webdriverio.svg')" role="img" aria-label="WebdriverIO"></span><span>WebdriverIO</span></div><div class="tech"><span class="tech-logo" style="--logo:url('assets/logos/cucumber.svg')" role="img" aria-label="Cucumber"></span><span>Cucumber</span></div><div class="tech"><span class="tech-logo" style="--logo:url('assets/logos/postman.svg')" role="img" aria-label="Postman"></span><span>Postman</span></div><div class="tech"><span class="tech-mono" aria-hidden="true">KA</span><span>Karate DSL</span></div></div>
+    </div>
+    <div class="tech-group" data-reveal style="--i:1">
+      <h3>Control de versiones &amp; CI/CD</h3>
+      <div class="tech-grid"><div class="tech"><span class="tech-logo" style="--logo:url('assets/logos/github.svg')" role="img" aria-label="GitHub"></span><span>GitHub</span></div><div class="tech"><span class="tech-logo" style="--logo:url('assets/logos/gitlab.svg')" role="img" aria-label="GitLab"></span><span>GitLab</span></div><div class="tech"><span class="tech-logo" style="--logo:url('assets/logos/githubactions.svg')" role="img" aria-label="GitHub Actions"></span><span>GitHub Actions</span></div><div class="tech"><span class="tech-logo" style="--logo:url('assets/logos/azuredevops.svg')" role="img" aria-label="Azure DevOps"></span><span>Azure DevOps</span></div><div class="tech"><span class="tech-logo" style="--logo:url('assets/logos/jenkins.svg')" role="img" aria-label="Jenkins"></span><span>Jenkins</span></div><div class="tech"><span class="tech-logo" style="--logo:url('assets/logos/docker.svg')" role="img" aria-label="Docker"></span><span>Docker</span></div><div class="tech"><span class="tech-logo" style="--logo:url('assets/logos/microsoftazure.svg')" role="img" aria-label="Azure"></span><span>Azure</span></div></div>
+    </div>
+    <div class="tech-group" data-reveal style="--i:2">
+      <h3>Lenguajes</h3>
+      <div class="tech-grid"><div class="tech"><span class="tech-logo" style="--logo:url('assets/logos/javascript.svg')" role="img" aria-label="JavaScript"></span><span>JavaScript</span></div><div class="tech"><span class="tech-logo" style="--logo:url('assets/logos/typescript.svg')" role="img" aria-label="TypeScript"></span><span>TypeScript</span></div><div class="tech"><span class="tech-logo" style="--logo:url('assets/logos/openjdk.svg')" role="img" aria-label="Java"></span><span>Java</span></div><div class="tech"><span class="tech-logo" style="--logo:url('assets/logos/nodedotjs.svg')" role="img" aria-label="Node.js"></span><span>Node.js</span></div></div>
+    </div>
+    <div class="tech-group" data-reveal style="--i:3">
+      <h3>IA &amp; Calidad de código</h3>
+      <div class="tech-grid"><div class="tech"><span class="tech-logo" style="--logo:url('assets/logos/claude.svg')" role="img" aria-label="Claude Code"></span><span>Claude Code</span></div><div class="tech"><span class="tech-logo" style="--logo:url('assets/logos/githubcopilot.svg')" role="img" aria-label="GitHub Copilot"></span><span>GitHub Copilot</span></div><div class="tech"><span class="tech-logo" style="--logo:url('assets/logos/openai.svg')" role="img" aria-label="OpenAI"></span><span>OpenAI</span></div><div class="tech"><span class="tech-logo" style="--logo:url('assets/logos/modelcontextprotocol.svg')" role="img" aria-label="MCP"></span><span>MCP</span></div><div class="tech"><span class="tech-logo" style="--logo:url('assets/logos/sonarqubeserver.svg')" role="img" aria-label="SonarQube"></span><span>SonarQube</span></div></div>
+    </div></div>
   </div>
 </section>
 
@@ -443,7 +964,13 @@
           <a class="btn btn--ghost" href="#contacto">Hablemos</a>
         </div>
       </div>
-      <dl class="facts" id="facts" data-reveal="right"></dl>
+      <dl class="facts" id="facts" data-reveal="right">
+    <div class="fact"><dt>rol</dt><dd>Business &amp; Solutions Consulting Lead</dd></div>
+    <div class="fact"><dt>foco</dt><dd>QA · DevOps · AI Engineering</dd></div>
+    <div class="fact"><dt>stack</dt><dd>Playwright · GitHub Actions · Claude Code · MCP</dd></div>
+    <div class="fact"><dt>marcos</dt><dd>ISTQB · Risk-based testing · Shift-left</dd></div>
+    <div class="fact"><dt>idiomas</dt><dd>Español · Inglés</dd></div>
+    <div class="fact"><dt>base</dt><dd>Madrid, España · remoto-friendly</dd></div></dl>
     </div>
   </div>
 </section>
@@ -477,7 +1004,46 @@
       <p class="eyebrow">Recursos</p>
       <h2 id="recursos-title">Material que puedes abrir ahora mismo</h2>
     </header>
-    <div class="grid grid--3" id="resourcesGrid"></div>
+    <div class="grid grid--3" id="resourcesGrid">
+    <article class="card card--hover" data-reveal style="--i:0">
+      <span class="icon-box icon-box--muted icon-box--sm" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+     stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+     stroke-linejoin="round" aria-hidden="true"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg></span>
+      <span class="resource-type">Perfil</span>
+      <h3>Trayectoria completa</h3>
+      <p>Quince años de proyectos, tecnologías y equipos, al día en LinkedIn.</p>
+      <div class="card-foot">
+        <a class="btn btn--quiet stretch" href="https://www.linkedin.com/in/raulmolinahernandez/" target="_blank" rel="noopener">
+          Ver en LinkedIn <svg class="arrow" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+    </article>
+    <article class="card card--hover" data-reveal style="--i:1">
+      <span class="icon-box icon-box--muted icon-box--sm" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+     stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+     stroke-linejoin="round" aria-hidden="true"><path d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z"/></svg></span>
+      <span class="resource-type">Servicio</span>
+      <h3>Mentoría QA individual</h3>
+      <p>Programa 1:1 para ingenieros que dan el salto a Quality Engineering.</p>
+      <div class="card-foot">
+        <a class="btn btn--quiet stretch" href="mentoringB2C/">
+          Ver programa <svg class="arrow" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+    </article>
+    <article class="card card--hover" data-reveal style="--i:2">
+      <span class="icon-box icon-box--muted icon-box--sm" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+     stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+     stroke-linejoin="round" aria-hidden="true"><path d="M6.75 7.5l3 2.25-3 2.25m4.5 0h3m-9 8.25h13.5A2.25 2.25 0 0021 18V6a2.25 2.25 0 00-2.25-2.25H5.25A2.25 2.25 0 003 6v12a2.25 2.25 0 002.25 2.25z"/></svg></span>
+      <span class="resource-type">Código</span>
+      <h3>Repositorios públicos</h3>
+      <p>Pipelines, agentes y frameworks de prueba que puedes clonar hoy.</p>
+      <div class="card-foot">
+        <a class="btn btn--quiet stretch" href="https://github.com/StoneFly365" target="_blank" rel="noopener">
+          Ver en GitHub <svg class="arrow" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+    </article></div>
   </div>
 </section>
 
@@ -490,7 +1056,35 @@
       <p class="eyebrow">Preguntas frecuentes</p>
       <h2 id="faq-title">Antes de escribirme</h2>
     </header>
-    <div class="faq" id="faqList" data-reveal="fade"></div>
+    <div class="faq" id="faqList" data-reveal="fade">
+    <details class="faq-item" name="faq">
+      <summary>¿Cuánto dura un proyecto típico?</summary>
+      <p>Un assessment son días; una implementación de pipeline, semanas; el advisory continuado se revisa mes a mes.</p>
+    </details>
+    <details class="faq-item" name="faq">
+      <summary>¿Trabajas con equipos pequeños o solo con grandes cuentas?</summary>
+      <p>Con ambos. El método se adapta al tamaño y madurez de cada organización, no al revés.</p>
+    </details>
+    <details class="faq-item" name="faq">
+      <summary>¿Qué pasa si ya tenemos un equipo de QA?</summary>
+      <p>Trabajo junto a tu equipo, no lo sustituyo. El mentoring existe precisamente para que el conocimiento se quede dentro.</p>
+    </details>
+    <details class="faq-item" name="faq">
+      <summary>¿La IA va a sustituir a mi equipo de QA?</summary>
+      <p>No. Sustituye el trabajo repetitivo del equipo de QA. El criterio sobre qué merece la pena probar sigue siendo humano, y ahí es donde tu equipo aporta.</p>
+    </details>
+    <details class="faq-item" name="faq">
+      <summary>¿Trabajas en remoto?</summary>
+      <p>Sí, remoto-friendly. Base en Madrid, zona horaria Europe/Madrid.</p>
+    </details>
+    <details class="faq-item" name="faq">
+      <summary>¿Puedo empezar con algo pequeño?</summary>
+      <p>Sí. El assessment inicial es un primer paso de bajo riesgo antes de comprometerse a nada más.</p>
+    </details>
+    <details class="faq-item" name="faq">
+      <summary>¿Cómo empezamos?</summary>
+      <p>Con una conversación de 30 minutos sin compromiso. Respondo en menos de 24 horas.</p>
+    </details></div>
   </div>
 </section>
 
@@ -528,10 +1122,13 @@
         </div>
       </div>
 
-      <!-- Sin backend: el formulario compone un mailto con los datos ya
-           validados. Para usar un endpoint real, añade action/method y
-           elimina initContactForm() de ui.js.                          -->
+      <!-- Envío por fetch a site.formEndpoint (Formspree). Si ese campo
+           de data.js se vacía, initContactForm() vuelve al mailto solo. -->
       <form class="contact-form card" id="contactForm" novalidate>
+        <!-- Honeypot antispam: oculto y fuera de tabulación. Un humano no lo
+             ve; un bot lo rellena y Formspree descarta ese envío. -->
+        <input type="text" name="_gotcha" tabindex="-1" autocomplete="off"
+               aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden">
         <div class="form-row">
           <div class="field">
             <label for="f-name">Nombre <span class="req" aria-hidden="true">*</span></label>
@@ -576,8 +1173,8 @@
           <svg class="arrow" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
         </button>
         <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
-        <p class="form-note">Se abrirá tu gestor de correo con el mensaje ya preparado.
-          Tus datos no se envían a ningún servidor de terceros.</p>
+        <p class="form-note">Tus datos solo se usan para contestarte; nada de listas
+          ni newsletters.</p>
       </form>
     </div>
   </div>

@@ -111,15 +111,61 @@ export function initBackToTop() {
 }
 
 /* ---- Formulario de contacto ------------------------------ */
-/* Sin backend: compone un mailto con los datos ya validados por el
-   navegador. Para usar un endpoint real, añade action/method al
-   <form> y borra esta función de initUI(). */
+/* Dos caminos según haya endpoint en data.js:
+   · site.formEndpoint vacío → compone un mailto (el de siempre).
+   · site.formEndpoint con URL → POST por fetch al servicio (Formspree,
+     Basin…): el lead se captura y el visitante no sale de la página. */
 const MAILTO_MAX = 1800;   // longitud práctica de URL en clientes de correo
+
+function submitViaMailto(get, status) {
+  const body = [
+    `Nombre: ${get('name')}`,
+    `Empresa: ${get('company') || '—'}`,
+    `Email: ${get('email')}`,
+    `Interés: ${get('service')}`,
+    '',
+    get('message'),
+  ].join('\n');
+
+  const href = `mailto:${site.email}`
+    + `?subject=${encodeURIComponent(`[Web] ${get('service')} · ${get('name')}`)}`
+    + `&body=${encodeURIComponent(body)}`;
+
+  if (href.length > MAILTO_MAX) {
+    status.textContent = 'El mensaje es demasiado largo para abrirse en tu gestor de correo. '
+      + `Escríbeme directamente a ${site.email}.`;
+    return;
+  }
+
+  window.location.href = href;
+  status.textContent = 'Abriendo tu gestor de correo con el mensaje ya preparado…';
+}
+
+async function submitViaEndpoint(form, data, status, submitBtn) {
+  submitBtn.disabled = true;
+  status.textContent = 'Enviando…';
+  try {
+    const res = await fetch(site.formEndpoint, {
+      method: 'POST',
+      body: data,
+      headers: { Accept: 'application/json' },
+    });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    form.reset();
+    status.textContent = 'Mensaje enviado. Te respondo en menos de 24 horas.';
+  } catch {
+    status.textContent = 'No se ha podido enviar. Escríbeme directamente a '
+      + `${site.email}.`;
+  } finally {
+    submitBtn.disabled = false;
+  }
+}
 
 export function initContactForm() {
   const form = $('#contactForm');
   if (!form) return;
   const status = $('#formStatus', form);
+  const submitBtn = $('button[type="submit"]', form);
 
   form.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -128,27 +174,8 @@ export function initContactForm() {
     const data = new FormData(form);
     const get = (k) => String(data.get(k) || '').trim();
 
-    const body = [
-      `Nombre: ${get('name')}`,
-      `Empresa: ${get('company') || '—'}`,
-      `Email: ${get('email')}`,
-      `Interés: ${get('service')}`,
-      '',
-      get('message'),
-    ].join('\n');
-
-    const href = `mailto:${site.email}`
-      + `?subject=${encodeURIComponent(`[Web] ${get('service')} · ${get('name')}`)}`
-      + `&body=${encodeURIComponent(body)}`;
-
-    if (href.length > MAILTO_MAX) {
-      status.textContent = 'El mensaje es demasiado largo para abrirse en tu gestor de correo. '
-        + `Escríbeme directamente a ${site.email}.`;
-      return;
-    }
-
-    window.location.href = href;
-    status.textContent = 'Abriendo tu gestor de correo con el mensaje ya preparado…';
+    if (site.formEndpoint) submitViaEndpoint(form, data, status, submitBtn);
+    else submitViaMailto(get, status);
   });
 }
 

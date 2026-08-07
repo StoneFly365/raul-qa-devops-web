@@ -26,6 +26,14 @@ export const site = {
      Mientras sea null apuntan a #contacto, que es el comportamiento
      correcto: mejor un formulario que un calendario roto. */
   bookingUrl: null,
+
+  /* Endpoint del formulario de contacto (Formspree, Basin, Netlify…).
+     Vacío = el formulario compone un mailto (puede fallar en silencio si
+     el visitante usa webmail sin cliente de correo configurado).
+     Con una URL aquí, el envío pasa a POST por fetch: el lead se captura
+     de verdad y el visitante no sale de la página. Pega tu endpoint
+     (p. ej. https://formspree.io/f/xxxxxxx) y listo, sin backend. */
+  formEndpoint: 'https://formspree.io/f/xdenkpey',
 };
 
 export const mailto = (subject) =>
