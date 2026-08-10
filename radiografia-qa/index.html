@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="es" class="no-js">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#08090C">
+<script>document.documentElement.classList.remove('no-js')</script>
+
+<!-- ===================== SEO =====================
+     Esta página SÍ va indexada, al contrario que las siete landings
+     de servicio: su contenido está completo desde el primer día.  -->
+<title>Radiografía de nivel QA · autoevaluación en 3 minutos</title>
+<meta name="description" content="Autoevaluación de competencias QA en seis ejes. Descubre en cuáles estás por debajo del rol al que apuntas y qué dos cosas hacer primero. Gratis y sin registro.">
+<meta name="author" content="Raúl Molina Hernández">
+<meta name="keywords" content="test nivel QA, evaluación competencias QA, matriz seniority QA, soy senior QA, roadmap QA automation">
+<link rel="canonical" href="https://stonefly365.github.io/raul-qa-devops-web/radiografia-qa/">
+<meta name="robots" content="index,follow,max-image-preview:large">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Raúl Molina · QA, DevOps &amp; AI Engineering">
+<meta property="og:locale" content="es_ES">
+<meta property="og:url" content="https://stonefly365.github.io/raul-qa-devops-web/radiografia-qa/">
+<meta property="og:title" content="Radiografía de nivel QA: qué te está bloqueando el salto">
+<meta property="og:description" content="Seis ejes, doce preguntas, tres minutos. Una comparación honesta contra el rol al que apuntas, con dos acciones concretas para cerrar la brecha.">
+<meta property="og:image" content="https://stonefly365.github.io/raul-qa-devops-web/assets/og-cover.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://stonefly365.github.io/raul-qa-devops-web/assets/og-cover.png">
+
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+<link rel="alternate" type="application/rss+xml" title="Blog de Raúl Molina" href="../blog/feed.xml">
+
+<link rel="preload" href="../assets/fonts/geist-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../assets/css/tokens.css">
+<link rel="stylesheet" href="../assets/css/base.css">
+<link rel="stylesheet" href="../assets/css/motion.css">
+<link rel="stylesheet" href="../assets/css/components.css">
+<link rel="stylesheet" href="../assets/css/sections.css">
+<link rel="stylesheet" href="../assets/css/radar.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "Radiografía de nivel QA",
+      "url": "https://stonefly365.github.io/raul-qa-devops-web/radiografia-qa/",
+      "applicationCategory": "EducationalApplication",
+      "operatingSystem": "Navegador web",
+      "description": "Autoevaluación de competencias QA en seis ejes, con diagnóstico de brechas contra el rol objetivo y plan de acción.",
+      "inLanguage": "es",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
+      "author": {
+        "@type": "Person",
+        "@id": "https://stonefly365.github.io/raul-qa-devops-web/#person",
+        "name": "Raúl Molina Hernández",
+        "url": "https://stonefly365.github.io/raul-qa-devops-web/"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://stonefly365.github.io/raul-qa-devops-web/" },
+        { "@type": "ListItem", "position": 2, "name": "Radiografía de nivel QA" }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<a class="skip-link" href="#main">Saltar al contenido principal</a>
+<div id="nav-sentinel" aria-hidden="true"></div>
+
+<!-- La cabecera y el pie los inyecta assets/js/chrome.js -->
+<div data-chrome="header"></div>
+
+<main id="main">
+
+<section class="page-hero">
+  <div class="wrap">
+    <nav aria-label="Migas de pan">
+      <ol class="breadcrumb">
+        <li><a href="../">Inicio</a></li>
+        <li><span aria-current="page">Radiografía de nivel QA</span></li>
+      </ol>
+    </nav>
+    <p class="eyebrow">Autoevaluación gratuita</p>
+    <h1>¿Qué te está bloqueando el salto al siguiente rol de QA?</h1>
+    <p class="lead">Doce preguntas sobre lo que has hecho, no sobre lo que sabes. Al final sabrás
+      en qué ejes estás por debajo del rol al que apuntas y qué dos cosas hacer primero.
+      Tres minutos, sin registro y sin correo obligatorio.</p>
+    <div class="hero-ctas">
+      <a class="btn btn--primary btn--lg" href="#cuestionario">Empezar la radiografía</a>
+      <a class="btn btn--ghost btn--lg" href="#como-funciona">Cómo funciona</a>
+    </div>
+  </div>
+</section>
+
+<section class="section section--alt section--line" id="como-funciona">
+  <div class="wrap">
+    <header class="section-head" data-reveal>
+      <p class="eyebrow">Cómo funciona</p>
+      <h2>Por qué esto no es otro test de trivia</h2>
+    </header>
+    <div class="grid grid--3">
+      <article class="card" data-reveal>
+        <h3>Pregunta por evidencia</h3>
+        <p>Nada de «¿sabes qué es el testing de contratos?». La escala va de
+          «nunca lo he visto» a «lo he enseñado». Es difícil inflar la respuesta
+          sin darte cuenta de que la estás inflando.</p>
+      </article>
+      <article class="card" data-reveal>
+        <h3>Compara contra algo</h3>
+        <p>Primero eliges el rol al que apuntas. Un 55 en CI/CD es correcto para
+          un Mid y corto para un SDET. Sin ese contexto, la puntuación es un
+          número suelto.</p>
+      </article>
+      <article class="card" data-reveal>
+        <h3>Termina en dos acciones</h3>
+        <p>No en un informe de veinte páginas. Dos frentes concretos, elegidos
+          por el tamaño de la brecha, y ejecutables sin pedirle permiso a nadie.</p>
+      </article>
+    </div>
+
+    <div class="grid grid--3" style="margin-top:var(--s-6)">
+      <article class="card" data-reveal>
+        <h3>Los seis ejes</h3>
+        <p>Estrategia de pruebas · Automatización · API e integración · CI/CD ·
+          Datos y entornos · IA aplicada a QA.</p>
+      </article>
+      <article class="card" data-reveal>
+        <h3>Se queda en tu navegador</h3>
+        <p>El cálculo ocurre en tu equipo. No se envía nada a ningún servidor
+          salvo que tú decidas pedirme una revisión al final.</p>
+      </article>
+      <article class="card" data-reveal>
+        <h3>Quince años de criterio</h3>
+        <p>Las preguntas y los cortes salen de mi experiencia montando y
+          rescatando equipos de calidad, no de un modelo generando texto.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section section--line" id="cuestionario">
+  <div class="wrap wrap--narrow">
+
+    <div class="radar-progress" data-progress hidden>
+      <p class="radar-progress-label">Paso <b data-step-now>1</b> de <b data-step-total>7</b></p>
+      <div class="radar-progress-track">
+        <div class="radar-progress-fill" data-progress-fill style="--p:0%"></div>
+      </div>
+    </div>
+
+    <form id="radarForm" novalidate>
+      <!-- Los pasos los escribe scripts/prerender.mjs desde radar.data.js.
+           No editar a mano: `npm run build` los regenera y el test de
+           idempotencia detecta cualquier desfase. -->
+      <div id="radarSteps">
+<section class="radar-step" data-step="0"
+         aria-labelledby="step-0-title">
+  <p class="eyebrow">Antes de empezar</p>
+  <h2 id="step-0-title">Contra qué te vamos a comparar</h2>
+  <p class="lead">Sin esto la puntuación sería un número suelto. Con esto es una comparación.</p>
+  
+<fieldset class="q">
+  <legend class="q-text">¿A qué apuntas en los próximos doce meses?</legend>
+  <div class="q-options">
+    
+    <label class="q-option">
+      <input type="radio" name="role" value="mid" required>
+      <span class="q-option-mark" aria-hidden="true">1</span>
+      <span class="q-option-text">QA Automation Mid</span>
+    </label>
+    <label class="q-option">
+      <input type="radio" name="role" value="senior" required>
+      <span class="q-option-mark" aria-hidden="true">2</span>
+      <span class="q-option-text">QA Automation Senior</span>
+    </label>
+    <label class="q-option">
+      <input type="radio" name="role" value="sdet" required>
+      <span class="q-option-mark" aria-hidden="true">3</span>
+      <span class="q-option-text">SDET</span>
+    </label>
+    <label class="q-option">
+      <input type="radio" name="role" value="lead" required>
+      <span class="q-option-mark" aria-hidden="true">4</span>
+      <span class="q-option-text">QA Lead</span>
+    </label>
+  </div>
+</fieldset>
+<fieldset class="q">
+  <legend class="q-text">¿Cuántos años llevas en tecnología?</legend>
+  <div class="q-options">
+    
+    <label class="q-option">
+      <input type="radio" name="experience" value="lt2" required>
+      <span class="q-option-mark" aria-hidden="true">1</span>
+      <span class="q-option-text">Menos de 2 años</span>
+    </label>
+    <label class="q-option">
+      <input type="radio" name="experience" value="2to5" required>
+      <span class="q-option-mark" aria-hidden="true">2</span>
+      <span class="q-option-text">Entre 2 y 5 años</span>
+    </label>
+    <label class="q-option">
+      <input type="radio" name="experience" value="5to10" required>
+      <span class="q-option-mark" aria-hidden="true">3</span>
+      <span class="q-option-text">Entre 5 y 10 años</span>
+    </label>
+    <label class="q-option">
+      <input type="radio" name="experience" value="gt10" required>
+      <span class="q-option-mark" aria-hidden="true">4</span>
+      <span class="q-option-text">Más de 10 años</span>
+    </label>
+  </div>
+</fieldset>
+<fieldset class="q">
+  <legend class="q-text">¿En qué situación estás ahora mismo?</legend>
+  <div class="q-options">
+    
+    <label class="q-option">
+      <input type="radio" name="situation" value="employed" required>
+      <span class="q-option-mark" aria-hidden="true">1</span>
+      <span class="q-option-text">Empleado y quiero crecer</span>
+    </label>
+    <label class="q-option">
+      <input type="radio" name="situation" value="searching" required>
+      <span class="q-option-mark" aria-hidden="true">2</span>
+      <span class="q-option-text">Buscando trabajo</span>
+    </label>
+    <label class="q-option">
+      <input type="radio" name="situation" value="freelance" required>
+      <span class="q-option-mark" aria-hidden="true">3</span>
+      <span class="q-option-text">Freelance o consultor</span>
+    </label>
+    <label class="q-option">
+      <input type="radio" name="situation" value="entering" required>
+      <span class="q-option-mark" aria-hidden="true">4</span>
+      <span class="q-option-text">Quiero entrar en QA</span>
+    </label>
+  </div>
+</fieldset>
+</section>
+
+<section class="radar-step" data-step="1" hidden
+         aria-labelledby="step-1-title">
+  <p class="eyebrow">Eje 1 de 6</p>
+  <h2 id="step-1-title">Estrategia de pruebas</h2>
+  <p class="lead">Qué probar, qué no, y con qué criterio de riesgo.</p>
+  
+<fieldset class="q">
+  <legend class="q-text">Decidir qué <b>no</b> se automatiza y defenderlo ante negocio con criterio de riesgo.</legend>
+  <div class="q-options">
+    
+    <label class="q-option">
+      <input type="radio" name="s1" value="0" required>
+      <span class="q-option-mark" aria-hidden="true">1</span>
+      <span class="q-option-text">Nunca lo he visto</span>
+    </label>
+    <label class="q-option">
+      <input type="radio" name="s1" value="1" required>
+      <span class="q-option-mark" aria-hidden="true">2</span>
+      <span class="q-option-text">Lo he usado</span>
+    </label>
+    <label class="q-option">
+      <input type="radio" name="s1" value="2" required>
+      <span class="q-option-mark" aria-hidden="true">3</span>
+      <span class="q-option-text">Lo he mantenido</span>
+    </label>
+    <label class="q-option">
+      <input type="radio" name="s1" value="3" required>
+      <span class="q-option-mark" aria-hidden="true">4</span>
+      <span class="q-option-text">Lo he diseñado</span>
+    </label>
+    <label class="q-option">
+      <input type="radio" name="s1" value="4" required>
+      <span class="q-option-mark" aria-hidden="true">5</span>
+      <span class="q-option-text">Lo he enseñado</span>
+    </label>
+  </div>
+</fieldset>
+<fieldset class="q">
+  <legend class="q-text">Definir la estrategia de pruebas de un producto entero: niveles, cobertura y criterios de entrada y salida de release.</legend>
+  <div class="q-options">
+    
+    <label class="q-option">
+      <input type="radio" name="s2" value="0" required>
+      <span class="q-option-mark" aria-hidden="true">1</span>
+      <span class="q-option-text">Nunca lo he visto</span>
+    </label>
+    <label class="q-option">
+      <input type="radio" name="s2" value="1" required>
+      <span class="q-option-mark" aria-hidden="true">2</span>
+      <span class="q-option-text">Lo he usado</span>
+    </label>
+    <label class="q-option">
+      <input type="radio" name="s2" value="2" required>
+      <span class="q-option-mark" aria-hidden="true">3</span>
+      <span class="q-option-text">Lo he mantenido</span>
+    </label>
+    <label class="q-option">
+      <input type="radio" name="s2" value="3" required>
+      <span class="q-option-mark" aria-hidden="true">4</span>
+      <span class="q-option-text">Lo he diseñado</span>
+    </label>
+    <label class="q-option">
+      <input type="radio" name="s2" value="4" required>
+      <span class="q-option-mark" aria-hidden="true">5</span>
+      <span class="q-option-text">Lo he enseñado</span>
+    </label>
+  </div>
+</fieldset>
+</section>
+
+<section class="radar-step" data-step="2" hidden
+         aria-labelledby="step-2-title">
+  <p class="eyebrow">Eje 2 de 6</p>
+  <h2 id="step-2-title">Automatización</h2>
+  <p class="lead">Código de pruebas que otra persona puede mantener.</p>
+  
+<fieldset class="q">
+  <legend class="q-text">Una suite organizada en capas que otra persona puede extender sin preguntarte.</legend>
+  <div class="q-options">
+    
+    <label class="q-option">
+      <input type="radio" name="a1" value="0" required>
+      <span class="q-option-mark" aria-hidden="true">1</span>
+      <span class="q-option-text">Nunca lo he visto</span>
+    </label>
+    <label class="q-option">
+      <input type="radio" name="a1" value="1" required>
+      <span class="q-option-mark" aria-hidden="true">2</span>
+      <span class="q-option-text">Lo he usado</span>
+    </label>
+    <label class="q-option">
+      <input type="radio" name="a1" value="2" required>
+      <span class="q-option-mark" aria-hidden="true">3</span>
+      <span class="q-option-text">Lo he mantenido</span>
+    </label>
+    <label class="q-option">
+      <input type="radio" name="a1" value="3" required>
+      <span class="q-option-mark" aria-hidden="true">4</span>
+      <span class="q-option-text">Lo he diseñado</span>
+    </label>
+    <label class="q-option">
+      <input type="radio" name="a1" value="4" required>
+      <span class="q-option-mark" aria-hidden="true">5</span>
+      <span class="q-option-text">Lo he enseñado</span>
+    </label>
+  </div>
+</fieldset>
+<fieldset class="q">
+  <legend class="q-text">Diagnosticar y eliminar la causa raíz de un test inestable, sin reintentos ni esperas fijas.</legend>
+  <div class="q-options">
+    
+    <label class="q-option">
+      <input type="radio" name="a2" value="0" required>
+      <span class="q-option-mark" aria-hidden="true">1</span>
+      <span class="q-option-text">Nunca lo he visto</span>
+    </label>
+    <label class="q-option">
+      <input type="radio" name="a2" value="1" required>
+      <span class="q-option-mark" aria-hidden="true">2</span>
+      <span class="q-option-text">Lo he usado</span>
+    </label>
+    <label class="q-option">
+      <input type="radio" name="a2" value="2" required>
+      <span class="q-option-mark" aria-hidden="true">3</span>
+      <span class="q-option-text">Lo he mantenido</span>
+    </label>
+    <label class="q-option">
+      <input type="radio" name="a2" value="3" required>
+      <span class="q-option-mark" aria-hidden="true">4</span>
+      <span class="q-option-text">Lo he diseñado</span>
+    </label>
+    <label class="q-option">
+      <input type="radio" name="a2" value="4" required>
+      <span class="q-option-mark" aria-hidden="true">5</span>
+      <span class="q-option-text">Lo he enseñado</span>
+    </label>
+  </div>
+</fieldset>
+</section>
+
+<section class="radar-step" data-step="3" hidden
+         aria-labelledby="step-3-title">
+  <p class="eyebrow">Eje 3 de 6</p>
+  <h2 id="step-3-title">API e integración</h2>
+  <p class="lead">La capa donde los fallos salen baratos.</p>
+  
+<fieldset class="q">
+  <legend class="q-text">Pruebas de API que cubren contratos y códigos de error, no sólo el camino feliz.</legend>
+  <div class="q-options">
+    
+    <label class="q-option">
+      <input type="radio" name="p1" value="0" required>
+      <span class="q-option-mark" aria-hidden="true">1</span>
+      <span class="q-option-text">Nunca lo he visto</span>
+    </label>
+    <label class="q-option">
+      <input type="radio" name="p1" value="1" required>
+      <span class="q-option-mark" aria-hidden="true">2</span>
+      <span class="q-option-text">Lo he usado</span>
+    </label>
+    <label class="q-option">
+      <input type="radio" name="p1" value="2" required>
+      <span class="q-option-mark" aria-hidden="true">3</span>
+      <span class="q-option-text">Lo he mantenido</span>
+    </label>
+    <label class="q-option">
+      <input type="radio" name="p1" value="3" required>
+      <span class="q-option-mark" aria-hidden="true">4</span>
+      <span class="q-option-text">Lo he diseñado</span>
+    </label>
+    <label class="q-option">
+      <input type="radio" name="p1" value="4" required>
+      <span class="q-option-mark" aria-hidden="true">5</span>
+      <span class="q-option-text">Lo he enseñado</span>
+    </label>
+  </div>
+</fieldset>
+<fieldset class="q">
+  <legend class="q-text">Mocks o virtualización para probar una integración cuyo sistema externo no está disponible.</legend>
+  <div class="q-options">
+    
+    <label class="q-option">
+      <input type="radio" name="p2" value="0" required>
+      <span class="q-option-mark" aria-hidden="true">1</span>
+      <span class="q-option-text">Nunca lo he visto</span>
+    </label>
+    <label class="q-option">
+      <input type="radio" name="p2" value="1" required>
+      <span class="q-option-mark" aria-hidden="true">2</span>
+      <span class="q-option-text">Lo he usado</span>
+    </label>
+    <label class="q-option">
+      <input type="radio" name="p2" value="2" required>
+      <span class="q-option-mark" aria-hidden="true">3</span>
+      <span class="q-option-text">Lo he mantenido</span>
+    </label>
+    <label class="q-option">
+      <input type="radio" name="p2" value="3" required>
+      <span class="q-option-mark" aria-hidden="true">4</span>
+      <span class="q-option-text">Lo he diseñado</span>
+    </label>
+    <label class="q-option">
+      <input type="radio" name="p2" value="4" required>
+      <span class="q-option-mark" aria-hidden="true">5</span>
+      <span class="q-option-text">Lo he enseñado</span>
+    </label>
+  </div>
+</fieldset>
+</section>
+
+<section class="radar-step" data-step="4" hidden
+         aria-labelledby="step-4-title">
+  <p class="eyebrow">Eje 4 de 6</p>
+  <h2 id="step-4-title">CI/CD</h2>
+  <p class="lead">Una suite que no corre sola no protege nada.</p>
+  
+<fieldset class="q">
+  <legend class="q-text">Un pipeline que ejecuta la suite en cada pull request y bloquea el merge si falla.</legend>
+  <div class="q-options">
+    
+    <label class="q-option">
+      <input type="radio" name="c1" value="0" required>
+      <span class="q-option-mark" aria-hidden="true">1</span>
+      <span class="q-option-text">Nunca lo he visto</span>
+    </label>
+    <label class="q-option">
+      <input type="radio" name="c1" value="1" required>
+      <span class="q-option-mark" aria-hidden="true">2</span>
+      <span class="q-option-text">Lo he usado</span>
+    </label>
+    <label class="q-option">
+      <input type="radio" name="c1" value="2" required>
+      <span class="q-option-mark" aria-hidden="true">3</span>
+      <span class="q-option-text">Lo he mantenido</span>
+    </label>
+    <label class="q-option">
+      <input type="radio" name="c1" value="3" required>
+      <span class="q-option-mark" aria-hidden="true">4</span>
+      <span class="q-option-text">Lo he diseñado</span>
+    </label>
+    <label class="q-option">
+      <input type="radio" name="c1" value="4" required>
+      <span class="q-option-mark" aria-hidden="true">5</span>
+      <span class="q-option-text">Lo he enseñado</span>
+    </label>
+  </div>
+</fieldset>
+<fieldset class="q">
+  <legend class="q-text">Ejecución paralela o distribuida para bajar el tiempo de la suite en CI.</legend>
+  <div class="q-options">
+    
+    <label class="q-option">
+      <input type="radio" name="c2" value="0" required>
+      <span class="q-option-mark" aria-hidden="true">1</span>
+      <span class="q-option-text">Nunca lo he visto</span>
+    </label>
+    <label class="q-option">
+      <input type="radio" name="c2" value="1" required>
+      <span class="q-option-mark" aria-hidden="true">2</span>
+      <span class="q-option-text">Lo he usado</span>
+    </label>
+    <label class="q-option">
+      <input type="radio" name="c2" value="2" required>
+      <span class="q-option-mark" aria-hidden="true">3</span>
+      <span class="q-option-text">Lo he mantenido</span>
+    </label>
+    <label class="q-option">
+      <input type="radio" name="c2" value="3" required>
+      <span class="q-option-mark" aria-hidden="true">4</span>
+      <span class="q-option-text">Lo he diseñado</span>
+    </label>
+    <label class="q-option">
+      <input type="radio" name="c2" value="4" required>
+      <span class="q-option-mark" aria-hidden="true">5</span>
+      <span class="q-option-text">Lo he enseñado</span>
+    </label>
+  </div>
+</fieldset>
+</section>
+
+<section class="radar-step" data-step="5" hidden
+         aria-labelledby="step-5-title">
+  <p class="eyebrow">Eje 5 de 6</p>
+  <h2 id="step-5-title">Datos y entornos</h2>
+  <p class="lead">La causa real de la mitad de los tests inestables.</p>
+  
+<fieldset class="q">
+  <legend class="q-text">Tests que crean y limpian sus propios datos, y se ejecutan en cualquier orden sin interferir.</legend>
+  <div class="q-options">
+    
+    <label class="q-option">
+      <input type="radio" name="d1" value="0" required>
+      <span class="q-option-mark" aria-hidden="true">1</span>
+      <span class="q-option-text">Nunca lo he visto</span>
+    </label>
+    <label class="q-option">
+      <input type="radio" name="d1" value="1" required>
+      <span class="q-option-mark" aria-hidden="true">2</span>
+      <span class="q-option-text">Lo he usado</span>
+    </label>
+    <label class="q-option">
+      <input type="radio" name="d1" value="2" required>
+      <span class="q-option-mark" aria-hidden="true">3</span>
+      <span class="q-option-text">Lo he mantenido</span>
+    </label>
+    <label class="q-option">
+      <input type="radio" name="d1" value="3" required>
+      <span class="q-option-mark" aria-hidden="true">4</span>
+      <span class="q-option-text">Lo he diseñado</span>
+    </label>
+    <label class="q-option">
+      <input type="radio" name="d1" value="4" required>
+      <span class="q-option-mark" aria-hidden="true">5</span>
+      <span class="q-option-text">Lo he enseñado</span>
+    </label>
+  </div>
+</fieldset>
+<fieldset class="q">
+  <legend class="q-text">Un entorno de pruebas reproducible que se levanta desde cero.</legend>
+  <div class="q-options">
+    
+    <label class="q-option">
+      <input type="radio" name="d2" value="0" required>
+      <span class="q-option-mark" aria-hidden="true">1</span>
+      <span class="q-option-text">Nunca lo he visto</span>
+    </label>
+    <label class="q-option">
+      <input type="radio" name="d2" value="1" required>
+      <span class="q-option-mark" aria-hidden="true">2</span>
+      <span class="q-option-text">Lo he usado</span>
+    </label>
+    <label class="q-option">
+      <input type="radio" name="d2" value="2" required>
+      <span class="q-option-mark" aria-hidden="true">3</span>
+      <span class="q-option-text">Lo he mantenido</span>
+    </label>
+    <label class="q-option">
+      <input type="radio" name="d2" value="3" required>
+      <span class="q-option-mark" aria-hidden="true">4</span>
+      <span class="q-option-text">Lo he diseñado</span>
+    </label>
+    <label class="q-option">
+      <input type="radio" name="d2" value="4" required>
+      <span class="q-option-mark" aria-hidden="true">5</span>
+      <span class="q-option-text">Lo he enseñado</span>
+    </label>
+  </div>
+</fieldset>
+</section>
+
+<section class="radar-step" data-step="6" hidden
+         aria-labelledby="step-6-title">
+  <p class="eyebrow">Eje 6 de 6</p>
+  <h2 id="step-6-title">IA aplicada a QA</h2>
+  <p class="lead">Usarla en el flujo, y probar lo que la lleva dentro.</p>
+  
+<fieldset class="q">
+  <legend class="q-text">Usar un asistente de IA para generar o mantener casos de prueba, revisando y corrigiendo su salida.</legend>
+  <div class="q-options">
+    
+    <label class="q-option">
+      <input type="radio" name="i1" value="0" required>
+      <span class="q-option-mark" aria-hidden="true">1</span>
+      <span class="q-option-text">Nunca lo he visto</span>
+    </label>
+    <label class="q-option">
+      <input type="radio" name="i1" value="1" required>
+      <span class="q-option-mark" aria-hidden="true">2</span>
+      <span class="q-option-text">Lo he usado</span>
+    </label>
+    <label class="q-option">
+      <input type="radio" name="i1" value="2" required>
+      <span class="q-option-mark" aria-hidden="true">3</span>
+      <span class="q-option-text">Lo he mantenido</span>
+    </label>
+    <label class="q-option">
+      <input type="radio" name="i1" value="3" required>
+      <span class="q-option-mark" aria-hidden="true">4</span>
+      <span class="q-option-text">Lo he diseñado</span>
+    </label>
+    <label class="q-option">
+      <input type="radio" name="i1" value="4" required>
+      <span class="q-option-mark" aria-hidden="true">5</span>
+      <span class="q-option-text">Lo he enseñado</span>
+    </label>
+  </div>
+</fieldset>
+<fieldset class="q">
+  <legend class="q-text">Probar un sistema que incorpora un LLM: no determinismo, evaluaciones y criterios de aceptación.</legend>
+  <div class="q-options">
+    
+    <label class="q-option">
+      <input type="radio" name="i2" value="0" required>
+      <span class="q-option-mark" aria-hidden="true">1</span>
+      <span class="q-option-text">Nunca lo he visto</span>
+    </label>
+    <label class="q-option">
+      <input type="radio" name="i2" value="1" required>
+      <span class="q-option-mark" aria-hidden="true">2</span>
+      <span class="q-option-text">Lo he usado</span>
+    </label>
+    <label class="q-option">
+      <input type="radio" name="i2" value="2" required>
+      <span class="q-option-mark" aria-hidden="true">3</span>
+      <span class="q-option-text">Lo he mantenido</span>
+    </label>
+    <label class="q-option">
+      <input type="radio" name="i2" value="3" required>
+      <span class="q-option-mark" aria-hidden="true">4</span>
+      <span class="q-option-text">Lo he diseñado</span>
+    </label>
+    <label class="q-option">
+      <input type="radio" name="i2" value="4" required>
+      <span class="q-option-mark" aria-hidden="true">5</span>
+      <span class="q-option-text">Lo he enseñado</span>
+    </label>
+  </div>
+</fieldset>
+</section></div>
+
+      <p class="radar-error" data-error role="alert" hidden></p>
+
+      <div class="radar-nav" data-nav hidden>
+        <button class="btn btn--ghost" type="button" data-prev>Anterior</button>
+        <button class="btn btn--primary" type="button" data-next>Siguiente</button>
+        <button class="btn btn--primary" type="submit" data-finish hidden>Ver mi radiografía</button>
+      </div>
+    </form>
+
+    <div id="radarResult" class="radar-result" tabindex="-1" hidden></div>
+
+    <div class="radar-after" data-after hidden>
+      <div class="split">
+        <!-- Sin novalidate a propósito: el email y el consentimiento los
+             valida el navegador, que ya sabe hacerlo y además traduce. -->
+        <form id="radarLead" class="card">
+          <p class="eyebrow">Opción 1 · gratis</p>
+          <h3>¿Quieres que lo revise yo?</h3>
+          <p>Me llega tu resultado, lo miro y te digo por dónde empezar y qué me
+            saltaría. Te respondo en menos de 48 horas. No hay newsletter detrás.</p>
+
+          <!-- Honeypot antispam: oculto y fuera de tabulación, igual que en
+               el formulario de contacto del home. -->
+          <input type="text" name="_gotcha" tabindex="-1" autocomplete="off"
+                 aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden">
+
+          <div class="field" style="margin-top:var(--s-5)">
+            <label for="lead-email">Tu email <span class="req" aria-hidden="true">*</span></label>
+            <input class="input" id="lead-email" name="email" type="email" required
+                   maxlength="120" autocomplete="email" placeholder="tucorreo@ejemplo.com">
+          </div>
+
+          <label class="consent">
+            <input type="checkbox" name="consent" required>
+            <span>Acepto que Raúl Molina trate mi email y mis respuestas con el
+              único fin de responderme. Puedo pedir su borrado cuando quiera.
+              <a href="../privacidad/">Política de privacidad</a>.</span>
+          </label>
+
+          <input type="hidden" name="resultado">
+          <div class="card-foot">
+            <button class="btn btn--primary btn--block" type="submit">Pedir la revisión</button>
+            <p class="form-status" data-lead-status role="status"></p>
+          </div>
+        </form>
+
+        <aside class="card">
+          <p class="eyebrow">Opción 2 · 50 €</p>
+          <h3>O lo convertimos en un plan de 90 días</h3>
+          <p>Una hora conmigo, con tu radiografía delante. Salimos con el orden
+            exacto, qué aprender de cada eje y cómo demostrarlo. Si al terminar
+            crees que no te ha servido, te devuelvo el dinero.</p>
+          <ul class="checks">
+            <li>Sesión de 60 minutos por Google Meet</li>
+            <li>Plan escrito de 90 días después de la sesión</li>
+            <li>Sin paquetes ni permanencia</li>
+          </ul>
+          <div class="card-foot">
+            <a class="btn btn--ghost btn--block" href="../mentoringB2C/">Ver la mentoría</a>
+          </div>
+        </aside>
+      </div>
+
+      <div class="radar-restart">
+        <button class="btn btn--quiet" type="button" data-restart>Volver a empezar</button>
+        <button class="btn btn--quiet" type="button" data-print>Imprimir o guardar en PDF</button>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="section section--alt section--line">
+  <div class="wrap">
+    <header class="section-head" data-reveal>
+      <p class="eyebrow">Relacionado</p>
+      <h2>Sigue por aquí</h2>
+    </header>
+    <div class="grid grid--3">
+      <article class="card card--hover" data-reveal>
+        <h3>Mentoría QA</h3>
+        <p>Sesiones individuales y packs para desbloquear tu carrera, preparar entrevistas y ordenar el roadmap.</p>
+        <div class="card-foot">
+          <a class="btn btn--quiet stretch" href="../mentoringB2C/">Ver la mentoría
+            <svg class="arrow" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </div>
+      </article>
+      <article class="card card--hover" data-reveal>
+        <h3>Test Automation</h3>
+        <p>Una suite que sólo entiende quien la escribió es deuda técnica con otro nombre.</p>
+        <div class="card-foot">
+          <a class="btn btn--quiet stretch" href="../test-automation/">Ver Test Automation
+            <svg class="arrow" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </div>
+      </article>
+      <article class="card card--hover" data-reveal>
+        <h3>AI Engineering</h3>
+        <p>La pregunta útil no es si la IA sirve para testing, sino qué parte del trabajo repetitivo puede asumir.</p>
+        <div class="card-foot">
+          <a class="btn btn--quiet stretch" href="../ai-engineering/">Ver AI Engineering
+            <svg class="arrow" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<div data-chrome="footer"></div>
+
+<button class="to-top" type="button" aria-label="Volver arriba">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 15l7-7 7 7"/></svg>
+</button>
+
+<script type="module" src="../assets/js/radar.ui.js"></script>
+</body>
+</html>

@@ -13,8 +13,8 @@ GitHub Pages.
 
 ```bash
 npm run dev      # live-server en http://localhost:3000
-npm run build    # prerenderiza el home en index.html (tras editar data.js)
-npm test         # suite de auditoría — 21 comprobaciones
+npm run build    # prerenderiza el home y el cuestionario de la Radiografía
+npm test         # suite de auditoría y motor de la Radiografía — 51 comprobaciones
 ```
 
 `npm test` no necesita instalar nada: usa el runner nativo de Node (≥ 18).
@@ -47,6 +47,11 @@ para consultarlas, no un sitio donde cambiarlas.
   y sin tocar nada más.
 - **Contenido de las siete landings SEO** (siguen en `noindex`, ver más abajo).
 - **Primeros artículos del blog** (la infraestructura ya está lista).
+- **Calibrar la Radiografía.** Los cortes de banda y el perfil esperado por rol
+  en `radar.data.js` son estimaciones, no medidas. Cuando haya respuestas
+  reales, ajustarlos ahí: el motor no cambia.
+- **Aviso legal.** `/privacidad/` cubre el RGPD. Si se factura desde la web,
+  la LSSI-CE pide además NIF y domicilio en un aviso legal aparte.
 
 ---
 
@@ -67,6 +72,11 @@ qa/ · test-automation/ · playwright/ · devops/ · github-actions/
 solution-consulting/ · ai-engineering/
                            Landings SEO — estructura lista, contenido largo pendiente
 mentoringB2C/              Mentoría 1:1 (B2C)
+radiografia-qa/            Autoevaluación de nivel QA — el lead magnet de B2C.
+                           Las preguntas las escribe `npm run build` desde
+                           radar.data.js: no editarlas a mano en el HTML
+privacidad/                Política de privacidad (obligatoria desde que hay
+                           formularios que recogen email)
 cv/                        Ignorado por git. El CV no se publica: la web enlaza
                            a LinkedIn, que además está siempre al día
 
@@ -86,7 +96,14 @@ assets/
     chrome.js              Cabecera y pie compartidos por las subpáginas
     main.js                Punto de entrada del home
     page.js                Punto de entrada de las subpáginas
+    radar.data.js          Contenido de la Radiografía: ejes, ítems, bandas,
+                           acciones. Es el producto; lo demás es andamiaje
+    radar.js               Motor de puntuación — funciones puras, sin DOM
+    radar.view.js          Plantillas de la Radiografía (prerender + navegador)
+    radar.ui.js            Punto de entrada de /radiografia-qa/
     dom.test.js            Suite de auditoría (`npm test`)
+    radar.test.js          Motor de la Radiografía
+    radar.view.test.js     Plantillas de la Radiografía
   fonts/                   Geist y Geist Mono variables, subset latino (52 KB)
   logos/                   SVG monocromos de tecnologías (Simple Icons, CC0)
   favicon.svg · og-cover.png

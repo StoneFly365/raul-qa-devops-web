@@ -491,6 +491,14 @@ export const resources = [
     cta: 'Ver en LinkedIn',
   },
   {
+    type: 'Gratis',
+    icon: I.shield,
+    title: 'Radiografía de nivel QA',
+    desc: 'Doce preguntas y sabrás en qué ejes estás por debajo del rol al que apuntas.',
+    href: 'radiografia-qa/',
+    cta: 'Hacer la radiografía',
+  },
+  {
     type: 'Servicio',
     icon: I.users,
     title: 'Mentoría QA individual',
