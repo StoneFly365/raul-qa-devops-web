@@ -37,6 +37,7 @@ function wireQuiz() {
   const nav = $('[data-nav]');
   const progress = $('[data-progress]');
   const error = $('[data-error]');
+  const ready = $('[data-ready]');
   const result = $('#radarResult');
   const after = $('[data-after]');
 
@@ -52,7 +53,15 @@ function wireQuiz() {
      visitante acaba de llegar y aún no ha leído el encabezado. */
   show(0, { move: false });
 
-  form.addEventListener('change', save);
+  form.addEventListener('change', (event) => {
+    save();
+    /* La marca roja se retira en cuanto se responde, no al reintentar
+       avanzar: dejarla puesta sobre una pregunta ya contestada es
+       decirle al visitante que hizo algo mal cuando ya lo arregló. */
+    event.target.closest('.q')?.classList.remove('is-missing');
+    clearNote(event.target.closest('.q'));
+    refreshReady();
+  });
   $('[data-next]').addEventListener('click', () => go(+1));
   $('[data-prev]').addEventListener('click', () => go(-1));
   form.addEventListener('submit', finish);
@@ -67,10 +76,13 @@ function wireQuiz() {
     steps.forEach((s, i) => { s.hidden = i !== n; });
     error.hidden = true;
 
+    /* «Ver mi radiografía» sólo existe en el último paso; hasta ahí, el
+       único camino hacia delante es «Siguiente». */
     const last = n === steps.length - 1;
     $('[data-next]').hidden = last;
     $('[data-finish]').hidden = !last;
     $('[data-prev]').disabled = n === 0;
+    refreshReady();
 
     $('[data-step-now]').textContent = n + 1;
     $('[data-progress-fill]').style.setProperty('--p', `${(n / (steps.length - 1)) * 100}%`);
@@ -91,19 +103,41 @@ function wireQuiz() {
     show(Math.min(Math.max(current + delta, 0), steps.length - 1));
   }
 
-  /* Un paso está completo cuando cada grupo de radios tiene uno
-     marcado. Se valida a mano porque el navegador no sabe que los
-     pasos ocultos no cuentan todavía. */
+  /* Preguntas del paso sin ninguna opción marcada. Se comprueba a mano
+     porque el navegador no sabe que los pasos ocultos no cuentan aún. */
+  const unanswered = (step) => $$('.q', step).filter((q) => !$('input:checked', q));
+
+  const clearNote = (q) => q?.querySelector('.q-missing-note')?.remove();
+
+  /* El aviso de «ya puedes pulsar» sólo tiene sentido en el último
+     paso: en los demás el camino sigue siendo «Siguiente». */
+  function refreshReady() {
+    const last = current === steps.length - 1;
+    ready.hidden = !last || unanswered(steps[current]).length > 0;
+  }
+
   function validate(step) {
-    const groups = new Set($$('input[type="radio"]', step).map((i) => i.name));
-    const missing = [...groups].filter((name) => !$(`input[name="${name}"]:checked`, step));
+    for (const q of $$('.q', step)) {
+      q.classList.remove('is-missing');
+      clearNote(q);
+    }
+
+    const missing = unanswered(step);
     if (!missing.length) return true;
 
-    error.textContent = missing.length === 1
-      ? 'Falta una respuesta en este paso.'
-      : `Faltan ${missing.length} respuestas en este paso.`;
+    for (const q of missing) {
+      q.classList.add('is-missing');
+      const note = document.createElement('p');
+      note.className = 'q-missing-note';
+      note.textContent = 'Falta responder a esta pregunta.';
+      q.append(note);
+    }
+
+    error.textContent = `${missing.length === 1 ? 'Falta una respuesta' : `Faltan ${missing.length} respuestas`}.`
+      + ' Todas las preguntas son obligatorias: con un hueco, el diagnóstico deja de ser exacto.';
     error.hidden = false;
-    $(`input[name="${missing[0]}"]`, step).focus();
+    ready.hidden = true;
+    $('input', missing[0]).focus();
     return false;
   }
 
@@ -139,6 +173,12 @@ function wireQuiz() {
   function restart() {
     try { localStorage.removeItem(STORE); } catch { /* ver save() */ }
     form.reset();
+    /* form.reset() desmarca los radios pero no retira las marcas de
+       error, que son clases y nodos añadidos a mano. */
+    for (const q of $$('.q', form)) {
+      q.classList.remove('is-missing');
+      clearNote(q);
+    }
     result.hidden = true;
     after.hidden = true;
     form.hidden = false;
@@ -163,6 +203,7 @@ function wireQuiz() {
     form.hidden = true;
     progress.hidden = true;
     nav.hidden = true;
+    ready.hidden = true;
 
     $('input[name="resultado"]', $('#radarLead')).value = asText(scored, context, raw);
 

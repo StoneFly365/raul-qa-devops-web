@@ -5,6 +5,12 @@
    aquí no hay ni un color ni un espaciado suelto.
    ============================================================= */
 
+/* El atributo `hidden` del navegador es `[hidden]{display:none}`, con
+   especificidad de atributo: cualquier regla de autor que declare
+   display se lo come. Aquí pasaba con .btn (inline-flex), y los
+   botones de navegación se veían siempre aunque el JS los ocultara. */
+[hidden] { display: none !important; }
+
 /* -------------------------------------------------------------
    PROGRESO
    ------------------------------------------------------------- */
@@ -58,6 +64,18 @@
 .q-text b { color: var(--accent-hi); font-weight: var(--fw-bold); }
 
 .q-options { display: grid; gap: var(--s-2); }
+
+/* Pregunta sin responder al intentar avanzar. El color no va solo: el
+   texto de aviso dice qué falta, porque quien no distingue el rojo
+   necesita leerlo. */
+.q.is-missing .q-text { color: var(--fail); }
+.q.is-missing .q-option { border-color: rgba(248, 113, 113, .45); }
+.q.is-missing .q-option-mark { border-color: rgba(248, 113, 113, .45); color: var(--fail); }
+.q-missing-note {
+  margin-top: var(--s-2);
+  font-size: var(--fs-xs);
+  color: var(--fail);
+}
 
 .q-option {
   display: flex;
@@ -123,6 +141,25 @@
   margin-top: var(--s-4);
   font-size: var(--fs-sm);
   color: var(--fail);
+}
+
+/* El contrario del error: el último paso ya está completo y sólo queda
+   pulsar. Ocupa el mismo hueco para que la caja no salte. */
+.radar-ready {
+  display: flex;
+  align-items: center;
+  gap: var(--s-2);
+  margin-top: var(--s-4);
+  font-size: var(--fs-sm);
+  color: var(--accent-hi);
+}
+.radar-ready::before {
+  content: '';
+  flex: none;
+  width: 8px;
+  height: 8px;
+  border-radius: var(--r-full);
+  background: var(--accent);
 }
 
 /* -------------------------------------------------------------
