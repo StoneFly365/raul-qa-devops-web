@@ -348,44 +348,17 @@ export const projects = [
    TRAYECTORIA PROFESIONAL
    ============================================================= */
 /* Cinco etapas reales, no cinco títulos inventados. `now: true`
-   marca la etapa actual y pinta el nodo con el acento. */
+   marca la etapa actual y pinta el nodo con el acento.
+
+   Sólo período, rol y empresas: la línea de tiempo cuenta la
+   progresión, no la sustituye. El detalle de cada etapa vive en
+   LinkedIn, que además está al día. */
 export const career = [
-  {
-    period: '2011 — 2014',
-    role: 'QA Engineer',
-    org: 'MTP · everis · Imaweb',
-    desc: 'Diseño y ejecución de pruebas funcionales en banca, telecomunicaciones y entornos Host. Aprendí que un defecto encontrado tarde cuesta veinte veces más.',
-    tags: ['Testing funcional', 'Gestión de defectos', 'Sector financiero'],
-  },
-  {
-    period: '2015 — 2019',
-    role: 'Automation Engineer',
-    org: 'Leda MC · BBVA · Exceltic',
-    desc: 'Frameworks de automatización web y móvil, revisión de pull requests con foco en calidad y definición de estándares de testing para equipos de desarrollo.',
-    tags: ['Selenium', 'Cucumber', 'Jenkins', 'Appium'],
-  },
-  {
-    period: '2019 — 2022',
-    role: 'QA Lead',
-    org: 'Sngular · Z1 · Clicars',
-    desc: 'Liderazgo de equipos de QA, cultura de calidad y organización de proyectos. Primera exposición seria a Kubernetes, Docker y entornos efímeros de pruebas.',
-    tags: ['Liderazgo', 'Cypress', 'Docker', 'Kubernetes'],
-  },
-  {
-    period: '2023 — 2025',
-    role: 'Quality Engineer & DevOps',
-    org: 'BBVA Next · iryo · itegGO',
-    desc: 'Estrategias de automatización para banca integradas en CI/CD, mentoring técnico y optimización de procesos QA en organizaciones de varios cientos de personas.',
-    tags: ['Playwright', 'Karate DSL', 'CI/CD', 'Mentoring'],
-  },
-  {
-    period: '2026 — hoy',
-    role: 'Solution Consulting & AI Engineering',
-    org: 'atmira · Tech Hub',
-    desc: 'Lidero el Tech Hub junto al CTO y al Head of Technology: diseño de soluciones QA, DevOps y cloud, relación con partners estratégicos e iniciativas de IA generativa.',
-    tags: ['Solution Consulting', 'AI Engineering', 'Preventa', 'Partners'],
-    now: true,
-  },
+  { period: '2011 — 2014', role: 'QA Engineer', org: 'MTP · everis · Imaweb' },
+  { period: '2015 — 2019', role: 'Automation Engineer', org: 'Leda MC · BBVA · Exceltic' },
+  { period: '2019 — 2022', role: 'QA Lead', org: 'Sngular · Z1 · Clicars' },
+  { period: '2023 — 2025', role: 'Quality Engineer & DevOps', org: 'BBVA Next · iryo · itegGO' },
+  { period: '2026 — hoy', role: 'Solution Consulting & AI Engineering', org: 'atmira · Tech Hub', now: true },
 ];
 
 /* =============================================================
