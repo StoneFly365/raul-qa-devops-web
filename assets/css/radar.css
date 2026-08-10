@@ -181,6 +181,22 @@
   margin-bottom: var(--s-2);
 }
 .radar-bar-name { font-size: var(--fs-sm); font-weight: var(--fw-medium); color: var(--text); }
+
+/* Marca de los ejes del plan: sin esto todas las barras Junior se ven
+   iguales y el titular ("tu eje más débil es X") parece contradecir la
+   barra. El flag conecta barra y plan. */
+.radar-bar-flag {
+  margin-left: var(--s-2);
+  padding: 1px 8px;
+  border-radius: var(--r-full);
+  background: var(--accent-soft);
+  color: var(--accent-hi);
+  font-family: var(--font-mono);
+  font-size: var(--fs-mono);
+  letter-spacing: var(--tr-wide);
+  text-transform: uppercase;
+}
+.radar-bar.is-plan .radar-bar-name { color: var(--accent-hi); }
 .radar-bar-band {
   font-family: var(--font-mono);
   font-size: var(--fs-mono);

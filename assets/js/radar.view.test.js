@@ -53,6 +53,13 @@ test('resultHtml: con brechas aparece un paso de plan por brecha mostrada', () =
   assert.equal(steps.length, r.plan.length);
 });
 
+test('resultHtml: las barras de los ejes del plan llevan el flag "empieza aquí"', () => {
+  const r = report(all(0), ctx);
+  const html = resultHtml(r, ctx);
+  const flags = html.match(/radar-bar-flag/g) || [];
+  assert.equal(flags.length, r.plan.length);
+});
+
 test('resultHtml: nombra el rol objetivo elegido', () => {
   const html = resultHtml(report(all(2), ctx), ctx);
   assert.match(html, /QA Automation Senior/);

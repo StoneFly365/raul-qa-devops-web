@@ -74,10 +74,10 @@ export function stepsHtml() {
 /* Una barra por eje, con la marca de lo que se espera para el rol
    objetivo. La marca es la mitad del mensaje: una barra sola no dice
    si 55 está bien o mal. */
-const bar = (axis, score, expected) => `
-<li class="radar-bar" data-axis="${axis.id}">
+const bar = (axis, score, expected, inPlan) => `
+<li class="radar-bar${inPlan ? ' is-plan' : ''}" data-axis="${axis.id}">
   <div class="radar-bar-head">
-    <span class="radar-bar-name">${esc(axis.name)}</span>
+    <span class="radar-bar-name">${esc(axis.name)}${inPlan ? ' <span class="radar-bar-flag">empieza aquí</span>' : ''}</span>
     <span class="radar-bar-band">${esc(bandName(bandOf(score)))}</span>
   </div>
   <div class="radar-bar-track" role="img"
@@ -90,6 +90,7 @@ const bar = (axis, score, expected) => `
 export function resultHtml(report, context = {}) {
   const role = roles.find((r) => r.id === context.role) || roles[0];
   const weak = axisName(report.weakest.axis);
+  const planAxes = new Set(report.plan.map((s) => s.axis));
 
   const plan = report.plan.length ? `
 <div class="radar-plan" data-plan>
@@ -121,7 +122,7 @@ export function resultHtml(report, context = {}) {
 </header>
 
 <ul class="radar-bars">
-  ${axes.map((a) => bar(a, report.scores[a.id], report.expected[a.id])).join('')}
+  ${axes.map((a) => bar(a, report.scores[a.id], report.expected[a.id], planAxes.has(a.id))).join('')}
 </ul>
 <p class="radar-legend">
   <span class="radar-legend-key" aria-hidden="true"></span>
