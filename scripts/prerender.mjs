@@ -15,8 +15,10 @@ import fs from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { homeBlocks } from '../assets/js/sections.js';
 import { renderToString } from '../assets/js/dom.js';
+import { stepsHtml } from '../assets/js/radar.view.js';
 
 const INDEX = fileURLToPath(new URL('../index.html', import.meta.url));
+const RADAR = fileURLToPath(new URL('../radiografia-qa/index.html', import.meta.url));
 
 /* En Node, techLogo resuelve la ruta del logo contra un file:// (import.
    meta.url del módulo). En el estático que sirve GitHub Pages tiene que
@@ -52,10 +54,22 @@ export function prerenderIndex(html) {
   return fixLogoPaths(html);
 }
 
-/* Ejecutado directamente (no importado por el test): reescribe el archivo. */
+/* Puro: los siete pasos de la Radiografía, escritos desde radar.data.js.
+   Sin esto el cuestionario existiría sólo si el visitante ejecuta JS, y
+   Google no vería ni una de las doce preguntas. */
+export function prerenderRadar(html) {
+  return injectInto(html, 'radarSteps', stepsHtml());
+}
+
+/* Ejecutado directamente (no importado por el test): reescribe los archivos. */
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
-  const before = fs.readFileSync(INDEX, 'utf8');
-  const after = prerenderIndex(before);
-  fs.writeFileSync(INDEX, after);
-  console.log(after === before ? 'index.html ya estaba al día' : 'index.html prerenderizado');
+  for (const [file, render, name] of [
+    [INDEX, prerenderIndex, 'index.html'],
+    [RADAR, prerenderRadar, 'radiografia-qa/index.html'],
+  ]) {
+    const before = fs.readFileSync(file, 'utf8');
+    const after = render(before);
+    fs.writeFileSync(file, after);
+    console.log(after === before ? `${name} ya estaba al día` : `${name} prerenderizado`);
+  }
 }

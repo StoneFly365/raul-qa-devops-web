@@ -72,6 +72,7 @@ const footer = () => `
           <li><a href="${url('#trayectoria')}">Trayectoria</a></li>
           <li><a href="${url('blog/')}">Blog</a></li>
           <li><a href="${url('mentoringB2C/')}">Mentoría 1:1</a></li>
+          <li><a href="${url('radiografia-qa/')}">Radiografía de nivel QA</a></li>
         </ul>
       </nav>
       <nav class="footer-col" aria-labelledby="f-cont">
@@ -85,6 +86,7 @@ const footer = () => `
     </div>
     <div class="footer-bottom">
       <span>© ${new Date().getFullYear()} ${site.name}</span>
+      <span><a href="${url('privacidad/')}">Política de privacidad</a></span>
       <span>${site.location} · remoto-friendly</span>
     </div>
   </div>

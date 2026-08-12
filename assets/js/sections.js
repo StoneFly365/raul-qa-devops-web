@@ -129,8 +129,6 @@ export function homeBlocks() {
       <div class="career-body">
         <h3>${esc(c.role)}${c.now ? ' <span class="tag tag--accent">actual</span>' : ''}</h3>
         <p class="career-org">${esc(c.org)}</p>
-        <p>${esc(c.desc)}</p>
-        <div class="tag-row">${c.tags.map((t) => `<span class="tag">${esc(t)}</span>`).join('')}</div>
       </div>
     </li>`, opts: { stagger: true } },
 

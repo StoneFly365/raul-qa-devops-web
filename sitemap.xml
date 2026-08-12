@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-  Sólo van aquí páginas con contenido real y publicable. Las landings
-  de /qa/, /devops/, /playwright/, /github-actions/, /test-automation/,
-  /solution-consulting/ y /ai-engineering/ están creadas pero todavía
-  en noindex: aparecen abajo comentadas. Al terminar el contenido de
-  cada una, quita su <meta robots noindex> y descomenta su bloque.
+  Sólo van aquí páginas con contenido real y publicable. Las siete
+  landings de servicio ya están publicadas, con contenido extenso y
+  sin bloque .wip. Al crear una página nueva: contenido primero, y
+  luego <meta robots> en index, sin .wip y su <url> aquí. Los tres
+  pasos van juntos: `npm test` falla si se separan.
 -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
@@ -29,14 +29,60 @@
     <priority>0.7</priority>
   </url>
 
-  <!-- Landings SEO — descomentar una a una al publicar su contenido:
-  <url><loc>https://stonefly365.github.io/raul-qa-devops-web/qa/</loc>                  <lastmod>2026-08-05</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://stonefly365.github.io/raul-qa-devops-web/test-automation/</loc>     <lastmod>2026-08-05</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://stonefly365.github.io/raul-qa-devops-web/playwright/</loc>          <lastmod>2026-08-05</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://stonefly365.github.io/raul-qa-devops-web/devops/</loc>              <lastmod>2026-08-05</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://stonefly365.github.io/raul-qa-devops-web/github-actions/</loc>      <lastmod>2026-08-05</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://stonefly365.github.io/raul-qa-devops-web/solution-consulting/</loc> <lastmod>2026-08-05</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://stonefly365.github.io/raul-qa-devops-web/ai-engineering/</loc>      <lastmod>2026-08-05</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  -->
+  <url>
+    <loc>https://stonefly365.github.io/raul-qa-devops-web/radiografia-qa/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://stonefly365.github.io/raul-qa-devops-web/playwright/</loc>
+    <lastmod>2026-08-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://stonefly365.github.io/raul-qa-devops-web/test-automation/</loc>
+    <lastmod>2026-08-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://stonefly365.github.io/raul-qa-devops-web/qa/</loc>
+    <lastmod>2026-08-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://stonefly365.github.io/raul-qa-devops-web/github-actions/</loc>
+    <lastmod>2026-08-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://stonefly365.github.io/raul-qa-devops-web/devops/</loc>
+    <lastmod>2026-08-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://stonefly365.github.io/raul-qa-devops-web/ai-engineering/</loc>
+    <lastmod>2026-08-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://stonefly365.github.io/raul-qa-devops-web/solution-consulting/</loc>
+    <lastmod>2026-08-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
 
 </urlset>

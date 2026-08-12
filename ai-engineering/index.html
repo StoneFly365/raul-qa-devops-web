@@ -7,19 +7,15 @@
 <script>document.documentElement.classList.remove('no-js')</script>
 
 <!-- ===================== SEO =====================
-     ⚠ ESTADO: estructura lista, contenido extenso pendiente.
-     Mientras el cuerpo sea sólo el esquema de abajo, la página va en
-     noindex y fuera del sitemap: una página delgada indexada perjudica
-     al dominio entero. Al terminar el contenido:
-       1. cambia robots a "index,follow,max-image-preview:large"
-       2. quita el bloque .wip de esta página
-       3. descomenta su <url> en sitemap.xml                          -->
+     ESTADO: publicada. Contenido extenso escrito, sin bloque .wip,
+     robots en index y <url> activa en sitemap.xml. Los tres van
+     juntos: `npm test` falla si se separan.                         -->
 <title>AI Engineering aplicado a QA · Raúl Molina</title>
 <meta name="description" content="Claude Code, MCP y GitHub Copilot dentro del pipeline: generación de casos, mantenimiento asistido de tests y productividad de equipo medida.">
 <meta name="author" content="Raúl Molina Hernández">
 <meta name="keywords" content="AI engineering, Claude Code, MCP, GitHub Copilot, IA aplicada a QA, prompt engineering">
 <link rel="canonical" href="https://stonefly365.github.io/raul-qa-devops-web/ai-engineering/">
-<meta name="robots" content="noindex,follow">
+<meta name="robots" content="index,follow,max-image-preview:large">
 
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Raúl Molina · QA, DevOps &amp; AI Engineering">
@@ -65,6 +61,18 @@
       "itemListElement": [
         { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://stonefly365.github.io/raul-qa-devops-web/" },
         { "@type": "ListItem", "position": 2, "name": "AI Engineering" }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://stonefly365.github.io/raul-qa-devops-web/ai-engineering/#faq",
+      "mainEntity": [
+        { "@type": "Question", "name": "¿La IA va a sustituir a mi equipo de QA?", "acceptedAnswer": { "@type": "Answer", "text": "No. Sustituye el trabajo repetitivo del equipo de QA. El criterio sobre qué merece la pena probar sigue siendo humano, y ahí es donde tu equipo aporta lo que no se automatiza." } },
+        { "@type": "Question", "name": "¿Los tests generados son fiables?", "acceptedAnswer": { "@type": "Answer", "text": "Tanto como su revisión. Entran por pull request y se revisan igual que el código de una persona. Un test generado que nadie ha leído es peor que no tener test: da sensación de cobertura sin darla." } },
+        { "@type": "Question", "name": "¿Nuestro código sale de la empresa?", "acceptedAnswer": { "@type": "Answer", "text": "Depende del modelo y del despliegue que elijáis, y es una decisión que se toma antes de escribir una línea. Hay opciones que no entrenan con vuestros datos y opciones autoalojadas. Si vuestra política no permite enviar código fuera, se diseña con esa restricción desde el principio." } },
+        { "@type": "Question", "name": "¿Qué herramientas usas?", "acceptedAnswer": { "@type": "Answer", "text": "Claude Code como agente en terminal y en CI, MCP para darle contexto real de la aplicación y GitHub Copilot dentro del editor. La elección concreta importa menos que el diseño del ciclo y de los límites." } },
+        { "@type": "Question", "name": "¿Cuánto cuesta en tokens?", "acceptedAnswer": { "@type": "Answer", "text": "Se mide y se pone en la tabla junto a las horas ahorradas. Suele salir a favor con holgura, pero es una cifra que hay que enseñar, no prometer." } },
+        { "@type": "Question", "name": "¿Por dónde se empieza?", "acceptedAnswer": { "@type": "Answer", "text": "Por un caso acotado con resultado medible: normalmente el mantenimiento de localizadores o la generación de datos de prueba. Se mide un mes, y si no ahorra nada se para. Empezar por «vamos a generar toda la suite» es la vía rápida al proyecto abandonado." } }
       ]
     }
   ]
@@ -129,40 +137,163 @@
 
 <section class="section section--alt section--line">
   <div class="wrap">
-    <header class="section-head" data-reveal>
+    <div class="article-body" data-reveal>
       <p class="eyebrow">En detalle</p>
-      <h2>Lo que cubre esta guía</h2>
-      <p class="lead">El esquema del contenido extenso que estoy escribiendo para esta página.</p>
+      <p class="lead">Casi todo lo que se cuenta sobre IA y testing se demuestra con una
+        aplicación de ejemplo de tres pantallas. Esto va de la otra parte: qué aguanta el
+        contacto con un producto real, qué no, y cómo se demuestra que ha ahorrado
+        algo.</p>
+
+      <h2>1. Qué delego a un agente y qué no</h2>
+
+      <p>La pregunta útil no es si la IA sirve para testing. Es qué parte del trabajo
+        repetitivo puede asumir. Y hay una línea bastante nítida:</p>
+
+      <ul>
+        <li><b>Se delega bien</b> lo que es traducción mecánica con un resultado
+          verificable: convertir un caso escrito en prosa a código de test, generar datos
+          sintéticos que cumplen unas reglas, actualizar localizadores tras un rediseño,
+          redactar el primer borrador de casos a partir de un requisito, resumir por qué
+          han fallado treinta tests.</li>
+        <li><b>No se delega</b> lo que exige criterio sobre riesgo: qué merece la pena
+          probar, qué se acepta como riesgo asumido, qué significa realmente «funciona»
+          para este negocio. Un modelo no sabe qué le cuesta a tu empresa que falle el
+          cobro.</li>
+      </ul>
+
+      <p>La consecuencia práctica es que un agente <b>no</b> sustituye a tu equipo de QA:
+        sustituye la parte mecánica del trabajo de tu equipo de QA. El criterio sigue
+        siendo humano, y ahí es donde la gente aporta valor que no se automatiza.</p>
+
+      <p>Un límite que conviene tener claro desde el principio: <b>todo lo que produce un
+        agente se revisa como código de un compañero</b>. Un test generado que nadie ha
+        leído es peor que no tener test, porque da una sensación de cobertura que no
+        existe.</p>
+
+      <h2>2. MCP: darle al modelo contexto real, no capturas de pantalla</h2>
+
+      <p>El motivo por el que las demos de IA impresionan y luego decepcionan casi siempre
+        es el mismo: en la demo el modelo lo sabe todo del sistema, y en tu empresa no sabe
+        nada. Sin contexto, un modelo escribe tests plausibles contra una aplicación
+        imaginaria.</p>
+
+      <p>MCP (Model Context Protocol) es el estándar que resuelve eso: en vez de pegar
+        información en el prompt, se le dan al agente <b>herramientas</b> con las que
+        consultar tu sistema. En un contexto de calidad, las que más rinden:</p>
+
+      <ul>
+        <li>Acceso al repositorio: convenciones reales, cómo se escriben aquí los tests,
+          qué fixtures existen ya.</li>
+        <li>El esquema de la API —OpenAPI, contratos— para que no invente endpoints.</li>
+        <li>Los resultados de las últimas ejecuciones: qué falla, desde cuándo, con qué
+          traza.</li>
+        <li>El gestor de incidencias, para ligar un fallo con lo que ya se sabía de él.</li>
+      </ul>
+
+      <p>La diferencia entre un agente con estas herramientas y uno sin ellas no es de
+        grado: es la diferencia entre un becario que ha leído el código y uno que está
+        adivinando.</p>
+
+      <h3>Los prompts son código</h3>
+
+      <p>Si un prompt determina lo que entra en tu suite, es parte del sistema. Va
+        versionado en el repositorio, se revisa en pull request y se cambia con el mismo
+        cuidado que cualquier otra cosa. Los prompts que viven en el historial del chat de
+        una persona no son reproducibles y desaparecen cuando esa persona se va.</p>
+
+      <h2>3. El ciclo planner → generator → healer</h2>
+
+      <p>El mantenimiento asistido de una suite se organiza en tres papeles distintos, y
+        separarlos importa porque cada uno necesita contexto distinto y falla de forma
+        distinta:</p>
+
+      <ol>
+        <li><b>Planner.</b> Lee el requisito o el cambio y propone qué casos hacen falta y
+          en qué capa —unitario, API o E2E—. Su salida es una lista, no código. <b>Aquí
+          hay revisión humana obligatoria</b>: es la decisión de qué se prueba, y ya hemos
+          dicho que esa no se delega.</li>
+        <li><b>Generator.</b> Convierte los casos aprobados en código, siguiendo las
+          convenciones reales del repositorio. Su trabajo entra por pull request como el
+          de cualquiera.</li>
+        <li><b>Healer.</b> Cuando un test falla, distingue entre un cambio legítimo de la
+          interfaz —un botón que se renombró— y un bug de verdad. Para lo primero propone
+          el arreglo; para lo segundo, no toca nada y avisa.</li>
+      </ol>
+
+      <p>El <i>healer</i> es a la vez la pieza más rentable y la más peligrosa, porque un
+        arreglo automático mal entendido convierte un bug real en un test verde. Por eso
+        <b>nunca escribe directamente en la rama principal</b>: propone un cambio, con su
+        explicación, y lo aprueba una persona.</p>
+
+      <h2>4. Cómo se demuestra el ahorro</h2>
+
+      <p>«El equipo va más rápido» no es un resultado, es una sensación. Si esto no se
+        puede medir, no entra en producción. Lo que mido antes y después:</p>
+
+      <ul>
+        <li><b>Horas de mantenimiento de la suite por sprint.</b> Es donde aparece casi
+          todo el ahorro real, y casi nadie lo estaba midiendo antes.</li>
+        <li><b>Tiempo desde que un test se rompe hasta que vuelve a verde.</b></li>
+        <li><b>Porcentaje de propuestas del agente aceptadas sin cambios.</b> Si es bajo,
+          el problema es el contexto que le estás dando, no el modelo.</li>
+        <li><b>Defectos detectados antes</b>, es decir, cuántos se cazan en el pipeline en
+          vez de en producción.</li>
+        <li><b>Coste de tokens frente a horas ahorradas.</b> Suele salir a favor con
+          holgura, pero hay que ponerlo en la tabla para que la conversación sea seria.</li>
+      </ul>
+
+      <p>Y una comprobación que evita sustos: <b>la calidad de la suite no puede empeorar
+        mientras la productividad sube</b>. Si el escape rate crece a la vez que se generan
+        más tests, lo que has ganado es volumen, no cobertura.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section section--line">
+  <div class="wrap wrap--narrow">
+    <header class="section-head" data-reveal>
+      <p class="eyebrow">Dudas frecuentes</p>
+      <h2>Preguntas que me hacen antes de empezar</h2>
     </header>
 
-    <div class="wip" data-reveal style="margin-bottom:var(--s-8)">
-      <span class="icon-box icon-box--sm" aria-hidden="true">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-      </span>
-      <p><b>Página en construcción.</b> La estructura y el enfoque están definidos; el
-        desarrollo largo de cada apartado llega en las próximas semanas. Mientras tanto,
-        la página está marcada como <code>noindex</code> a propósito: prefiero no indexar
-        contenido a medias. Si te interesa alguno de estos puntos ahora,
-        <a href="../#contacto">escríbeme</a> y te lo cuento directamente.</p>
-    </div>
-
-    <div class="grid grid--2">
-      <article class="card" data-reveal>
-        <h3>Qué delego a un agente y qué no</h3>
-        <p>El criterio sobre qué merece la pena probar sigue siendo humano.</p>
-      </article>
-      <article class="card" data-reveal>
-        <h3>MCP en la práctica</h3>
-        <p>Cómo se le da a un modelo el contexto de una aplicación real.</p>
-      </article>
-      <article class="card" data-reveal>
-        <h3>Planner, generator, healer</h3>
-        <p>El ciclo completo de mantenimiento asistido de una suite E2E.</p>
-      </article>
-      <article class="card" data-reveal>
-        <h3>Medir el ahorro</h3>
-        <p>Horas de equipo, tiempo de pipeline y defectos detectados antes.</p>
-      </article>
+    <div class="faq" data-reveal="fade">
+      <details class="faq-item" name="faq-ai">
+        <summary>¿La IA va a sustituir a mi equipo de QA?</summary>
+        <p>No. Sustituye el trabajo repetitivo del equipo de QA. El criterio sobre qué
+          merece la pena probar sigue siendo humano, y ahí es donde tu equipo aporta lo que
+          no se automatiza.</p>
+      </details>
+      <details class="faq-item" name="faq-ai">
+        <summary>¿Los tests generados son fiables?</summary>
+        <p>Tanto como su revisión. Entran por pull request y se revisan igual que el código
+          de una persona. Un test generado que nadie ha leído es peor que no tener test:
+          da sensación de cobertura sin darla.</p>
+      </details>
+      <details class="faq-item" name="faq-ai">
+        <summary>¿Nuestro código sale de la empresa?</summary>
+        <p>Depende del modelo y del despliegue que elijáis, y es una decisión que se toma
+          antes de escribir una línea. Hay opciones que no entrenan con vuestros datos y
+          opciones autoalojadas. Si vuestra política no permite enviar código fuera, se
+          diseña con esa restricción desde el principio.</p>
+      </details>
+      <details class="faq-item" name="faq-ai">
+        <summary>¿Qué herramientas usas?</summary>
+        <p>Claude Code como agente en terminal y en CI, MCP para darle contexto real de la
+          aplicación y GitHub Copilot dentro del editor. La elección concreta importa menos
+          que el diseño del ciclo y de los límites.</p>
+      </details>
+      <details class="faq-item" name="faq-ai">
+        <summary>¿Cuánto cuesta en tokens?</summary>
+        <p>Se mide y se pone en la tabla junto a las horas ahorradas. Suele salir a favor
+          con holgura, pero es una cifra que hay que enseñar, no prometer.</p>
+      </details>
+      <details class="faq-item" name="faq-ai">
+        <summary>¿Por dónde se empieza?</summary>
+        <p>Por un caso acotado con resultado medible: normalmente el mantenimiento de
+          localizadores o la generación de datos de prueba. Se mide un mes, y si no ahorra
+          nada se para. Empezar por «vamos a generar toda la suite» es la vía rápida al
+          proyecto abandonado.</p>
+      </details>
     </div>
   </div>
 </section>

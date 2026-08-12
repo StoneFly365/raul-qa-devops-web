@@ -21,7 +21,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { esc, withIndex, icon, techLogo, fmtDate } from './dom.js';
 import { techGroups, aiStack, services, projects, career, posts, site } from './data.js';
-import { prerenderIndex } from '../../scripts/prerender.mjs';
+import { prerenderIndex, prerenderRadar } from '../../scripts/prerender.mjs';
 
 /* fileURLToPath y no url.pathname: la ruta del proyecto lleva un
    espacio y pathname lo devuelve como %20. */
@@ -254,6 +254,35 @@ test('index.html está prerenderizado y al día con data.js', () => {
   const html = fs.readFileSync(path.join(ROOT, 'index.html'), 'utf8');
   assert.equal(prerenderIndex(html), html,
     'index.html desfasado: ejecuta `npm run build` y vuelve a commitear');
+});
+
+test('el cuestionario servido está al día con radar.data.js', () => {
+  const html = fs.readFileSync(path.join(ROOT, 'radiografia-qa', 'index.html'), 'utf8');
+  assert.equal(prerenderRadar(html), html,
+    'radiografia-qa desfasado: ejecuta `npm run build` y vuelve a commitear');
+});
+
+/* radar.ui.js no renderiza la página, la conduce: todo lo que busca
+   tiene que existir ya en el HTML. Renombrar un data-* en la plantilla
+   deja el cuestionario muerto sin que falle nada más, y en el navegador
+   se ve como un botón que no responde. */
+test('radar.ui.js no busca ningún gancho que el HTML no tenga', () => {
+  const js = fs.readFileSync(path.join(ROOT, 'assets', 'js', 'radar.ui.js'), 'utf8');
+  const html = fs.readFileSync(path.join(ROOT, 'radiografia-qa', 'index.html'), 'utf8');
+
+  /* Sólo los selectores literales: los que se componen con plantilla
+     llevan comillas invertidas y dependen de datos, no del marcado. */
+  const usados = [...js.matchAll(/\$\$?\('(#[\w-]+|\[data-[\w-]+\])'/g)].map((m) => m[1]);
+  assert.ok(usados.length >= 10, 'el extractor de selectores dejó de encontrarlos');
+
+  /* El atributo tiene que terminar donde termina el selector: sin el
+     lookahead, buscar `data-nav` lo daría por bueno dentro de
+     `data-navegacion` y el test no detectaría el renombrado. */
+  const faltan = [...new Set(usados)].filter((sel) => (sel.startsWith('#')
+    ? !html.includes(`id="${sel.slice(1)}"`)
+    : !new RegExp(`${sel.slice(1, -1)}(?=[\\s=>])`).test(html)));
+
+  assert.deepEqual(faltan, [], `ganchos que radar.ui.js busca y no existen:\n  ${faltan.join('\n  ')}`);
 });
 
 test('el canonical de cada página coincide con su ruta real', () => {

@@ -7,19 +7,15 @@
 <script>document.documentElement.classList.remove('no-js')</script>
 
 <!-- ===================== SEO =====================
-     ⚠ ESTADO: estructura lista, contenido extenso pendiente.
-     Mientras el cuerpo sea sólo el esquema de abajo, la página va en
-     noindex y fuera del sitemap: una página delgada indexada perjudica
-     al dominio entero. Al terminar el contenido:
-       1. cambia robots a "index,follow,max-image-preview:large"
-       2. quita el bloque .wip de esta página
-       3. descomenta su <url> en sitemap.xml                          -->
+     ESTADO: publicada. Contenido extenso escrito, sin bloque .wip,
+     robots en index y <url> activa en sitemap.xml. Los tres van
+     juntos: `npm test` falla si se separan.                         -->
 <title>Consultoría Playwright para equipos · Raúl Molina</title>
 <meta name="description" content="Consultoría e implantación de Playwright: arquitectura de framework, fixtures, paralelización en CI y migración desde Selenium o Cypress.">
 <meta name="author" content="Raúl Molina Hernández">
 <meta name="keywords" content="Playwright, testing E2E, automatización web, framework de pruebas, TypeScript">
 <link rel="canonical" href="https://stonefly365.github.io/raul-qa-devops-web/playwright/">
-<meta name="robots" content="noindex,follow">
+<meta name="robots" content="index,follow,max-image-preview:large">
 
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Raúl Molina · QA, DevOps &amp; AI Engineering">
@@ -65,6 +61,18 @@
       "itemListElement": [
         { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://stonefly365.github.io/raul-qa-devops-web/" },
         { "@type": "ListItem", "position": 2, "name": "Playwright" }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://stonefly365.github.io/raul-qa-devops-web/playwright/#faq",
+      "mainEntity": [
+        { "@type": "Question", "name": "¿Playwright o Cypress?", "acceptedAnswer": { "@type": "Answer", "text": "Para proyectos nuevos, Playwright: multi-navegador real, paralelismo nativo sin coste de licencia y ejecución de API y UI en la misma suite. Si ya tienes una suite de Cypress sana y el equipo la mantiene sin dolor, migrar por migrar no renta. La pregunta correcta no es cuál es mejor, sino qué te está costando hoy la que tienes." } },
+        { "@type": "Question", "name": "¿Cuánto se tarda en montar un framework desde cero?", "acceptedAnswer": { "@type": "Answer", "text": "La arquitectura base con fixtures, autenticación, datos aislados y ejecución en CI son días, no meses. Lo que lleva tiempo es la cobertura, y esa crece flujo a flujo con el equipo, no de golpe." } },
+        { "@type": "Question", "name": "¿Sirve Playwright para pruebas de API?", "acceptedAnswer": { "@type": "Answer", "text": "Sí, y es una de sus mejores bazas: request permite preparar datos por API y validar el resultado en la interfaz dentro del mismo test. Para pruebas de contrato entre servicios sigo prefiriendo Karate DSL, que está diseñado para eso." } },
+        { "@type": "Question", "name": "¿En qué lenguaje conviene escribirlo?", "acceptedAnswer": { "@type": "Answer", "text": "TypeScript salvo motivo de peso. Es donde Playwright tiene la API más completa y la comunidad más grande. Si tu equipo de desarrollo es Java o Python, a veces compensa alinearse con ellos para que mantengan la suite: que el equipo pueda leerla importa más que el lenguaje." } },
+        { "@type": "Question", "name": "¿Hay que cambiar de sistema de CI?", "acceptedAnswer": { "@type": "Answer", "text": "No. Playwright corre igual en GitHub Actions, Azure DevOps, GitLab CI o Jenkins. Trabajo sobre el pipeline que ya tienes." } },
+        { "@type": "Question", "name": "¿Podremos mantenerlo sin ti?", "acceptedAnswer": { "@type": "Answer", "text": "Ese es el objetivo declarado del encargo. Pair-programming sobre el código real, documentación en el propio repositorio y rotación del rol de responsable de la suite desde el primer mes. Si al terminar dependes de mí, el trabajo ha salido mal." } }
       ]
     }
   ]
@@ -129,40 +137,221 @@
 
 <section class="section section--alt section--line">
   <div class="wrap">
-    <header class="section-head" data-reveal>
+    <div class="article-body" data-reveal>
       <p class="eyebrow">En detalle</p>
-      <h2>Lo que cubre esta guía</h2>
-      <p class="lead">El esquema del contenido extenso que estoy escribiendo para esta página.</p>
+      <p class="lead">Las cuatro decisiones que separan una suite de Playwright que el
+        equipo mantiene solo de una que acaba desactivada en el pipeline. No son
+        decisiones de herramienta: son decisiones de arquitectura, y casi todas se
+        toman en la primera semana.</p>
+
+      <h2>1. Una estructura de proyecto que aguanta mil tests</h2>
+
+      <p>El error más caro de los primeros días es espejar la estructura del código de
+        la aplicación. Los tests no siguen al código: siguen al negocio. Si tu producto
+        se reorganiza en microservicios, la suite no debería enterarse.</p>
+
+      <p>La estructura que uso separa por <b>qué se prueba</b>, no por dónde vive el
+        código que lo implementa:</p>
+
+<pre><code>tests/
+  e2e/          checkout.spec.ts, alta-usuario.spec.ts…
+  api/          contratos y llamadas directas, sin navegador
+fixtures/
+  auth.ts       sesiones ya autenticadas
+  datos.ts      alta y limpieza de datos por test
+pages/          localizadores y acciones. Cero asserts
+playwright.config.ts</code></pre>
+
+      <p>La regla que mantiene esto ordenado es sencilla: <b>un spec es un flujo de
+        negocio que alguien puede nombrar en una reunión</b>. «Checkout con tarjeta
+        rechazada» es un spec. «Validaciones del componente Input» no lo es — eso es un
+        test unitario que está en el sitio equivocado y que vas a pagar en minutos de
+        CI todos los días.</p>
+
+      <h3>Los <code>projects</code> no son sólo para navegadores</h3>
+
+      <p>La mayoría de equipos usa <code>projects</code> únicamente para lanzar la suite
+        en Chromium, Firefox y WebKit. Su uso más rentable es otro: un proyecto de
+        <i>setup</i> que se autentica una vez y guarda el estado, del que dependen los
+        demás. Se acaban los logins repetidos en cada test, que suelen ser el primer
+        tercio del tiempo total de ejecución.</p>
+
+<pre><code>// playwright.config.ts
+export default defineConfig({
+  projects: [
+    { name: 'setup', testMatch: /.*\.setup\.ts/ },
+    {
+      name: 'chromium',
+      use: { ...devices['Desktop Chrome'], storageState: '.auth/user.json' },
+      dependencies: ['setup'],
+    },
+  ],
+});</code></pre>
+
+      <p>El entorno se resuelve con variables (<code>process.env.BASE_URL</code>), no con
+        un archivo de configuración por entorno. Un solo <code>playwright.config.ts</code>,
+        siempre.</p>
+
+      <h2>2. Fixtures frente a page objects: no compiten</h2>
+
+      <p>Es la discusión más repetida y casi siempre está mal planteada, porque las dos
+        piezas resuelven problemas distintos:</p>
+
+      <ul>
+        <li><b>Un fixture es ciclo de vida.</b> Monta algo antes del test, lo desmonta
+          después y lo inyecta. Usuario autenticado, pedido de prueba, feature flag
+          activo.</li>
+        <li><b>Un page object es vocabulario.</b> Cómo se llaman las cosas de una
+          pantalla y qué se puede hacer en ella.</li>
+      </ul>
+
+      <p>La mezcla que duele es un page object que guarda estado entre tests o que hace
+        <code>expect</code> por dentro. Cuando eso falla, el mensaje de error habla de un
+        selector, no de lo que esperaba el negocio, y depurarlo cuesta el triple. Los
+        asserts van en el spec, siempre.</p>
+
+      <p>Lo natural es que el fixture entregue el page object ya en su sitio:</p>
+
+<pre><code>export const test = base.extend&lt;{ checkout: CheckoutPage }&gt;({
+  checkout: async ({ page }, use) =&gt; {
+    const checkout = new CheckoutPage(page);
+    await checkout.irAlCarritoConUnArticulo();
+    await use(checkout);
+    await checkout.limpiarCarrito();
+  },
+});</code></pre>
+
+      <p>Criterio para decidir en dos segundos: <b>si hay que crearlo y destruirlo, es un
+        fixture; si es «cómo se llama este botón», es un page object.</b></p>
+
+      <h3>Localizadores: <code>getByRole</code> antes que CSS</h3>
+
+      <p>Un test que se rompe porque alguien renombró una clase de CSS no estaba probando
+        negocio, estaba probando marcado. Los localizadores por rol accesible
+        (<code>getByRole('button', { name: 'Pagar' })</code>) sobreviven a los rediseños
+        y, de paso, fallan cuando la accesibilidad se rompe. Es la única forma de
+        cobertura de accesibilidad que sale gratis.</p>
+
+      <h2>3. Playwright en CI sin tests inestables</h2>
+
+      <p>Dos conceptos que se confunden constantemente: los <b>workers</b> son
+        paralelismo dentro de una máquina; los <b>shards</b> reparten la suite entre
+        varias máquinas. Se combinan, y es lo que convierte cuarenta minutos en ocho.</p>
+
+<pre><code>strategy:
+  matrix:
+    shard: [1/4, 2/4, 3/4, 4/4]
+steps:
+  - run: npx playwright test --shard=${{ matrix.shard }} --reporter=blob
+  # y un job final que une los informes:
+  - run: npx playwright merge-reports --reporter=html ./all-blob-reports</code></pre>
+
+      <p>Sin <code>merge-reports</code> acabas con cuatro informes parciales que nadie
+        abre. Con él, un único HTML donde el fallo se ve en dos clics.</p>
+
+      <h3>Reintentos: útiles, y peligrosos</h3>
+
+      <p><code>retries: process.env.CI ? 2 : 0</code> es la configuración razonable. Pero
+        conviene tener clara la trampa: <b>un test que sólo pasa al segundo intento no es
+        un test verde, es un fallo pendiente</b>. Los reintentos compran tiempo para
+        investigar, no sustituyen la investigación. Si el porcentaje de tests inestables
+        no se mide y no tiene dueño, la suite se degrada sola en unos meses y el equipo
+        aprende a ignorar el rojo — que es el final de toda inversión en automatización.</p>
+
+      <p>Para que investigar sea barato:</p>
+
+      <ul>
+        <li><code>trace: 'on-first-retry'</code> — traza completa sólo cuando algo falla.
+          Cuesta cero en las ejecuciones buenas.</li>
+        <li><code>video: 'retain-on-failure'</code> — el vídeo se descarta si el test
+          pasa.</li>
+        <li>El informe HTML publicado como artefacto del pipeline, enlazado desde el
+          propio pull request.</li>
+      </ul>
+
+      <p>Y un objetivo de tiempo que conviene defender: <b>si la suite crítica no cabe en
+        diez minutos, el equipo dejará de esperarla</b> y empezará a mergear sin mirar.
+        A partir de ahí, el problema ya no es técnico.</p>
+
+      <h2>4. Migrar desde Selenium, Cypress o Protractor</h2>
+
+      <p>La migración que casi siempre fracasa es la traducción literal, test por test.
+        Un port 1:1 arrastra al framework nuevo todos los defectos del viejo: las esperas
+        artificiales, los selectores frágiles, los tests que prueban cuatro cosas a la
+        vez. Terminas con la misma suite ingobernable, sólo que en TypeScript.</p>
+
+      <p>Lo que funciona es <b>convivencia con fecha de caducidad</b>:</p>
+
+      <ol>
+        <li>Las dos suites corren en el mismo pipeline. La antigua sigue siendo la red de
+          seguridad y nadie toca el delivery.</li>
+        <li>La suite nueva crece por criticidad de negocio: primero los flujos que
+          bloquean facturación, después los que más incidencias generan en producción, y
+          el resto al final o nunca.</li>
+        <li>Se fija un criterio de apagado explícito y por escrito — por ejemplo, veinte
+          ejecuciones consecutivas estables cubriendo los flujos críticos.</li>
+        <li>Cumplido el criterio, <b>la suite antigua se borra</b>. Dos suites conviviendo
+          para siempre es el peor de los dos mundos: doble mantenimiento y ninguna en la
+          que confiar del todo.</li>
+      </ol>
+
+      <p>Hay dos cosas que no se traducen, se eliminan. Los <code>Thread.sleep</code> y
+        los waits explícitos de Selenium desaparecen: Playwright espera solo antes de cada
+        acción, y mantener esperas manuales encima de eso sólo suma tiempo y ruido. Y los
+        <code>cy.wait('@alias')</code> de Cypress se sustituyen por esperar el efecto
+        visible en la interfaz, que es lo que de verdad le importa al usuario.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section section--line">
+  <div class="wrap wrap--narrow">
+    <header class="section-head" data-reveal>
+      <p class="eyebrow">Dudas frecuentes</p>
+      <h2>Preguntas que me hacen antes de empezar</h2>
     </header>
 
-    <div class="wip" data-reveal style="margin-bottom:var(--s-8)">
-      <span class="icon-box icon-box--sm" aria-hidden="true">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-      </span>
-      <p><b>Página en construcción.</b> La estructura y el enfoque están definidos; el
-        desarrollo largo de cada apartado llega en las próximas semanas. Mientras tanto,
-        la página está marcada como <code>noindex</code> a propósito: prefiero no indexar
-        contenido a medias. Si te interesa alguno de estos puntos ahora,
-        <a href="../#contacto">escríbeme</a> y te lo cuento directamente.</p>
-    </div>
-
-    <div class="grid grid--2">
-      <article class="card" data-reveal>
-        <h3>Estructura de proyecto que escala</h3>
-        <p>Cómo organizar specs, fixtures y datos para cien tests y para mil.</p>
-      </article>
-      <article class="card" data-reveal>
-        <h3>Fixtures frente a page objects</h3>
-        <p>Cuándo cada uno, y por qué mezclarlos mal duele tanto.</p>
-      </article>
-      <article class="card" data-reveal>
-        <h3>Playwright en CI</h3>
-        <p>Sharding, reintentos con criterio y reportes que alguien lee.</p>
-      </article>
-      <article class="card" data-reveal>
-        <h3>Migrar desde Selenium o Cypress</h3>
-        <p>Estrategia de convivencia para no parar el delivery.</p>
-      </article>
+    <div class="faq" data-reveal="fade">
+      <details class="faq-item" name="faq-playwright">
+        <summary>¿Playwright o Cypress?</summary>
+        <p>Para proyectos nuevos, Playwright: multi-navegador real, paralelismo nativo sin
+          coste de licencia y ejecución de API y UI en la misma suite. Si ya tienes una
+          suite de Cypress sana y el equipo la mantiene sin dolor, migrar por migrar no
+          renta. La pregunta correcta no es cuál es mejor, sino qué te está costando hoy
+          la que tienes.</p>
+      </details>
+      <details class="faq-item" name="faq-playwright">
+        <summary>¿Cuánto se tarda en montar un framework desde cero?</summary>
+        <p>La arquitectura base con fixtures, autenticación, datos aislados y ejecución en
+          CI son días, no meses. Lo que lleva tiempo es la cobertura, y esa crece flujo a
+          flujo con el equipo, no de golpe.</p>
+      </details>
+      <details class="faq-item" name="faq-playwright">
+        <summary>¿Sirve Playwright para pruebas de API?</summary>
+        <p>Sí, y es una de sus mejores bazas: <code>request</code> permite preparar datos
+          por API y validar el resultado en la interfaz dentro del mismo test. Para
+          pruebas de contrato entre servicios sigo prefiriendo Karate DSL, que está
+          diseñado para eso.</p>
+      </details>
+      <details class="faq-item" name="faq-playwright">
+        <summary>¿En qué lenguaje conviene escribirlo?</summary>
+        <p>TypeScript salvo motivo de peso. Es donde Playwright tiene la API más completa
+          y la comunidad más grande. Si tu equipo de desarrollo es Java o Python, a veces
+          compensa alinearse con ellos para que mantengan la suite: que el equipo pueda
+          leerla importa más que el lenguaje.</p>
+      </details>
+      <details class="faq-item" name="faq-playwright">
+        <summary>¿Hay que cambiar de sistema de CI?</summary>
+        <p>No. Playwright corre igual en GitHub Actions, Azure DevOps, GitLab CI o
+          Jenkins. Trabajo sobre el pipeline que ya tienes.</p>
+      </details>
+      <details class="faq-item" name="faq-playwright">
+        <summary>¿Podremos mantenerlo sin ti?</summary>
+        <p>Ese es el objetivo declarado del encargo. Pair-programming sobre el código real,
+          documentación en el propio repositorio y rotación del rol de responsable de la
+          suite desde el primer mes. Si al terminar dependes de mí, el trabajo ha salido
+          mal.</p>
+      </details>
     </div>
   </div>
 </section>

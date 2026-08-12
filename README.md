@@ -13,8 +13,8 @@ GitHub Pages.
 
 ```bash
 npm run dev      # live-server en http://localhost:3000
-npm run build    # prerenderiza el home en index.html (tras editar data.js)
-npm test         # suite de auditoría — 21 comprobaciones
+npm run build    # prerenderiza el home y el cuestionario de la Radiografía
+npm test         # suite de auditoría y motor de la Radiografía — 51 comprobaciones
 ```
 
 `npm test` no necesita instalar nada: usa el runner nativo de Node (≥ 18).
@@ -41,12 +41,16 @@ para consultarlas, no un sitio donde cambiarlas.
 
 ## Pendiente
 
-- **⏳ Agenda online.** `site.bookingUrl` en `data.js` sigue a `null`. En cuanto
-  haya URL de Calendly o Cal.com, ponerla ahí: los nueve CTA "Reservar una
-  reunión" pasan de llevar al formulario a abrir el calendario, en una línea
-  y sin tocar nada más.
-- **Contenido de las siete landings SEO** (siguen en `noindex`, ver más abajo).
 - **Primeros artículos del blog** (la infraestructura ya está lista).
+- **Repetir Lighthouse en una landing.** La fila de `/qa/` de la tabla de
+  auditoría es de cuando estaba en `noindex`; el 66 de SEO ya no aplica.
+- **Dar de alta el sitio en Google Search Console** y enviar el `sitemap.xml`.
+  Sin esto, las landings recién publicadas tardan semanas en descubrirse.
+- **Calibrar la Radiografía.** Los cortes de banda y el perfil esperado por rol
+  en `radar.data.js` son estimaciones, no medidas. Cuando haya respuestas
+  reales, ajustarlos ahí: el motor no cambia.
+- **Aviso legal.** `/privacidad/` cubre el RGPD. Si se factura desde la web,
+  la LSSI-CE pide además NIF y domicilio en un aviso legal aparte.
 
 ---
 
@@ -67,6 +71,11 @@ qa/ · test-automation/ · playwright/ · devops/ · github-actions/
 solution-consulting/ · ai-engineering/
                            Landings SEO — estructura lista, contenido largo pendiente
 mentoringB2C/              Mentoría 1:1 (B2C)
+radiografia-qa/            Autoevaluación de nivel QA — el lead magnet de B2C.
+                           Las preguntas las escribe `npm run build` desde
+                           radar.data.js: no editarlas a mano en el HTML
+privacidad/                Política de privacidad (obligatoria desde que hay
+                           formularios que recogen email)
 cv/                        Ignorado por git. El CV no se publica: la web enlaza
                            a LinkedIn, que además está siempre al día
 
@@ -86,7 +95,14 @@ assets/
     chrome.js              Cabecera y pie compartidos por las subpáginas
     main.js                Punto de entrada del home
     page.js                Punto de entrada de las subpáginas
+    radar.data.js          Contenido de la Radiografía: ejes, ítems, bandas,
+                           acciones. Es el producto; lo demás es andamiaje
+    radar.js               Motor de puntuación — funciones puras, sin DOM
+    radar.view.js          Plantillas de la Radiografía (prerender + navegador)
+    radar.ui.js            Punto de entrada de /radiografia-qa/
     dom.test.js            Suite de auditoría (`npm test`)
+    radar.test.js          Motor de la Radiografía
+    radar.view.test.js     Plantillas de la Radiografía
   fonts/                   Geist y Geist Mono variables, subset latino (52 KB)
   logos/                   SVG monocromos de tecnologías (Simple Icons, CC0)
   favicon.svg · og-cover.png
@@ -137,16 +153,19 @@ cp blog/_plantilla.html blog/mi-articulo.html
 
 ### Publicar una landing SEO
 
-Las siete landings existen con su estructura, su copy corto real, su JSON-LD
-y sus enlaces internos, pero **están en `noindex` y fuera del sitemap** a
-propósito: una página delgada indexada perjudica al dominio entero. Cuando
-termines el contenido de una:
+Las siete landings están publicadas: contenido extenso (1.250-1.550 palabras),
+FAQ con JSON-LD `FAQPage`, `robots` en index y `<url>` activa en el sitemap.
+
+Si añades una landing nueva, escribe el contenido **antes** de publicarla: una
+página delgada indexada perjudica al dominio entero. El día que esté lista:
 
 1. Cambia su `<meta name="robots">` a `index,follow,max-image-preview:large`.
 2. Borra el bloque `.wip` de esa página.
-3. Descomenta su `<url>` en `sitemap.xml`.
+3. Añade su `<url>` a `sitemap.xml`.
 
-`npm test` verifica que esos tres pasos vayan juntos.
+`npm test` verifica que esos tres pasos vayan juntos: mientras exista el
+bloque `.wip` exige `noindex`, y con `noindex` prohíbe la entrada en el
+sitemap.
 
 ### Cambiar el diseño
 
@@ -200,10 +219,10 @@ los logos de tecnología son SVG teñidos con `mask-image`. Nada pesado que
 descargar y ninguna miniatura que se quede obsoleta. La única imagen del sitio
 es `og-cover.png`, y sólo se descarga cuando alguien comparte el enlace.
 
-**Formulario sin backend.** Compone un `mailto:` con los datos ya validados
-por el navegador. Para usar un endpoint real (Formspree, Cloudflare Worker):
-añade `action`/`method` al `<form>` de `index.html` y borra
-`initContactForm()` de `ui.js`.
+**Formulario sin backend propio.** `site.formEndpoint` apunta a Formspree, así
+que el envío va por `fetch` y el visitante no sale de la página. Si ese campo se
+vacía, `initContactForm()` cae a componer un `mailto:` — funciona, pero puede
+fallar en silencio con quien use webmail sin cliente de correo configurado.
 
 **Accesibilidad.** Contraste mínimo 4.5:1 en todo el texto, un único anillo de
 foco en `:focus-visible`, animaciones que se apagan con
@@ -224,8 +243,10 @@ Lighthouse 13, servidor local, última ejecución:
 | Mentoría        | 100 / 100 / 100 / 100    | 97 / 100 / 100 / 100    |
 | Landing `/qa/`  | 100 / 100 / 100 / **66** | 98 / 100 / 100 / **66** |
 
-El 66 de SEO en las landings es correcto: Lighthouse penaliza el `noindex`
-deliberado. Subirá a 100 en cuanto se publique su contenido.
+⚠ La fila de `/qa/` es de cuando la landing estaba en `noindex`: el 66 era la
+penalización de Lighthouse por ese `noindex` deliberado. Ya no aplica —las
+siete landings están publicadas—, pero **la medición está sin repetir**. Volver
+a pasar Lighthouse sobre una landing y actualizar la fila.
 
 ---
 

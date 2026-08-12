@@ -723,6 +723,9 @@
   text-align: center;
 }
 .cta-band h2 { max-width: 20ch; margin-inline: auto; }
+/* La pastilla sustituye a la eyebrow en la banda: sólo le falta el
+   hueco que .eyebrow traía de serie. */
+.cta-band .tag { margin-bottom: var(--s-4); }
 .cta-band p { margin-top: var(--s-4); color: var(--text-2); max-width: 52ch; margin-inline: auto; }
 .cta-band .hero-ctas { justify-content: center; }
 

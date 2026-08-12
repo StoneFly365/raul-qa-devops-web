@@ -1,0 +1,338 @@
+/* =============================================================
+   RADAR — cuestionario y resultado de /radiografia-qa/.
+
+   Sólo la carga esa página. Todos los valores salen de tokens.css:
+   aquí no hay ni un color ni un espaciado suelto.
+   ============================================================= */
+
+/* El atributo `hidden` del navegador es `[hidden]{display:none}`, con
+   especificidad de atributo: cualquier regla de autor que declare
+   display se lo come. Aquí pasaba con .btn (inline-flex), y los
+   botones de navegación se veían siempre aunque el JS los ocultara. */
+[hidden] { display: none !important; }
+
+/* -------------------------------------------------------------
+   PROGRESO
+   ------------------------------------------------------------- */
+.radar-progress { margin-bottom: var(--s-8); }
+
+.radar-progress-label {
+  font-family: var(--font-mono);
+  font-size: var(--fs-mono);
+  letter-spacing: var(--tr-wide);
+  text-transform: uppercase;
+  color: var(--text-3);
+  margin-bottom: var(--s-3);
+}
+.radar-progress-label b { color: var(--accent-hi); font-weight: var(--fw-semi); }
+
+.radar-progress-track {
+  height: 3px;
+  background: var(--line);
+  border-radius: var(--r-full);
+  overflow: hidden;
+}
+.radar-progress-fill {
+  height: 100%;
+  width: var(--p, 0%);
+  background: var(--grad);
+  border-radius: inherit;
+  transition: width var(--t) var(--ease);
+}
+
+/* -------------------------------------------------------------
+   PASOS Y PREGUNTAS
+   ------------------------------------------------------------- */
+.radar-step > h2 { margin-top: var(--s-2); }
+.radar-step > h2:focus-visible { outline: 2px solid var(--accent); outline-offset: 6px; }
+.radar-step > .lead { margin-top: var(--s-3); }
+
+.q {
+  border: 0;
+  padding: 0;
+  margin: var(--s-8) 0 0;
+}
+.q-text {
+  padding: 0;
+  font-size: var(--fs-lg);
+  font-weight: var(--fw-medium);
+  line-height: var(--lh-snug);
+  letter-spacing: var(--tr-snug);
+  color: var(--text);
+  margin-bottom: var(--s-4);
+}
+.q-text b { color: var(--accent-hi); font-weight: var(--fw-bold); }
+
+.q-options { display: grid; gap: var(--s-2); }
+
+/* Pregunta sin responder al intentar avanzar. El color no va solo: el
+   texto de aviso dice qué falta, porque quien no distingue el rojo
+   necesita leerlo. */
+.q.is-missing .q-text { color: var(--fail); }
+.q.is-missing .q-option { border-color: rgba(248, 113, 113, .45); }
+.q.is-missing .q-option-mark { border-color: rgba(248, 113, 113, .45); color: var(--fail); }
+.q-missing-note {
+  margin-top: var(--s-2);
+  font-size: var(--fs-xs);
+  color: var(--fail);
+}
+
+.q-option {
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
+  padding: var(--s-3) var(--s-4);
+  background: rgba(255, 255, 255, .02);
+  border: 1px solid var(--line);
+  border-radius: var(--r-sm);
+  cursor: pointer;
+  transition: border-color var(--t-fast) var(--ease), background var(--t-fast) var(--ease);
+}
+.q-option:hover { border-color: var(--line-3); background: rgba(255, 255, 255, .04); }
+
+/* El radio nativo se oculta pero sigue existiendo: teclado, lector de
+   pantalla y :checked salen gratis. La pastilla numerada es la que se
+   ve, y :has() la pinta sin una línea de JavaScript. */
+.q-option input { position: absolute; opacity: 0; pointer-events: none; }
+
+.q-option-mark {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border: 1px solid var(--line-2);
+  border-radius: var(--r-full);
+  font-family: var(--font-mono);
+  font-size: var(--fs-mono);
+  color: var(--text-3);
+  transition: all var(--t-fast) var(--ease);
+}
+.q-option-text { font-size: var(--fs-sm); color: var(--text-2); }
+
+.q-option:has(input:checked) {
+  border-color: var(--accent-line);
+  background: var(--accent-soft);
+}
+.q-option:has(input:checked) .q-option-mark {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--on-accent);
+  font-weight: var(--fw-semi);
+}
+.q-option:has(input:checked) .q-option-text { color: var(--text); }
+.q-option:has(input:focus-visible) { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+/* -------------------------------------------------------------
+   NAVEGACIÓN
+   ------------------------------------------------------------- */
+.radar-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-3);
+  margin-top: var(--s-10);
+  padding-top: var(--s-6);
+  border-top: 1px solid var(--line);
+}
+.radar-nav [data-prev] { margin-right: auto; }
+.radar-nav button:disabled { opacity: .4; pointer-events: none; }
+
+.radar-error {
+  margin-top: var(--s-4);
+  font-size: var(--fs-sm);
+  color: var(--fail);
+}
+
+/* El contrario del error: el último paso ya está completo y sólo queda
+   pulsar. Ocupa el mismo hueco para que la caja no salte. */
+.radar-ready {
+  display: flex;
+  align-items: center;
+  gap: var(--s-2);
+  margin-top: var(--s-4);
+  font-size: var(--fs-sm);
+  color: var(--accent-hi);
+}
+.radar-ready::before {
+  content: '';
+  flex: none;
+  width: 8px;
+  height: 8px;
+  border-radius: var(--r-full);
+  background: var(--accent);
+}
+
+/* -------------------------------------------------------------
+   RESULTADO
+   ------------------------------------------------------------- */
+.radar-result:focus-visible { outline: none; }
+.radar-result-head { margin-bottom: var(--s-10); }
+.radar-result-head h2 { margin-top: var(--s-2); }
+.radar-result-head .lead { margin-top: var(--s-4); }
+.radar-result-head b { color: var(--accent-hi); font-weight: var(--fw-semi); }
+
+.radar-bars { display: grid; gap: var(--s-5); list-style: none; padding: 0; }
+
+.radar-bar-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--s-4);
+  margin-bottom: var(--s-2);
+}
+.radar-bar-name { font-size: var(--fs-sm); font-weight: var(--fw-medium); color: var(--text); }
+
+/* Marca de los ejes del plan: sin esto todas las barras Junior se ven
+   iguales y el titular ("tu eje más débil es X") parece contradecir la
+   barra. El flag conecta barra y plan. */
+.radar-bar-flag {
+  margin-left: var(--s-2);
+  padding: 1px 8px;
+  border-radius: var(--r-full);
+  background: var(--accent-soft);
+  color: var(--accent-hi);
+  font-family: var(--font-mono);
+  font-size: var(--fs-mono);
+  letter-spacing: var(--tr-wide);
+  text-transform: uppercase;
+}
+.radar-bar.is-plan .radar-bar-name { color: var(--accent-hi); }
+.radar-bar-band {
+  font-family: var(--font-mono);
+  font-size: var(--fs-mono);
+  letter-spacing: var(--tr-wide);
+  text-transform: uppercase;
+  color: var(--text-3);
+}
+
+/* Sin overflow:hidden — la marca de lo esperado sobresale por arriba y
+   por abajo a propósito, para leerse aunque coincida con el relleno. */
+.radar-bar-track {
+  position: relative;
+  height: 10px;
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  border-radius: var(--r-full);
+}
+.radar-bar-fill {
+  height: 100%;
+  width: var(--v, 0%);
+  background: var(--grad);
+  border-radius: inherit;
+  transition: width var(--t-slow) var(--ease-out);
+}
+/* Ámbar, no rojo: estar por debajo del rol al que aspiras no es un
+   fallo, es el hueco que has venido a encontrar. */
+.radar-bar-fill.is-gap { background: var(--warn); }
+
+.radar-bar-target {
+  position: absolute;
+  top: -4px;
+  bottom: -4px;
+  left: var(--t, 0%);
+  width: 2px;
+  background: var(--text);
+  border-radius: var(--r-full);
+}
+
+.radar-legend {
+  display: flex;
+  align-items: center;
+  gap: var(--s-2);
+  margin-top: var(--s-6);
+  font-size: var(--fs-xs);
+  color: var(--text-3);
+}
+.radar-legend-key {
+  flex: none;
+  width: 2px;
+  height: 14px;
+  background: var(--text);
+  border-radius: var(--r-full);
+}
+
+/* -------------------------------------------------------------
+   PLAN
+   ------------------------------------------------------------- */
+.radar-plan {
+  margin-top: var(--s-12);
+  padding: var(--s-8);
+  background: var(--grad-surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+}
+.radar-plan .lead { margin-top: var(--s-2); }
+
+.radar-plan-list {
+  display: grid;
+  gap: var(--s-6);
+  margin-top: var(--s-6);
+  padding-left: var(--s-6);
+}
+.radar-plan-list li { color: var(--text-2); }
+.radar-plan-list li::marker { color: var(--accent); font-weight: var(--fw-bold); }
+
+.radar-plan-axis {
+  font-family: var(--font-mono);
+  font-size: var(--fs-mono);
+  letter-spacing: var(--tr-wide);
+  text-transform: uppercase;
+  color: var(--accent-hi);
+  margin-bottom: var(--s-2);
+}
+
+.radar-note {
+  margin-top: var(--s-6);
+  padding: var(--s-4) var(--s-5);
+  background: var(--accent-soft);
+  border-left: 2px solid var(--accent);
+  border-radius: var(--r-sm);
+  font-size: var(--fs-sm);
+  color: var(--text-2);
+}
+
+/* -------------------------------------------------------------
+   DESPUÉS DEL RESULTADO
+   ------------------------------------------------------------- */
+.radar-after { margin-top: var(--s-12); }
+
+.consent {
+  display: flex;
+  gap: var(--s-3);
+  margin-top: var(--s-5);
+  font-size: var(--fs-xs);
+  line-height: var(--lh-body);
+  color: var(--text-3);
+  cursor: pointer;
+}
+.consent input { flex: none; margin-top: 3px; accent-color: var(--accent); width: 16px; height: 16px; }
+
+.radar-restart {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-4);
+  justify-content: center;
+  margin-top: var(--s-10);
+}
+
+/* -------------------------------------------------------------
+   IMPRESIÓN — el «PDF» del resultado, sin librería ninguna.
+   ------------------------------------------------------------- */
+@media print {
+  .nav, .footer, .to-top, .page-hero, .radar-after,
+  .radar-progress, .radar-nav, #radarForm, #como-funciona,
+  .section--alt { display: none !important; }
+
+  body { background: #fff; color: #000; }
+  .radar-bar-name, .radar-result-head h2, .radar-plan h3 { color: #000; }
+  .radar-bar-band, .radar-legend, .radar-plan-list li { color: #333; }
+  .radar-result-head .lead, .radar-plan .lead { color: #111; }
+
+  /* Los rellenos son gradientes y fondos: sin esto la mitad de los
+     navegadores imprime barras vacías. */
+  .radar-bar-fill, .radar-bar-target { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .radar-bar-track { background: #eee; border-color: #ccc; }
+  .radar-plan { background: none; border-color: #ccc; break-inside: avoid; }
+  .radar-note { background: none; border-left-color: #666; color: #222; }
+  .radar-bar { break-inside: avoid; }
+}

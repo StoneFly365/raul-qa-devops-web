@@ -6,3 +6,7 @@ Thumbs.db
 
 # El CV no se publica: para la trayectoria completa, la web enlaza a LinkedIn.
 cv/
+
+# Notas internas de venta. GitHub Pages sirve desde la raíz, así que todo lo
+# que se commitea aquí queda accesible por URL aunque no esté enlazado.
+docs/radiografia-respuesta.md

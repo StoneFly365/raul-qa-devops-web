@@ -7,19 +7,15 @@
 <script>document.documentElement.classList.remove('no-js')</script>
 
 <!-- ===================== SEO =====================
-     ⚠ ESTADO: estructura lista, contenido extenso pendiente.
-     Mientras el cuerpo sea sólo el esquema de abajo, la página va en
-     noindex y fuera del sitemap: una página delgada indexada perjudica
-     al dominio entero. Al terminar el contenido:
-       1. cambia robots a "index,follow,max-image-preview:large"
-       2. quita el bloque .wip de esta página
-       3. descomenta su <url> en sitemap.xml                          -->
+     ESTADO: publicada. Contenido extenso escrito, sin bloque .wip,
+     robots en index y <url> activa en sitemap.xml. Los tres van
+     juntos: `npm test` falla si se separan.                         -->
 <title>Solution Consulting técnico · Raúl Molina</title>
 <meta name="description" content="Diseño de solución técnica, estimación defendible e interlocución en preventa para proyectos de QA, DevOps y cloud. Roadmap por impacto y esfuerzo.">
 <meta name="author" content="Raúl Molina Hernández">
 <meta name="keywords" content="solution consulting, preventa técnica, diseño de soluciones, consultoría tecnológica">
 <link rel="canonical" href="https://stonefly365.github.io/raul-qa-devops-web/solution-consulting/">
-<meta name="robots" content="noindex,follow">
+<meta name="robots" content="index,follow,max-image-preview:large">
 
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Raúl Molina · QA, DevOps &amp; AI Engineering">
@@ -65,6 +61,18 @@
       "itemListElement": [
         { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://stonefly365.github.io/raul-qa-devops-web/" },
         { "@type": "ListItem", "position": 2, "name": "Solution Consulting" }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://stonefly365.github.io/raul-qa-devops-web/solution-consulting/#faq",
+      "mainEntity": [
+        { "@type": "Question", "name": "¿Esto es consultoría de negocio o técnica?", "acceptedAnswer": { "@type": "Answer", "text": "Técnica, con interlocución de negocio. No hago estrategia de empresa: traduzco necesidad de negocio a arquitectura y decisiones de calidad, y resultados de ingeniería a métricas que dirección usa para decidir." } },
+        { "@type": "Question", "name": "¿Participas en reuniones con nuestros clientes?", "acceptedAnswer": { "@type": "Answer", "text": "Sí, es buena parte del valor. Interlocución técnica en preventa y en comité, del lado de vuestro equipo, defendiendo la solución y la estimación ante quien las tiene que aprobar." } },
+        { "@type": "Question", "name": "¿Cómo se factura este tipo de encargo?", "acceptedAnswer": { "@type": "Answer", "text": "Depende del alcance: assessment cerrado, acompañamiento por periodo o participación puntual en una preventa concreta. Lo acordamos en la primera conversación, cuando ya sé qué necesitáis de verdad." } },
+        { "@type": "Question", "name": "¿Podéis estimar sin conocer nuestro sistema?", "acceptedAnswer": { "@type": "Answer", "text": "Con rangos amplios y supuestos escritos, sí. Para estrechar el rango hace falta una exploración corta, que tiene su propio precio y su propio entregable. Dar una cifra estrecha sin haber mirado nada sería falsa precisión." } },
+        { "@type": "Question", "name": "¿Trabajas con nuestros partners tecnológicos?", "acceptedAnswer": { "@type": "Answer", "text": "Sí. Parte del trabajo es la relación con partners y la interlocución con sus equipos técnicos, sobre todo cuando la solución cruza varios proveedores y nadie se siente dueño del resultado." } },
+        { "@type": "Question", "name": "¿De dónde sale este enfoque?", "acceptedAnswer": { "@type": "Answer", "text": "De hacerlo a diario liderando un Tech Hub: diseño de solución, estimación defendible y comité, con la diferencia de que ahí me quedo también a ver cómo termina lo que se firmó. Eso cambia bastante cómo estimas." } }
       ]
     }
   ]
@@ -129,40 +137,158 @@
 
 <section class="section section--alt section--line">
   <div class="wrap">
-    <header class="section-head" data-reveal>
+    <div class="article-body" data-reveal>
       <p class="eyebrow">En detalle</p>
-      <h2>Lo que cubre esta guía</h2>
-      <p class="lead">El esquema del contenido extenso que estoy escribiendo para esta página.</p>
+      <p class="lead">La mayoría de proyectos que salen mal no fallaron construyendo:
+        fallaron al acordar qué se iba a construir, cuánto costaba y qué se daba por
+        supuesto. Esto va de esa fase.</p>
+
+      <h2>1. Estimar lo que todavía no existe</h2>
+
+      <p>Toda estimación de preventa es una predicción sobre información incompleta. El
+        error habitual no es equivocarse —eso es inevitable— sino <b>disimular la
+        incertidumbre</b> con una cifra única. Un «son 340 horas» comunica una precisión
+        que no se tiene, y cuando la realidad se desvía, la conversación ya no es sobre el
+        proyecto sino sobre quién mintió.</p>
+
+      <p>Cómo lo hago:</p>
+
+      <ul>
+        <li><b>Rangos, no cifras.</b> «Entre 8 y 12 semanas» es más honesto y, en la
+          práctica, más útil para decidir que un número exacto inventado.</li>
+        <li><b>Supuestos escritos y numerados.</b> «Asumimos que el entorno de
+          preproducción existe y es accesible desde el primer día». Cuando un supuesto
+          resulta falso, la conversación sobre replanificar es de dos minutos en vez de
+          una discusión.</li>
+        <li><b>Descomponer hasta que las piezas se parezcan a algo ya hecho.</b> Lo que no
+          se puede comparar con nada anterior no se estima: se acota con una fase de
+          exploración corta y con precio propio.</li>
+        <li><b>Separar lo que se compromete de lo que se estima.</b> No son lo mismo y
+          mezclarlos es la causa número uno de conflictos a mitad de proyecto.</li>
+      </ul>
+
+      <p>Una estimación defendible no es la que acierta: es la que permite entender, seis
+        semanas después, <b>por qué</b> se ha desviado. Eso sólo lo dan los supuestos
+        explícitos.</p>
+
+      <h2>2. La conversación técnica con negocio</h2>
+
+      <p>El problema no suele ser que negocio no entienda de tecnología. Es que se le
+        cuenta en las unidades equivocadas. «Hemos subido la cobertura al 78%» no permite
+        tomar ninguna decisión; «podemos desplegar los jueves sin parar el servicio»
+        sí.</p>
+
+      <p>La traducción que hago en las dos direcciones:</p>
+
+      <ul>
+        <li>El riesgo técnico se cuenta como <b>riesgo de negocio</b>: qué se deja de
+          facturar, qué se incumple, qué reputación se toca.</li>
+        <li>El resultado de ingeniería se cuenta en <b>tiempo y dinero</b>: horas
+          liberadas, semanas de adelanto, incidencias evitadas.</li>
+        <li>La deuda técnica se cuenta como <b>interés</b>, no como pecado: qué nos cuesta
+          cada mes que pasa sin tocarla.</li>
+      </ul>
+
+      <p>Y una regla de higiene: <b>no se prometen cosas cuya verificación no controlas</b>.
+        En comité es tentador decir que sí a todo; el coste de ese sí aparece cuatro meses
+        después, cuando la relación con el cliente ya está tensa y el equipo que lo tiene
+        que construir no estaba en la sala.</p>
+
+      <h2>3. Priorizar sin que sea una discusión de opiniones</h2>
+
+      <p>Cuando la prioridad se decide en una reunión sin criterio escrito, gana quien
+        habla más alto o quien tiene más galones. El antídoto no es un método complicado:
+        basta con hacer explícitos los dos ejes que todo el mundo ya está usando en su
+        cabeza.</p>
+
+      <ul>
+        <li><b>Impacto</b> — lo pone negocio, en su unidad: euros, riesgo, clientes
+          afectados.</li>
+        <li><b>Esfuerzo</b> — lo pone ingeniería, con rangos y supuestos.</li>
+      </ul>
+
+      <p>Con los dos números encima de la mesa, el orden casi se ordena solo, y lo
+        importante es que la discusión se traslada a donde debe estar: no a «esto es más
+        importante», sino a «tu estimación de impacto me parece alta, explícamela». Esa sí
+        es una conversación productiva.</p>
+
+      <p>Lo que hace que un roadmap así sobreviva al contacto con la realidad es tratarlo
+        como una hipótesis que se revisa, no como un compromiso anual. Un roadmap a doce
+        meses que no se revisa cada trimestre es un documento de ficción.</p>
+
+      <h2>4. Cuándo decir que no</h2>
+
+      <p>Es la parte del trabajo que menos se cuenta y la que más dinero ahorra. Un
+        proyecto que no encaja cuesta más que uno que no se firma: consume al mejor equipo,
+        termina mal, y el coste reputacional dura más que el ingreso.</p>
+
+      <p>Las señales que me hacen recomendar no seguir adelante:</p>
+
+      <ul>
+        <li><b>El problema declarado no es el problema real.</b> Piden automatizar la
+          regresión cuando lo que falla es que no hay criterios de aceptación. Automatizar
+          eso sólo consigue ejecutar más rápido las pruebas equivocadas.</li>
+        <li><b>No hay nadie con autoridad para decidir</b> del lado del cliente. Un
+          proyecto sin dueño se convierte en un proyecto de todos, que es un proyecto de
+          nadie.</li>
+        <li><b>Se busca un certificado, no una mejora.</b> Hay encargos cuyo objetivo real
+          es poder decir que se hizo algo. Son legítimos, pero no son este servicio.</li>
+        <li><b>El plazo sólo se cumple recortando justo lo que da valor.</b> Si el primer
+          recorte previsible es la transferencia de conocimiento, el resultado ya está
+          escrito.</li>
+      </ul>
+
+      <p>Decirlo pronto y con argumentos es parte del trabajo, no una salida. Y en la
+        práctica es lo que más confianza genera: un consultor que nunca ha dicho que no a
+        nada no está aportando criterio, está facturando horas.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section section--line">
+  <div class="wrap wrap--narrow">
+    <header class="section-head" data-reveal>
+      <p class="eyebrow">Dudas frecuentes</p>
+      <h2>Preguntas que me hacen antes de empezar</h2>
     </header>
 
-    <div class="wip" data-reveal style="margin-bottom:var(--s-8)">
-      <span class="icon-box icon-box--sm" aria-hidden="true">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-      </span>
-      <p><b>Página en construcción.</b> La estructura y el enfoque están definidos; el
-        desarrollo largo de cada apartado llega en las próximas semanas. Mientras tanto,
-        la página está marcada como <code>noindex</code> a propósito: prefiero no indexar
-        contenido a medias. Si te interesa alguno de estos puntos ahora,
-        <a href="../#contacto">escríbeme</a> y te lo cuento directamente.</p>
-    </div>
-
-    <div class="grid grid--2">
-      <article class="card" data-reveal>
-        <h3>Cómo se estima lo que aún no existe</h3>
-        <p>Rangos, supuestos explícitos y el coste de la falsa precisión.</p>
-      </article>
-      <article class="card" data-reveal>
-        <h3>La conversación técnica con negocio</h3>
-        <p>Qué contar, qué callar y en qué unidades hablar.</p>
-      </article>
-      <article class="card" data-reveal>
-        <h3>Priorizar sin discutir</h3>
-        <p>Impacto por esfuerzo, con los números encima de la mesa.</p>
-      </article>
-      <article class="card" data-reveal>
-        <h3>Cuándo decir que no</h3>
-        <p>El proyecto que no encaja cuesta más que el que no se firma.</p>
-      </article>
+    <div class="faq" data-reveal="fade">
+      <details class="faq-item" name="faq-sc">
+        <summary>¿Esto es consultoría de negocio o técnica?</summary>
+        <p>Técnica, con interlocución de negocio. No hago estrategia de empresa: traduzco
+          necesidad de negocio a arquitectura y decisiones de calidad, y resultados de
+          ingeniería a métricas que dirección usa para decidir.</p>
+      </details>
+      <details class="faq-item" name="faq-sc">
+        <summary>¿Participas en reuniones con nuestros clientes?</summary>
+        <p>Sí, es buena parte del valor. Interlocución técnica en preventa y en comité,
+          del lado de vuestro equipo, defendiendo la solución y la estimación ante quien
+          las tiene que aprobar.</p>
+      </details>
+      <details class="faq-item" name="faq-sc">
+        <summary>¿Cómo se factura este tipo de encargo?</summary>
+        <p>Depende del alcance: assessment cerrado, acompañamiento por periodo o
+          participación puntual en una preventa concreta. Lo acordamos en la primera
+          conversación, cuando ya sé qué necesitáis de verdad.</p>
+      </details>
+      <details class="faq-item" name="faq-sc">
+        <summary>¿Podéis estimar sin conocer nuestro sistema?</summary>
+        <p>Con rangos amplios y supuestos escritos, sí. Para estrechar el rango hace falta
+          una exploración corta, que tiene su propio precio y su propio entregable. Dar una
+          cifra estrecha sin haber mirado nada sería falsa precisión.</p>
+      </details>
+      <details class="faq-item" name="faq-sc">
+        <summary>¿Trabajas con nuestros partners tecnológicos?</summary>
+        <p>Sí. Parte del trabajo es la relación con partners y la interlocución con sus
+          equipos técnicos, sobre todo cuando la solución cruza varios proveedores y nadie
+          se siente dueño del resultado.</p>
+      </details>
+      <details class="faq-item" name="faq-sc">
+        <summary>¿De dónde sale este enfoque?</summary>
+        <p>De hacerlo a diario liderando un Tech Hub: diseño de solución, estimación
+          defendible y comité, con la diferencia de que ahí me quedo también a ver cómo
+          termina lo que se firmó. Eso cambia bastante cómo estimas.</p>
+      </details>
     </div>
   </div>
 </section>
