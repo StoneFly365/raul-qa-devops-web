@@ -19,13 +19,11 @@ export const site = {
   github: 'https://github.com/StoneFly365',
   location: 'Madrid, España',
 
-  /* ⏳ PENDIENTE — agenda online.
-     Cuando exista una URL de Calendly / Cal.com, ponla aquí y los nueve
-     CTA "Reservar una reunión" del sitio pasan de llevar al formulario a
-     abrir el calendario, en una sola línea y sin tocar nada más.
-     Mientras sea null apuntan a #contacto, que es el comportamiento
-     correcto: mejor un formulario que un calendario roto. */
-  bookingUrl: null,
+  /* Agenda online. Los nueve CTA "Reservar una reunión" abren este
+     calendario en pestaña nueva (`wireBookingCtas()` en sections.js).
+     Si algún día vuelve a ser null, caen solos al formulario
+     (#contacto): mejor un formulario que un calendario roto. */
+  bookingUrl: 'https://calendly.com/raulmolinah-madrid/30min',
 
   /* Endpoint del formulario de contacto (Formspree, Basin, Netlify…).
      Vacío = el formulario compone un mailto (puede fallar en silencio si
