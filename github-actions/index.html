@@ -7,19 +7,15 @@
 <script>document.documentElement.classList.remove('no-js')</script>
 
 <!-- ===================== SEO =====================
-     ⚠ ESTADO: estructura lista, contenido extenso pendiente.
-     Mientras el cuerpo sea sólo el esquema de abajo, la página va en
-     noindex y fuera del sitemap: una página delgada indexada perjudica
-     al dominio entero. Al terminar el contenido:
-       1. cambia robots a "index,follow,max-image-preview:large"
-       2. quita el bloque .wip de esta página
-       3. descomenta su <url> en sitemap.xml                          -->
+     ESTADO: publicada. Contenido extenso escrito, sin bloque .wip,
+     robots en index y <url> activa en sitemap.xml. Los tres van
+     juntos: `npm test` falla si se separan.                         -->
 <title>CI/CD con GitHub Actions · Raúl Molina</title>
 <meta name="description" content="Pipelines CI/CD en GitHub Actions y Azure DevOps con quality gates, paralelización, caché y despliegue automatizado.">
 <meta name="author" content="Raúl Molina Hernández">
 <meta name="keywords" content="CI/CD, GitHub Actions, Azure DevOps, quality gates, SonarQube, DORA">
 <link rel="canonical" href="https://stonefly365.github.io/raul-qa-devops-web/github-actions/">
-<meta name="robots" content="noindex,follow">
+<meta name="robots" content="index,follow,max-image-preview:large">
 
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Raúl Molina · QA, DevOps &amp; AI Engineering">
@@ -65,6 +61,18 @@
       "itemListElement": [
         { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://stonefly365.github.io/raul-qa-devops-web/" },
         { "@type": "ListItem", "position": 2, "name": "CI/CD" }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://stonefly365.github.io/raul-qa-devops-web/github-actions/#faq",
+      "mainEntity": [
+        { "@type": "Question", "name": "¿GitHub Actions o Azure DevOps?", "acceptedAnswer": { "@type": "Answer", "text": "Trabajo con los dos y la diferencia técnica importa menos de lo que parece. La decisión suele venir dada por dónde vive el código y qué usa ya el resto de la organización. Migrar de uno a otro sin una razón de peso rara vez compensa." } },
+        { "@type": "Question", "name": "Nuestro pipeline tarda 40 minutos. ¿Se puede arreglar?", "acceptedAnswer": { "@type": "Answer", "text": "Casi siempre, y sin cambiar de herramienta. Caché de dependencias, sharding y no ejecutar la suite completa en cada pull request suelen bastar para bajar a la franja de diez minutos. El primer paso es medir el tiempo por job: la intuición sobre dónde se va el tiempo acierta poco." } },
+        { "@type": "Question", "name": "¿Hay que tener tests automatizados antes de montar el pipeline?", "acceptedAnswer": { "@type": "Answer", "text": "No para empezar. Un pipeline con build, lint y despliegue reproducible ya aporta valor desde el primer día, y deja el sitio preparado para enchufar los tests cuando existan." } },
+        { "@type": "Question", "name": "¿Qué umbral de cobertura recomiendas?", "acceptedAnswer": { "@type": "Answer", "text": "Ninguno absoluto sobre el código existente. Mido cobertura del código nuevo o modificado y dejo que el equipo acuerde el número: que lo acuerden ellos importa más que el valor exacto, porque de eso depende que lo respeten." } },
+        { "@type": "Question", "name": "¿Se puede desplegar a producción automáticamente?", "acceptedAnswer": { "@type": "Answer", "text": "Se puede, y es el objetivo, pero no el punto de partida. Primero automático a preproducción y con aprobación a producción. Cuando el historial de fallos y el tiempo de reversión lo justifican, se quita la aprobación. Al revés genera desconfianza y marcha atrás." } },
+        { "@type": "Question", "name": "¿Trabajas sobre nuestro pipeline actual o empiezas de cero?", "acceptedAnswer": { "@type": "Answer", "text": "Sobre el vuestro, salvo que esté tan enredado que reescribirlo salga más barato que entenderlo. Eso se ve en los primeros días y os lo digo con argumentos, no por defecto." } }
       ]
     }
   ]
@@ -128,40 +136,158 @@
 
 <section class="section section--alt section--line">
   <div class="wrap">
-    <header class="section-head" data-reveal>
+    <div class="article-body" data-reveal>
       <p class="eyebrow">En detalle</p>
-      <h2>Lo que cubre esta guía</h2>
-      <p class="lead">El esquema del contenido extenso que estoy escribiendo para esta página.</p>
+      <p class="lead">Un pipeline sirve para una cosa: impedir que llegue a producción
+        algo roto, sin que esperar por él sea insoportable. Esas dos exigencias tiran en
+        direcciones opuestas, y ahí es donde se juega todo.</p>
+
+      <h2>1. Anatomía de un pipeline, y qué bloquea cada etapa</h2>
+
+      <p>El orden de las etapas no es estético: es económico. Lo que falla más rápido y
+        más barato va primero, para no gastar diez minutos de máquina en descubrir algo
+        que se veía en diez segundos.</p>
+
+      <ol>
+        <li><b>Estático</b> (segundos) — lint, formato, tipos. Bloquea siempre. Discutir
+          formato en una revisión de código es tiempo humano tirado.</li>
+        <li><b>Unitarios</b> (1-2 min) — bloquea siempre. Si aquí hay algo rojo, no tiene
+          sentido seguir.</li>
+        <li><b>Build y contenedor</b> — se construye <b>una sola vez</b> y el mismo
+          artefacto viaja por todas las etapas. Reconstruir por entorno es la vía más
+          común de que lo probado y lo desplegado no sean lo mismo.</li>
+        <li><b>API y contrato</b> (2-5 min) — bloquea siempre. Es donde se cazan los
+          <i>breaking changes</i> entre servicios.</li>
+        <li><b>E2E de los flujos críticos</b> (5-10 min) — bloquea el merge.</li>
+        <li><b>Seguridad y calidad</b> —dependencias vulnerables, SonarQube— bloquea sólo
+          en lo nuevo, ver más abajo.</li>
+        <li><b>Despliegue</b> — automático a preproducción, con aprobación a producción
+          mientras la confianza no sea total.</li>
+      </ol>
+
+      <p>La suite E2E completa no vive aquí: va en nocturno. Meterla en cada pull request
+        es la forma más rápida de que el equipo empiece a saltarse el pipeline.</p>
+
+      <h2>2. Quality gates que el equipo respeta en vez de esquivar</h2>
+
+      <p>Un quality gate que se esquiva no es un control, es una fricción con mala prensa.
+        Y se esquiva casi siempre por la misma razón: se ha puesto un umbral absoluto
+        sobre un código que llevaba años sin cumplirlo.</p>
+
+      <p>Exigir «80% de cobertura» en un proyecto que está al 30% no produce cobertura,
+        produce excepciones, <code>skip</code> y gente pidiendo permiso para saltarse el
+        gate. La alternativa que sí funciona es medir <b>sólo el código nuevo o
+        modificado</b>: el <i>new code</i> de SonarQube, o el diff de cobertura. La deuda
+        vieja deja de bloquear, y a la vez deja de crecer.</p>
+
+      <p>Los tres umbrales que pongo casi siempre:</p>
+
+      <ul>
+        <li>Cero tests fallando. No negociable, y es el único absoluto.</li>
+        <li>Cobertura del código nuevo por encima del umbral acordado con el equipo — que
+          lo acuerden ellos importa más que el número exacto.</li>
+        <li>Cero vulnerabilidades críticas nuevas en dependencias.</li>
+      </ul>
+
+      <p>Y una regla de convivencia: <b>si un gate falla y la reacción normal del equipo
+        es pedir saltárselo, el gate está mal calibrado</b>. El problema no es la
+        disciplina de la gente, es el umbral.</p>
+
+      <h2>3. Dónde están los minutos escondidos</h2>
+
+      <p>Un pipeline de cuarenta minutos cambia el comportamiento del equipo: se acumulan
+        cambios en un mismo pull request, se mergea sin esperar, se pierde el hilo de lo
+        que se estaba haciendo. El objetivo razonable en la ruta de pull request son diez
+        minutos, y casi siempre se llega sin comprar máquinas más grandes:</p>
+
+      <ul>
+        <li><b>Caché de dependencias.</b> <code>actions/setup-node</code> con
+          <code>cache: 'npm'</code> es una línea y suele ahorrar más que ninguna otra
+          optimización.</li>
+        <li><b>Matriz y sharding.</b> Repartir la suite entre cuatro máquinas
+          (<code>--shard=1/4</code>) y unir los informes al final.</li>
+        <li><b>Ejecutar sólo lo afectado.</b> Con <code>paths</code> en el disparador o
+          detección de proyectos afectados en monorepos.</li>
+        <li><b>Cancelar ejecuciones obsoletas.</b> Un <code>concurrency</code> con
+          <code>cancel-in-progress</code> evita pagar por builds de commits ya
+          superados.</li>
+        <li><b>Imágenes preconstruidas.</b> Si cada job instala navegadores o dependencias
+          del sistema, eso es una imagen que deberías estar cacheando.</li>
+      </ul>
+
+      <p>Antes de optimizar nada conviene mirar los tiempos por job reales. La intuición
+        sobre dónde se va el tiempo en un pipeline acierta poco.</p>
+
+      <h2>4. Desplegar, y poder volver atrás a las tres de la mañana</h2>
+
+      <p>La pregunta que decide si una estrategia de despliegue es buena no es cómo se
+        despliega, sino <b>cuánto tarda alguien medio dormido en revertir</b>. Si la
+        respuesta es «depende» o «hay que preguntar a fulano», no hay estrategia.</p>
+
+      <ul>
+        <li><b>Vuelta atrás en un comando</b>, ensayada al menos una vez en un momento
+          tranquilo. Un procedimiento de reversión que nunca se ha probado no es un
+          procedimiento, es una esperanza.</li>
+        <li><b>Feature flags</b> para separar desplegar de activar. Permiten apagar una
+          funcionalidad sin desplegar nada, que es la reversión más rápida que existe.</li>
+        <li><b>Migraciones de base de datos compatibles hacia atrás.</b> Es la causa número
+          uno de que un rollback no sea posible: el código vuelve, los datos no.</li>
+        <li><b>Comprobaciones de salud después del despliegue</b>, con reversión automática
+          si fallan.</li>
+      </ul>
+
+      <p>Todo esto se instrumenta, además, para que las cuatro métricas DORA salgan solas
+        del propio pipeline en vez de estimarse en una reunión.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section section--line">
+  <div class="wrap wrap--narrow">
+    <header class="section-head" data-reveal>
+      <p class="eyebrow">Dudas frecuentes</p>
+      <h2>Preguntas que me hacen antes de empezar</h2>
     </header>
 
-    <div class="wip" data-reveal style="margin-bottom:var(--s-8)">
-      <span class="icon-box icon-box--sm" aria-hidden="true">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-      </span>
-      <p><b>Página en construcción.</b> La estructura y el enfoque están definidos; el
-        desarrollo largo de cada apartado llega en las próximas semanas. Mientras tanto,
-        la página está marcada como <code>noindex</code> a propósito: prefiero no indexar
-        contenido a medias. Si te interesa alguno de estos puntos ahora,
-        <a href="../#contacto">escríbeme</a> y te lo cuento directamente.</p>
-    </div>
-
-    <div class="grid grid--2">
-      <article class="card" data-reveal>
-        <h3>Anatomía de un pipeline de entrega</h3>
-        <p>Las etapas de un pipeline y qué debe bloquear cada una.</p>
-      </article>
-      <article class="card" data-reveal>
-        <h3>Quality gates que se respetan</h3>
-        <p>Cómo elegir umbrales que protegen sin frenar.</p>
-      </article>
-      <article class="card" data-reveal>
-        <h3>Despliegue y vuelta atrás</h3>
-        <p>Estrategias de release y cómo revertir sin drama a las tres de la mañana.</p>
-      </article>
-      <article class="card" data-reveal>
-        <h3>Tiempo de pipeline</h3>
-        <p>Caché, matrices y sharding: dónde están los minutos escondidos.</p>
-      </article>
+    <div class="faq" data-reveal="fade">
+      <details class="faq-item" name="faq-cicd">
+        <summary>¿GitHub Actions o Azure DevOps?</summary>
+        <p>Trabajo con los dos y la diferencia técnica importa menos de lo que parece. La
+          decisión suele venir dada por dónde vive el código y qué usa ya el resto de la
+          organización. Migrar de uno a otro sin una razón de peso rara vez compensa.</p>
+      </details>
+      <details class="faq-item" name="faq-cicd">
+        <summary>Nuestro pipeline tarda 40 minutos. ¿Se puede arreglar?</summary>
+        <p>Casi siempre, y sin cambiar de herramienta. Caché de dependencias, sharding y
+          no ejecutar la suite completa en cada pull request suelen bastar para bajar a la
+          franja de diez minutos. El primer paso es medir el tiempo por job: la intuición
+          sobre dónde se va el tiempo acierta poco.</p>
+      </details>
+      <details class="faq-item" name="faq-cicd">
+        <summary>¿Hay que tener tests automatizados antes de montar el pipeline?</summary>
+        <p>No para empezar. Un pipeline con build, lint y despliegue reproducible ya aporta
+          valor desde el primer día, y deja el sitio preparado para enchufar los tests
+          cuando existan.</p>
+      </details>
+      <details class="faq-item" name="faq-cicd">
+        <summary>¿Qué umbral de cobertura recomiendas?</summary>
+        <p>Ninguno absoluto sobre el código existente. Mido cobertura del código nuevo o
+          modificado y dejo que el equipo acuerde el número: que lo acuerden ellos importa
+          más que el valor exacto, porque de eso depende que lo respeten.</p>
+      </details>
+      <details class="faq-item" name="faq-cicd">
+        <summary>¿Se puede desplegar a producción automáticamente?</summary>
+        <p>Se puede, y es el objetivo, pero no el punto de partida. Primero automático a
+          preproducción y con aprobación a producción. Cuando el historial de fallos y el
+          tiempo de reversión lo justifican, se quita la aprobación. Al revés genera
+          desconfianza y marcha atrás.</p>
+      </details>
+      <details class="faq-item" name="faq-cicd">
+        <summary>¿Trabajas sobre nuestro pipeline actual o empiezas de cero?</summary>
+        <p>Sobre el vuestro, salvo que esté tan enredado que reescribirlo salga más barato
+          que entenderlo. Eso se ve en los primeros días y os lo digo con argumentos, no
+          por defecto.</p>
+      </details>
     </div>
   </div>
 </section>
