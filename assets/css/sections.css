@@ -556,6 +556,18 @@
 .about-bio .prose > * + * { margin-top: var(--s-4); }
 .about-bio .prose p { color: var(--text-2); max-width: var(--max-prose); }
 
+/* La trayectoria vive dentro de "Sobre mí" y no como sección propia:
+   los nombres de empresa son prueba social, pero no merecen una parada
+   entera del scroll antes del CTA. Aquí la biografía la introduce y el
+   botón de contacto la cierra. */
+.about-career-label { margin-top: var(--s-10); }
+/* Columna estrecha: el período va encima del rol hasta bien entrado el
+   escritorio, así que se sube el corte de dos columnas de 900 a 1200. */
+@media (min-width: 900px) and (max-width: 1199.98px) {
+  .about-bio .career-item { grid-template-columns: 1fr; gap: var(--s-2); }
+  .about-bio .career-period { padding-top: 0; text-align: left; }
+}
+
 .facts {
   display: grid;
   gap: 0;

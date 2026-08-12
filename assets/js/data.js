@@ -352,8 +352,8 @@ export const projects = [
    progresión, no la sustituye. El detalle de cada etapa vive en
    LinkedIn, que además está al día. */
 export const career = [
-  { period: '2011 — 2014', role: 'QA Engineer', org: 'MTP · everis · Imaweb' },
-  { period: '2015 — 2019', role: 'Automation Engineer', org: 'Leda MC · BBVA · Exceltic' },
+  { period: '2011 — 2014', role: 'QA Engineer', org: 'MTP · NTT DATA · Glokal Consulting' },
+  { period: '2015 — 2019', role: 'Automation Engineer', org: 'Leda MC · BBVA · Exceltic · FCM Travel' },
   { period: '2019 — 2022', role: 'QA Lead', org: 'Sngular · Z1 · Clicars' },
   { period: '2023 — 2025', role: 'Quality Engineer & DevOps', org: 'BBVA Next · iryo · itegGO' },
   { period: '2026 — hoy', role: 'Solution Consulting & AI Engineering', org: 'atmira · Tech Hub', now: true },

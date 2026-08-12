@@ -180,6 +180,23 @@ textarea { resize: vertical; }
 .section--alt { background: var(--bg-2); }
 .section--line { border-top: 1px solid var(--line); }
 
+/* Realce de las dos secciones que convierten (servicios y contacto): el
+   mismo resplandor de acento de .cta-band, para que catorce secciones
+   alternando no se lean todas con el mismo peso.
+
+   Sólo `background-image`, nunca el atajo `background`: así respeta el
+   --bg-2 que pone .section--alt y el fondo global del body en las que no
+   lo llevan. Declarado DESPUÉS de .section--alt a propósito — misma
+   especificidad, gana la última. */
+.section--glow {
+  background-image: radial-gradient(48rem 24rem at 50% -10%, var(--accent-soft), transparent 70%);
+}
+/* En el cierre el resplandor sube desde abajo, igual que en .cta-band:
+   empuja la mirada hacia los botones, no de vuelta hacia el título. */
+.section--glow-end {
+  background-image: radial-gradient(48rem 24rem at 50% 120%, var(--accent-soft), transparent 70%);
+}
+
 .section-head {
   max-width: 46rem;
   margin-bottom: clamp(40px, 5vw, 64px);

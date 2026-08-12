@@ -69,7 +69,7 @@ const footer = () => `
         <ul>
           <li><a href="${url('#casos')}">Cómo trabajo</a></li>
           <li><a href="${url('#proyectos')}">Proyectos</a></li>
-          <li><a href="${url('#trayectoria')}">Trayectoria</a></li>
+          <li><a href="${url('#sobre-mi')}">Sobre mí</a></li>
           <li><a href="${url('blog/')}">Blog</a></li>
           <li><a href="${url('mentoringB2C/')}">Mentoría 1:1</a></li>
           <li><a href="${url('radiografia-qa/')}">Radiografía de nivel QA</a></li>
