@@ -50,6 +50,26 @@ body::before {
           mask-image: linear-gradient(180deg, #000 0%, rgba(0, 0, 0, .35) 45%, transparent 78%);
 }
 
+/* Barra de progreso de lectura: una línea de 3px que se llena al bajar.
+   Cero markup y cero JS — se anima con `animation-timeline: scroll()`
+   sobre el scroller raíz. Navegador sin soporte deja `scaleX(0)`: la
+   barra queda a cero de ancho, es decir invisible. Degradación limpia. */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0 0 auto 0;
+  height: 3px;
+  z-index: 101;              /* por encima de la navbar (z-index:100) */
+  transform-origin: 0 50%;
+  transform: scaleX(0);
+  background: var(--grad);
+  pointer-events: none;
+  animation: read-progress linear;
+  animation-timeline: scroll(root block);
+}
+@keyframes read-progress { to { transform: scaleX(1); } }
+@media (prefers-reduced-motion: reduce) { body::after { display: none; } }
+
 img, svg, video { display: block; max-width: 100%; height: auto; }
 
 /* ---- Tipografía de documento ----------------------------- */
@@ -59,7 +79,7 @@ h1, h2, h3, h4 {
   letter-spacing: var(--tr-tight);
   text-wrap: balance;
 }
-h1 { font-size: var(--fs-h1); line-height: var(--lh-tight); }
+h1 { font-size: var(--fs-h1); line-height: var(--lh-tight); font-weight: var(--fw-display); }
 h2 { font-size: var(--fs-h2); }
 h3 { font-size: var(--fs-h3); }
 h4 { font-size: var(--fs-h4); }

@@ -111,6 +111,7 @@
   --fw-medium: 500;
   --fw-semi:   600;
   --fw-bold:   680;   /* eje variable: más denso que 600, sin llegar a 700 */
+  --fw-display: 780;  /* solo el h1: a 4.25rem el 680 se ve blando */
 
   --lh-tight:  1.06;
   --lh-snug:   1.28;
