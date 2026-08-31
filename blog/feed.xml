@@ -16,6 +16,16 @@
     <webMaster>raulmolinah.madrid@gmail.com (Raúl Molina Hernández)</webMaster>
     <atom:link href="https://stonefly365.github.io/raul-qa-devops-web/blog/feed.xml" rel="self" type="application/rss+xml"/>
 
+    <item>
+      <title>Testing no funcional en sistemas de IA</title>
+      <link>https://stonefly365.github.io/raul-qa-devops-web/blog/testing-no-funcional-ia.html</link>
+      <guid isPermaLink="true">https://stonefly365.github.io/raul-qa-devops-web/blog/testing-no-funcional-ia.html</guid>
+      <pubDate>Mon, 31 Aug 2026 09:00:00 +0200</pubDate>
+      <description>Rendimiento, escalabilidad, confiabilidad y robustez adversarial: qué cambia cuando el sistema bajo prueba responde con una probabilidad en lugar de una certeza.</description>
+      <category>QA</category>
+      <category>IA</category>
+    </item>
+
     <!--
     <item>
       <title>Título del artículo</title>

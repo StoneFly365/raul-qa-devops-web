@@ -39,8 +39,12 @@ const htmlFiles = (dir = ROOT, acc = []) => {
   }
   return acc;
 };
-const PAGES = htmlFiles();
 const rel = (f) => path.relative(ROOT, f).replace(/\\/g, '/');
+/* El token de verificación de Google Search Console se llama .html pero
+   no es una página: Google exige servir el archivo tal cual, sin <head>
+   ni <main>. Queda fuera de todas las comprobaciones. */
+const NO_ES_PAGINA = /^google[0-9a-f]+\.html$/;
+const PAGES = htmlFiles().filter((f) => !NO_ES_PAGINA.test(rel(f)));
 /* Páginas que no son contenido publicable y por tanto no entran en las
    comprobaciones de SEO: la plantilla lleva marcadores {{...}} y el 404
    no se indexa nunca. */

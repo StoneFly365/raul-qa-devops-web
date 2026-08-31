@@ -773,3 +773,22 @@
   background: rgba(255, 255, 255, .04);
   color: var(--accent-hi);
 }
+/* Una tabla comparativa no cabe en móvil. El envoltorio le da su
+   propio scroll horizontal para que la página no se mueva de lado. */
+.article-body .table-scroll { overflow-x: auto; }
+.article-body table {
+  width: 100%;
+  min-width: 34rem;
+  border-collapse: collapse;
+  font-size: var(--fs-sm);
+}
+.article-body th,
+.article-body td {
+  padding: var(--s-3);
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+  vertical-align: top;
+}
+.article-body thead th { border-bottom-color: var(--line-2); color: var(--text); }
+.article-body tbody th { color: var(--text); font-weight: 500; }
+.article-body td { color: var(--text-2); }

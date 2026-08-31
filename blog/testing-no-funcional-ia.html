@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="es" class="no-js">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#08090C">
+<script>document.documentElement.classList.remove('no-js')</script>
+
+<title>Testing no funcional en sistemas de IA · Raúl Molina</title>
+<meta name="description" content="Rendimiento, escalabilidad, confiabilidad y robustez adversarial: qué cambia en el testing no funcional cuando el sistema bajo prueba responde con una probabilidad.">
+<meta name="author" content="Raúl Molina Hernández">
+<link rel="canonical" href="https://stonefly365.github.io/raul-qa-devops-web/blog/testing-no-funcional-ia.html">
+<meta name="robots" content="index,follow,max-image-preview:large">
+
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Raúl Molina · QA, DevOps & AI Engineering">
+<meta property="og:locale" content="es_ES">
+<meta property="og:url" content="https://stonefly365.github.io/raul-qa-devops-web/blog/testing-no-funcional-ia.html">
+<meta property="og:title" content="Testing no funcional en sistemas de IA">
+<meta property="og:description" content="Rendimiento, escalabilidad, confiabilidad y robustez adversarial: qué cambia cuando el sistema bajo prueba responde con una probabilidad en lugar de una certeza.">
+<meta property="og:image" content="https://stonefly365.github.io/raul-qa-devops-web/assets/og-cover.png">
+<meta property="article:published_time" content="2026-08-31">
+<meta property="article:author" content="https://www.linkedin.com/in/raulmolinahernandez/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://stonefly365.github.io/raul-qa-devops-web/assets/og-cover.png">
+
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+<link rel="alternate" type="application/rss+xml" title="Blog de Raúl Molina" href="feed.xml">
+
+<link rel="preload" href="../assets/fonts/geist-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../assets/css/tokens.css">
+<link rel="stylesheet" href="../assets/css/base.css">
+<link rel="stylesheet" href="../assets/css/motion.css">
+<link rel="stylesheet" href="../assets/css/components.css">
+<link rel="stylesheet" href="../assets/css/sections.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BlogPosting",
+      "headline": "Testing no funcional en sistemas de IA",
+      "description": "Rendimiento, escalabilidad, confiabilidad y robustez adversarial: qué cambia en el testing no funcional cuando el sistema bajo prueba responde con una probabilidad.",
+      "datePublished": "2026-08-31",
+      "dateModified": "2026-08-31",
+      "inLanguage": "es-ES",
+      "mainEntityOfPage": "https://stonefly365.github.io/raul-qa-devops-web/blog/testing-no-funcional-ia.html",
+      "image": "https://stonefly365.github.io/raul-qa-devops-web/assets/og-cover.png",
+      "keywords": "testing no funcional, QA de IA, LLM, rendimiento, escalabilidad, confiabilidad, robustez adversarial, prompt injection, observabilidad",
+      "author": {
+        "@type": "Person",
+        "name": "Raúl Molina Hernández",
+        "url": "https://stonefly365.github.io/raul-qa-devops-web/"
+      },
+      "publisher": {
+        "@type": "Person",
+        "name": "Raúl Molina Hernández",
+        "url": "https://stonefly365.github.io/raul-qa-devops-web/"
+      },
+      "isPartOf": { "@id": "https://stonefly365.github.io/raul-qa-devops-web/blog/#blog" }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://stonefly365.github.io/raul-qa-devops-web/" },
+        { "@type": "ListItem", "position": 2, "name": "Blog",   "item": "https://stonefly365.github.io/raul-qa-devops-web/blog/" },
+        { "@type": "ListItem", "position": 3, "name": "Testing no funcional en sistemas de IA" }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<a class="skip-link" href="#main">Saltar al contenido principal</a>
+<div id="nav-sentinel" aria-hidden="true"></div>
+<div data-chrome="header"></div>
+
+<main id="main">
+
+<article>
+  <header class="page-hero">
+    <div class="wrap wrap--narrow">
+      <nav aria-label="Migas de pan">
+        <ol class="breadcrumb">
+          <li><a href="../">Inicio</a></li>
+          <li><a href="./">Blog</a></li>
+          <li><span aria-current="page">Testing no funcional en IA</span></li>
+        </ol>
+      </nav>
+      <div class="post-meta">
+        <time datetime="2026-08-31">31 de agosto de 2026</time>
+        <span class="dim">· 8 min de lectura</span>
+      </div>
+      <h1>Testing no funcional en sistemas de IA</h1>
+      <p class="lead">Rendimiento, escalabilidad, confiabilidad y robustez adversarial:
+        qué cambia cuando el sistema bajo prueba responde con una probabilidad
+        en lugar de una certeza.</p>
+      <div class="tag-row" style="margin-top:var(--s-6)">
+        <span class="tag">IA</span>
+        <span class="tag">Testing no funcional</span>
+        <span class="tag">Rendimiento</span>
+        <span class="tag">Observabilidad</span>
+      </div>
+    </div>
+  </header>
+
+  <div class="article">
+    <div class="wrap wrap--narrow">
+      <div class="article-body prose">
+
+        <p>Estas son notas de campo sobre cómo probar sistemas de IA cuando lo que importa
+          ya no es si la respuesta es correcta, sino <strong>en qué condiciones lo sigue
+          siendo y a qué coste</strong>. Aquí va lo esencial;
+          <a href="../assets/docs/testing-no-funcional-ia.pdf" download>el desarrollo completo
+          está en el PDF</a> (9 páginas), con el detalle de cada prueba y las métricas a
+          instrumentar.</p>
+
+        <h2 id="introduccion">La frontera funcional / no funcional se vuelve porosa</h2>
+
+        <p>En software tradicional la separación es nítida: lo funcional pregunta «¿hace lo que
+          debe?» y lo no funcional «¿cómo de bien lo hace?». En IA la calidad de la respuesta
+          <em>es</em> parte del comportamiento observable, así que la línea se difumina.</p>
+
+        <div class="table-scroll">
+          <table>
+            <thead>
+              <tr><th scope="col">Dimensión</th><th scope="col">Testing funcional</th><th scope="col">Testing no funcional</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Oráculo</th>
+                <td>Aserción exacta o semántica sobre la respuesta</td>
+                <td>Distribución de métricas frente a umbrales (SLO)</td>
+              </tr>
+              <tr>
+                <th scope="row">Resultado</th>
+                <td>Pasa / falla</td>
+                <td>Percentiles, tasas, tendencias</td>
+              </tr>
+              <tr>
+                <th scope="row">Ejecución</th>
+                <td>Determinista, repetible</td>
+                <td>Estadística, requiere N ejecuciones</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p>Tres consecuencias. <strong>El oráculo deja de ser binario:</strong> dos respuestas
+          distintas pueden ser ambas correctas y una tercera, plausible pero falsa. <strong>Toda
+          prueba pasa a ser muestral:</strong> una sola ejecución no dice nada, hay que repetir N
+          veces y razonar sobre la distribución. Y <strong>el coste sube a métrica de primer
+          nivel:</strong> tokens y euros por conversación pueden hacer inviable en producción un
+          sistema que en la demo funciona perfecto.</p>
+
+        <p>Por orden de lo que suele doler antes: latencia percibida (manda el <em>time to first
+          token</em>, no el tiempo total), coste por interacción, estabilidad de las salidas,
+          robustez fuera de distribución, escalabilidad, seguridad específica de IA,
+          observabilidad y sesgo.</p>
+
+        <h2 id="rendimiento">Rendimiento: descomponer antes que medir</h2>
+
+        <p>Medir la latencia en bloque no dice dónde está el problema. En un sistema
+          conversacional con RAG hay que separar tramos:</p>
+
+        <pre><code>latencia_total =
+      tiempo_de_cola
+    + preprocesado / embedding de la consulta
+    + búsqueda en el vector store (recuperación)
+    + construcción del prompt
+    + TTFT (primer token del modelo)
+    + generación de los tokens restantes
+    + postprocesado / guardarraíles / formateo</code></pre>
+
+        <p>Es habitual descubrir que el 40 % del tiempo se va en la recuperación y no en el
+          modelo, lo que cambia por completo la decisión de optimización. Las métricas mínimas a
+          instrumentar:</p>
+
+        <div class="table-scroll">
+          <table>
+            <thead>
+              <tr><th scope="col">Métrica</th><th scope="col">Por qué importa</th></tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row">TTFT</th><td>Percepción de respuesta inmediata</td></tr>
+              <tr><th scope="row">TPOT / inter-token latency</th><td>Fluidez de la escritura en streaming</td></tr>
+              <tr><th scope="row">Latencia p50 / p95 / p99</th><td>La media miente; el p99 es lo que sufre el usuario descontento</td></tr>
+              <tr><th scope="row">Tokens de entrada / salida</th><td>Coste y saturación de contexto</td></tr>
+              <tr><th scope="row">Tasa de error y de 429</th><td>Punto de ruptura real</td></tr>
+              <tr><th scope="row">Coste por 1 000 peticiones</th><td>Viabilidad económica</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <blockquote>Los percentiles nunca se promedian entre ejecuciones ni entre nodos. Un p95 de
+          p95 no significa nada: hay que conservar los histogramas.</blockquote>
+
+        <p>Tres detalles que cambian el diseño de la prueba respecto a una carga clásica. El
+          <strong>payload importa tanto como la concurrencia</strong>: 100 peticiones de 200 tokens
+          no se parecen a 100 de 20 000, así que el plan necesita una distribución de longitudes
+          representativa. Si hay <strong>caché semántica</strong>, repetir siempre la misma consulta
+          mide la caché, no el modelo. Y los <strong>límites del proveedor</strong> (peticiones y
+          tokens por minuto) suelen alcanzarse antes que cualquier límite técnico — conviene avisar
+          al proveedor y presupuestar la prueba, porque contra un modelo de pago cuesta dinero real.</p>
+
+        <p>El matiz más importante: bajo carga un sistema de IA rara vez «se cae». Se vuelve lento
+          y, si hay degradación automática a un modelo más pequeño o a un contexto recortado,
+          <strong>peor</strong> — sin que salte ninguna alarma técnica. Por eso la prueba de carga
+          debe medir también calidad bajo carga: ejecutar el set de evaluación mientras la carga
+          está activa y comparar contra la ejecución en reposo.</p>
+
+        <h2 id="confiabilidad">Confiabilidad: detectar el fallo silencioso</h2>
+
+        <p>Confiable no es «acierta siempre» —ningún modelo lo hace—. Confiable es que el
+          comportamiento sea predecible y acotado: consistencia entre entradas equivalentes,
+          estabilidad a lo largo del tiempo, <strong>fallo explícito antes que fallo
+          silencioso</strong> (decir «no puedo responder» o derivar a un humano en lugar de
+          inventar), contención del blast radius y reproducibilidad de cualquier respuesta a partir
+          de lo registrado.</p>
+
+        <p>Detectar los errores silenciosos es la parte difícil, porque por definición no hay
+          excepción que capturar. Cuatro mecanismos que se complementan:</p>
+
+        <ul>
+          <li><strong>Golden dataset periódico.</strong> Entradas curadas con salidas de referencia,
+            comparadas por similitud semántica y presencia de hechos clave, no por texto literal. La
+            señal útil es la tendencia: una caída sostenida indica deriva.</li>
+          <li><strong>Chequeos invariantes.</strong> Propiedades verificables sin conocer la
+            respuesta correcta: JSON válido, las cifras citadas aparecen en el contexto recuperado,
+            el idioma coincide con el de la pregunta. Es <em>property-based testing</em> aplicado a
+            IA, y caza una fracción sorprendente de los fallos reales.</li>
+          <li><strong>Autoconsistencia.</strong> La misma consulta N veces: alta dispersión en
+            preguntas de respuesta única es un indicador temprano de inestabilidad.</li>
+          <li><strong>Señales implícitas del usuario.</strong> Reformulaciones, abandono, escalado a
+            humano, pulgar abajo. Detector gratuito, en tiempo real, y suele correlacionar mejor con
+            la calidad percibida que cualquier métrica offline.</li>
+        </ul>
+
+        <p>En alertas, la distinción práctica es que <strong>las técnicas se disparan al instante</strong>
+          (p95 sobre el SLO, 429 al alza, coste fuera de presupuesto) y <strong>las de calidad por
+          tendencia sobre ventana móvil</strong>, porque el ruido puntual es alto y una alerta por
+          cada respuesta mala genera fatiga y termina ignorándose. A eso hay que sumar un control sin
+          equivalente claro en software tradicional: <strong>límites duros de gasto y de tokens por
+          sesión</strong>. Un bucle de agentes mal acotado genera una factura muy alta en minutos.</p>
+
+        <h2 id="robustez">Robustez: el modelo no distingue instrucciones de datos</h2>
+
+        <p>Un parser tradicional falla con una excepción visible. Un LLM ante una entrada absurda
+          genera con toda naturalidad una respuesta absurda, con el mismo tono de confianza que usa
+          cuando acierta. El fallo no es ruidoso, es silencioso, y llega al usuario indistinguible de
+          uno bueno.</p>
+
+        <p>Con <strong>entradas ruidosas</strong> la degradación llega antes de lo que parece: en un
+          RAG, unas faltas de ortografía desplazan el embedding de la consulta, se recuperan
+          documentos irrelevantes y el modelo redacta una respuesta impecable sobre el contexto
+          equivocado. Con <strong>entradas maliciosas</strong> aparece la superficie de ataque propia
+          de IA: prompt injection directa e indirecta, extracción del system prompt, jailbreaking,
+          envenenamiento de la base de conocimiento. La injection indirecta merece atención especial:
+          en cuanto el sistema ingiere contenido externo (web, PDFs, correos, tickets), ese contenido
+          es una entrada no confiable con capacidad de influir en el comportamiento del modelo.</p>
+
+        <blockquote>El modelo no distingue de forma fiable entre instrucciones y datos: todo llega
+          como texto en la misma ventana de contexto. La defensa no puede depender sólo del prompt
+          del sistema.</blockquote>
+
+        <p>Tiene que apoyarse en controles fuera del modelo: validación de entrada, filtrado de
+          salida, aislamiento del contenido no confiable y permisos mínimos en las herramientas que
+          el modelo pueda invocar.</p>
+
+        <p>Testing adversarial y no funcional convergen aquí de forma natural, porque un ataque es
+          también un problema de rendimiento: una injection que provoca respuestas larguísimas es un
+          ataque de coste y latencia; un bucle de agentes inducido es una denegación de servicio. De
+          ahí que las mismas técnicas sirvan para las dos cosas — <strong>fuzzing semántico dentro de
+          la prueba de carga</strong>, <strong>red teaming continuo en el pipeline</strong> con la
+          tasa de bypass como criterio de aceptación, <strong>testing metamórfico</strong>
+          (transformaciones que no deberían cambiar la respuesta) y <strong>presupuestos de recursos
+          como control de seguridad</strong>.</p>
+
+        <h2 id="reflexion">Qué cambia, en cinco puntos</h2>
+
+        <p>La diferencia de fondo: en software tradicional el sistema es correcto o incorrecto y lo
+          no funcional describe sus márgenes; en IA el sistema es correcto <em>con una
+          probabilidad</em>, y esa probabilidad se mueve con la carga, con el modelo, con los datos y
+          con el tiempo. Lo no funcional deja de ser una capa alrededor de la funcionalidad y pasa a
+          ser inseparable de ella.</p>
+
+        <ol>
+          <li><strong>De aserciones a distribuciones.</strong> El resultado ya no es verde o rojo,
+            sino una métrica con un umbral acordado. Hay que aprender a discutir con negocio en
+            términos de percentiles.</li>
+          <li><strong>De regresión a deriva.</strong> El software tradicional no empeora solo; un
+            sistema de IA sí, porque el mundo cambia bajo él aunque el código esté congelado. La
+            monitorización continua pasa a ser parte del testing.</li>
+          <li><strong>De fallos ruidosos a fallos silenciosos.</strong> No hay stack trace.
+            Detectarlo exige una capa de evaluación explícita que en software clásico no existe.</li>
+          <li><strong>El coste entra en la ecuación.</strong> Un requisito no funcional económico
+            puede tumbar un proyecto que pasa todas las pruebas técnicas.</li>
+          <li><strong>Seguridad y no funcional se fusionan.</strong> La superficie de ataque en
+            lenguaje natural convierte cada prueba de robustez en una prueba de seguridad.</li>
+        </ol>
+
+        <p>Lo que más cambia no son las herramientas, es la mentalidad: probabilística en lugar de
+          binaria, escéptica frente a lo elocuente (una respuesta bien redactada no es una respuesta
+          correcta), continua en lugar de por fases, adversarial por defecto y humilde ante la
+          incertidumbre. En IA, saber fallar bien —derivar a un humano, decir «no lo sé», degradar
+          con transparencia— es una característica de calidad, no una concesión.</p>
+
+        <blockquote>El testing no funcional en IA se parece menos a ejecutar un plan de pruebas y más
+          a operar un sistema de medición permanente sobre algo que cambia por su cuenta.</blockquote>
+
+        <h2>La versión completa, en PDF</h2>
+
+        <p>El documento de 9 páginas desarrolla lo que aquí queda apuntado: el diseño de cada tipo de
+          prueba de carga (smoke, ramp-up, soak, spike, estrés), las implicaciones de un modelo
+          self-hosted frente a uno de terceros, las ocho pruebas bloqueantes antes de salir a
+          producción, la batería completa de estrategias adversariales y tres experimentos concretos
+          para empezar sin montar una plataforma entera.</p>
+
+        <div class="hero-ctas">
+          <a class="btn btn--primary btn--lg" href="../assets/docs/testing-no-funcional-ia.pdf" download>Descargar el PDF (152 KB)</a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</article>
+
+<section class="cta-band">
+  <div class="wrap wrap--narrow">
+    <h2>¿Estás montando esto en tu equipo?</h2>
+    <p>Treinta minutos sin compromiso para ver por dónde empezaría yo con tu sistema.</p>
+    <div class="hero-ctas">
+      <a class="btn btn--primary btn--lg" href="../#contacto" data-booking>Reservar una reunión</a>
+      <a class="btn btn--ghost btn--lg" href="./">Ver más artículos</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<div data-chrome="footer"></div>
+
+<button class="to-top" type="button" aria-label="Volver arriba">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 15l7-7 7 7"/></svg>
+</button>
+
+<script type="module" src="../assets/js/page.js"></script>
+</body>
+</html>

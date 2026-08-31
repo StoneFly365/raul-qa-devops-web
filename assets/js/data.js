@@ -538,4 +538,13 @@ export const facts = [
    Forma de un artículo:
    { slug, title, excerpt, date: 'AAAA-MM-DD', readingTime: '7 min', tags: [] }
 */
-export const posts = [];
+export const posts = [
+  {
+    slug: 'testing-no-funcional-ia',
+    title: 'Testing no funcional en sistemas de IA',
+    excerpt: 'Rendimiento, escalabilidad, confiabilidad y robustez adversarial: qué cambia cuando el sistema bajo prueba responde con una probabilidad en lugar de una certeza.',
+    date: '2026-08-31',
+    readingTime: '8 min',
+    tags: ['IA', 'Testing no funcional', 'Rendimiento'],
+  },
+];

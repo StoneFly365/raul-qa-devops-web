@@ -147,6 +147,7 @@
   font-weight: var(--fw-semi);
   letter-spacing: -.005em;
   white-space: nowrap;
+  text-decoration: none;
   cursor: pointer;
   transition: transform var(--t-fast) var(--ease),
               background var(--t-fast) var(--ease),
