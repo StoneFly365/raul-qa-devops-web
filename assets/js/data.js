@@ -450,17 +450,13 @@ export const techGroups = [
    RECURSOS
    ============================================================= */
 /* El CV no se publica como PDF descargable: la trayectoria completa
-   vive en LinkedIn, que además está siempre actualizada. */
+   vive en LinkedIn, que además está siempre actualizada.
+
+   Y el enlace a LinkedIn no entra aquí: ya lo lleva el bloque "Sobre
+   mí", dos secciones más arriba y con el mismo texto. Repetirlo en
+   Recursos hacía que el visitante leyera dos veces la misma llamada
+   al mismo sitio; esta sección es para lo que aún no ha visto. */
 export const resources = [
-  {
-    type: 'Perfil',
-    icon: I.doc,
-    title: 'Trayectoria completa',
-    desc: 'Quince años de proyectos, tecnologías y equipos, al día en LinkedIn.',
-    href: site.linkedin,
-    external: true,
-    cta: 'Ver en LinkedIn',
-  },
   {
     type: 'Gratis',
     icon: I.shield,

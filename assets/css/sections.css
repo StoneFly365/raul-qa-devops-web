@@ -560,7 +560,14 @@
    los nombres de empresa son prueba social, pero no merecen una parada
    entera del scroll antes del CTA. Aquí la biografía la introduce y el
    botón de contacto la cierra. */
-.about-career-label { margin-top: var(--s-10); }
+
+/* Etiqueta que abre un segundo grupo dentro de una sección, cuando ese
+   grupo no da para sección propia: la trayectoria en "Sobre mí", los
+   tres casos en detalle bajo los seis síntomas, el stack bajo el método.
+   Se pone sobre un .eyebrow y sólo aporta el aire que lo despega del
+   grupo anterior. Es un <p>, no un <h3>: no debe competir con los
+   títulos de las tarjetas que van justo debajo. */
+.section-sublabel { margin-top: var(--s-10); }
 /* Columna estrecha: el período va encima del rol hasta bien entrado el
    escritorio, así que se sube el corte de dos columnas de 900 a 1200. */
 @media (min-width: 900px) and (max-width: 1199.98px) {

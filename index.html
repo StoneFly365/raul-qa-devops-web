@@ -1,6 +1,14 @@
 ﻿<!DOCTYPE html>
 <html lang="es" class="no-js">
 <head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-31H0FRYP04"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-31H0FRYP04');
+</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#08090C">
@@ -311,15 +319,23 @@
 </section>
 
 <!-- ============================================================
-     3 · DIAGNÓSTICO — el problema, antes que la solución
+     3 · CÓMO TRABAJO — el síntoma y la prueba, en el mismo bloque
+     ------------------------------------------------------------
+     Antes eran dos secciones (#problemas aquí, #casos tras Proyectos)
+     separadas por otras dos, contando lo mismo dos veces: la etiqueta
+     del primer caso es literalmente el título del primer síntoma.
+     Juntas, el recorrido es síntoma → prueba sin tres bloques en medio.
+
+     El ancla sigue siendo #casos: la usan el nav, las siete landings,
+     el pie y la 404. A #problemas no la enlazaba nadie.
      ============================================================ -->
-<section class="section section--line" id="problemas" aria-labelledby="problemas-title">
+<section class="section section--line" id="casos" aria-labelledby="casos-title">
   <div class="wrap">
     <header class="section-head" data-reveal>
-      <p class="eyebrow">Diagnóstico</p>
-      <h2 id="problemas-title">Si tu equipo despliega con miedo, ya sé por dónde empezar</h2>
-      <p class="lead">Seis síntomas que se repiten en casi todas las organizaciones — y lo
-        que hago con cada uno.</p>
+      <p class="eyebrow">Cómo trabajo</p>
+      <h2 id="casos-title">Si tu equipo despliega con miedo, ya sé por dónde empezar</h2>
+      <p class="lead">Seis síntomas que se repiten en casi todas las organizaciones, y lo
+        que hago con cada uno. El patrón es el mismo entre sectores y tamaños de equipo.</p>
     </header>
     <div class="grid grid--3" id="problemsGrid">
     <article class="card card--hover" data-reveal style="--i:0">
@@ -369,6 +385,45 @@
       <h3>Equipo atascado</h3>
       <p>Más tiempo re-ejecutando pruebas que diseñando cobertura nueva.</p>
       <p class="problem-fix"><b>Lo que hago:</b> Transferencia de conocimiento para que el equipo avance solo.</p>
+    </article></div>
+
+    <p class="eyebrow section-sublabel" data-reveal>Tres de ellos, en detalle</p>
+    <div class="grid grid--3" id="casesGrid">
+    <article class="card card--hover" data-reveal style="--i:0">
+      <div class="tag-row"><span class="tag">Regresión manual</span></div>
+      <h3>Cuando la regresión bloquea cada release</h3>
+      <dl class="case-body">
+        <div><dt>Situación</dt><dd>El equipo dedica el final de cada ciclo a ejecutar casos a mano. La release depende de que alguien termine a tiempo y no queda margen para diseñar cobertura nueva.</dd></div>
+        <div><dt>Enfoque</dt><dd>Empiezo por los flujos críticos de negocio, no por la cobertura total: framework E2E con Playwright, datos de test aislados por ejecución y ejecución en cada pull request. El quality gate llega después, cuando la suite ya es fiable.</dd></div>
+        <div class="is-result"><dt>A qué se llega</dt><dd>La regresión deja de ser un hito del calendario y pasa a ser un paso del pipeline. QA recupera el tiempo para lo que no se puede automatizar.</dd></div>
+      </dl>
+      <div class="tag-row card-foot">
+        <span class="tag tag--pass">Playwright</span><span class="tag tag--pass">Datos aislados</span><span class="tag tag--pass">Ejecución en cada PR</span>
+      </div>
+    </article>
+    <article class="card card--hover" data-reveal style="--i:1">
+      <div class="tag-row"><span class="tag">Integraciones frágiles</span></div>
+      <h3>Cuando un cambio de backend rompe a terceros</h3>
+      <dl class="case-body">
+        <div><dt>Situación</dt><dd>Los contratos entre servicios viven en la documentación, no en el pipeline. Un cambio aparentemente menor rompe a un consumidor y se descubre en producción.</dd></div>
+        <div><dt>Enfoque</dt><dd>Pruebas de contrato con Karate DSL como paso obligatorio en el merge, más un mock server para que los equipos consumidores dejen de esperarse entre sí.</dd></div>
+        <div class="is-result"><dt>A qué se llega</dt><dd>Los breaking changes aparecen en CI, delante de quien los ha escrito, en vez de en una llamada de incidencia de madrugada.</dd></div>
+      </dl>
+      <div class="tag-row card-foot">
+        <span class="tag tag--pass">Karate DSL</span><span class="tag tag--pass">Contract testing</span><span class="tag tag--pass">Mock server</span>
+      </div>
+    </article>
+    <article class="card card--hover" data-reveal style="--i:2">
+      <div class="tag-row"><span class="tag">Dependencia externa</span></div>
+      <h3>Cuando el conocimiento se va con el consultor</h3>
+      <dl class="case-body">
+        <div><dt>Situación</dt><dd>La mejora de calidad depende de una persona de fuera. Mientras está, funciona; cuando termina el contrato la suite se degrada y nadie sabe por qué falla.</dd></div>
+        <div><dt>Enfoque</dt><dd>Mentoring técnico y pair-programming sobre el código real del cliente, documentación viva en el propio repositorio y rotación del rol de owner de la suite desde el primer mes.</dd></div>
+        <div class="is-result"><dt>A qué se llega</dt><dd>El objetivo del encargo es que deje de hacer falta: el equipo mantiene y amplía la suite sin soporte externo.</dd></div>
+      </dl>
+      <div class="tag-row card-foot">
+        <span class="tag tag--pass">Pair-programming</span><span class="tag tag--pass">Documentación viva</span><span class="tag tag--pass">Traspaso desde el día uno</span>
+      </div>
     </article></div>
   </div>
 </section>
@@ -638,60 +693,6 @@
 </div>
 
 <!-- ============================================================
-     6 · CÓMO TRABAJO
-     ------------------------------------------------------------
-     El ancla sigue siendo #casos: hay enlaces a ella desde las seis
-     landings, el pie y la 404.
-     ============================================================ -->
-<section class="section section--line" id="casos" aria-labelledby="casos-title">
-  <div class="wrap">
-    <header class="section-head" data-reveal>
-      <p class="eyebrow">Cómo trabajo</p>
-      <h2 id="casos-title">Tres situaciones que me encuentro siempre</h2>
-      <p class="lead">El patrón se repite entre sectores y tamaños de equipo. Esto es lo que
-        hago en cada una; las cifras las ponemos sobre tu contexto, no sobre el mío.</p>
-    </header>
-    <div class="grid grid--3" id="casesGrid">
-    <article class="card card--hover" data-reveal style="--i:0">
-      <div class="tag-row"><span class="tag">Regresión manual</span></div>
-      <h3>Cuando la regresión bloquea cada release</h3>
-      <dl class="case-body">
-        <div><dt>Situación</dt><dd>El equipo dedica el final de cada ciclo a ejecutar casos a mano. La release depende de que alguien termine a tiempo y no queda margen para diseñar cobertura nueva.</dd></div>
-        <div><dt>Enfoque</dt><dd>Empiezo por los flujos críticos de negocio, no por la cobertura total: framework E2E con Playwright, datos de test aislados por ejecución y ejecución en cada pull request. El quality gate llega después, cuando la suite ya es fiable.</dd></div>
-        <div class="is-result"><dt>A qué se llega</dt><dd>La regresión deja de ser un hito del calendario y pasa a ser un paso del pipeline. QA recupera el tiempo para lo que no se puede automatizar.</dd></div>
-      </dl>
-      <div class="tag-row card-foot">
-        <span class="tag tag--pass">Playwright</span><span class="tag tag--pass">Datos aislados</span><span class="tag tag--pass">Ejecución en cada PR</span>
-      </div>
-    </article>
-    <article class="card card--hover" data-reveal style="--i:1">
-      <div class="tag-row"><span class="tag">Integraciones frágiles</span></div>
-      <h3>Cuando un cambio de backend rompe a terceros</h3>
-      <dl class="case-body">
-        <div><dt>Situación</dt><dd>Los contratos entre servicios viven en la documentación, no en el pipeline. Un cambio aparentemente menor rompe a un consumidor y se descubre en producción.</dd></div>
-        <div><dt>Enfoque</dt><dd>Pruebas de contrato con Karate DSL como paso obligatorio en el merge, más un mock server para que los equipos consumidores dejen de esperarse entre sí.</dd></div>
-        <div class="is-result"><dt>A qué se llega</dt><dd>Los breaking changes aparecen en CI, delante de quien los ha escrito, en vez de en una llamada de incidencia de madrugada.</dd></div>
-      </dl>
-      <div class="tag-row card-foot">
-        <span class="tag tag--pass">Karate DSL</span><span class="tag tag--pass">Contract testing</span><span class="tag tag--pass">Mock server</span>
-      </div>
-    </article>
-    <article class="card card--hover" data-reveal style="--i:2">
-      <div class="tag-row"><span class="tag">Dependencia externa</span></div>
-      <h3>Cuando el conocimiento se va con el consultor</h3>
-      <dl class="case-body">
-        <div><dt>Situación</dt><dd>La mejora de calidad depende de una persona de fuera. Mientras está, funciona; cuando termina el contrato la suite se degrada y nadie sabe por qué falla.</dd></div>
-        <div><dt>Enfoque</dt><dd>Mentoring técnico y pair-programming sobre el código real del cliente, documentación viva en el propio repositorio y rotación del rol de owner de la suite desde el primer mes.</dd></div>
-        <div class="is-result"><dt>A qué se llega</dt><dd>El objetivo del encargo es que deje de hacer falta: el equipo mantiene y amplía la suite sin soporte externo.</dd></div>
-      </dl>
-      <div class="tag-row card-foot">
-        <span class="tag tag--pass">Pair-programming</span><span class="tag tag--pass">Documentación viva</span><span class="tag tag--pass">Traspaso desde el día uno</span>
-      </div>
-    </article></div>
-  </div>
-</section>
-
-<!-- ============================================================
      7 · AI ENGINEERING
      ============================================================ -->
 <section class="section section--line ai-section" id="ia" aria-labelledby="ia-title">
@@ -809,7 +810,7 @@
 <!-- ============================================================
      8 · METODOLOGÍA
      ============================================================ -->
-<section class="section section--alt section--line" id="metodo" aria-labelledby="metodo-title">
+<section class="section section--line" id="metodo" aria-labelledby="metodo-title">
   <div class="wrap">
     <header class="section-head" data-reveal>
       <p class="eyebrow">Metodología</p>
@@ -858,19 +859,8 @@
         <span class="method-out">entregable: <b>Equipo autónomo</b></span>
       </div>
     </li></ol>
-  </div>
-</section>
 
-<!-- ============================================================
-     9 · STACK
-     ============================================================ -->
-<section class="section section--line" id="stack" aria-labelledby="stack-title">
-  <div class="wrap">
-    <header class="section-head" data-reveal>
-      <p class="eyebrow">Stack</p>
-      <h2 id="stack-title">Tecnologías que uso a diario</h2>
-      <p class="lead">Elegidas por encaje con el problema, no por aparecer en una keynote.</p>
-    </header>
+    <p class="eyebrow section-sublabel" data-reveal>Tecnologías que uso a diario</p>
     <div class="tech-groups" id="techGroups">
     <div class="tech-group" data-reveal style="--i:0">
       <h3>Test Automation</h3>
@@ -912,7 +902,7 @@
             proponga nada que no haya mantenido yo mismo.</p>
         </div>
 
-        <p class="eyebrow about-career-label">Trayectoria</p>
+        <p class="eyebrow section-sublabel">Trayectoria</p>
         <ol class="career" id="careerList">
     <li class="career-item" data-reveal="left" style="--i:0">
       <span class="career-node" aria-hidden="true"></span>
