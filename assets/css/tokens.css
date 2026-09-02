@@ -55,6 +55,18 @@
   --line-2:        rgba(255, 255, 255, .12);
   --line-3:        rgba(255, 255, 255, .20);
 
+  /* La frontera entre bloques de página necesita más peso que una
+     divisoria dentro de una tarjeta. Sobre --bg (#08090C), .07 compone
+     a rgb(25,26,29): 1,15:1 de contraste, invisible fuera de un monitor
+     bueno y a oscuras. Una prueba manual lo reportó como "los bloques no
+     se separan". A .16 compone a rgb(48,48,51) — 1,52:1, todavía lejos
+     de una regla dura pero perceptible.
+
+     Sólo para líneas que cruzan el ancho completo (secciones, .cta-band,
+     .page-hero). Dentro de una tarjeta la sutileza de --line es la
+     correcta: ahí la caja ya delimita. */
+  --line-section:  rgba(255, 255, 255, .16);
+
   /* ---- Texto — todos ≥ 4.5:1 sobre --bg (WCAG AA) --------- */
   --text:          #F1F3F7;   /* 17.4:1 */
   --text-2:        #A8B1C1;   /*  8.7:1 */

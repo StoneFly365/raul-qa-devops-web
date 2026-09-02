@@ -201,7 +201,7 @@ textarea { resize: vertical; }
 /* ---- Secciones -------------------------------------------- */
 .section { padding-block: var(--s-section); position: relative; }
 .section--alt { background: var(--bg-2); }
-.section--line { border-top: 1px solid var(--line); }
+.section--line { border-top: 1px solid var(--line-section); }
 
 /* Realce de las dos secciones que convierten (servicios y contacto): el
    mismo resplandor de acento de .cta-band, para que catorce secciones

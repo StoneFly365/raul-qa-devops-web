@@ -55,7 +55,15 @@ export function initMobileNav() {
 
 /* ---- Scroll spy ------------------------------------------ */
 /* Marca el enlace de la sección visible más alta. Un único observador
-   con una banda de disparo bajo la navbar; sin listener de scroll. */
+   con una banda de disparo bajo la navbar; sin listener de scroll.
+
+   La banda, en porcentaje de la altura de la ventana. Se usa en dos
+   sitios —para armar el rootMargin y para decidir si el scroll ya ha
+   dejado atrás la última sección vigilada—, así que se declara una vez:
+   dos copias de estos números acaban desincronizadas. */
+const BANDA_TOP = 20;
+const BANDA_BOT = 35;
+
 export function initScrollSpy() {
   // El CTA queda fuera a propósito: apunta a #contacto y, al llegar,
   // recibía aria-current y se pintaba acento sobre acento — ilegible
@@ -63,19 +71,46 @@ export function initScrollSpy() {
   const links = $$('.nav-links a[href^="#"]:not(.nav-cta)');
   if (!links.length || !('IntersectionObserver' in window)) return;
 
-  const ids = links.map((a) => a.getAttribute('href').slice(1));
-  const targets = ids.map((id) => document.getElementById(id)).filter(Boolean);
+  /* Ordenadas por posición en la página, NO por posición en el menú.
+     Los dos órdenes no coinciden —el menú abre por "Servicios" y la
+     página por "Cómo trabajo"— y paint() coge la primera de la lista
+     dando por hecho que es la más alta en pantalla. Sin este sort,
+     cuando dos secciones comparten la banda gana la que va antes en
+     el menú, que puede estar más abajo. */
+  const targets = links
+    .map((a) => document.getElementById(a.getAttribute('href').slice(1)))
+    .filter(Boolean)
+    .sort((a, b) => (a.compareDocumentPosition(b) & Node.DOCUMENT_POSITION_FOLLOWING ? -1 : 1));
+  if (!targets.length) return;
+
   const visible = new Set();
+  const borde = (el, lado) => el.getBoundingClientRect()[lado];
 
   const paint = () => {
     // Primera sección visible en orden de documento: evita parpadeos
     // cuando dos secciones cortas comparten la banda de disparo.
     const active = targets.find((t) => visible.has(t.id))?.id;
-    // Entre secciones sin entrada en el menú no hay candidata: se
-    // conserva la última en lugar de apagar el indicador.
-    if (!active) return;
+
+    /* Sin candidata hay dos situaciones que no son la misma.
+
+       Dentro del tramo vigilado —la banda de la Radiografía entre dos
+       secciones, la cita— se conserva la anterior: apagar y encender
+       en un hueco de dos segundos sólo produce parpadeo.
+
+       Fuera del tramo no hay nada que señalar. Y "fuera" no es un
+       resquicio: después de #ia vienen seis secciones sin entrada en
+       el menú —Metodología, Sobre mí, Blog, Recursos, FAQ, Contacto—,
+       casi la mitad de la página. Conservar la última dejaba el menú
+       afirmando "IA" durante todo ese recorrido, que es justo lo que
+       reportó una prueba manual. */
+    if (!active) {
+      const dentro = borde(targets[0], 'top') <= window.innerHeight * BANDA_BOT / 100
+        && borde(targets.at(-1), 'bottom') >= window.innerHeight * BANDA_TOP / 100;
+      if (dentro) return;
+    }
+
     links.forEach((a) => {
-      if (a.getAttribute('href') === `#${active}`) a.setAttribute('aria-current', 'true');
+      if (active && a.getAttribute('href') === `#${active}`) a.setAttribute('aria-current', 'true');
       else a.removeAttribute('aria-current');
     });
   };
@@ -83,7 +118,7 @@ export function initScrollSpy() {
   const io = new IntersectionObserver((entries) => {
     entries.forEach((e) => (e.isIntersecting ? visible.add(e.target.id) : visible.delete(e.target.id)));
     paint();
-  }, { rootMargin: '-20% 0px -65% 0px', threshold: 0 });
+  }, { rootMargin: `-${BANDA_TOP}% 0px -${100 - BANDA_BOT}% 0px`, threshold: 0 });
 
   targets.forEach((t) => io.observe(t));
 }
